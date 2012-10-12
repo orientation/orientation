@@ -18,6 +18,7 @@ end
 
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'simple_form'
 
 # Puts a simple HTTP cache in front of your app (and gets you ready for later upgrading to nginx/varnish/squid)
 # gem 'rack-cache', '~> 1.2'
@@ -39,10 +40,15 @@ group :development do
   gem 'rb-fsevent'
   gem 'fuubar'
   gem 'ruby_gntp'
+  gem "haml-rails"
 end
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'
   gem 'pry-remote'
+end
+
+group :test do
+  gem 'shoulda-matchers'
 end
