@@ -34,7 +34,4 @@ Orientation::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
-
-  # Indented Sass Syntax
-  config.sass.preferred_syntax = :sass
 end
