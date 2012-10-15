@@ -1,6 +1,34 @@
 body.articles
+  h1
+    font-size: 2em
+
+  p, .highlight
+    font-size: 1.1em
+    max-width: 800px
+    margin-bottom: 1em
+
   label
     display: block
   input, textarea
     clear: left
     display: block
+
+  form
+    textarea
+      margin-bottom: 1em
+      min-height: 20em
+      min-width: 40em
+
+  footer
+    font:
+      size: .8em
+    text-align: right
+
+  .highlight
+    pre
+      font:
+        size: 0.9em
+        family: SourceCodePro
+      +border-radius(3px)
+      padding: 0.5em 1em
+      background: #333

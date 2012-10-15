@@ -11,7 +11,8 @@ group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
   gem 'sass-rails',   github: 'rails/sass-rails'
   gem 'coffee-rails', github: 'rails/coffee-rails'
-
+  gem 'bourbon'
+  
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'uglifier', '>= 1.0.3'
 end
@@ -19,6 +20,9 @@ end
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'simple_form'
+
+gem 'pygments.rb'
+gem 'redcarpet'
 
 # Puts a simple HTTP cache in front of your app (and gets you ready for later upgrading to nginx/varnish/squid)
 # gem 'rack-cache', '~> 1.2'

@@ -1,12 +1,16 @@
+@import "bourbon"
+
 //-----------------------------------------------------------------------
 //  Imports
 //-----------------------------------------------------------------------
 
 // Import Compass here
 
-@import "reset"
-@import "settings"
-@import "base"
+@import reset
+@import settings
+@import base
+
+@import pygments
 
 //-----------------------------------------------------------------------
 //  Modules
@@ -14,7 +18,33 @@
 
 // ----- Buttons ----- //
 
+$btn-base-color: #FAFAFA
+$btn-offset-color: darken($btn-base-color, 10%)
+$btn-text-color: #111
+$btn-outline-color: darken($btn-base-color, 20%)
+
 %btn
+  +border-radius(3px)
+  padding: .25em .5em
+  height: 24px
+  line-height: 1
+  color: $btn-text-color
+  font:
+    size: 13px
+    weight: bold
+  cursor: pointer
+  background-color: $btn-base-color
+  border: 
+    width: 1px
+    style: solid 
+    color: $btn-outline-color
+  border-bottom-color: darken($btn-outline-color, 10%)
+  +linear-gradient($btn-base-color, $btn-offset-color)
+  &:hover
+    text-decoration: none
+    +linear-gradient($btn-base-color, darken($btn-offset-color,10%))
+  &:active
+    border-top-color: darken($btn-outline-color, 10%)
 
 .btn-a
   @extend %btn
@@ -24,6 +54,13 @@
 
 .btn-c
   @extend %btn
+  +linear-gradient(#DC5F59, darken(#DC5F59, 30%))
+  color: #fff
+  border-color: darken(#DC5F59, 5%)
+  border-bottom-color: darken(#DC5F59, 25%)
+  &:hover
+    +linear-gradient(darken(#DC5F59,10%), darken(#DC5F59, 40%))
+
 
 // ----- Icons ----- //
 
@@ -35,7 +72,25 @@ i
 
 // ----- Forms ----- //
 
+$form-background-color: #FAFAFA
+$label-text-color: #111
+
 form
+  label
+    color: $label-text-color
+  input, textarea
+    font:
+      size: 1.1em
+    background:
+      color: $form-background-color
+    border:
+      width: 1px
+      style: solid
+      color: darken($form-background-color, 15%)
+    +border-radius(3px)
+    padding: 6px
+  input
+    margin-right: 5px
 
 // ----- Modals ----- //
 
@@ -56,12 +111,27 @@ form
 //-----------------------------------------------------------------------
 //  Application
 //-----------------------------------------------------------------------
+body
+  font-size: 1.1em
+
+
+.container
+  margin: 1em 2em
 
 // Header, Logo, Navigation, Footer, etc.
+
+nav
+  padding: .5em 1em
+  background:
+    color: black
+  a
+    color: white
 
 //-----------------------------------------------------------------------
 //  Controller Name
 //-----------------------------------------------------------------------
+
+@import articles
 
 // ----- Action Name ----- //
 
