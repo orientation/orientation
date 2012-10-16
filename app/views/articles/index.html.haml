@@ -1,7 +1,7 @@
 %h1 Articles
 .search-bar
   = form_tag articles_path, method: :get, remote: true do
-    = text_field_tag :search, params[:search]
+    = text_field_tag :search, params[:search], placeholder: "Search articles by keyword"
     = submit_tag "Search", class: "btn-a"
 
 %ul.article-list
