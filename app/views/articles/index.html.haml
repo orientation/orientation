@@ -1,10 +1,10 @@
 %h1 Articles
-= form_tag articles_path, method: :get do
-  = text_field_tag :search, params[:search]
-  = submit_tag "Search", class: "btn-a"
+.search-bar
+  = form_tag articles_path, method: :get, remote: true do
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", class: "btn-a"
 
-%ul
-  - @articles.each do |article|
-    %li= link_to article.title, article
+%ul.article-list
+  = render @articles
 
 = link_to "New Article", new_article_path, class: "btn-a"
