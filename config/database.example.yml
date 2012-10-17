@@ -1,0 +1,11 @@
+development: &postgres
+  adapter: postgresql
+  encoding: unicode
+  database: orientation_development
+  pool: 5
+  username: username
+  password: password
+
+test:
+  <<: *postgres
+  database: orientation_test
