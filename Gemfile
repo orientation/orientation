@@ -9,7 +9,6 @@ gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_fi
 
 gem 'pg'
 
-
 group :assets do
   gem 'sass-rails',   github: 'rails/sass-rails'
   gem 'coffee-rails', github: 'rails/coffee-rails'
