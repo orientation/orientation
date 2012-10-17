@@ -6,12 +6,14 @@ gem 'rails',     github: 'rails/rails'
 gem 'journey',   github: 'rails/journey'
 gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
+gem 'sass-rails',   github: 'rails/sass-rails'
+
 
 gem 'pg'
 
+
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'sass-rails',   github: 'rails/sass-rails'
   gem 'coffee-rails', github: 'rails/coffee-rails'
   gem 'bourbon'
   
