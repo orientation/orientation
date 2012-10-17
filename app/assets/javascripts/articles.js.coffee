@@ -3,5 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#search').on 'keyup', ->
+  delay = (ms, func) -> setTimeout func, ms
+
+  submit_form = ->
+    console.log "submitted that damned form"
     $('.search-bar form').submit()
+
+  timeout = null
+
+  $('#search').on 'keyup', ->
+    clearTimeout(timeout) if timeout
+    timeout = delay 400, -> submit_form()
