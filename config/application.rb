@@ -33,6 +33,9 @@ module Orientation
     # Version of your assets, change this if you want to expire all your assets.
     config.assets.version = '1.0'
 
+    # Prevent Rails from initializing during the precompile phase on Heroku
+    config.assets.initialize_on_precompile = false
+
     # prefer indented sass syntax
     config.sass.preferred_syntax = :sass
   end
