@@ -14,9 +14,7 @@ group :assets do
   gem 'sass-rails',   github: 'rails/sass-rails'
   gem 'coffee-rails', github: 'rails/coffee-rails'
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'haml-rails'
   gem 'bourbon'
-  
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'uglifier', '>= 1.0.3'
 end
@@ -27,6 +25,7 @@ gem 'coffee-rails', github: 'rails/coffee-rails'
 gem 'sprockets-rails', github: 'rails/sprockets-rails'
 gem 'bourbon'
 gem 'uglifier', '>= 1.0.3'
+gem 'haml-rails'
 
 gem 'jquery-rails'
 gem 'turbolinks'
