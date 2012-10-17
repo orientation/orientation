@@ -6,20 +6,26 @@ gem 'rails',     github: 'rails/rails'
 gem 'journey',   github: 'rails/journey'
 gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
-gem 'sass-rails',   github: 'rails/sass-rails'
-
 
 gem 'pg'
 
 
 group :assets do
-  gem 'sprockets-rails', github: 'rails/sprockets-rails'
+  gem 'sass-rails',   github: 'rails/sass-rails'
   gem 'coffee-rails', github: 'rails/coffee-rails'
+  gem 'sprockets-rails', github: 'rails/sprockets-rails'
   gem 'bourbon'
   
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'uglifier', '>= 1.0.3'
 end
+
+# Heroku precompile fun
+gem 'sass-rails',   github: 'rails/sass-rails'
+gem 'coffee-rails', github: 'rails/coffee-rails'
+gem 'sprockets-rails', github: 'rails/sprockets-rails'
+gem 'bourbon'
+gem 'uglifier', '>= 1.0.3'
 
 gem 'jquery-rails'
 gem 'turbolinks'
