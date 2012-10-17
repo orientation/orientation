@@ -14,6 +14,7 @@ group :assets do
   gem 'sass-rails',   github: 'rails/sass-rails'
   gem 'coffee-rails', github: 'rails/coffee-rails'
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
+  gem 'haml-rails'
   gem 'bourbon'
   
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -54,7 +55,6 @@ group :development do
   gem 'rb-fsevent'
   gem 'fuubar'
   gem 'ruby_gntp'
-  gem "haml-rails"
 end
 
 group :development, :test do
