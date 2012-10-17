@@ -1,3 +1,11 @@
+%codeblock
+  color: #fff 
+  font:
+    size: 0.9em
+    family: "SourceCodePro"
+  background: #333
+  +border-radius(3px)
+
 body.articles
   h1
     font-size: 2em
@@ -25,19 +33,23 @@ body.articles
     text-align: right
 
   code 
-    font-size: 12px
-    font-family: Consolas, "Liberation Mono", Courier, monospace
+    @extend %codeblock
+    font:
+      size: .8em
+    padding: 0 5px
+
+  blockquote
+    @extend %codeblock
+    padding: 0.75em 1em
+    border-left: 10px solid #555
+    margin: 1em 0
 
   .highlight
     pre
+      @extend %codeblock
       overflow: scroll
-      color: #fff 
-      font:
-        size: 0.9em
-        family: "SourceCodePro"
-      +border-radius(3px)
       padding: 0.5em 1em
-      background: #333
+      
 
 body.articles-index
   ul
