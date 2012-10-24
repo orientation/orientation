@@ -15,4 +15,8 @@
         - else
           = link_to "Log In", "/auth/google_apps"
     .container
+      - if flash[:error]
+        .error= flash[:error]
+      - if flash[:notice]
+        .notice= flash[:notice]
       = yield
