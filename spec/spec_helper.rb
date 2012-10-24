@@ -34,4 +34,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  OmniAuth.config.test_mode = true
+  omniauth_hash = { 'uid' => '777777', 'name' => 'mockuser' }
+    
+  OmniAuth.config.add_mock(:google_oauth2, omniauth_hash)
 end

@@ -31,7 +31,7 @@ gem 'pygments.rb'
 gem 'redcarpet'
 
 gem 'omniauth'
-gem 'omniauth-google-apps'
+gem 'omniauth-google-oauth2'
 
 # Puts a simple HTTP cache in front of your app (and gets you ready for later upgrading to nginx/varnish/squid)
 # gem 'rack-cache', '~> 1.2'
@@ -58,6 +58,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'pry-debugger'
   gem 'pry-remote'
 end
 
