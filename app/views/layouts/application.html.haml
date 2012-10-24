@@ -9,5 +9,10 @@
     %nav
       %ul
         %li= link_to "Home", root_url
+        - if current_user
+          %li= current_user.name
+          %li= link_to "Log Out", logout_path
+        - else
+          = link_to "Log In", "/auth/google_apps"
     .container
       = yield
