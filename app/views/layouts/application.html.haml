@@ -13,7 +13,7 @@
           %li= current_user.name
           %li= link_to "Log Out", logout_path
         - else
-          = link_to "Log In", "/auth/google_apps"
+          = link_to "Log In", "/auth/google_oauth2"
     .container
       - if flash[:error]
         .error= flash[:error]
