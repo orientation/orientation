@@ -1,6 +1,7 @@
 %h1= @article.title || "No title"
 
-= markdown(@article.content || "No content")
+.markdown
+  = markdown(@article.content || "No content")
 
 %footer
   - if @article.updated_at.present?
