@@ -14,17 +14,6 @@ module ApplicationHelper
     def add_line_numbers(code)
       current_line = 0
       code_arr = code.split("\n")
-      # total_lines = code_arr.count
-      # code_arr.map! do |line|
-      #   current_line += 1
-      #   if current_line == 1
-      #     line.gsub!('<pre>', "<pre><span class='line-number'>#{current_line}:</span> ")
-      #   elsif current_line == total_lines
-      #     line
-      #   else
-      #     "<span class='line-number'>#{current_line}:</span> #{line}"
-      #   end
-      # end
       line_numbers = []
       (code_arr.length - 1).times do |n|
         current_line += 1
