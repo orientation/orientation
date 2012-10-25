@@ -15,8 +15,10 @@ $ ->
     clearTimeout(timeout) if timeout
     timeout = delay 400, -> submit_form()
 
-  $('textarea#article_content').on 'keydown', (evt)->
+  $('html').on 'keydown','#article_content', (evt)->
     if evt.keyCode == 9
       keycode = evt.keycode
       evt.preventDefault()
       $('textarea#article_content').insertAtCaret('  ')
+
+  return
