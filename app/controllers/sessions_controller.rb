@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
   def create
-    user = User.find_or_create_from_omniauth(auth_hash)
-    session[:user_id] = user.id
-    redirect_to root_url, notice: "Signed in!"
+    raise auth_hash.to_yaml
+    
+    # user = User.find_or_create_from_omniauth(auth_hash)
+    # session[:user_id] = user.id
+    # redirect_to root_url, notice: "Signed in!"
   end
 
   def destroy
