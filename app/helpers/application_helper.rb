@@ -21,13 +21,13 @@ module ApplicationHelper
       end
       line_numbers_div = <<-HTML.strip_heredoc
         <div class='line-numbers'>
-          #{line_numbers.join("<br />")}
+          #{line_numbers.join("<br />")}<br />
         </div>
       HTML
 
       markdown_div = <<-HTML.strip_heredoc
         <div class='code-block'>
-          #{line_numbers_div}
+          #{line_numbers_div} 
           #{code}
         </div>
       HTML
