@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = find_article_by_params
+    @article = ArticleDecorator.new(find_article_by_params)
   end
 
   def new
@@ -14,7 +14,9 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    redirect_to @article if @article = Article.create(article_params)
+    @article = Article.new(article_params)
+    @article.author = current_user
+    redirect_to @article if @article.save
   end
 
   def edit
@@ -23,6 +25,7 @@ class ArticlesController < ApplicationController
 
   def update
     @article = find_article_by_params
+    @article.author = @article.author || current_user
     redirect_to @article if @article.update_attributes(article_params)
   end
 
