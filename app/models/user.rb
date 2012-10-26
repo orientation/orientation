@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :articles
+  
   domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
 
