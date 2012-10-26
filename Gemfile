@@ -33,6 +33,8 @@ gem 'redcarpet'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+gem 'draper'
+
 # Puts a simple HTTP cache in front of your app (and gets you ready for later upgrading to nginx/varnish/squid)
 # gem 'rack-cache', '~> 1.2'
 
