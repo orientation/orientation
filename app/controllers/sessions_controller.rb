@@ -1,10 +1,17 @@
 class SessionsController < ApplicationController
+  def new
+    session["return_to"] = request.env['HTTP_REFERER']
+    redirect_to "/auth/google_oauth2"
+  end
+
   def create
-    raise auth_hash.to_yaml
-    
-    # user = User.find_or_create_from_omniauth(auth_hash)
-    # session[:user_id] = user.id
-    # redirect_to root_url, notice: "Signed in!"
+    if user = User.find_or_create_from_omniauth(auth_hash)
+      session[:user_id] = user.id
+      flash[:notice] = "Signed in!"
+    else
+      flash[:error] = "You need a codescool.com or envylabs.com account to sign in."
+    end
+    redirect_to( session["return_to"] || root_url )
   end
 
   def destroy
