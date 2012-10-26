@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_filter :authenticate_user!, only: [:destroy]
 
   def index
     @articles = Article.search(params[:search])
