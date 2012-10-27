@@ -2,6 +2,9 @@
 
 Find your way around Code School support.
 
+## Changelog
+http://revision.io/ChRzfCZsoSYn2X4WKUKn_oxErazwM6VJSsMOb0iO
+
 ## Goals
 
 * Easy interface to create internal docs & tutorials
