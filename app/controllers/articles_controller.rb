@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate_user!, only: [:destroy]
+  before_filter :authenticate_user!, except: [:index]
 
   def index
     @articles = Article.search(params[:search])
@@ -31,13 +31,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = find_article_by_params
-    redirect_to articles_url if @article.destroy  
+    redirect_to articles_url if @article.destroy
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :content)    
+    params.require(:article).permit(:title, :content)
   end
 
   def find_article_by_params
