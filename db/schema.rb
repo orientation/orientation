@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121024172653) do
+ActiveRecord::Schema.define(version: 20121101230245) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -21,9 +21,22 @@ ActiveRecord::Schema.define(version: 20121024172653) do
     t.datetime "updated_at"
   end
 
+  create_table "articles_tags", id: false, force: true do |t|
+    t.integer "article_id"
+    t.integer "tag_id"
+  end
+
+  add_index "articles_tags", ["article_id", "tag_id"], name: "index_articles_tags_on_article_id_and_tag_id"
+
   create_table "authors", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
