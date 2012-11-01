@@ -1,4 +1,4 @@
-source "http://bundler-api.herokuapp.com" 
+source "http://rubygems.org"
 
 ruby '1.9.3'
 
