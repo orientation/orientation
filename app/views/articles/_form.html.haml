@@ -1,8 +1,4 @@
-- if current_user
-  = simple_form_for @article do |f|
-    = f.input :title
-    = f.input :content
-    = f.button :submit, class: "btn-a"
-- else
-  - action = if params[:action] == "new" then "create an article" else "edit this article" end 
-  = link_to "Log In to #{action}", login_path, data: { no_turbolink: true }
+= simple_form_for @article do |f|
+  = f.input :title
+  = f.input :content
+  = f.button :submit, class: "btn-a"
