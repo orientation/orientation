@@ -5,6 +5,8 @@
   = markdown(@article.content || "No content")
 
 %footer
+  = render "tags", tags: @article.tags
+
   - if @article.updated_at.present?
     = "Updated on #{@article.updated_at.in_time_zone.to_s(:long)}"
   - else

@@ -1,12 +1,13 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
+  respond_to :html, :json
 
   def index
     @articles = Article.search(params[:search])
   end
 
   def show
-    @article = ArticleDecorator.new(find_article_by_params)
+    respond_with @article = ArticleDecorator.new(find_article_by_params)
   end
 
   def new
@@ -21,6 +22,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = find_article_by_params
+    @tags = @article.tags.collect{ |t| Hash["id" => t.id, "name" => t.name] }
   end
 
   def update
@@ -37,7 +39,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, :tag_tokens)
   end
 
   def find_article_by_params

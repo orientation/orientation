@@ -1,5 +1,6 @@
 Orientation::Application.routes.draw do
   resources :articles
+  resources :tags
 
   root to: "articles#index"
 

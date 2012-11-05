@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 $ ->
   delay = (ms, func) -> setTimeout func, ms
 
@@ -20,5 +16,9 @@ $ ->
       keycode = evt.keycode
       evt.preventDefault()
       $('textarea#article_content').insertAtCaret('  ')
+
+  $('#article_tag_tokens').tokenInput '/tags.json'
+    theme: "facebook"
+    prePopulate: $('#article_tag_tokens').data('load')
 
   return

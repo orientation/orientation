@@ -1,0 +1,5 @@
+%h1 Tags
+- unless @tags.empty?
+  %ul
+    - @tags.each do |tag|
+      %li= link_to tag, tag

@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source 'https://rubygems.org'
 
 ruby '1.9.3'
 
@@ -11,13 +11,15 @@ gem 'pg'
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'sass-rails', '~> 4.0.0.beta', github: 'rails/sass-rails'
+  gem 'coffee-rails', '~> 4.0.0.beta', github: 'rails/coffee-rails'
+
   gem 'uglifier', '>= 1.0.3'
 end
 
 # Heroku precompile fun
-gem 'sass-rails',   github: 'rails/sass-rails'
-gem 'coffee-rails', github: 'rails/coffee-rails'
+gem 'sass-rails', '~> 4.0.0.beta', github: 'rails/sass-rails'
+gem 'coffee-rails', '~> 4.0.0.beta', github: 'rails/coffee-rails'
 gem 'sprockets-rails', github: 'rails/sprockets-rails'
 gem 'bourbon'
 gem 'uglifier', '>= 1.0.3'
@@ -34,6 +36,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
 gem 'draper'
+gem 'rails_tokeninput'
 
 # Puts a simple HTTP cache in front of your app (and gets you ready for later upgrading to nginx/varnish/squid)
 # gem 'rack-cache', '~> 1.2'
