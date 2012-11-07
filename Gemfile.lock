@@ -115,6 +115,7 @@ GEM
     faraday (0.8.4)
       multipart-post (~> 1.1)
     ffi (1.1.5)
+    friendly_id (4.0.9)
     fuubar (1.1.0)
       rspec (~> 2.0)
       rspec-instafail (~> 0.2.0)
@@ -251,6 +252,7 @@ DEPENDENCIES
   bourbon
   coffee-rails (~> 4.0.0.beta)!
   draper
+  friendly_id (~> 4.0.1)
   fuubar
   guard
   guard-rspec

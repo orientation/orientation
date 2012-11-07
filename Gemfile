@@ -38,17 +38,7 @@ gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'rails_tokeninput'
 
-# Puts a simple HTTP cache in front of your app (and gets you ready for later upgrading to nginx/varnish/squid)
-# gem 'rack-cache', '~> 1.2'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Build JSON APIs with ease. Read more: http://github.com/rails/jbuilder
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
+gem "friendly_id", "~> 4.0.1"
 
 # To use debugger
 group :development do
