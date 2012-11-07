@@ -1,5 +1,9 @@
 class Tag < ActiveRecord::Base
+  extend FriendlyId
+
   has_and_belongs_to_many :articles
+
+  friendly_id :name, use: :slugged
 
   def to_s
     self.name
