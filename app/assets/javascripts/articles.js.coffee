@@ -21,8 +21,8 @@ initialize = (method) ->
     timeout = delay 400, -> submit_form()
 
   $('html').on 'keydown','#article_content', (evt)->
-
-    if evt.keyCode == 9 && evt.shiftKey == false
+    if evt.keyCode == 9
+      evt.preventDefault()
       $('textarea#article_content').insertAtCaret('  ')
       evt.preventDefault()
 
