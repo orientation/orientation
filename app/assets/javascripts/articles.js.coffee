@@ -21,10 +21,10 @@ initialize = (method) ->
     timeout = delay 400, -> submit_form()
 
   $('html').on 'keydown','#article_content', (evt)->
-    if evt.keycode == 9 && evt.shiftKey == false
-      $('textarea#article_content').insertAtCaret('  ')
 
-    evt.preventDefault()
+    if evt.keyCode == 9 && evt.shiftKey == false
+      $('textarea#article_content').insertAtCaret('  ')
+      evt.preventDefault()
 
   $('#article_tag_tokens').tokenInput '/tags.json'
     theme: "facebook"
