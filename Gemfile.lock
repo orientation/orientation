@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/norman/friendly_id.git
+  revision: 4fcbd201b7cbb319f63a433aa5961714ef585ce8
+  branch: rails4
+  specs:
+    friendly_id (4.0.8)
+
+GIT
   remote: git://github.com/rails/activerecord-deprecated_finders.git
   revision: dd99c375c44b7cb38c5323cd419a5882817249f0
   specs:
@@ -115,7 +122,6 @@ GEM
     faraday (0.8.4)
       multipart-post (~> 1.1)
     ffi (1.1.5)
-    friendly_id (4.0.9)
     fuubar (1.1.0)
       rspec (~> 2.0)
       rspec-instafail (~> 0.2.0)
@@ -252,7 +258,7 @@ DEPENDENCIES
   bourbon
   coffee-rails (~> 4.0.0.beta)!
   draper
-  friendly_id (~> 4.0.1)
+  friendly_id!
   fuubar
   guard
   guard-rspec

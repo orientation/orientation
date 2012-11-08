@@ -38,7 +38,7 @@ gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'rails_tokeninput'
 
-gem "friendly_id", "~> 4.0.1"
+gem "friendly_id", github: "norman/friendly_id", branch: "rails4"
 
 # To use debugger
 group :development do
