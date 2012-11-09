@@ -1,2 +1,6 @@
+- tags = content_tag_for(:li, article.tags){ |t| link_to t.name, tag_path(t) }
+
 %li.article
-  = link_to article.title, article
+  = link_to "#{article.title}", article
+  %ul.tags
+    = tags.html_safe
