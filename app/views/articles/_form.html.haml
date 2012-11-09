@@ -1,5 +1,6 @@
 = simple_form_for @article do |f|
   = f.input :title
+  = link_to "Markdown Cheat Sheet", image_path("markdown-cheat-sheet.png"), target: "_blank", class: "markdown-cheat"
   = f.input :content
   = f.input :tag_tokens, label: "Tags", input_html: { data: {load: @tags} }
   = f.button :submit, class: "btn-a"
