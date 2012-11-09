@@ -22,7 +22,6 @@ initialize = (method) ->
 
   $('html').on 'keydown','#article_content', (evt)->
     if evt.keyCode == 9
-      evt.preventDefault()
       $('textarea#article_content').insertAtCaret('  ')
       evt.preventDefault()
 
