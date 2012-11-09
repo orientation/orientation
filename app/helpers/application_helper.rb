@@ -25,4 +25,12 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
+
+  ##
+  # Takes a time and a string to represent it. Outputs a proper <time>
+  # element with a title tag that display the raw time.
+  #
+  def time_element(time)
+    time_tag time, time.to_s(:long), title: time
+  end
 end

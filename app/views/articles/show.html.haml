@@ -7,10 +7,13 @@
 %footer
   = render "tags", tags: @article.tags
 
-  - if @article.updated_at.present?
-    = "Updated on #{@article.updated_at.in_time_zone.to_s(:long)}"
-  - else
-    = "Created on #{@article.created_at.in_time_zone.to_s(:long)}"
+  .timestamp
+    - if @article.updated_at.present?
+      Updated on
+      = time_element @article.updated_at.in_time_zone
+    - else
+      Created on
+      = time_element article.created_at.in_time_zone
 
 = link_to "Edit Article", edit_article_url(@article), class: "btn-a"
 = link_to "Delete Article", @article, class: "btn-c", method: :delete
