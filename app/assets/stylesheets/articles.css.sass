@@ -33,9 +33,11 @@ body.articles
       margin-top: 2em
 
   footer
-    font:
-      size: .8em
     text-align: right
+    .timestamp
+      font-size: .8em
+    .tags
+      font-size: 1.2em
 
   code
     @extend %codeblock
@@ -66,20 +68,20 @@ body.articles
       font-size: 1.1em
     ul, ol
       list-style-position: inside
+      margin-left: 0
     li
       margin: 5px 0
     ul
       margin-left: 15px
-      list-style: disc
+      list-style-type: disc
       ul
-        list-style: circle
+        list-style-type: circle
         margin: 2px 18px
       ol
-        list-style: lower-roman
+        list-style-type: lower-roman
         margin: 2px 18px
     ol
-      list-style: decimal
-      margin-left: 15px
+      list-style-type: decimal
       ol
         list-style: lower-roman
         margin: 2px 18px
@@ -91,8 +93,12 @@ body.articles
     font-size: .9em
 
 body.articles-index
-  ul
+  .article-list
     clear: both
+    .article
+      .tags
+        display: inline
+        clear: none
 
   .search-bar
     +clearfix
@@ -104,8 +110,12 @@ body.articles-index
       clear: none
       font-size: 1.1em
       height: 36px
-  .tag
-    background-color: #ccc.markdown-cheat
+
+body.articles-show
+  .tags
+    margin-bottom: 0
+
+.markdown-cheat
   position: relative
   font-size: .9em
   left: 575px
