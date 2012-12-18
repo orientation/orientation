@@ -98,11 +98,16 @@ body.articles
     font-size: .9em
 
 body.articles-index
+  .btn-a
+    clear: both
+
+  .main 
+    float: left
+    width: 70%
+
   .article-list
     clear: both
     .article
-      a
-        color: #333
       .tags
         display: inline
         clear: none
@@ -117,6 +122,20 @@ body.articles-index
       clear: none
       font-size: 1.1em
       height: 36px
+
+  .categories
+    float: right
+    width: 30%
+    clear: none
+    margin-top: 1em
+
+    h1
+      font-size: 1em
+
+    li 
+      font-size: 0.8em
+      &.more
+        font-weight: bold
 
 body.articles-show
   .tags

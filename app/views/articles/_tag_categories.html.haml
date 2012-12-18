@@ -1,0 +1,6 @@
+- categories = %w[support billing subscription security course development tutorial]
+
+- unless tags.empty?
+  - tags.each do |tag|
+    - if categories.include?(tag.name)
+      = render "tag_category", tag: tag

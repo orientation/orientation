@@ -1,0 +1,8 @@
+%div{ class: "#{tag.name.parameterize}"}
+  %h1
+    = tag.name.titleize
+  %ul
+    - tag.articles.order('updated_at DESC').limit(10).each do |article|
+      %li= link_to article.title, article
+    - if tag.articles.size > 10
+      %li.more= link_to "> more #{tag.name} articles", tag_path(tag) 

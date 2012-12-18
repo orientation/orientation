@@ -6,7 +6,7 @@ Orientation::Application.routes.draw do
 
   resources :tags
 
-  resources :articles, except: :show
+  resources :articles
   resources :articles, path: "", only: :show
 
   root to: "articles#index"
