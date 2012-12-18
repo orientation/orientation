@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    @article = Article.new(article_params)
     @article.author = current_user
     redirect_to @article if @article.save
   end
