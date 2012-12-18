@@ -1,6 +1,9 @@
 Orientation::Application.routes.draw do
-  resources :articles
+  resources :articles, path: "", only: :show
+  resources :articles, except: :show
   resources :tags
+
+  get '*id', to: 'articles#show'
 
   root to: "articles#index"
 
