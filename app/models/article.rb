@@ -28,7 +28,7 @@ class Article < ActiveRecord::Base
   private
 
   def check_modifier
-    unless new_record?
+    unless new_record? && !current_user
       modifier_id = current_user.id
     end
   end
