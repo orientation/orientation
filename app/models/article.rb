@@ -4,6 +4,11 @@ class Article < ActiveRecord::Base
 
   attr_reader :tag_tokens
 
+  before_save :check_modifier
+  before_validation :generate_slug
+
+  validates :slug, uniqueness: true, presence: true
+
   def self.search(query)
     where("title ILIKE ?", "%#{query}%").order('title ASC')
   end
@@ -14,5 +19,21 @@ class Article < ActiveRecord::Base
 
   def to_s
     title
+  end
+
+  def to_param
+    slug
+  end
+
+  private
+
+  def check_modifier
+    unless new_record?
+      modifier_id = current_user.id
+    end
+  end
+
+  def generate_slug
+    self.slug ||= title.parameterize
   end
 end
