@@ -4,7 +4,6 @@ class Article < ActiveRecord::Base
 
   attr_reader :tag_tokens
 
-  before_save :check_modifier
   before_validation :generate_slug
 
   validates :slug, uniqueness: true, presence: true
@@ -26,12 +25,6 @@ class Article < ActiveRecord::Base
   end
 
   private
-
-  def check_modifier
-    unless new_record? && !current_user
-      modifier_id = current_user.id
-    end
-  end
 
   def generate_slug
     self.slug ||= title.parameterize
