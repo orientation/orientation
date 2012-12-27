@@ -11,7 +11,9 @@ class SessionsController < ApplicationController
     else
       flash[:error] = "You need a codescool.com or envylabs.com account to sign in."
     end
-    redirect_to( session["return_to"] || root_url )
+    # OmniAuth automaticall saves the HTTP_REFERER when you begin the auth process
+    # Oh my dog, so nice, right?
+    redirect_to( request.env['omniauth.origin'] || root_url )
   end
 
   def destroy
