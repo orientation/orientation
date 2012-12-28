@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
     session["return_to"] = request.env['HTTP_REFERER']
-    redirect_to "/auth/google_oauth2"
+    redirect_to("/auth/google_oauth2", return_to: session["return_to"])
   end
 
   def create
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     end
     # OmniAuth automaticall saves the HTTP_REFERER when you begin the auth process
     # Oh my dog, so nice, right?
-    redirect_to( request.env['omniauth.origin'] || root_url )
+    redirect_to( params[:return_to] || root_url )
   end
 
   def destroy
