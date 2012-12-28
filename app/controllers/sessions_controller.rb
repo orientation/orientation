@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    session["return_to"] = request.env['HTTP_REFERER']
     origin = { origin: session["return_to"] }.to_query
     redirect_to("/auth/google_oauth2?#{origin}")
   end
