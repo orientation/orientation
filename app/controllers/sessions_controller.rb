@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def new
     session["return_to"] = request.env['HTTP_REFERER']
-    redirect_to("/auth/google_oauth2", return_to: session["return_to"])
+    origin = { origin: session["return_to"] }.to_query
+    redirect_to("/auth/google_oauth2?#{origin}")
   end
 
   def create
@@ -12,11 +13,7 @@ class SessionsController < ApplicationController
       flash[:error] = "You need a codescool.com or envylabs.com account to sign in."
     end
     # OmniAuth automaticall saves the HTTP_REFERER when you begin the auth process
-    # Oh my dog, so nice, right?
-    puts request.env['omniauth']
-    puts request.env['omniauth.params']
-    puts request.env['omniauth.params.return_to']
-    redirect_to( request.env['omniauth.params.return_to'] || root_url )
+    redirect_to( request.env['omniauth.origin'] || root_url )
   end
 
   def destroy
