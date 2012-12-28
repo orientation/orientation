@@ -26,7 +26,9 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article.author = @article.author || current_user
+    unless current_user == @article.author
+      @article.editor = current_user 
+    end
     redirect_to @article if @article.update_attributes(article_params)
   end
 

@@ -1,5 +1,7 @@
 %h1= @article.title || "No title"
 %p.author by #{mail_to @article.author.email, @article.author.name }
+- if @article.editor
+  %p.editor updated by #{mail_to @article.editor.email, @article.editor.name }
 
 .markdown
   = markdown(@article.content || "No content")
