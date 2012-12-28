@@ -13,7 +13,10 @@ class SessionsController < ApplicationController
     end
     # OmniAuth automaticall saves the HTTP_REFERER when you begin the auth process
     # Oh my dog, so nice, right?
-    redirect_to( params[:return_to] || root_url )
+    puts request.env['omniauth']
+    puts request.env['omniauth.params']
+    puts request.env['omniauth.params.return_to']
+    redirect_to( request.env['omniauth.params.return_to'] || root_url )
   end
 
   def destroy
