@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
 
   def update
     unless current_user == @article.author
-      @article.editor = current_user 
+      article_params.merge { editor_id: current_user.id } 
     end
     redirect_to @article if @article.update_attributes(article_params)
   end
@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :tag_tokens)
+    params.require(:article).permit(:title, :content, :tag_tokens, :editor_id)
   end
 
   def find_article_by_params
