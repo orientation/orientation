@@ -15,7 +15,7 @@ http://revision.io/ChRzfCZsoSYn2X4WKUKn_oxErazwM6VJSsMOb0iO
 
 * Filtered article search
 * GitHub-style syntax highlighting & formatting
+* Grouping of articles by tags
 
 ## Planned Features
 * Color-coded tags
-* Grouping of articles by tags
