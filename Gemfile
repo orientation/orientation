@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.0.0.beta', github: 'rails/coffee-rails'
 gem 'sprockets-rails', github: 'rails/sprockets-rails'
 gem 'bourbon'
 gem 'uglifier', '>= 1.0.3'
-gem 'haml-rails'
+gem 'haml-rails', github: "indirect/haml-rails" # 0.3.5 doesn't work with Rails 4
 
 gem 'jquery-rails'
 gem 'turbolinks'

@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/indirect/haml-rails.git
+  revision: 8fabd794c9510b8dd9b93c3d6601069766b94f2d
+  specs:
+    haml-rails (0.3.5)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 3.2)
+      railties (>= 3.1, < 4.1)
+
+GIT
   remote: git://github.com/norman/friendly_id.git
   revision: 4fcbd201b7cbb319f63a433aa5961714ef585ce8
   branch: rails4
@@ -140,11 +150,6 @@ GEM
       spork (>= 0.8.4)
       sys-proctable
     haml (3.1.7)
-    haml-rails (0.3.5)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (~> 3.1)
-      railties (>= 3.1, < 4.1)
     hashie (1.2.0)
     hike (1.2.1)
     httpauth (0.2.0)
@@ -263,7 +268,7 @@ DEPENDENCIES
   guard
   guard-rspec
   guard-spork
-  haml-rails
+  haml-rails!
   journey!
   jquery-rails
   omniauth
