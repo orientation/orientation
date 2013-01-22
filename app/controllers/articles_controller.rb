@@ -26,9 +26,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    unless current_user == @article.author
-      article_params.merge!({ editor_id: current_user.id })
-    end
+    article_params.merge!({ editor_id: current_user.id })
     redirect_to @article if @article.update_attributes(article_params)
   end
 
