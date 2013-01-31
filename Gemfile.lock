@@ -16,6 +16,13 @@ GIT
     friendly_id (4.0.8)
 
 GIT
+  remote: git://github.com/olivierlacan/momentjs-rails.git
+  revision: a9bed965bb6382cb2f70c4bc304e54a454ec9582
+  specs:
+    momentjs-rails (1.7.3)
+      railties (>= 3.1, < 4.1)
+
+GIT
   remote: git://github.com/rails/activerecord-deprecated_finders.git
   revision: dd99c375c44b7cb38c5323cd419a5882817249f0
   specs:
@@ -271,6 +278,7 @@ DEPENDENCIES
   haml-rails!
   journey!
   jquery-rails
+  momentjs-rails!
   omniauth
   omniauth-google-oauth2
   pg

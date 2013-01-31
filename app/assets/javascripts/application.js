@@ -15,4 +15,5 @@
 //= require turbolinks
 
 //= require jquery.tokeninput
+//= require moment
 //= require_tree .

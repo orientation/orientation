@@ -14,6 +14,12 @@ initialize = (method) ->
     console.log "submitted that damned form"
     $('.search-bar form').submit()
 
+  localize_datetimes = ->
+    date = $(".articles time")
+    old_time = $(date).attr('datetime')
+    new_time = moment(old_time).format('MMM Do YYYY, h:mm:ss A')
+    $(date).html(new_time)
+
   timeout = null
 
   $('#search').on 'keyup', ->
@@ -28,6 +34,8 @@ initialize = (method) ->
   $('#article_tag_tokens').tokenInput '/tags.json'
     theme: "facebook"
     prePopulate: $('#article_tag_tokens').data('load')
+
+  localize_datetimes()
 
 initialize_via_turbolinks = ->
   console.log "attempting to initialize via turbolinks"
