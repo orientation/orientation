@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:notice] = "Signed in!"
     else
-      flash[:error] = "You need a codescool.com or envylabs.com account to sign in."
+      flash[:error] = "You need a codeschool.com or envylabs.com account to sign in."
     end
     # OmniAuth automaticall saves the HTTP_REFERER when you begin the auth process
     redirect_to( request.env['omniauth.origin'] || root_url )
