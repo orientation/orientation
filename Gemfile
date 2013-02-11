@@ -41,7 +41,6 @@ gem 'rails_tokeninput'
 gem "friendly_id", github: "norman/friendly_id", branch: "rails4"
 gem 'momentjs-rails', github: "olivierlacan/momentjs-rails"
 
-# To use debugger
 group :development do
   gem 'guard'
   gem 'guard-rspec'
@@ -49,6 +48,8 @@ group :development do
   gem 'rb-fsevent'
   gem 'fuubar'
   gem 'ruby_gntp'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development, :test do

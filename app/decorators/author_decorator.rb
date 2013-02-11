@@ -6,7 +6,7 @@ class AuthorDecorator < ApplicationDecorator
   end
 
   def name
-    model.try(:name) || "No Name"
+    model.try(:name) || "Anonymous"
   end
 
   # Accessing Helpers

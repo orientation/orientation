@@ -1,4 +1,8 @@
 = simple_form_for @article do |f|
+  - if user_signed_in?
+    - if @article.author.blank?
+      = f.input :author_id, as: :hidden, input_html: { value: current_user.id }
+    = f.input :editor_id, as: :hidden, input_html: { value: current_user.try(:id) }
   = f.input :title
   = link_to "Markdown Cheat Sheet", image_path("markdown-cheat-sheet.png"), target: "_blank", class: "markdown-cheat"
   = f.input :content

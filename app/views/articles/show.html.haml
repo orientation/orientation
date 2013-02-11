@@ -2,7 +2,10 @@
 %p.author 
   by #{mail_to @article.author.email, @article.author.name } on #{time_element @article.created_at.in_time_zone} 
   - if @article.editor && @article.updated_at.present?
-    and updated by #{mail_to @article.editor.email, @article.editor.name } on #{time_element @article.updated_at.in_time_zone}
+    - if @article.editor_id != @article.author_id
+      and updated by #{mail_to @article.editor.email, @article.editor.name } on #{time_element @article.updated_at.in_time_zone}
+    - else
+      and updated on #{time_element @article.updated_at.in_time_zone}
 
 .markdown
   = markdown(@article.content || "No content")

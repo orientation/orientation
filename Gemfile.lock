@@ -112,6 +112,10 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    better_errors (0.5.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.6.8)
     bourbon (2.1.1)
       sass (>= 3.1)
     builder (3.1.4)
@@ -267,6 +271,8 @@ PLATFORMS
 DEPENDENCIES
   activerecord-deprecated_finders!
   arel!
+  better_errors
+  binding_of_caller
   bourbon
   coffee-rails (~> 4.0.0.beta)!
   draper
