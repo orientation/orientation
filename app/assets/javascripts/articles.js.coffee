@@ -17,7 +17,7 @@ initialize = (method) ->
   localize_datetimes = ->
     date = $(".articles time")
     old_time = $(date).attr('datetime')
-    new_time = moment(old_time).format('MMM Do YYYY, h:mm:ss A')
+    new_time = moment(old_time).format('MMM Do YYYY')
     $(date).html(new_time)
 
   timeout = null
