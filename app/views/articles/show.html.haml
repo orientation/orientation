@@ -11,7 +11,7 @@
   = markdown(@article.content || "No content")
 
 %footer
-  = render "tags", tags: @article.tags
+  = render "tags/tags", tags: @article.tags
 
 = link_to "Edit Article", edit_article_url(@article), class: "btn-a"
 = link_to "Delete Article", @article, class: "btn-c", method: :delete
