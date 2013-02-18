@@ -3,7 +3,7 @@
 Find your way around Code School support.
 
 ## Changelog
-http://revision.io/ChRzfCZsoSYn2X4WKUKn_oxErazwM6VJSsMOb0iO
+http://revision.io/orientation
 
 ## OAuth in development
 It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to xip.io I can pretend that the URL http://orientation.[my local IP address].xip.io is public.
@@ -24,9 +24,9 @@ If you have a better way to circumvent this restriction, please let me (olivier@
 
 ## Features
 
-* Filtered article search
+* Filtered full-text fuzzy article search
 * GitHub-style syntax highlighting & formatting
 * Grouping of articles by tags
 
 ## Planned Features
-* Color-coded tags
+* Color-coded & icon tags

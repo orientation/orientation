@@ -35,7 +35,7 @@ gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'rails_tokeninput'
 gem 'momentjs-rails', github: "olivierlacan/momentjs-rails"
-gem 'texticle', require: 'texticle/rails'
+gem 'texticle', github: "olivierlacan/texticle", branch: "rails4"
 
 group :development do
   gem 'guard'

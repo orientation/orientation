@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
 
   def self.text_search(query)
     if query.present?
-      search(query)
+      fuzzy_search(query)
     else
       all
     end 
