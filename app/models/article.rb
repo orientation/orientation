@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
   validates :slug, uniqueness: true, presence: true
 
   def self.search(query)
-    where("title ILIKE ?", "%#{query}%").order('title ASC')
+    where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')
   end
 
   def tag_tokens=(tokens)
