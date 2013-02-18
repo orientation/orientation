@@ -28,17 +28,14 @@ gem 'haml-rails', github: "indirect/haml-rails" # 0.3.5 doesn't work with Rails 
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'simple_form'
-
 gem 'pygments.rb'
 gem 'redcarpet'
-
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-
 gem 'draper'
 gem 'rails_tokeninput'
-
 gem 'momentjs-rails', github: "olivierlacan/momentjs-rails"
+gem 'texticle', require: 'texticle/rails'
 
 group :development do
   gem 'guard'
