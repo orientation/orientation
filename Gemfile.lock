@@ -9,13 +9,6 @@ GIT
       railties (>= 3.1, < 4.1)
 
 GIT
-  remote: git://github.com/norman/friendly_id.git
-  revision: 4fcbd201b7cbb319f63a433aa5961714ef585ce8
-  branch: rails4
-  specs:
-    friendly_id (4.0.8)
-
-GIT
   remote: git://github.com/olivierlacan/momentjs-rails.git
   revision: a9bed965bb6382cb2f70c4bc304e54a454ec9582
   specs:
@@ -276,7 +269,6 @@ DEPENDENCIES
   bourbon
   coffee-rails (~> 4.0.0.beta)!
   draper
-  friendly_id!
   fuubar
   guard
   guard-rspec

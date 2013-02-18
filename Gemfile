@@ -38,7 +38,6 @@ gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'rails_tokeninput'
 
-gem "friendly_id", github: "norman/friendly_id", branch: "rails4"
 gem 'momentjs-rails', github: "olivierlacan/momentjs-rails"
 
 group :development do
