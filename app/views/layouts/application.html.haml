@@ -9,6 +9,7 @@
     %nav
       %ul
         %li= link_to "Orientation", root_url
+        %li= link_to "Tags", tags_url
         - if current_user
           %li.auth #{current_user.name} | #{link_to "Log Out", logout_path, title: current_user.email}
         - else
