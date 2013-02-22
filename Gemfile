@@ -8,6 +8,7 @@ gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
 gem 'pg'
+gem 'thin'
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
