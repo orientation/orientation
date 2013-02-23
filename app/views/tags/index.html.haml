@@ -2,4 +2,6 @@
 - unless @tags.empty?
   %ul
     - @tags.each do |tag|
-      %li= link_to tag, tag
+      %li
+        = link_to tag, tag
+        = tag.articles.count
