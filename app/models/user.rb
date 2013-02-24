@@ -5,7 +5,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: domain_regex }
 
   def self.find_or_create_from_omniauth(auth)
-    where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
+    user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
+    # TODO: remove when all existing users have an image
+    user.image = auth["info"]["image"] unless user.mugshot_url.present?
+    user
   end
 
   def self.create_from_omniauth(auth)
@@ -14,6 +17,7 @@ class User < ActiveRecord::Base
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
+      user.image = auth["info"]["image"]
 
       return false unless user.valid?
     end

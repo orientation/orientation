@@ -185,7 +185,8 @@ CREATE TABLE users (
     name character varying(255),
     email character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    image character varying(255)
 );
 
 
@@ -321,3 +322,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121218022736');
 INSERT INTO schema_migrations (version) VALUES ('20121228090236');
 
 INSERT INTO schema_migrations (version) VALUES ('20130218024132');
+
+INSERT INTO schema_migrations (version) VALUES ('20130224191645');
