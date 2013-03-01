@@ -2,28 +2,21 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails',     github: 'rails/rails'
-gem 'journey',   github: 'rails/journey'
-gem 'arel',      github: 'rails/arel'
-gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
+gem 'rails', '~> 4.0.0.beta1', github: 'rails/rails'
 
 gem 'pg'
 gem 'thin'
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'sass-rails', '~> 4.0.0.beta', github: 'rails/sass-rails'
-  gem 'coffee-rails', '~> 4.0.0.beta', github: 'rails/coffee-rails'
+  gem 'sass-rails', github: 'rails/sass-rails'
+  gem 'coffee-rails', github: 'rails/coffee-rails'
 
   gem 'uglifier', '>= 1.0.3'
 end
 
 # Heroku precompile fun
-gem 'sass-rails', '~> 4.0.0.beta', github: 'rails/sass-rails'
-gem 'coffee-rails', '~> 4.0.0.beta', github: 'rails/coffee-rails'
-gem 'sprockets-rails', github: 'rails/sprockets-rails'
 gem 'bourbon'
-gem 'uglifier', '>= 1.0.3'
 gem 'haml-rails', github: "indirect/haml-rails" # 0.3.5 doesn't work with Rails 4
 
 gem 'jquery-rails'
@@ -36,7 +29,7 @@ gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'rails_tokeninput'
 gem 'momentjs-rails', github: "olivierlacan/momentjs-rails"
-gem 'texticle',  github: "olivierlacan/texticle", branch: "rails4", require: 'texticle/rails'
+gem 'textacular', require: 'textacular/rails'
 
 group :development do
   gem 'guard'
