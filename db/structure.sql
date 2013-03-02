@@ -270,6 +270,20 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: articles_content; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX articles_content ON articles USING gin (to_tsvector('english'::regconfig, content));
+
+
+--
+-- Name: articles_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX articles_title ON articles USING gin (to_tsvector('english'::regconfig, (title)::text));
+
+
+--
 -- Name: index_articles_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -324,3 +338,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121228090236');
 INSERT INTO schema_migrations (version) VALUES ('20130218024132');
 
 INSERT INTO schema_migrations (version) VALUES ('20130224191645');
+
+INSERT INTO schema_migrations (version) VALUES ('20130302074219');
