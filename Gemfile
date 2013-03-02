@@ -2,20 +2,21 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails', '~> 4.0.0.beta1', github: 'rails/rails'
+gem 'rails', '~> 4.0.0.beta1'
+gem 'railties', '~> 4.0.0.beta1'
 
 gem 'pg'
 gem 'thin'
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'sass-rails', github: 'rails/sass-rails'
   gem 'coffee-rails', github: 'rails/coffee-rails'
 
   gem 'uglifier', '>= 1.0.3'
 end
 
 # Heroku precompile fun
+gem 'sass-rails', github: 'rails/sass-rails'
 gem 'bourbon'
 gem 'haml-rails', github: "indirect/haml-rails" # 0.3.5 doesn't work with Rails 4
 
