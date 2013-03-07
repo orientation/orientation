@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
 
   def self.text_search(query)
     if query.present?
-      fuzzy_search(query)
+      where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')
     else
       all
     end 
