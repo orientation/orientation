@@ -32,7 +32,7 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def author_email_tag
-    mail_to source.author.email, source.author.name
+    mail_to author.email, author.name
   end
 
   def editor
