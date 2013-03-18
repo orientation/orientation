@@ -1,4 +1,4 @@
-- categories = %w[support billing subscription security course development tutorial]
+- categories = Tag.by_article_count.take(10).map{|t| t.name.downcase }
 
 - unless tags.empty?
   - tags.each do |tag|
