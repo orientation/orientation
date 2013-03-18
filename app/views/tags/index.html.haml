@@ -1,7 +1,7 @@
 %h1 Tags
-- unless @tags.empty?
+- unless @ordered_tags.empty?
   %ul
-    - @tags.each do |tag|
+    - @ordered_tags.each do |tag|
       %li
         = link_to tag, tag
         = tag.articles.count
