@@ -18,4 +18,8 @@ class Tag < ActiveRecord::Base
     tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
     tokens.split(',')
   end
+
+  def self.by_article_count
+    includes(:articles).sort_by { |tag| tag.articles.size }.reverse
+  end
 end
