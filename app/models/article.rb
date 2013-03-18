@@ -17,6 +17,14 @@ class Article < ActiveRecord::Base
     end 
   end
 
+  def fresh?
+    created_at >= 7.days.ago || updated_at >= 7.days.ago
+  end
+
+  def stale?
+    created_at < 3.months.ago && updated_at < 3.months
+  end
+
   def tag_tokens=(tokens)
     self.tag_ids = Tag.ids_from_tokens(tokens)
   end

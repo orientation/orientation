@@ -42,4 +42,8 @@ class ArticleDecorator < ApplicationDecorator
   def editor_email_tag
     mail_to source.try(:editor).try(:email), source.try(:editor).try(:name)
   end
+
+  def freshness
+    content_tag(:span, "fresh", class: "fresh") if source.fresh?
+  end
 end
