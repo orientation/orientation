@@ -1,6 +1,3 @@
-- categories = Tag.by_article_count.take(10).map{|t| t.name.downcase }
-
 - unless tags.empty?
   - tags.each do |tag|
-    - if categories.include?(tag.name)
-      = render "tags/tag_category", tag: tag
+    = render "tags/tag_category", tag: tag, articles: ArticleDecorator.decorate_collection(tag.articles.ordered_fresh)

@@ -17,6 +17,10 @@ class Article < ActiveRecord::Base
     end 
   end
 
+  def self.ordered_fresh
+    all.order(updated_at: :desc).limit(20)
+  end
+
   def fresh?
     created_at >= 7.days.ago || updated_at >= 7.days.ago
   end

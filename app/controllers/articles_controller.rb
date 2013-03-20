@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = ArticleDecorator.decorate_collection(Article.text_search(params[:search]))
+    @tags = Tag.by_article_count.take(10)
   end
 
   def show

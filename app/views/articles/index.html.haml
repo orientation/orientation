@@ -9,6 +9,6 @@
     = render @articles
 
 %aside.categories
-  = render "tags/tag_categories", tags: Tag.all
+  = render "tags/tag_categories", tags: @tags
 
 = link_to "New Article", new_article_path, class: "btn-a"
