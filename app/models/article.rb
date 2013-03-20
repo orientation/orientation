@@ -13,7 +13,7 @@ class Article < ActiveRecord::Base
     if query.present?
       where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')
     else
-      all
+      order(updated_at: :desc)
     end 
   end
 
