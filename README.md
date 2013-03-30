@@ -1,4 +1,5 @@
 # Orientation
+[![Build Status](https://magnum.travis-ci.com/codeschool/orientation.png?token=bYo3ib4PCJrDSsNRgsEK&branch=master)](https://magnum.travis-ci.com/codeschool/orientation) [![Dependency Status](https://gemnasium.com/d7600ed624a85ad2598fc3f4ceea5445.png)](https://gemnasium.com/codeschool/orientation) 
 
 Find your way around Code School support.
 
