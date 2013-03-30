@@ -20,3 +20,5 @@ notifications:
     on_failure: always
     rooms:
       - secure: "cyEVlNK8v9s66nIlsdycyGUNFKyRIARy74+oOM9RZ+EQcYL2D/0XMsUyevQx\nLFWMN5Clv1N20zhOYhYbUklPSHuT0hVoSfkMSeNlEFiy2HqIrWO8rFqazJLt\nw4HLCtl0AOc77L/1QgBfoU27g4VaPwAZvoUO6MM071wFaCwAIZA="
+
+bundler_args: --without debug

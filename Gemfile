@@ -46,12 +46,15 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.13.0'
   gem 'factory_girl_rails', '~> 4.2.1'
-  gem 'pry-rails'
-  gem 'pry-debugger'
-  gem 'pry-remote'
 end
 
 group :test do
   gem 'shoulda-matchers', '~> 1.5.6'
   gem 'capybara', github: "jnicklas/capybara", branch: "master"
+end
+
+group :debugger do
+  gem 'pry-rails'
+  gem 'pry-debugger'
+  gem 'pry-remote'
 end
