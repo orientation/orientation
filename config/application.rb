@@ -38,5 +38,9 @@ module Orientation
 
     # prefer indented sass syntax
     config.sass.preferred_syntax = :sass
+
+    config.generators do |g|
+      g.fixture_replacement :factory_girl
+    end
   end
 end

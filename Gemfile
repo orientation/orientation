@@ -18,7 +18,7 @@ end
 # Heroku precompile fun
 gem 'sass-rails', github: 'rails/sass-rails'
 gem 'bourbon'
-gem 'haml-rails', github: "indirect/haml-rails" # 0.3.5 doesn't work with Rails 4
+gem 'haml-rails', github: 'indirect/haml-rails' # 0.3.5 doesn't work with Rails 4
 
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -29,7 +29,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'rails_tokeninput'
-gem 'momentjs-rails', github: "olivierlacan/momentjs-rails"
+gem 'momentjs-rails', github: 'olivierlacan/momentjs-rails'
 gem 'textacular', require: 'textacular/rails'
 
 group :development do
@@ -44,12 +44,14 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.13.0'
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'pry-remote'
 end
 
 group :test do
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 1.5.6'
+  gem 'capybara', github: "jnicklas/capybara", branch: "master"
+  gem 'factory_girl_rails', '~> 4.2.1'
 end
