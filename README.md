@@ -30,3 +30,7 @@ If you have a better way to circumvent this restriction, please let me (olivier@
 
 ## Planned Features
 * Color-coded & icon tags
+* Email notifications when articles are updated (by someone other than you)
+* Switch from Google Auth to GitHub auth
+* Article edit log
+* Categories
