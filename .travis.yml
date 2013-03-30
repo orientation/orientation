@@ -5,6 +5,7 @@ rvm:
 before_script:
   - bundle --version
   - cp config/database.ci.yml config/database.yml
+  - psql -c 'create database billing_test;' -U postgres
   - bundle exec rake db:migrate
 script:
   - bundle exec rspec spec/ --backtrace --color
