@@ -53,7 +53,7 @@ group :test do
   gem 'capybara', github: "jnicklas/capybara", branch: "master"
 end
 
-group :debugger do
+group :debug do
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'pry-remote'
