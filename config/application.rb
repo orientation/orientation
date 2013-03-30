@@ -40,7 +40,9 @@ module Orientation
     config.sass.preferred_syntax = :sass
 
     config.generators do |g|
-      g.fixture_replacement :factory_girl
+      g.test_framework :rspec
+      g.view_specs false
+      g.helper_specs false
     end
   end
 end
