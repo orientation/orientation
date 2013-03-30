@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: codeschool_test
+  username: postgres
