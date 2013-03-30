@@ -134,6 +134,39 @@ ALTER SEQUENCE authors_id_seq OWNED BY authors.id;
 
 
 --
+-- Name: revisions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE revisions (
+    id integer NOT NULL,
+    editor_id integer,
+    content text,
+    article_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: revisions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE revisions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: revisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE revisions_id_seq OWNED BY revisions.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -227,6 +260,13 @@ ALTER TABLE ONLY authors ALTER COLUMN id SET DEFAULT nextval('authors_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY revisions ALTER COLUMN id SET DEFAULT nextval('revisions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
@@ -251,6 +291,14 @@ ALTER TABLE ONLY articles
 
 ALTER TABLE ONLY authors
     ADD CONSTRAINT authors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY revisions
+    ADD CONSTRAINT revisions_pkey PRIMARY KEY (id);
 
 
 --
@@ -340,3 +388,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130218024132');
 INSERT INTO schema_migrations (version) VALUES ('20130224191645');
 
 INSERT INTO schema_migrations (version) VALUES ('20130302074219');
+
+INSERT INTO schema_migrations (version) VALUES ('20130330080210');
