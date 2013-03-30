@@ -2,6 +2,8 @@ language: ruby
 rvm:
   - 1.9.3
   - 2.0.0
+before_install:
+  - gem install bundler
 before_script:
   - bundle --version
   - cp config/database.ci.yml config/database.yml
