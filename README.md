@@ -1,5 +1,4 @@
-# Orientation
-[![Build Status](https://magnum.travis-ci.com/codeschool/orientation.png?token=bYo3ib4PCJrDSsNRgsEK&branch=master)](https://magnum.travis-ci.com/codeschool/orientation) [![Dependency Status](https://gemnasium.com/d7600ed624a85ad2598fc3f4ceea5445.png)](https://gemnasium.com/codeschool/orientation) 
+# Orientation [![Build Status][ci-image]][ci] [![Dependency Status][gemnasium-image]][gemnasium] [![Coverage Status][coveralls-image]][coveralls]
 
 Find your way around Code School support.
 
@@ -35,3 +34,10 @@ If you have a better way to circumvent this restriction, please let me (olivier@
 * Switch from Google Auth to GitHub auth
 * Article edit log
 * Categories
+
+[ci]: https://magnum.travis-ci.com/codeschool/orientation
+[ci-image]: https://magnum.travis-ci.com/codeschool/orientation.png?token=bYo3ib4PCJrDSsNRgsEK&branch=master
+[gemnasium]: https://gemnasium.com/codeschool/orientation
+[gemnasium-image]: https://gemnasium.com/d7600ed624a85ad2598fc3f4ceea5445.png
+[coveralls]: https://coveralls.io/r/codeschool/orientation
+[coveralls-image]: https://coveralls.io/repos/codeschool/orientation/badge.png?branch=master
