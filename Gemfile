@@ -52,7 +52,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers', path: "~/Development/opensource/shoulda-matchers", branch: "rails4" # '~> 1.5.6'
+  gem 'shoulda-matchers', '~> 1.5.6' # path: "~/Development/opensource/shoulda-matchers", branch: "rails4"
   gem 'capybara', github: "jnicklas/capybara", branch: "master"
   gem 'coveralls', require: false
 end
