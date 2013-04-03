@@ -47,7 +47,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.13.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'pry-rails'
-  gem 'pry-debugger'
+  gem 'pry-debugger', platform: :ruby_19
   gem 'pry-remote'
 end
 
