@@ -32,6 +32,9 @@ gem 'rails_tokeninput'
 gem 'momentjs-rails', github: 'olivierlacan/momentjs-rails'
 gem 'textacular', require: 'textacular/rails'
 
+# monitoring
+gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
+
 group :development do
   gem 'guard'
   gem 'guard-rspec'
