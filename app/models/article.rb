@@ -2,12 +2,10 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   has_and_belongs_to_many :tags
-  has_many :revisions
 
   attr_reader :tag_tokens
 
   before_validation :generate_slug
-  before_save :create_revision
 
   validates :slug, uniqueness: true, presence: true
 
@@ -47,10 +45,5 @@ class Article < ActiveRecord::Base
 
   def generate_slug
     self.slug ||= title.parameterize
-  end
-
-  def create_revision
-    revision = revisions.build(editor: editor || author, content: content)
-    revision.save!
   end
 end
