@@ -16,3 +16,6 @@
 /tmp
 
 /config/database.yml
+
+# ignore coveralls/simplecov
+coverage/
