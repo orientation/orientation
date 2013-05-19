@@ -15,10 +15,11 @@ initialize = (method) ->
     $('.search-bar form').submit()
 
   localize_datetimes = ->
-    date = $(".articles time")
-    old_time = $(date).attr('datetime')
-    new_time = moment(old_time).format('MMM Do YYYY')
-    $(date).html(new_time)
+    dates = $(".articles time")
+    for date in dates
+      old_time = $(date).attr('datetime')
+      new_time = moment(old_time).format('MMM Do YYYY')
+      $(date).html(new_time)
 
   timeout = null
 
@@ -31,7 +32,7 @@ initialize = (method) ->
       $('textarea#article_content').insertAtCaret('  ')
       evt.preventDefault()
 
-  $('#article_tag_tokens').tokenInput '/tags.json'
+  $('#article_tag_tokens').tokenInput '/tags.json',
     theme: "facebook"
     prePopulate: $('#article_tag_tokens').data('load')
 
