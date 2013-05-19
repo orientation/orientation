@@ -8,12 +8,10 @@ gem 'railties', '~> 4.0.0.rc1'
 gem 'pg'
 gem 'thin'
 
-group :assets do
-  gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'coffee-rails', github: 'rails/coffee-rails'
+gem 'sprockets-rails', github: 'rails/sprockets-rails'
+gem 'coffee-rails', github: 'rails/coffee-rails'
 
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'uglifier', '>= 1.0.3'
 
 # Heroku precompile fun
 gem 'sass-rails', github: 'rails/sass-rails'
@@ -47,6 +45,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 2.13.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'pry-rails'
