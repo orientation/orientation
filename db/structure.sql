@@ -102,38 +102,6 @@ CREATE TABLE articles_tags (
 
 
 --
--- Name: authors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE authors (
-    id integer NOT NULL,
-    name character varying(255),
-    email character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: authors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE authors_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE authors_id_seq OWNED BY authors.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -220,13 +188,6 @@ ALTER TABLE ONLY articles ALTER COLUMN id SET DEFAULT nextval('articles_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY authors ALTER COLUMN id SET DEFAULT nextval('authors_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
@@ -243,14 +204,6 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY articles
     ADD CONSTRAINT articles_pkey PRIMARY KEY (id);
-
-
---
--- Name: authors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY authors
-    ADD CONSTRAINT authors_pkey PRIMARY KEY (id);
 
 
 --
@@ -338,3 +291,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130218024132');
 INSERT INTO schema_migrations (version) VALUES ('20130224191645');
 
 INSERT INTO schema_migrations (version) VALUES ('20130302074219');
+
+INSERT INTO schema_migrations (version) VALUES ('20130519172832');
