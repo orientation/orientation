@@ -4,7 +4,7 @@
   = link_to "Markdown Cheat Sheet", image_path("markdown-cheat-sheet.png"), target: "_blank", class: "markdown-cheat"
   = f.input :content
   = f.input :tag_tokens, label: "Tags", input_html: { data: {load: @tags} }
-  - if current_user.try(:id) == 1
+  - if current_user.try(:id) == 1 || Rails.env.development?
     = f.input :author_id, as: :select, collection: User.all, include_blank: "Select Author"
     = f.input :editor_id, as: :select, collection: User.all, include_blank: "Select Editor"
     = f.input :created_at, as: :string
