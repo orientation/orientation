@@ -162,6 +162,9 @@ GEM
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.3)
+      jquery-rails
+      railties (>= 3.1.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
     listen (0.5.3)
@@ -318,6 +321,7 @@ DEPENDENCIES
   guard-spork
   haml-rails!
   jquery-rails
+  jquery-ui-rails
   momentjs-rails!
   omniauth
   omniauth-google-oauth2

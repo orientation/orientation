@@ -38,6 +38,14 @@ initialize = (method) ->
 
   localize_datetimes()
 
+  date_inputs = $("#article_created_at, #article_updated_at")
+  date_inputs?.datepicker()
+  for date in date_inputs
+    old_time = $(date).val()
+    new_time = moment(old_time).format('MMM Do YYYY')
+    $(date).val(new_time)
+
+
 initialize_via_turbolinks = ->
   console.log "attempting to initialize via turbolinks"
   $(window).on "page:change", ->

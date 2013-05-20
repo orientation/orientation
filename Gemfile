@@ -11,6 +11,7 @@ gem 'thin'
 gem 'sprockets-rails', github: 'rails/sprockets-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'sass-rails', '~> 4.0.0.rc1'
 gem 'turbolinks'
 
