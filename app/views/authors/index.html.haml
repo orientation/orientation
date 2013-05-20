@@ -1,0 +1,4 @@
+%h1 Authors
+%ul
+  - @authors.each do |author|
+    %li= link_to "#{author} (#{author.articles.count})", author_path(author)

@@ -1,6 +1,5 @@
 Orientation::Application.routes.draw do
-  get "authors/index"
-  get "authors/show"
+
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'login', to: 'sessions#new', as: 'login'
@@ -8,6 +7,7 @@ Orientation::Application.routes.draw do
 
   resources :tags
 
+  resources :authors, only: [:index, :show]
   resources :articles
   resources :articles, path: "", only: :show
 

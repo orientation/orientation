@@ -223,6 +223,10 @@ nav
     li
       color: #fff
       display: inline-block
+      &:after
+        content: " -"
+      &:nth-child(n+3):after
+        content: ""
       &.logo
         img
           vertical-align: top

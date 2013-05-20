@@ -1,8 +1,13 @@
 class User < ActiveRecord::Base
-  has_many :articles
+  has_many :articles, foreign_key: "author_id"
   
   domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
+
+
+  def self.author
+    self.select("users.*").joins(:articles).group('users.id').having('count(articles.id) > 0')
+  end
 
   def self.find_or_create_from_omniauth(auth)
     user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
@@ -21,5 +26,9 @@ class User < ActiveRecord::Base
 
       return false unless user.valid?
     end
+  end
+
+  def to_s
+    self.name || self.email
   end
 end

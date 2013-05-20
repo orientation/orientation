@@ -1,0 +1,11 @@
+%h1= @author.name
+
+%h2 Articles created
+%ul
+  - @author.articles.each do |article|
+    %li= link_to article, article
+
+/ %h2 Articles edited
+/ %ul
+/   - @author.articles.each do |article|
+/     %li= article
