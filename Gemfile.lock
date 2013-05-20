@@ -36,16 +36,6 @@ GIT
       railties (>= 4.0.0.beta, < 5.0)
 
 GIT
-  remote: git://github.com/rails/sass-rails.git
-  revision: 7cd87222d5f64c7519ef77f9522fbcaba8e3360d
-  specs:
-    sass-rails (4.0.0.beta)
-      railties (>= 4.0.0.beta, < 5.0)
-      sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0.rc0)
-      tilt (~> 1.3)
-
-GIT
   remote: git://github.com/rails/sprockets-rails.git
   revision: 733fedff9da3997f1b98760b948114255f53860b
   specs:
@@ -264,6 +254,11 @@ GEM
     ruby-progressbar (1.0.2)
     ruby_gntp (0.3.4)
     sass (3.2.7)
+    sass-rails (4.0.0.rc1)
+      railties (>= 4.0.0.beta, < 5.0)
+      sass (>= 3.1.10)
+      sprockets-rails (~> 2.0.0.rc0)
+      tilt (~> 1.3)
     shoulda-matchers (1.5.6)
       activesupport (>= 3.0.0)
       bourne (~> 1.3)
@@ -338,7 +333,7 @@ DEPENDENCIES
   redcarpet
   rspec-rails (~> 2.13.0)
   ruby_gntp
-  sass-rails!
+  sass-rails (~> 4.0.0.rc1)
   sentry-raven!
   shoulda-matchers (~> 1.5.6)
   simple_form
@@ -346,4 +341,4 @@ DEPENDENCIES
   textacular
   thin
   turbolinks
-  uglifier
+  uglifier (>= 1.3.0)

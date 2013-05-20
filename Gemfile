@@ -9,17 +9,14 @@ gem 'pg'
 gem 'thin'
 
 gem 'sprockets-rails', github: 'rails/sprockets-rails'
-gem 'coffee-rails', github: 'rails/coffee-rails'
-
-gem 'uglifier'
-
-# Heroku precompile fun
-gem 'sass-rails', github: 'rails/sass-rails'
-gem 'bourbon'
-gem 'haml-rails', github: 'indirect/haml-rails' # 0.3.5 doesn't work with Rails 4
-
+gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'sass-rails', '~> 4.0.0.rc1'
 gem 'turbolinks'
+
+gem 'bourbon'
+gem 'coffee-rails', github: 'rails/coffee-rails'
+gem 'haml-rails', github: 'indirect/haml-rails' # 0.3.5 doesn't work with Rails 4
 gem 'simple_form'
 gem 'pygments.rb'
 gem 'redcarpet'
