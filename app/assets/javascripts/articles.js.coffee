@@ -39,7 +39,7 @@ initialize = (method) ->
   localize_datetimes()
 
   date_inputs = $("#article_created_at, #article_updated_at")
-  date_inputs?.datepicker()
+  date_inputs?.datepicker({ dateFormat: 'M dd yy' })
   for date in date_inputs
     old_time = $(date).val()
     new_time = moment(old_time).format('MMM Do YYYY')
