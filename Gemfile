@@ -32,12 +32,7 @@ gem 'textacular', require: 'textacular/rails'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 
 group :development do
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'rb-fsevent'
   gem 'fuubar'
-  gem 'ruby_gntp'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
@@ -54,5 +49,4 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 1.5.6' # path: "~/Development/opensource/shoulda-matchers", branch: "rails4"
   gem 'capybara', github: "jnicklas/capybara", branch: "master"
-  gem 'coveralls', require: false
 end
