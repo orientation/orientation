@@ -5,9 +5,13 @@ module ApplicationHelper
 
   class HTMLwithPygments < Redcarpet::Render::HTML
     def block_code(code, language)
-      sha = Digest::SHA1.hexdigest(code)
-      Rails.cache.fetch ["code", language, sha].join('-') do
-        Pygments.highlight(code, lexer: language)
+      if Pygments::Lexer.find_by_alias(language)
+        sha = Digest::SHA1.hexdigest(code)
+        Rails.cache.fetch ["code", language, sha].join('-') do
+          Pygments.highlight(code, lexer: language)
+        end
+      else
+        "Error: Invalid language in your code block, buddy."
       end
     end
   end
