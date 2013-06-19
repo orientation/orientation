@@ -1,14 +1,19 @@
-.main
-  %h1 Articles
-  .search-bar
-    = form_tag articles_path, method: :get, remote: true do
-      = text_field_tag :search, params[:search], placeholder: "Search articles by keyword"
-      = submit_tag "Search", class: "btn-a"
+- if user_signed_in?
+  .main
+    %h1 Articles
+    .search-bar
+      = form_tag articles_path, method: :get, remote: true do
+        = text_field_tag :search, params[:search], placeholder: "Search articles by keyword"
+        = submit_tag "Search", class: "btn-a"
 
-  %ul.article-list
-    = render @articles
+    %ul.article-list
+      = render @articles
 
-%aside.categories
-  = render "tags/tag_categories", tags: @tags
+  %aside.categories
+    = render "tags/tag_categories", tags: @tags
 
-= link_to "New Article", new_article_path, class: "btn-a"
+  = link_to "New Article", new_article_path, class: "btn-a"
+- else
+  .main
+    %h1 
+      = link_to "Please Log in to Continue", login_path, data: { no_turbolink: true }
