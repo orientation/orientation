@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
 
   def authenticate_user!
-    if current_user or Rails.env == "development"
+    if current_user
       true
     else
       session["return_to"] = request.url
