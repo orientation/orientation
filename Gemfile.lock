@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/indirect/haml-rails.git
-  revision: 6b7a5dead27957aff853b6c82b81fc13543c1aeb
-  specs:
-    haml-rails (0.4)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (>= 3.1, < 4.1)
-      railties (>= 3.1, < 4.1)
-
-GIT
   remote: git://github.com/jnicklas/capybara.git
   revision: 4842732e6dc406be87374a33aac537703e3949ab
   branch: master
@@ -19,23 +9,6 @@ GIT
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-
-GIT
-  remote: git://github.com/rails/coffee-rails.git
-  revision: cbc4a6f571e87f68d272b9a377db3fb3307464ab
-  specs:
-    coffee-rails (4.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0.beta, < 5.0)
-
-GIT
-  remote: git://github.com/rails/sprockets-rails.git
-  revision: 6e342e7c0c5ecc5f8869602cb957377014e42547
-  specs:
-    sprockets-rails (2.0.0.rc4)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      sprockets (~> 2.8)
 
 GIT
   remote: https://github.com/getsentry/raven-ruby.git
@@ -50,48 +23,51 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.0.rc1)
-      actionpack (= 4.0.0.rc1)
+    actionmailer (4.0.0)
+      actionpack (= 4.0.0)
       mail (~> 2.5.3)
-    actionpack (4.0.0.rc1)
-      activesupport (= 4.0.0.rc1)
+    actionpack (4.0.0)
+      activesupport (= 4.0.0)
       builder (~> 3.1.0)
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.0.rc1)
-      activesupport (= 4.0.0.rc1)
+    activemodel (4.0.0)
+      activesupport (= 4.0.0)
       builder (~> 3.1.0)
-    activerecord (4.0.0.rc1)
-      activemodel (= 4.0.0.rc1)
+    activerecord (4.0.0)
+      activemodel (= 4.0.0)
       activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.0.rc1)
+      activesupport (= 4.0.0)
       arel (~> 4.0.0)
-    activerecord-deprecated_finders (1.0.2)
-    activesupport (4.0.0.rc1)
+    activerecord-deprecated_finders (1.0.3)
+    activesupport (4.0.0)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.0)
-    atomic (1.1.9)
+    atomic (1.1.12)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
-    bourbon (3.1.6)
+    bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
     bourne (1.4.0)
       mocha (~> 0.13.2)
     builder (3.1.4)
     coderay (1.0.9)
+    coffee-rails (4.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0.beta, < 5.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.2)
+    coffee-script-source (1.6.3)
     columnize (0.3.6)
     daemons (1.1.9)
     debug_inspector (0.0.2)
@@ -126,14 +102,19 @@ GEM
       ruby-progressbar (~> 1.0)
     haml (4.0.3)
       tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hashie (2.0.5)
-    hike (1.2.2)
+    hike (1.2.3)
     httpauth (0.2.0)
     i18n (0.6.4)
-    jquery-rails (3.0.0)
+    jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.0.3)
+    jquery-ui-rails (4.0.4)
       jquery-rails
       railties (>= 3.1.0)
     jwt (0.1.8)
@@ -144,12 +125,12 @@ GEM
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.23)
-    minitest (4.7.4)
+    minitest (4.7.5)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     momentjs-rails (2.0.0.1)
       railties (>= 3.1)
-    multi_json (1.7.5)
+    multi_json (1.7.7)
     multipart-post (1.2.0)
     nokogiri (1.5.9)
     oauth2 (0.8.1)
@@ -167,7 +148,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    pg (0.15.1)
+    pg (0.16.0)
     polyglot (0.3.3)
     posix-spawn (0.3.6)
     pry (0.9.12.2)
@@ -182,29 +163,29 @@ GEM
     pry-remote (0.1.7)
       pry (~> 0.9)
       slop (~> 3.0)
-    pygments.rb (0.5.0)
+    pygments.rb (0.5.2)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.0.0.rc1)
-      actionmailer (= 4.0.0.rc1)
-      actionpack (= 4.0.0.rc1)
-      activerecord (= 4.0.0.rc1)
-      activesupport (= 4.0.0.rc1)
+    rails (4.0.0)
+      actionmailer (= 4.0.0)
+      actionpack (= 4.0.0)
+      activerecord (= 4.0.0)
+      activesupport (= 4.0.0)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.0.rc1)
-      sprockets-rails (~> 2.0.0.rc4)
+      railties (= 4.0.0)
+      sprockets-rails (~> 2.0.0)
     rails_tokeninput (1.6.0)
       railties (>= 3.1.0)
-    railties (4.0.0.rc1)
-      actionpack (= 4.0.0.rc1)
-      activesupport (= 4.0.0.rc1)
+    railties (4.0.0)
+      actionpack (= 4.0.0)
+      activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.0.4)
-    redcarpet (2.3.0)
+    rake (10.1.0)
+    redcarpet (3.0.0)
     request_store (1.0.5)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -223,12 +204,11 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     ruby-progressbar (1.1.0)
-    sass (3.2.9)
-    sass-rails (4.0.0.rc1)
+    sass (3.2.10)
+    sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0.rc0)
-      tilt (~> 1.3)
+      sprockets-rails (~> 2.0.0)
     shoulda-matchers (1.5.6)
       activesupport (>= 3.0.0)
       bourne (~> 1.3)
@@ -239,6 +219,10 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.0.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (~> 2.8)
     textacular (3.0.0)
       activerecord (>= 3.0, < 4.1)
     thin (1.5.1)
@@ -246,16 +230,16 @@ GEM
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     thor (0.18.1)
-    thread_safe (0.1.0)
+    thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
-    treetop (1.4.12)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.2.0)
+    turbolinks (1.3.0)
       coffee-rails
     tzinfo (0.3.37)
-    uglifier (2.1.1)
+    uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     uuidtools (2.1.4)
@@ -271,12 +255,12 @@ DEPENDENCIES
   binding_of_caller
   bourbon
   capybara!
-  coffee-rails!
+  coffee-rails
   dotenv-rails
   draper (~> 1.2.1)
   factory_girl_rails (~> 4.2.1)
   fuubar
-  haml-rails!
+  haml-rails
   jquery-rails
   jquery-ui-rails
   momentjs-rails (= 2.0.0.1)
@@ -287,16 +271,15 @@ DEPENDENCIES
   pry-rails
   pry-remote
   pygments.rb
-  rails (~> 4.0.0.rc1)
+  rails (~> 4.0.0)
   rails_tokeninput
-  railties (~> 4.0.0.rc1)
+  railties (~> 4.0.0)
   redcarpet
   rspec-rails (~> 2.13.0)
-  sass-rails (~> 4.0.0.rc1)
+  sass-rails
   sentry-raven!
   shoulda-matchers (~> 1.5.6)
   simple_form
-  sprockets-rails!
   textacular
   thin
   turbolinks

@@ -2,22 +2,22 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'rails', '~> 4.0.0.rc1'
-gem 'railties', '~> 4.0.0.rc1'
+gem 'rails', '~> 4.0.0'
+gem 'railties', '~> 4.0.0'
 
 gem 'pg'
 gem 'thin'
 
-gem 'sprockets-rails', github: 'rails/sprockets-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails'
+
 gem 'turbolinks'
 
 gem 'bourbon'
-gem 'coffee-rails', github: 'rails/coffee-rails'
-gem 'haml-rails', github: 'indirect/haml-rails' # 0.3.5 doesn't work with Rails 4
+gem 'coffee-rails'
+gem 'haml-rails'
 gem 'simple_form'
 gem 'pygments.rb'
 gem 'redcarpet'
