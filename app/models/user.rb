@@ -6,7 +6,14 @@ class User < ActiveRecord::Base
 
 
   def self.author
-    self.select("users.*").joins(:articles).group('users.id').having('count(articles.id) > 0')
+    joins(:articles).group('users.id').having('count(articles.id) > 0')
+  end
+
+  def self.prolific
+    joins(articles: :author).
+      select('users.*, count(articles.id) as articles_count').
+      group('users.id').
+      order('articles_count DESC')
   end
 
   def self.find_or_create_from_omniauth(auth)
