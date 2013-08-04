@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   def self.find_or_create_from_omniauth(auth)
     user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
     # TODO: remove when all existing users have an image
-    user.image = auth["info"]["image"] && user.save! if user && user.image.present?
+    update_image(auth)
     user
   end
 
@@ -30,5 +30,12 @@ class User < ActiveRecord::Base
 
   def to_s
     self.name || self.email
+  end
+
+  private
+
+  def self.update_image(auth)
+    user.image = auth["info"]["image"]
+    user.save!
   end
 end
