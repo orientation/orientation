@@ -1,4 +1,6 @@
 %h1 Authors
-%ul
+%ul.authors
   - @authors.each do |author|
-    %li= link_to "#{author} (#{author.articles.count})", author_path(author)
+    %li.author
+      = image_tag author.image, width: 40, height: 40, class: "avatar"
+      = link_to "#{author} (#{author.articles.count})", author_path(author)
