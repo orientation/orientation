@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = User.author
+    @authors = AuthorDecorator.decorate_collection User.author
   end
 
   def show
