@@ -5,16 +5,15 @@ Find your way around Code School support.
 ## Changelog
 http://revision.io/orientation
 
-## OAuth in development
-It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to xip.io I can pretend that the URL http://orientation.[my local IP address].xip.io is public.
+## OAuth in development using Forward
+It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to [Forward](https://forwardhq.com/support/using-forward) (`gem install forward`) I can pretend that the URL `https://orientation-codeschool.fwd.wf` is local by running `forward orientation.dev orientation`.
 
-But for that to work I had to enter the following in Google's API console: 
+For this to work automagically you'll need to have he following file at `~/.forward`:
 
-![api console](http://f.cl.ly/items/2j1o021o3f3E053o0w2A/Screen%20Shot%202013-01-30%20at%207.33.18%20PM.png)
-
-If you wish to sign in to Orientation in development, you'll need to send me a xip.io URL with your local IP address so that I can add it to the API console for Orientation.
-
-If you have a better way to circumvent this restriction, please let me (olivier@envylabs.com) know.
+```
+---
+:api_token: slv9FKz9ipNkpUWJC8XWaEoM
+```
 
 ## Goals
 
