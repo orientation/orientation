@@ -18,7 +18,7 @@ gem 'turbolinks'
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'haml-rails'
-gem 'simple_form'
+gem 'simple_form', github: "plataformatec/simple_form", branch: "master"
 gem 'pygments.rb'
 gem 'redcarpet'
 gem 'omniauth'
