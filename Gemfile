@@ -25,7 +25,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'draper', '~> 1.2.1'
 gem 'rails_tokeninput'
-gem 'momentjs-rails', '2.0.0.1'
+gem 'momentjs-rails'
 gem 'textacular', require: 'textacular/rails'
 
 # monitoring
