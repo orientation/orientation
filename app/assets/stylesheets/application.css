@@ -14,5 +14,6 @@
  *= require pygments
  *= require token-input-facebook
  *= require jquery.ui.datepicker
+ *= require nprogress
  *= require_tree .
 */

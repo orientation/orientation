@@ -21,7 +21,13 @@ initialize = (method) ->
       new_time = moment(old_time).format('MMM Do YYYY')
       $(date).html(new_time)
 
+  attach_loading_indicators = ->
+    $(document).on 'page:fetch', -> NProgress.start()
+    $(document).on 'page:load', -> NProgress.done()
+
   timeout = null
+
+  attach_loading_indicators()
 
   $('#search').on 'keyup', ->
     clearTimeout(timeout) if timeout
