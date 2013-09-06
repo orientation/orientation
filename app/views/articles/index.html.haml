@@ -1,4 +1,4 @@
-- if user_signed_in?
+- if Rails.env.development? or user_signed_in?
   .main
     %h1 Articles
     .search-bar

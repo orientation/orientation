@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index]
+  before_filter :authenticate!, except: [:index]
   before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
   respond_to :html, :json
 
@@ -34,6 +34,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def authenticate!
+    authenticate_user! unless Rails.env.development?
+  end
 
   def article_params
     params.require(:article).permit(:created_at, :updated_at, :title, :content, :tag_tokens, :author_id, :editor_id)
