@@ -221,6 +221,8 @@ GEM
     shoulda-matchers (1.5.6)
       activesupport (>= 3.0.0)
       bourne (~> 1.3)
+    skylight (0.1.8)
+      activesupport (>= 3.0.0)
     slop (3.4.5)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -288,6 +290,7 @@ DEPENDENCIES
   sentry-raven!
   shoulda-matchers (~> 1.5.6)
   simple_form!
+  skylight
   textacular
   thin
   turbolinks

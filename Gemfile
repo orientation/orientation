@@ -27,6 +27,7 @@ gem 'draper', '~> 1.2.1'
 gem 'rails_tokeninput'
 gem 'momentjs-rails'
 gem 'textacular', require: 'textacular/rails'
+gem 'skylight'
 
 # monitoring
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
