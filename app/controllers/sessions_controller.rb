@@ -11,9 +11,11 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:notice] = "Signed in!"
     else
+      logger.debug "SessionsController#create failed to find_or_create_from_omniauth, creating flash error."
       flash[:error] = "You need a codeschool.com or envylabs.com account to sign in."
     end
     # OmniAuth automatically saves the HTTP_REFERER when you begin the auth process
+    logger.debug "omniauth origin URL is #{request.env['omniauth.origin']}"
     redirect_to  request.env['omniauth.origin'] || root_url
   end
 
@@ -29,6 +31,7 @@ class SessionsController < ApplicationController
   end
 
   def unauthorized
+    logger.debug "SessionsController#unauthorized fired."
     redirect_to root_url, error: "Y U NO USE @envylabs OR @codeschool EMAIL?"
   end
 end
