@@ -19,10 +19,7 @@ class ApplicationController < ActionController::Base
     if current_user
       true
     else
-      logger.debug "authenticate_user! redirecting to root_path after saving the request URL"
-      logger.debug "request.url is #{request.url}"
       session["return_to"] ||= request.url
-      logger.debug "session['return_to'] is now #{session["return_to"]}"
       flash[:notice] = "You need to #{view_context.link_to("log in", login_path, data: { no_turbolink: true } )} to do that.".html_safe
       redirect_to root_path
     end
