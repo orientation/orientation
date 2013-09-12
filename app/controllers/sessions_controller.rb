@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  rescue_from ActiveRecord::RecordInvalid, with: :unauthorized
+
   def new
     origin = { origin: session["return_to"] }.to_query
     redirect_to("/auth/google_oauth2?#{origin}")
@@ -24,5 +26,9 @@ class SessionsController < ApplicationController
 
   def auth_hash
     request.env['omniauth.auth']
+  end
+
+  def unauthorized
+    redirect_to root_url, error: "Y U NO USE @envylabs OR @codeschool EMAIL?"
   end
 end
