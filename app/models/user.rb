@@ -17,10 +17,12 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_from_omniauth(auth)
-    user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
-    # TODO: remove when all existing users have an image
-    update_image(user, auth)
-    user
+    if user = where(auth.slice("provider", "uid")).first
+      # TODO: remove when all existing users have an image
+      update_image(user, auth)
+    else
+      user = create_from_omniauth(auth)
+    end
   end
 
   def self.create_from_omniauth(auth)
@@ -42,5 +44,7 @@ class User < ActiveRecord::Base
   def self.update_image(user, auth)
     user.image = auth["info"]["image"]
     user.save!
+
+    user
   end
 end
