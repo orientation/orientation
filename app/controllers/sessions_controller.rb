@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :unauthorized
 
   def new
-    origin = { origin: session["return_to"] }.to_query
+    origin = { origin: session.delete(:return_to) }.to_query
     redirect_to("/auth/google_oauth2?#{origin}")
   end
 

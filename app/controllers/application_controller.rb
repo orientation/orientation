@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     if current_user
       true
     else
-      session["return_to"] = request.url
+      session["return_to"] ||= request.url
       flash[:notice] = "You need to #{view_context.link_to("log in", login_path, data: { no_turbolink: true } )} to do that.".html_safe
       redirect_to root_path
     end
