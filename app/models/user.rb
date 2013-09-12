@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :articles, foreign_key: "author_id"
-  
+
   domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
 
@@ -30,8 +30,6 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
       user.image = auth["info"]["image"]
-
-      return false unless user.valid?
     end
   end
 
