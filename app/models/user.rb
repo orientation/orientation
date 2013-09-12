@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def self.create_from_omniauth(auth)
-    create! do |user|
+    create do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   def self.update_image(user, auth)
     user.image = auth["info"]["image"]
-    user.save!
+    user.save
 
     user
   end
