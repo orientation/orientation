@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = User.find_or_create_from_omniauth(auth_hash)
+    user = User.find_or_create_from_omniauth(auth_hash)
+    if user.valid?
       session[:user_id] = user.id
       flash[:notice] = "Signed in!"
     else
