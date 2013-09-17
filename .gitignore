@@ -19,3 +19,6 @@
 
 # ignore coveralls/simplecov
 coverage/
+
+# ignore /bin
+/bin
