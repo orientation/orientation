@@ -86,6 +86,8 @@ GEM
       debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.2)
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
     diff-lcs (1.2.4)
     dotenv (0.7.0)
     dotenv-rails (0.7.0)
@@ -96,6 +98,7 @@ GEM
       request_store (~> 1.0.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    excon (0.25.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -103,6 +106,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    faker (1.2.0)
+      i18n (~> 0.5)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     fuubar (1.1.1)
@@ -126,11 +131,19 @@ GEM
     jquery-ui-rails (4.0.4)
       jquery-rails
       railties (>= 3.1.0)
+    json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mandrill-api (1.0.47)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
+    mandrill_mailer (0.3.7)
+      actionpack
+      activesupport
+      mandrill-api (~> 1.0.9)
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.23)
@@ -160,6 +173,8 @@ GEM
     pg (0.16.0)
     polyglot (0.3.3)
     posix-spawn (0.3.6)
+    powder (0.2.0)
+      thor (>= 0.11.5)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -266,17 +281,21 @@ DEPENDENCIES
   bourbon
   capybara!
   coffee-rails
+  delayed_job
   dotenv-rails
   draper (~> 1.2.1)
   factory_girl_rails (~> 4.2.1)
+  faker
   fuubar
   haml-rails
   jquery-rails
   jquery-ui-rails
+  mandrill_mailer
   momentjs-rails
   omniauth
   omniauth-google-oauth2
   pg
+  powder
   pry-debugger
   pry-rails
   pry-remote

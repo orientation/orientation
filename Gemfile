@@ -17,6 +17,7 @@ gem 'turbolinks'
 
 gem 'bourbon'
 gem 'coffee-rails'
+gem 'delayed_job'
 gem 'haml-rails'
 gem 'simple_form', github: "plataformatec/simple_form", branch: "master"
 gem 'pygments.rb'
@@ -28,6 +29,7 @@ gem 'rails_tokeninput'
 gem 'momentjs-rails'
 gem 'textacular', require: 'textacular/rails'
 gem 'skylight'
+gem 'mandrill_mailer'
 
 # monitoring
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
@@ -36,12 +38,14 @@ group :development do
   gem 'fuubar'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'powder'
 end
 
 group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 2.13.0'
   gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'faker'
   gem 'pry-rails'
   gem 'pry-debugger', platform: :ruby_19
   gem 'pry-remote'
