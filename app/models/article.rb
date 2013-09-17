@@ -9,6 +9,10 @@ class Article < ActiveRecord::Base
 
   validates :slug, uniqueness: true, presence: true
 
+  def self.stale
+    where("created_at < ?", 3.months.ago).where("updated_at < ?", 3.months.ago)
+  end
+
   def self.text_search(query)
     if query.present?
       where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')
@@ -25,8 +29,9 @@ class Article < ActiveRecord::Base
     created_at >= 7.days.ago || updated_at >= 7.days.ago
   end
 
-  def stale?
-    created_at < 3.months.ago && updated_at < 3.months
+  def notify_author_of_staleness
+    author = self.author
+    AuthorMailer.notification(author).deliver
   end
 
   def tag_tokens=(tokens)
