@@ -25,7 +25,7 @@ describe Article do
     it 'sends an AuthorMailer when an article becomes stale' do
       mailer = double('AuthorMailer', deliver: true)
       
-      AuthorMailer.should_receive(:notification).and_return(mailer)
+      ArticleMailer.should_receive(:notify_author_of_staleness).and_return(mailer)
       subject
     end
   end

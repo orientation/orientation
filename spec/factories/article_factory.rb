@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :article do
     author factory: :user
     # editor_id { Faker::Number.digit } # TODO: figure out Editor association
-    title "Faker::Lorem.sentence"
+    title { Faker::Lorem.sentence }
     slug { title.parameterize }
     content { Faker::Lorem.paragraphs(1).first }
   end

@@ -30,8 +30,7 @@ class Article < ActiveRecord::Base
   end
 
   def notify_author_of_staleness
-    author = self.author
-    AuthorMailer.notification(author).deliver
+    ArticleMailer.notify_author_of_staleness(self).deliver
   end
 
   def tag_tokens=(tokens)
