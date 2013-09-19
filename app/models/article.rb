@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
   validates :slug, uniqueness: true, presence: true
 
   def self.stale
-    where("created_at < ?", 3.months.ago).where("updated_at < ?", 3.months.ago)
+    where("created_at < ?", 6.months.ago).where("updated_at < ?", 6.months.ago)
   end
 
   def self.text_search(query)
