@@ -25,12 +25,16 @@ class Article < ActiveRecord::Base
     all.order(updated_at: :desc).limit(20)
   end
 
+  # an article is fresh when it has been created or updated 7 days ago
+  # or more recently
   def fresh?
-    created_at >= 7.days.ago || updated_at >= 7.days.ago
+    created_at >= 7.days.ago or updated_at >= 7.days.ago
   end
 
-  def notify_author_of_staleness
-    ArticleMailer.notify_author_of_staleness(self).deliver
+  # an article is stale when it has been created over 4 months ago
+  # and has never been updated since
+  def stale?
+    created_at <= 6.months.ago and updated_at <= 6.months.ago
   end
 
   def tag_tokens=(tokens)

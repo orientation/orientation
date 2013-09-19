@@ -44,6 +44,10 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def freshness
-    content_tag(:span, "fresh", class: "fresh") if source.fresh?
+    content_tag(:span, "fresh", class: "state fresh") if source.fresh?
+  end
+
+  def staleness
+    content_tag(:span, "stale", class: "state stale") if source.stale?
   end
 end

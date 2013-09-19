@@ -2,6 +2,7 @@
 
 %li.article
   = article.freshness
+  = article.staleness
   = link_to "#{article.title}", article
   %ul.tags
     = tags.html_safe
