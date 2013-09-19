@@ -1,5 +1,5 @@
 class ArticleMailer < ActionMailer::Base
-	default from: 'support@codeschool.com'
+	default from: 'orientation@codeschool.com'
 	
 	def notify_author_of_staleness(article)
 		@article = article
