@@ -37,6 +37,10 @@ class Article < ActiveRecord::Base
     created_at <= 6.months.ago and updated_at <= 6.months.ago
   end
 
+  def notify_author_of_staleness
+    ArticleMailer.notify_author_of_staleness(self).deliver
+  end
+
   def tag_tokens=(tokens)
     self.tag_ids = Tag.ids_from_tokens(tokens)
   end
