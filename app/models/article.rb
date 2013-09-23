@@ -9,8 +9,20 @@ class Article < ActiveRecord::Base
 
   validates :slug, uniqueness: true, presence: true
 
+  def self.fresh
+    where("created_at >= ?", 7.days.ago) + where("updated_at >= ?", 7.days.ago)
+  end
+
+  def self.fresh?(article)
+    self.fresh.include?(article)
+  end
+
   def self.stale
-    where("created_at < ?", 6.months.ago).where("updated_at < ?", 6.months.ago)
+    where("created_at < ?", 6.months.ago) + where("updated_at < ?", 6.months.ago)
+  end
+
+  def self.stale?(article)
+    self.stale.include?(article)
   end
 
   def self.text_search(query)
@@ -28,13 +40,13 @@ class Article < ActiveRecord::Base
   # an article is fresh when it has been created or updated 7 days ago
   # or more recently
   def fresh?
-    created_at >= 7.days.ago or updated_at >= 7.days.ago
+    Article.fresh? self
   end
 
   # an article is stale when it has been created over 4 months ago
   # and has never been updated since
   def stale?
-    created_at <= 6.months.ago and updated_at <= 6.months.ago
+    Article.stale? self
   end
 
   def notify_author_of_staleness

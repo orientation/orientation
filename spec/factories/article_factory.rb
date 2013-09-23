@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   trait :stale do
-  	created_at 4.months.ago
-  	updated_at 4.months.ago
+  	created_at 7.months.ago
+  	updated_at 7.months.ago
   end
 end

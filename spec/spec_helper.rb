@@ -39,4 +39,9 @@ RSpec.configure do |config|
   omniauth_hash = { 'uid' => '777777', 'name' => 'mockuser' }
     
   OmniAuth.config.add_mock(:google_oauth2, omniauth_hash)
+
+  # make it unnecessary to prefix factories with FactoryGirl
+  # instead call create, build, or build_stubbed directly
+  config.include FactoryGirl::Syntax::Methods
 end
+
