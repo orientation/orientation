@@ -66,6 +66,15 @@ describe Article do
     end
   end
 
+  context ".ordered_fresh" do
+    let!(:fresh_article) { create :article }
+    let!(:fresher_article) { create :article }
+
+    it "returns the fresher article first" do
+      expect(Article.ordered_fresh.first).to eq fresher_article
+    end
+  end
+
   context "#notify_author_of_staleness" do
     let(:article) { create(:article, :stale) }
     subject { article.notify_author_of_staleness }
