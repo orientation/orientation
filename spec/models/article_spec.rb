@@ -30,6 +30,42 @@ describe Article do
     end
   end
 
+  context ".text_search" do
+    let!(:article) { create :article, title: "Pumpernickel Stew", content: "Yum!"}
+
+    it "does partial title matching" do
+      result = Article.text_search "Stew"
+      expect(result).to include(article)
+    end
+
+    it "does full title matching" do
+      result = Article.text_search article.title
+      expect(result).to include(article)
+    end
+
+    it "does partial content matching" do
+      result = Article.text_search "yum"
+      expect(result).to include(article)
+    end
+
+    it "does full content matching" do
+      result = Article.text_search article.content
+      expect(result).to include(article)
+    end
+
+    it "does partial title and content matching" do
+      pending "doesn't work yet"
+      result = Article.text_search "yum pumpernickel"
+      expect(result).to include(article)
+    end
+
+    it "does full title and content matching" do
+      pending "doesn't work yet"
+      result = Article.text_search "#{article.title} #{article.content}"
+      expect(result).to include(article)
+    end
+  end
+
   context "#notify_author_of_staleness" do
     let(:article) { create(:article, :stale) }
     subject { article.notify_author_of_staleness }
