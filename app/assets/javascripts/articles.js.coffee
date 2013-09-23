@@ -53,6 +53,20 @@ initialize = (method) ->
     new_time = moment(old_time).format('MMM Do YYYY')
     date.val(new_time)
 
+  $(document).on "keyup", keyboardEventHandler
+
+keyboardEventHandler = (event) ->
+  if event.keyCode == 70 or event.keyCode == 83
+    focusSearch()
+
+  if event.keyCode == 27
+    unfocusSearch()
+
+focusSearch = ->
+  $("#search").trigger "focus"
+
+unfocusSearch = ->
+  $("#search").trigger "blur"
 
 initialize_via_turbolinks = ->
   console.log "attempting to initialize via turbolinks"
