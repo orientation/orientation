@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :articles, foreign_key: "author_id"
+  has_many :subscriptions
+  has_many :subscribed_articles, through: :subscriptions, source: :article
 
   domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
