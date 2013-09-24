@@ -2,11 +2,14 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   has_and_belongs_to_many :tags
+  has_many :subscriptions
+  has_many :subscribers, through: :subscriptions, source: :user
 
   attr_reader :tag_tokens
 
   before_validation :generate_slug
 
+  validates :title, presence: true
   validates :slug, uniqueness: true, presence: true
 
   def self.fresh
