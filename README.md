@@ -30,7 +30,6 @@ For this to work automagically you'll need to have he following file at `~/.forw
 ## Planned Features
 * Color-coded & icon tags
 * Email notifications when articles are updated (by someone other than you)
-* Switch from Google Auth to GitHub auth
 * Article edit log
 * Categories
 
