@@ -1,0 +1,7 @@
+development: &development
+  username: 'orientation'
+  password: '123-asdf'
+  api_key:  '123-asdf'
+
+test: 
+  <<: *development
