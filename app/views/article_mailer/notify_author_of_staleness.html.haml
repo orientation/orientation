@@ -1,7 +1,0 @@
-!!!
-%html
-  %head
-    %meta{ 'http-equiv' => 'Content-type', content: 'text/html;charset=UTF-8' }
-  %body
-    %p="Hi, #{@author}. Your article has become stale. Click here to update it:"
-    %p= link_to "Update #{@article.title}", edit_article_url(@article)
