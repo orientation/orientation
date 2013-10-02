@@ -6,10 +6,10 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence }
     slug { title.parameterize }
     content { Faker::Lorem.paragraphs(1).first }
-  end
 
-  trait :stale do
-  	created_at 7.months.ago
-  	updated_at 7.months.ago
+    trait :stale do
+      created_at 7.months.ago
+      updated_at 7.months.ago
+    end
   end
 end
