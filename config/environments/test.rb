@@ -30,10 +30,10 @@ Orientation::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.mandrill_mailer.default_url_options = { :host => 'www.example.com' }
+  config.action_mailer.default_url_options = { :host => 'www.example.com' }
+  config.action_controller.default_url_options = { :host => 'www.example.com' }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-
-  # Set default host
-  config.action_mailer.default_url_options = { host: 'orientation.dev' }
 end
