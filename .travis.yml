@@ -4,6 +4,8 @@ rvm:
 env:
   global:
     SPEC_OPTS=--backtrace --color --format Fuubar
+bundler_args: --deployment --without development
+cache: bundler
 before_install:
   - gem install bundler
 before_script:
