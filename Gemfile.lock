@@ -88,6 +88,9 @@ GEM
     debugger-ruby_core_source (1.2.2)
     delayed_job (4.0.0)
       activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.4)
     dotenv (0.7.0)
     dotenv-rails (0.7.0)
@@ -282,6 +285,7 @@ DEPENDENCIES
   capybara!
   coffee-rails
   delayed_job
+  delayed_job_active_record
   dotenv-rails
   draper (~> 1.2.1)
   factory_girl_rails (~> 4.2.1)

@@ -50,7 +50,17 @@ class Article < ActiveRecord::Base
   end
 
   def notify_author_of_staleness
-    ArticleMailer.notify_author_of_staleness(self).deliver
+    # rake articles:notify_author_if_stale will run daily and call this method
+
+    # if a notification for this article hasn't been queued this week, add a notification to the queue
+    # e.g. don't queue a notification for an article more than once per week
+
+    # The job queue will be worked off daily.
+    # last_notified_author_at will be set to the date that the job is run.
+
+    if self.last_notified_author_at.nil? || self.last_notified_author_at < 1.week.ago
+      Delayed::Job.enqueue(NotifyAuthorOfStalenessJob.new(self.id))
+    end
   end
 
   def tag_tokens=(tokens)
