@@ -15,7 +15,7 @@ describe ArticleMailer do
     end
 
     it 'sets the correct "from" value' do
-      mailer['from'].value.should == 'support@codeschool.com'
+      mailer['from'].value.should == 'orientation@codeschool.com'
     end 
 
     it 'passes the correct variables into the message' do
