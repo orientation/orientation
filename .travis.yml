@@ -3,7 +3,7 @@ rvm:
   - 2.0.0
 env:
   global:
-    SPEC_OPTS=--backtrace --color --format Fuubar
+    SPEC_OPTS=--backtrace --color
 bundler_args: --deployment --without development
 cache: bundler
 before_install:

@@ -35,7 +35,6 @@ gem 'mandrill_mailer'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 
 group :development do
-  gem 'fuubar'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'powder'
@@ -49,6 +48,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-debugger', platform: :ruby_19
   gem 'pry-remote'
+  gem 'fuubar'
 end
 
 group :test do
