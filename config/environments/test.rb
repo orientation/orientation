@@ -34,6 +34,20 @@ Orientation::Application.configure do
   config.action_mailer.default_url_options = { :host => 'www.example.com' }
   config.action_controller.default_url_options = { :host => 'www.example.com' }
 
+  ActionMailer::Base.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587,
+    :user_name => "olivier@codeschool.com",
+    :password  => "123-asdf",
+    :domain    => 'heroku.com'
+  }
+
+  config.after_initialize do
+    MandrillMailer.configure do |config|
+      config.api_key = "Ym4WU9JVhCeq429SH11_XA"
+    end
+  end
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 end
