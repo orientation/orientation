@@ -16,7 +16,6 @@
 /tmp
 
 /config/database.yml
-/config/mandrill.yml
 
 # ignore coveralls/simplecov
 coverage/
