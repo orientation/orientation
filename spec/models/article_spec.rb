@@ -4,16 +4,46 @@ describe Article do
   it { should belong_to :author }
   it { pending "shoulda isn't compatible with Rails 4 HABTM join tables yet."; should have_and_belong_to_many :tags }
 
+  context ".fresh" do
+    let!(:fresh_article) { create(:article, :fresh) }
+    let!(:stale_article) { create(:article, :stale) }
+
+    let(:subject) { Article.fresh }
+
+    it "includes fresh articles" do
+      subject.should include(fresh_article)
+    end
+
+    it "does not include stale articles" do
+      subject.should_not include(stale_article)
+    end
+  end
+
   context ".fresh?" do
     let(:fresh_article) { create(:article) }
     let(:stale_article) { create(:article, :stale) }
 
     it "is true for fresh articles" do
-      expect(fresh_article).to be_fresh
+      Article.fresh?(fresh_article).should be_true
     end
 
     it "is false for stale articles" do
-      expect(stale_article).not_to be_fresh
+      Article.fresh?(stale_article).should be_false
+    end
+  end
+
+  context ".stale" do
+    let!(:fresh_article) { create(:article, :fresh) }
+    let!(:stale_article) { create(:article, :stale) }
+
+    let(:subject) { Article.stale }
+
+    it "includes stale articles" do
+      subject.should include(stale_article)
+    end
+
+    it "does not include fresh articles" do
+      subject.should_not include(fresh_article)
     end
   end
 
@@ -22,11 +52,11 @@ describe Article do
     let(:stale_article) { create(:article, :stale) }
 
     it "is true for stale articles" do
-      expect(stale_article).to be_stale
+      Article.stale?(stale_article).should be_true
     end
 
     it "is false for fresh articles" do
-      expect(fresh_article).not_to be_stale
+      Article.stale?(fresh_article).should be_false
     end
   end
 
@@ -74,6 +104,32 @@ describe Article do
       expect(Article.ordered_fresh.first).to eq fresher_article
     end
   end
+
+  # context "#fresh?" do
+  #   let(:fresh_article) { create(:article, :fresh) }
+  #   let(:stale_article) { create(:article, :stale) }
+
+  #   it "returns true for a fresh article" do
+  #     fresh_article.fresh?.should be_true
+  #   end
+
+  #   it "returns false for a non-fresh article" do
+  #     stale_article.fresh?.should be_false
+  #   end
+  # end
+
+  # context "#stale?" do
+  #   let(:fresh_article) { create(:article, :fresh) }
+  #   let(:stale_article) { create(:article, :stale) }
+
+  #   it "returns false for a non-stale article" do
+  #     fresh_article.stale?.should be_false
+  #   end
+
+  #   it "returns true for a stale article" do
+  #     stale_article.stale?.should be_true
+  #   end
+  # end
 
   context "#notify_author_of_staleness" do
     subject { article.notify_author_of_staleness }

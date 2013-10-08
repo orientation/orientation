@@ -11,5 +11,10 @@ FactoryGirl.define do
       created_at 7.months.ago
       updated_at 7.months.ago
     end
+
+    trait :fresh do
+      created_at 6.days.ago
+      updated_at 6.days.ago
+    end
   end
 end
