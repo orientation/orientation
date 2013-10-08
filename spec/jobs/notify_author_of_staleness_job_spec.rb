@@ -17,4 +17,9 @@ describe NotifyAuthorOfStalenessJob do
 		subject
 		article.reload.last_notified_author_at.should eq(Date.today)
 	end
+
+	it "does not modify the updated_at value" do
+		subject
+		article.reload.updated_at.should be_within(0.1).of(article.created_at)
+	end
 end
