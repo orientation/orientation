@@ -13,7 +13,7 @@ FactoryGirl.define do
     end
 
     trait :fresh do
-      created_at 6.days.ago
+      created_at 7.months.ago
       updated_at 6.days.ago
     end
   end

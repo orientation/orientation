@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
   validates :slug, uniqueness: true, presence: true
 
   def self.fresh
-    where("created_at >= ?", 7.days.ago) + where("updated_at >= ?", 7.days.ago)
+    where("updated_at >= ?", 7.days.ago)
   end
 
   def self.fresh?(article)
@@ -18,7 +18,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.stale
-    where("created_at < ?", 6.months.ago) + where("updated_at < ?", 6.months.ago)
+    where("updated_at < ?", 6.months.ago)
   end
 
   def self.stale?(article)

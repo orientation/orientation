@@ -105,31 +105,31 @@ describe Article do
     end
   end
 
-  # context "#fresh?" do
-  #   let(:fresh_article) { create(:article, :fresh) }
-  #   let(:stale_article) { create(:article, :stale) }
+  context "#fresh?" do
+    let(:fresh_article) { create(:article, :fresh) }
+    let(:stale_article) { create(:article, :stale) }
 
-  #   it "returns true for a fresh article" do
-  #     fresh_article.fresh?.should be_true
-  #   end
+    it "returns true for a fresh article" do
+      fresh_article.fresh?.should be_true
+    end
 
-  #   it "returns false for a non-fresh article" do
-  #     stale_article.fresh?.should be_false
-  #   end
-  # end
+    it "returns false for a non-fresh article" do
+      stale_article.fresh?.should be_false
+    end
+  end
 
-  # context "#stale?" do
-  #   let(:fresh_article) { create(:article, :fresh) }
-  #   let(:stale_article) { create(:article, :stale) }
+  context "#stale?" do
+    let(:fresh_article) { create(:article, :fresh) }
+    let(:stale_article) { create(:article, :stale) }
 
-  #   it "returns false for a non-stale article" do
-  #     fresh_article.stale?.should be_false
-  #   end
+    it "returns false for a non-stale article" do
+      fresh_article.stale?.should be_false
+    end
 
-  #   it "returns true for a stale article" do
-  #     stale_article.stale?.should be_true
-  #   end
-  # end
+    it "returns true for a stale article" do
+      stale_article.stale?.should be_true
+    end
+  end
 
   context "#notify_author_of_staleness" do
     subject { article.notify_author_of_staleness }
