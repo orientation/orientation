@@ -26,7 +26,6 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def format_email_content(articles)
     content = ''
     articles.each do |article|
-    	binding.pry
       content += <<-HTML.strip_heredoc
       	<li><a href='#{root_url}/articles/#{article.id}/edit'>#{article.title}</a></li>
       HTML
