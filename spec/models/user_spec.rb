@@ -17,4 +17,33 @@ describe User do
       expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.from(1).to(2)
     end
   end
+
+  context "#notify_if_article_staleness" do
+    let(:author) { article.author }
+    subject { author.notify_if_article_staleness }
+
+    context "with articles that have not previously been stale" do
+      let(:article) { create(:article, :stale, last_notified_author_at: nil) }
+
+      it "queues a delayed job" do
+        expect { subject }.to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
+      end
+    end
+
+    context "with articles that have not yet been added to the queue" do
+      let(:article) { create(:article, :stale, last_notified_author_at: 8.days.ago) }
+
+      it "queues a delayed job" do
+        expect { subject }.to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
+      end
+    end
+
+    context "with articles that are already queued" do
+      let(:article) { create(:article, :stale, last_notified_author_at: 2.days.ago) }
+
+      it "does not queue a delayed job" do
+        expect { subject }.not_to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
+      end
+    end
+  end
 end

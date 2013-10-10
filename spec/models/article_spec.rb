@@ -130,33 +130,4 @@ describe Article do
       stale_article.stale?.should be_true
     end
   end
-
-  context "#notify_author_of_staleness" do
-    subject { article.notify_author_of_staleness }
-
-    context "for an article that has not previously been stale" do
-      let(:article) { create(:article, :stale, last_notified_author_at: nil) }
-
-      it "queues a delayed job" do
-        expect { subject }.to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
-      end
-    end
-
-    context "for an article that has not yet been added to the queue" do
-      let(:article) { create(:article, :stale, last_notified_author_at: 8.days.ago) }
-
-      it "queues a delayed job" do
-        expect { subject }.to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
-      end
-    end
-
-    context "for an article that's already queued" do
-      let(:article) { create(:article, :stale, last_notified_author_at: 2.days.ago) }
-
-      it "does not queue a delayed job" do
-        expect { subject }.not_to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
-      end
-    end
-
-  end
 end

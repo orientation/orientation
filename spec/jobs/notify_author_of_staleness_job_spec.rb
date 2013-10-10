@@ -2,8 +2,9 @@
 require 'spec_helper' 
 
 describe NotifyAuthorOfStalenessJob do
-	let(:article) { create(:article, :stale) }
-	let(:job) { NotifyAuthorOfStalenessJob.new(article.id) }
+	let(:articles) { [create(:article, :stale)] }
+
+	let(:job) { NotifyAuthorOfStalenessJob.new(articles) }
 	subject { job.perform }
 
 	it "sends an ArticleMailer" do
@@ -13,13 +14,13 @@ describe NotifyAuthorOfStalenessJob do
 	  subject
 	end
 	
-	it "sets the article's last_notified_author_at to the date the job is run" do
+	it "sets each article's last_notified_author_at to the date the job is run" do
 		subject
-		article.reload.last_notified_author_at.should eq(Date.today)
+		articles.last.last_notified_author_at.should eq(Date.today)
 	end
 
 	it "does not modify the updated_at value" do
 		subject
-		article.reload.updated_at.should be_within(0.1).of(article.created_at)
+		articles.last.updated_at.should be_within(0.1).of(articles.last.created_at)
 	end
 end
