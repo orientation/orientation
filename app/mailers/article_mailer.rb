@@ -9,7 +9,6 @@
 class ArticleMailer < MandrillMailer::TemplateMailer
 	default from: 'orientation@codeschool.com'
 	
-	# TODO: test this mailer
 	def notify_author_of_staleness(articles)
 		author = articles.last.author
 		mandrill_mail template: 'Stale Article Alert',
