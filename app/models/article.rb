@@ -42,7 +42,7 @@ class Article < ActiveRecord::Base
   def fresh?
     Article.fresh? self
   end
-
+  
   # an article is stale when it has been created over 4 months ago
   # and has never been updated since
   def stale?

@@ -22,7 +22,15 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = ArticleDecorator.new(find_article_by_params)
     @tags = @article.tags.collect{ |t| Hash["id" => t.id, "name" => t.name] }
+  end
+
+  def make_fresh
+    @article = Article.find(params[:id])
+    if @article.touch(:updated_at)
+      respond_with(@article)
+    end
   end
 
   def update

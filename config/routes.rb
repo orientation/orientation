@@ -8,7 +8,9 @@ Orientation::Application.routes.draw do
   resources :tags
 
   resources :authors, only: [:index, :show]
-  resources :articles
+  resources :articles do
+  	put :make_fresh, on: :member
+  end
   resources :articles, path: "", only: :show
 
   root "articles#index"

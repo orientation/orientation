@@ -7,4 +7,10 @@
   - if @article.author.blank?
     = f.input :author_id, as: :hidden, input_html: { value: current_user.try(:id) }
   = f.input :editor_id, as: :hidden, input_html: { value: current_user.try(:id) }
+  %fieldset#stale-fresh
+  - if @article.stale?
+    = @article.staleness
+    = link_to 'Mark Fresh', '#', id: 'make-fresh', data: { id: @article.id }
+  - else
+    = @article.freshness
   = f.button :submit, class: "btn-a"
