@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = Article.new.decorate
   end
 
   def create
