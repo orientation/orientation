@@ -31,9 +31,7 @@ gem 'momentjs-rails'
 gem 'textacular', require: 'textacular/rails'
 gem 'skylight'
 gem 'mandrill_mailer'
-
-# monitoring
-gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
+gem "bugsnag"
 
 group :development do
   gem 'better_errors'
