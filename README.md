@@ -5,6 +5,10 @@ Find your way around Code School support.
 ## Changelog
 http://revision.io/orientation
 
+## Requirements
+- Ruby 2.0.0
+- PostgreSQL 9.1
+
 ## OAuth in development using Forward
 It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to [Forward](https://forwardhq.com/support/using-forward) (`gem install forward`) I can pretend that the URL `https://orientation-codeschool.fwd.wf` is local by running `forward orientation.dev orientation`.
 
