@@ -5,7 +5,7 @@ module ApplicationHelper
 
   class HTMLwithPygments < Redcarpet::Render::HTML
     def block_code(code, language)
-      safe_language = Pygments::Lexer.find_by_alias(language)
+      safe_language = Pygments::Lexer.find_by_alias(language) ? language : nil
 
       sha = Digest::SHA1.hexdigest(code)
       Rails.cache.fetch ["code", safe_language, sha].join('-') do
