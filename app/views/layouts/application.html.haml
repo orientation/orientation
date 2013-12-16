@@ -9,11 +9,10 @@
     %nav
       %ul
         %li.logo
-          = image_tag "brackets_banner_logo-white.svg", height: 30
-          = link_to "Orientation", root_url
+          = link_to image_tag("brackets_banner_logo-black.svg", height: 40), root_url
         %li= link_to "Tags", tags_url
         %li= link_to "Authors", authors_url
-        %li= link_to "New Article", new_article_url
+        %li.new-article= link_to "New Article", new_article_url
         - if current_user
           %li.auth #{current_user.name} | #{link_to "Log Out", logout_path, title: current_user.email}
         - else

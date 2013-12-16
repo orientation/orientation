@@ -1,0 +1,56 @@
+@import bourbon
+//-----------------------------------------------------------------------
+//  Application Interface
+//-----------------------------------------------------------------------
+$key-color: #00b184
+$body-color: #eeeede
+$font-color: #3c4a44
+$nav-font-color: #c6ece1
+
+body
+  background-color: $body-color
+  color: $font-color
+  font-size: 1.1em
+
+.container
+  margin: 1em 2em
+
+// Header, Logo, Navigation, Footer, etc.
+
+nav
+  padding: .8em 1em
+  background:
+    color: $key-color
+  a
+    color: $nav-font-color
+
+  ul
+    position: relative
+    li
+      color: #fff
+      display: inline-block
+      line-height: 2.2
+      margin-right: 1em
+      &:nth-child(n+4):after
+        content: ""
+      &.logo
+        img
+          vertical-align: top
+          opacity: 0.6
+      &.auth
+        float: right
+        margin-right: 0
+      &:first-child:after
+        content: ""
+
+      &.new-article
+        background-color: #ffffff
+        border-radius: 0 0 3px 3px
+        display: block
+        padding: 0.2em 1.9em
+        top: 54px
+        right: 0
+        position: absolute
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1)
+        a
+          color: $key-color

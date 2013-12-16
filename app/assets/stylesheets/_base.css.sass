@@ -3,8 +3,6 @@
 // ----- Variables ----- //
 
 // Colors
-
-$color-base: #333
 $color-highlight: #666
 
 // Fonts
@@ -17,10 +15,8 @@ $font-header: sans-serif
 //-----------------------------------------------------------------------
 
 html
-  background: #FFF
   font-size: 16px
 body
-  color: $color-base
   font: 62.5%/1.5 $font-base
 
 // ----- Block Content ----- //
@@ -198,39 +194,3 @@ form
     padding: 6px
   input
     margin-right: 5px
-
-
-//-----------------------------------------------------------------------
-//  Application
-//-----------------------------------------------------------------------
-body
-  font-size: 1.1em
-
-
-.container
-  margin: 1em 2em
-
-// Header, Logo, Navigation, Footer, etc.
-
-nav
-  padding: .5em 1em
-  background:
-    color: black
-  a
-    color: white
-
-  ul
-    li
-      color: #fff
-      display: inline-block
-      &:after
-        content: " -"
-      &:nth-child(n+4):after
-        content: ""
-      &.logo
-        img
-          vertical-align: top
-      &.auth
-        float: right
-      &:first-child:after
-        content: " | "
