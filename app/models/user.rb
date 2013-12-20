@@ -35,8 +35,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def notify_if_article_staleness
-    # rake notify_author_if_article_staleness will run daily and call this method
+  def notify_about_stale_articles
+    # rake notify_of_staleness will run daily and call this method
 
     # if a notification for this user's articles hasn't been queued this week, add a notification to the queue
     # e.g. don't queue a notification for a user more than once per week
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
     articles = self.articles.stale
     articles = articles.select{|article| article if (article.last_notified_author_at.nil? || article.last_notified_author_at < 1.week.ago)}
-    Delayed::Job.enqueue(NotifyAuthorOfStalenessJob.new(articles)) unless articles.empty?
+    Delayed::Job.enqueue(StalenessNotificationJob.new(articles)) unless articles.empty?
   end
 
   def to_s

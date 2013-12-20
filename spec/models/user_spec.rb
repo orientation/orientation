@@ -18,15 +18,15 @@ describe User do
     end
   end
 
-  context "#notify_if_article_staleness" do
+  context "#notify_about_stale_articles" do
     let(:author) { article.author }
-    subject { author.notify_if_article_staleness }
+    subject { author.notify_about_stale_articles }
 
     context "with articles that have not previously been stale" do
       let(:article) { create(:article, :stale, last_notified_author_at: nil) }
 
       it "queues a delayed job" do
-        expect { subject }.to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
+        expect { subject }.to create_delayed_job_with(:StalenessNotificationJob)
       end
     end
 
@@ -34,7 +34,7 @@ describe User do
       let(:article) { create(:article, :stale, last_notified_author_at: 8.days.ago) }
 
       it "queues a delayed job" do
-        expect { subject }.to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
+        expect { subject }.to create_delayed_job_with(:StalenessNotificationJob)
       end
     end
 
@@ -42,7 +42,7 @@ describe User do
       let(:article) { create(:article, :stale, last_notified_author_at: 2.days.ago) }
 
       it "does not queue a delayed job" do
-        expect { subject }.not_to create_delayed_job_with(:NotifyAuthorOfStalenessJob)
+        expect { subject }.not_to create_delayed_job_with(:StalenessNotificationJob)
       end
     end
   end
