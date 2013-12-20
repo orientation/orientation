@@ -7,7 +7,7 @@ env:
 bundler_args: --deployment --without development
 cache: bundler
 before_install:
-  - gem install bundler
+  - gem install bundler --pre
 before_script:
   - bundle --version
   - cp config/database.ci.yml config/database.yml
