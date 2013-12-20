@@ -64,6 +64,25 @@ body.articles
       font-size: 4em
     h2
       font-size: 1.5em
+      position: relative
+      a.anchor
+        padding-right: 6px
+        padding-left: 30px
+        margin-left: -30px
+        cursor: pointer
+        position: absolute
+        top: 0
+        left: 0
+        bottom: 0
+
+      &:hover a.anchor
+        position: absolute
+        display: block
+        padding-left: 8px
+        margin-left: -30px
+        &::before
+          content: "∞"
+
     h3
       font-size: 1.25em
     h4

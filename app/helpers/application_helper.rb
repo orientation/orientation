@@ -4,6 +4,20 @@ module ApplicationHelper
   end
 
   class HTMLwithPygments < Redcarpet::Render::HTML
+    def header(title, level)
+      @headers ||= []
+      permalink = title.gsub(/\W+/, '-').downcase
+
+      if @headers.include? permalink
+        permalink += '_1'
+        permalink = permalink.succ while @headers.include? permalink
+      end
+      @headers << permalink
+      %(
+        <h#{level} id=\"#{permalink}\"><a name="#{permalink}" class="anchor" href="##{permalink}"></a>#{title}</h#{level}>
+      )
+    end
+
     def block_code(code, language)
       safe_language = Pygments::Lexer.find_by_alias(language) ? language : nil
 
@@ -24,7 +38,8 @@ module ApplicationHelper
       lax_html_blocks: true,
       strikethrough: true,
       superscript: true,
-      tables: true
+      tables: true,
+      with_toc_data: true
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
