@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'rails', '~> 4.0.0'
-gem 'railties', '~> 4.0.0'
+gem 'rails', '~> 4.0.2'
 
 gem 'pg'
 gem 'thin'
@@ -20,7 +19,7 @@ gem 'coffee-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'haml-rails'
-gem 'simple_form', github: "plataformatec/simple_form", branch: "master"
+gem 'simple_form', '~> 3.0.1'
 gem 'pygments.rb'
 gem 'redcarpet'
 gem 'omniauth'
@@ -51,6 +50,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 1.5.6' # path: "~/Development/opensource/shoulda-matchers", branch: "rails4"
+  gem 'shoulda-matchers', '~> 2.4.0'
   gem 'capybara', github: "jnicklas/capybara", branch: "master"
 end
