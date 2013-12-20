@@ -12,8 +12,8 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def notify_author_of_staleness(articles)
     author = articles.last.author
     mandrill_mail template: 'Stale Article Alert',
-                  subject: 'Stale Article Alert',
-                  from_name: 'Code School Orientation',
+                  subject: 'Some of your Orientation articles might be stale',
+                  from_name: 'Code School',
                   to: { email: author.email, name: author.name },
                   vars: {
                     'CONTENT' => format_email_content(articles)

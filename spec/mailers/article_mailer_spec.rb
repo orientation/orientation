@@ -10,7 +10,7 @@ describe ArticleMailer do
 
     it { should send_email_to(email: user.email) }
     it { should use_template('Stale Article Alert') }
-    it { should have_subject('Stale Article Alert') }
+    it { should have_subject('Some of your Orientation articles might be stale') }
     it { should be_from(email: 'orientation@codeschool.com') }
 
   end

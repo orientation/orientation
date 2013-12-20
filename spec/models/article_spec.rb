@@ -82,18 +82,6 @@ describe Article do
       result = Article.text_search article.content
       expect(result).to include(article)
     end
-
-    it "does partial title and content matching" do
-      pending "doesn't work yet"
-      result = Article.text_search "yum pumpernickel"
-      expect(result).to include(article)
-    end
-
-    it "does full title and content matching" do
-      pending "doesn't work yet"
-      result = Article.text_search "#{article.title} #{article.content}"
-      expect(result).to include(article)
-    end
   end
 
   context ".ordered_fresh" do

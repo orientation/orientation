@@ -49,6 +49,19 @@ class Article < ActiveRecord::Base
     Article.stale? self
   end
 
+  def never_notified_author?
+    self.last_notified_author_at.nil?
+  end
+
+  def recently_notified_author?
+    return false if never_notified_author?
+    self.last_notified_author_at > 1.week.ago
+  end
+
+  def ready_to_notify_author_of_staleness?
+    self.never_notified_author? or !self.recently_notified_author?
+  end
+
   def tag_tokens=(tokens)
     self.tag_ids = Tag.ids_from_tokens(tokens)
   end
