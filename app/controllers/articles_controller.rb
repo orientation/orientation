@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @articles = ArticleDecorator.decorate_collection(Article.text_search(params[:search]))
+    @articles = ArticleDecorator.decorate_collection(Article.includes(:tags).text_search(params[:search]))
     @tags = Tag.by_article_count.take(10)
   end
 
