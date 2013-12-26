@@ -47,7 +47,7 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
-    bugsnag (1.6.1)
+    bugsnag (1.7.0)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
     builder (3.1.4)
@@ -121,7 +121,7 @@ GEM
     jquery-ui-rails (4.0.4)
       jquery-rails
       railties (>= 3.1.0)
-    json (1.8.0)
+    json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
     mail (2.5.4)
