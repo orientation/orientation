@@ -1,4 +1,4 @@
-# Orientation [![Build Status][ci-image]][ci] [![Dependency Status][gemnasium-image]][gemnasium] [![Coverage Status][coveralls-image]][coveralls]
+# Orientation [![Build Status][ci-image]][ci] [![Dependency Status][gemnasium-image]][gemnasium] [![Coverage Status][codeclimate-image]][codeclimate]
 
 Find your way around Code School support.
 
@@ -42,5 +42,5 @@ For this to work automagically you'll need to have he following file at `~/.forw
 [ci-image]: https://magnum.travis-ci.com/codeschool/orientation.png?token=bYo3ib4PCJrDSsNRgsEK&branch=master
 [gemnasium]: https://gemnasium.com/codeschool/orientation
 [gemnasium-image]: https://gemnasium.com/f8cac37fbe557103d2ae38bcc8815f40.png
-[coveralls]: https://coveralls.io/r/codeschool/orientation
-[coveralls-image]: https://coveralls.io/repos/codeschool/orientation/badge.png?branch=master
+[codeclimate]: (https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
+[codeclimate-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/gpa.png
