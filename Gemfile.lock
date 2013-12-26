@@ -260,7 +260,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    textacular (3.0.0)
+    textacular (3.1.0)
       activerecord (>= 3.0, < 4.1)
     thin (1.5.1)
       daemons (>= 1.0.9)
