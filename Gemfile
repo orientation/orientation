@@ -28,7 +28,6 @@ gem 'draper'
 gem 'rails_tokeninput'
 gem 'momentjs-rails'
 gem 'textacular', require: 'textacular/rails'
-gem 'skylight'
 gem 'mandrill_mailer'
 gem "bugsnag"
 

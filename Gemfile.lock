@@ -248,8 +248,6 @@ GEM
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
-    skylight (0.1.8)
-      activesupport (>= 3.0.0)
     slop (3.4.5)
     spring (1.0.0)
     sprockets (2.10.1)
@@ -325,7 +323,6 @@ DEPENDENCIES
   sdoc
   shoulda-matchers (~> 2.4.0)
   simple_form (~> 3.0.1)
-  skylight
   spring
   textacular
   thin
