@@ -116,7 +116,7 @@ GEM
       request_store (~> 1.0.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.25.3)
+    excon (0.31.0)
     execjs (2.0.2)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -156,10 +156,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mandrill-api (1.0.47)
+    mandrill-api (1.0.49)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mandrill_mailer (0.3.7)
+    mandrill_mailer (0.4.3)
       actionpack
       activesupport
       mandrill-api (~> 1.0.9)
