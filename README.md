@@ -41,6 +41,6 @@ For this to work automagically you'll need to have he following file at `~/.forw
 [ci]: https://magnum.travis-ci.com/codeschool/orientation
 [ci-image]: https://magnum.travis-ci.com/codeschool/orientation.png?token=bYo3ib4PCJrDSsNRgsEK&branch=master
 [gemnasium]: https://gemnasium.com/codeschool/orientation
-[gemnasium-image]: https://gemnasium.com/d7600ed624a85ad2598fc3f4ceea5445.png
+[gemnasium-image]: https://gemnasium.com/f8cac37fbe557103d2ae38bcc8815f40.png
 [coveralls]: https://coveralls.io/r/codeschool/orientation
 [coveralls-image]: https://coveralls.io/repos/codeschool/orientation/badge.png?branch=master
