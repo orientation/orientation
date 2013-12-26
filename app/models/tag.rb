@@ -20,6 +20,6 @@ class Tag < ActiveRecord::Base
   end
 
   def self.by_article_count
-    scoped.sort_by { |tag| tag.articles.size }.reverse
+    all.sort_by { |tag| tag.articles.size }.reverse
   end
 end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.0'
 
-gem 'rails', '~> 4.0.2'
+gem 'rails', github: 'rails/rails', branch: 'master'
 
 gem 'pg'
 gem 'thin'
@@ -36,7 +36,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'powder'
-  gem 'bullet'
+  gem 'bullet', github: 'flyerhzm/bullet', branch: 'master'
+  gem 'spring'
 end
 
 group :development, :test do
@@ -53,4 +54,8 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 2.4.0'
   gem 'capybara', github: "jnicklas/capybara", branch: "master"
+end
+
+group :doc do
+  gem 'sdoc', require: false
 end

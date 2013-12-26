@@ -1,4 +1,4 @@
-Orientation::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -23,13 +23,17 @@ Orientation::Application.configure do
   config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
-  config.assets.compress = true
+  config.assets.js_compressor = :uglifier
+  config.assets.css_compressor = :sass
 
-  # Don't fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
 
   # Generate digests for assets URLs.
   config.assets.digest = true
+
+  # Version of your assets, change this if you want to expire all your assets.
+  config.assets.version = '1.0'
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -39,7 +43,7 @@ Orientation::Application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -53,18 +57,15 @@ Orientation::Application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added).
+  # Precompile additional assets.
+  # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
 
   # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors. 
-  config.action_mailer.perform_deliveries = true
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.mandrill_mailer.default_url_options = config.action_mailer.default_url_options = { host: 'orientation.codeschool.com' }
-
-  # Enable threaded mode.
-  # config.threadsafe!
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
@@ -78,8 +79,4 @@ Orientation::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-
-  # Default the production mode queue to an synchronous queue. You will probably
-  # want to replace this with an out-of-process queueing solution.
-  # config.queue = ActiveSupport::SynchronousQueue
 end
