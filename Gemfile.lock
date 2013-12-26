@@ -188,7 +188,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    pg (0.16.0)
+    pg (0.17.1)
     polyglot (0.3.3)
     posix-spawn (0.3.6)
     powder (0.2.0)
