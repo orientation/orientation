@@ -7,7 +7,7 @@ gem 'rails', github: 'rails/rails', branch: 'master'
 gem 'pg'
 gem 'thin'
 
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'sass-rails'
