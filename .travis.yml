@@ -8,8 +8,8 @@ bundler_args: --deployment --without development
 cache: bundler
 before_install:
   - gem install bundler --pre
-before_script:
   - bundle --version
+before_script:
   - cp config/database.ci.yml config/database.yml
   - psql -c 'create database orientation_test;' -U postgres
   - bundle exec rake db:migrate
