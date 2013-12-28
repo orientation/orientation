@@ -51,7 +51,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 2.4.0'
   gem 'capybara', github: "jnicklas/capybara", branch: "master"
 end
 

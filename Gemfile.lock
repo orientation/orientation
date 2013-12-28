@@ -242,8 +242,6 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    shoulda-matchers (2.4.0)
-      activesupport (>= 3.0.0)
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
@@ -320,7 +318,6 @@ DEPENDENCIES
   rspec-rails (~> 2.13.0)
   sass-rails
   sdoc
-  shoulda-matchers (~> 2.4.0)
   simple_form (~> 3.0.1)
   spring
   textacular
