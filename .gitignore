@@ -24,3 +24,5 @@ coverage/
 /bin
 
 /.env
+
+/public/uploads/
