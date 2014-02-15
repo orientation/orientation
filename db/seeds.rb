@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+User.create([{ name: "Alvar Hanso", email: "alvar@codeschool.com"}])
+Tag.create([{ name: "video" }])
+Article.create([{ title: "Welcome to the Island!", content: "Isn't it nice here?", author: User.first}])
