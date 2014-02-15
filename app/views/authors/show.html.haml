@@ -1,5 +1,6 @@
 %h1= @author.name
-%aside= image_tag @author.image
+.author
+  %aside= image_tag @author.image, class: "avatar"
 %p= @author.email_tag 
 
 %h2 Articles created
@@ -11,3 +12,7 @@
 / %ul
 /   - @author.articles.each do |article|
 /     %li= article
+
+= simple_form_for :author, url: author_path(@author), method: :patch do |f|
+  = f.input :avatar, as: :file, required: false
+  = f.submit "Upload Avatar"

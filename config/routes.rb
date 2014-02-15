@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :tags
 
-  resources :authors, only: [:index, :show]
+  resources :authors, only: [:index, :show, :update]
   resources :articles do
   	put :make_fresh, on: :member
   end

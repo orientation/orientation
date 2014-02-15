@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
 
+  mount_uploader :avatar, AvatarUploader
 
   def self.author
     joins(:articles).group('users.id').having('count(articles.id) > 0')

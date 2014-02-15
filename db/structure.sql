@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -194,7 +195,8 @@ CREATE TABLE users (
     email character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    image character varying(255)
+    image character varying(255),
+    avatar character varying(255)
 );
 
 
@@ -359,3 +361,6 @@ INSERT INTO schema_migrations (version) VALUES ('20130519172832');
 INSERT INTO schema_migrations (version) VALUES ('20131002145513');
 
 INSERT INTO schema_migrations (version) VALUES ('20131003155044');
+
+INSERT INTO schema_migrations (version) VALUES ('20140215004410');
+
