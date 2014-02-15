@@ -22,3 +22,5 @@ coverage/
 
 # ignore /bin
 /bin
+
+/.env
