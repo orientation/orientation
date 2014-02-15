@@ -5,7 +5,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    @author = AuthorDecorator.decorate User.author.find(params[:id])
+    @author = AuthorDecorator.decorate User.find(params[:id])
   end
 
   def update
