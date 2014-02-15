@@ -30,6 +30,9 @@ gem 'momentjs-rails'
 gem 'textacular', require: 'textacular/rails'
 gem 'mandrill_mailer'
 gem "bugsnag"
+gem 'carrierwave'
+gem "mini_magick"
+gem 'fog'
 
 group :development do
   gem 'better_errors'
