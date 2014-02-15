@@ -2,7 +2,7 @@ class ArticleDecorator < ApplicationDecorator
   delegate_all
 
   def authors
-    output = "by #{author_email_tag} on #{created_at_tag} "
+    output = "by #{author.link_tag} on #{created_at_tag} "
 
     if editor && updated_at_tag
       if editor.id != source.author_id
@@ -29,10 +29,6 @@ class ArticleDecorator < ApplicationDecorator
   
   def author
     AuthorDecorator.new(source.author)
-  end
-
-  def author_email_tag
-    mail_to author.email, author.name
   end
 
   def editor
