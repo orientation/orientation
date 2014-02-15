@@ -4,6 +4,6 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    @author = User.author.find(params[:id])
+    @author = AuthorDecorator.decorate User.author.find(params[:id])
   end
 end
