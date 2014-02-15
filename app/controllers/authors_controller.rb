@@ -1,6 +1,7 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = AuthorDecorator.decorate_collection User.author.prolific
+    authors = params[:all] ? User.all : User.author.prolific
+    @authors = AuthorDecorator.decorate_collection authors
   end
 
   def show
