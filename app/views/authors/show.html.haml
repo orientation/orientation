@@ -15,4 +15,4 @@
 
 = simple_form_for :author, url: author_path(@author), method: :patch do |f|
   = f.input :avatar, as: :file, required: false
-  = f.submit "Upload Avatar"
+  = f.submit "Upload Avatar", class: "btn-a"
