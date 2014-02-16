@@ -11,8 +11,7 @@ class AuthorDecorator < ApplicationDecorator
 
   def image
     source.avatar.thumb.url or
-    source.try :image or
-    "https://secure.gravatar.com/avatar/1c02274fedcce55a289172bfb8db25ab.jpg"
+    source.try :image
   end
 
   def image_link
