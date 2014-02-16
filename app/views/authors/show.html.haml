@@ -1,4 +1,6 @@
-%h1= @author.name
+%h1
+  = @author.name
+  = @author.active ? "" : " (inactive)"
 .author
   %aside= image_tag @author.image, class: "avatar"
 %p= @author.email_tag 
@@ -16,3 +18,5 @@
 = simple_form_for :author, url: author_path(@author), method: :patch do |f|
   = f.input :avatar, as: :file, required: false
   = f.submit "Upload Avatar", class: "btn-a"
+
+= link_to "Toggle Status", author_toggle_status_path(@author), method: :put

@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
       order('articles_count DESC')
   end
 
+  def self.active
+    where(active: true)
+  end
+
   def self.find_or_create_from_omniauth(auth)
     if user = where(auth.slice("provider", "uid")).first
       # TODO: remove when all existing users have an image

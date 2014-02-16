@@ -26,4 +26,8 @@ class AuthorDecorator < ApplicationDecorator
   def link_tag
     link_to name, author_path(source)
   end
+
+  def status
+    if source.active then "active" else "inactive" end
+  end
 end

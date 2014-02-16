@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
   respond_to :html
 
   def index
-    authors = params[:all] ? User.all : User.author.prolific
+    authors = params[:all] ? User.all : User.active
     @authors = AuthorDecorator.decorate_collection authors
   end
 
@@ -32,6 +32,13 @@ class AuthorsController < ApplicationController
       flash[:error] = "That didn't work out so well."
       render :new
     end
+  end
+
+  def toggle_status
+    @author = AuthorDecorator.decorate User.find(params[:author_id])
+    @author.toggle!(:active)
+    flash[:notice] = "This author is now #{@author.status}."
+    redirect_to author_path(@author)
   end
 
   private
