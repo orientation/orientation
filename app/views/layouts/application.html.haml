@@ -14,7 +14,10 @@
         %li= link_to "Authors", authors_url
         %li.new-article= link_to "New Article", new_article_url
         - if current_user
-          %li.auth #{current_user.name} | #{link_to "Log Out", logout_path, title: current_user.email}
+          %li.auth
+            = current_user.image_link
+            = current_user.link_tag
+            | #{link_to "Log Out", logout_path, title: current_user.email}
         - else
           %li.auth= link_to "Log In", login_path, data: { no_turbolink: true }
     .container

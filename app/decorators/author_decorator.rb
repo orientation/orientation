@@ -15,6 +15,10 @@ class AuthorDecorator < ApplicationDecorator
     "https://secure.gravatar.com/avatar/1c02274fedcce55a289172bfb8db25ab.jpg"
   end
 
+  def image_link
+    link_to image_tag(image, class: 'navatar'), author_path(source)
+  end
+
   def email_tag
     mail_to email, email
   end
