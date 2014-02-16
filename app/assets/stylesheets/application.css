@@ -13,6 +13,7 @@
  *= require_self
  *= require _reset
  *= require _base
+ *= require _forms
  *= require pygments
  *= require token-input-facebook
  *= require jquery.ui.datepicker

@@ -4,3 +4,5 @@
     %li.author
       = image_tag author.image, width: 40, height: 40, class: "avatar"
       = link_to "#{author} (#{author.articles.count})", author_path(author)
+
+= link_to "New Author", new_author_path
