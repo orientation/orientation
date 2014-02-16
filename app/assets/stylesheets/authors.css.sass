@@ -7,6 +7,15 @@ body.authors
     font:
       size: 1.2em
 
+  ul.authors
+    -webkit-column-count: 3
+    -webkit-column-gap: 4% 
+    -moz-column-count: 3
+    -moz-column-gap: 4%
+    column-count: 3
+    column-gap: 4%
+
+
 body
   .author
     clear: both
@@ -17,3 +26,6 @@ body
       height: 70px
       margin-right: 0.5em
       border-radius: 50%
+      margin-bottom: 1.5%
+      &.inactive
+        opacity: .75
