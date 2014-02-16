@@ -10,15 +10,8 @@ http://revision.io/orientation
 - PostgreSQL 9.1
 - Python 2.7 (for Pygments)
 
-## OAuth in development using Forward
-It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to [Forward](https://forwardhq.com/support/using-forward) (`gem install forward`) I can pretend that the URL `https://orientation-codeschool.fwd.wf` is local by running `forward orientation.dev orientation`.
-
-For this to work automagically you'll need to have he following file at `~/.forward`:
-
-```
----
-:api_token: slv9FKz9ipNkpUWJC8XWaEoM
-```
+## OAuth in development using ngrok
+It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to [ngrok](http://journal.wearebunker.com/post/59684890589/using-ngrok-with-pow-for-development-previews) (`gem install forward`) I can pretend that the URL `http://orientation.ngrok.com` is local by running `ngrok -subdomain=orientation orientation.dev:80`.
 
 ## Goals
 
