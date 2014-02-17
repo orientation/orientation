@@ -5,6 +5,7 @@
       = link_to author_path(author) do
         = image_tag author.image, width: 40, height: 40, class: "avatar"
         = "#{author} (#{author.articles.count})"
-        .shtick= author.shtick
+        
+      .shtick= author.shtick
 
 = link_to "New Author", new_author_path
