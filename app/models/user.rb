@@ -23,11 +23,14 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_from_omniauth(auth)
     if user = where(auth.slice("provider", "uid")).first
-      # TODO: remove when all existing users have an image
-      update_image(user, auth)
+      # Only update the user's image if they don't already have one. 
+      # This means an OAuth profile image can never override an existing Orientation one.
+      update_image(user, auth) if user.image.nil?
     else
       user = create_from_omniauth(auth)
     end
+
+    return user
   end
 
   def self.create_from_omniauth(auth)
@@ -63,7 +66,5 @@ class User < ActiveRecord::Base
   def self.update_image(user, auth)
     user.image = auth["info"]["image"]
     user.save
-
-    user
   end
 end
