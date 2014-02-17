@@ -9,6 +9,7 @@ http://revision.io/orientation
 - Ruby 2.0.0
 - PostgreSQL 9.1
 - Python 2.7 (for Pygments)
+- AWS Access Key ID & AWS Secret Access Key for S3 image uploads
 
 ## OAuth in development using ngrok
 It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to [ngrok](http://journal.wearebunker.com/post/59684890589/using-ngrok-with-pow-for-development-previews) (`gem install forward`) I can pretend that the URL `http://orientation.ngrok.com` is local by running `ngrok -subdomain=orientation orientation.dev:80`.
