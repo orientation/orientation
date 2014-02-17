@@ -40,6 +40,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.text_search(query)
+    if query.present?
+      where("name ILIKE :q OR shtick ILIKE :q", q: "%#{query}%").order('name ASC')
+    else
+      order(name: :desc)
+    end 
+  end
+
   def notify_about_stale_articles
     articles = self.articles.stale.select(&:ready_to_notify_author_of_staleness?)
     article_ids = articles.map(&:id)
