@@ -1,11 +1,21 @@
-// Place all the styles related to the authors controller here.
-// They will automatically be included in application.css.
-// You can use Sass here: http://sass-lang.com/
+@import bourbon
 
 body.authors
   h2
     font:
       size: 1.2em
+
+  .search-bar
+    +clearfix
+    margin: 5px 0 10px
+    input[type=text]
+      width: 333px
+      float: left
+      margin-top: 0
+    input[type=submit]
+      clear: none
+      font-size: 1.1em
+      height: 36px
 
   ul.authors
     -webkit-column-count: 3
