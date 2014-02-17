@@ -3,5 +3,5 @@
 = simple_form_for @author, url: authors_path do |f|
   = f.input :name, label: false, placeholder: "Name"
   = f.input :email, as: :email, label: false, placeholder: "Email"
-  = f.input :avatar, as: :file
+  = f.input :avatar, as: :file, label: "Photo"
   = f.submit "Create New Author", class: 'btn-a'

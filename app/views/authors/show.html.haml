@@ -6,7 +6,7 @@
 %p= @author.email_tag 
 
 = simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
-  = f.input :shtick, as: :text, required: false
+  = f.input :shtick, as: :text, required: false, placeholder: "What's this author's shtick? What do they do? "
   = f.submit "Update That Shtick", class: "btn-a"
 
 
@@ -21,7 +21,7 @@
 /     %li= article
 
 = simple_form_for :user, url: author_path(@author), method: :patch do |f|
-  = f.input :avatar, as: :file, required: false
+  = f.input :avatar, as: :file, required: false, label: "Photo"
   = f.submit "Upload Avatar", class: "btn-a"
 
 = link_to "Toggle Status", author_toggle_status_path(@author), method: :put
