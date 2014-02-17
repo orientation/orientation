@@ -5,6 +5,11 @@
   %aside= image_tag @author.image, class: "avatar"
 %p= @author.email_tag 
 
+= simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
+  = f.input :shtick, as: :text, required: false
+  = f.submit "Update That Shtick", class: "btn-a"
+
+
 %h2 Articles created
 %ul
   - @author.articles.each do |article|
@@ -15,7 +20,7 @@
 /   - @author.articles.each do |article|
 /     %li= article
 
-= simple_form_for :author, url: author_path(@author), method: :patch do |f|
+= simple_form_for :user, url: author_path(@author), method: :patch do |f|
   = f.input :avatar, as: :file, required: false
   = f.submit "Upload Avatar", class: "btn-a"
 

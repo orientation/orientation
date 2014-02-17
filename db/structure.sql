@@ -197,7 +197,8 @@ CREATE TABLE users (
     updated_at timestamp without time zone,
     image character varying(255),
     avatar character varying(255),
-    active boolean DEFAULT true
+    active boolean DEFAULT true,
+    shtick text
 );
 
 
@@ -366,4 +367,6 @@ INSERT INTO schema_migrations (version) VALUES ('20131003155044');
 INSERT INTO schema_migrations (version) VALUES ('20140215004410');
 
 INSERT INTO schema_migrations (version) VALUES ('20140216160144');
+
+INSERT INTO schema_migrations (version) VALUES ('20140217025247');
 

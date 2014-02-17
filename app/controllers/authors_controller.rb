@@ -12,10 +12,12 @@ class AuthorsController < ApplicationController
 
   def update
     @author = User.find(params[:id])
-    @author.avatar = params[:author][:avatar]
-    @author.save!
-
-    flash[:notice] = "You look nice today."
+    @author.update_attributes(author_params)
+    if @author.save
+      flash[:notice] = "You look nice today."
+    else
+      flash[:error] = "Uh, that didn't work!"
+    end
     redirect_to author_path(@author)
   end
 
@@ -44,7 +46,7 @@ class AuthorsController < ApplicationController
   private
 
   def author_params
-    params.require(:user).permit(:name, :email, :avatar)
+    params.require(:user).permit(:name, :email, :avatar, :shtick)
   end
 
 end
