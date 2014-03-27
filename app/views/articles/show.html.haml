@@ -1,4 +1,7 @@
-%aside= image_tag @article.author.image
+%aside
+  = image_tag @article.author.image
+  - if @article.edited? && @article.different_editor?
+    = image_tag @article.editor.image
 %h1= @article.title
 %p.author= @article.authors
 

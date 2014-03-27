@@ -30,11 +30,19 @@ class Article < ActiveRecord::Base
       where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')
     else
       order(updated_at: :desc)
-    end 
+    end
   end
 
   def self.ordered_fresh
     all.order(updated_at: :desc).limit(20)
+  end
+
+  def different_editor?
+    author != editor
+  end
+
+  def edited?
+    self.editor.present?
   end
 
   # an article is fresh when it has been created or updated 7 days ago
@@ -42,7 +50,7 @@ class Article < ActiveRecord::Base
   def fresh?
     Article.fresh? self
   end
-  
+
   # an article is stale when it has been created over 4 months ago
   # and has never been updated since
   def stale?
