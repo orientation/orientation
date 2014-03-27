@@ -18,7 +18,7 @@
   - @author.articles.each do |article|
     %li= link_to article, article
 
-%h2 Articles edited #{@author.edits.count}
+%h2 Articles edited (#{@author.edits.count})
 %ul
   - @author.edits.each do |edit|
     %li= link_to edit, edit
