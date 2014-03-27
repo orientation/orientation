@@ -5,7 +5,7 @@
   %aside= image_tag @author.image, class: "avatar"
 %p
   = @author.email_tag
-  %br #{@author.articles.count} articles created and #{@author.edits.count} edited.
+  %br Created #{@author.articles.count} articles and edited #{@author.edits.count}.
 
 
 = simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
