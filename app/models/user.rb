@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :articles, foreign_key: "author_id"
+  has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
   domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
@@ -23,7 +24,7 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_from_omniauth(auth)
     if user = where(auth.slice("provider", "uid")).first
-      # Only update the user's image if they don't already have one. 
+      # Only update the user's image if they don't already have one.
       # This means an OAuth profile image can never override an existing Orientation one.
       update_image(user, auth) if user.image.nil?
     else
@@ -48,7 +49,7 @@ class User < ActiveRecord::Base
       where("name ILIKE :q OR shtick ILIKE :q", q: "%#{query}%").order('name ASC')
     else
       order(name: :desc)
-    end 
+    end
   end
 
   def notify_about_stale_articles

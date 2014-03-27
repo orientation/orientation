@@ -1,6 +1,6 @@
 %li.author{ class: "#{author.status}" }
   = link_to author_path(author) do
     = image_tag author.image, width: 40, height: 40, class: "avatar"
-    = "#{author} (#{author.articles.count})"
-    
+    = "#{author} (#{author.articles.count + author.edits.count})"
+
   .shtick= author.shtick
