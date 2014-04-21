@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+ruby '2.1.1'
 
-gem 'rails', github: 'rails/rails', branch: 'master'
+gem 'rails', '~> 4.1.0'
 
 gem 'pg'
 gem 'thin'
@@ -19,7 +19,7 @@ gem 'coffee-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'haml-rails'
-gem 'simple_form', '~> 3.0.1'
+gem 'simple_form', '~> 3.0.2'
 gem 'pygments.rb'
 gem 'redcarpet'
 gem 'omniauth'
