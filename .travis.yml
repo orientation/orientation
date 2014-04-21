@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.1.0
+  - 2.1.1
 env:
   global:
     SPEC_OPTS=--backtrace --color
@@ -14,7 +14,7 @@ before_script:
   - psql -c 'create database orientation_test;' -U postgres
   - bundle exec rake db:migrate
 script:
-  - bundle exec rspec spec/ 
+  - bundle exec rspec spec/
 branches:
   only:
     - master
