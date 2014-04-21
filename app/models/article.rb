@@ -85,6 +85,10 @@ class Article < ActiveRecord::Base
   private
 
   def generate_slug
-    self.slug ||= title.parameterize
+    if self.slug.present? && self.slug == title.parameterize
+      self.slug
+    else
+      self.slug = title.parameterize
+    end
   end
 end
