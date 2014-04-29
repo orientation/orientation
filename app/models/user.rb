@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
   end
 
   def notify_about_stale_articles
+    return false unless self.active? # we don't want to send mailers to inactive authors
+    
     articles = self.articles.stale.select(&:ready_to_notify_author_of_staleness?)
     article_ids = articles.map(&:id)
     Delayed::Job.enqueue(StalenessNotificationJob.new(article_ids)) unless article_ids.empty?
