@@ -3,8 +3,12 @@ class ArticlesController < ApplicationController
   before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
   respond_to :html, :json
 
+  def archived
+    @archived_articles = ArticleDecorator.decorate_collection(Article.archived.includes(:tags))
+  end
+
   def index
-    @articles = ArticleDecorator.decorate_collection(Article.includes(:tags).text_search(params[:search]))
+    @articles = ArticleDecorator.decorate_collection(Article.current.includes(:tags).text_search(params[:search]))
     @tags = Tag.by_article_count.take(10)
   end
 
@@ -24,6 +28,14 @@ class ArticlesController < ApplicationController
   def edit
     @article = ArticleDecorator.new(find_article_by_params)
     @tags = @article.tags.collect{ |t| Hash["id" => t.id, "name" => t.name] }
+  end
+
+  def toggle_archived
+    @article = ArticleDecorator.new(find_article_by_params)
+    !@article.archived? ? @article.archive! : @article.unarchive!
+
+    flash[:notice] = "Successfully #{@article.archived? ? "archived" : "unarchived"} this article."
+    respond_with @article
   end
 
   def make_fresh
@@ -48,7 +60,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:created_at, :updated_at, :title, :content, :tag_tokens, :author_id, :editor_id)
+    params.require(:article).permit(:created_at, :updated_at, :title, :content, :tag_tokens, :author_id, :editor_id, :archived_at)
   end
 
   def find_article_by_params

@@ -90,6 +90,16 @@ describe Article do
     end
   end
 
+  context "#archive!" do
+    let!(:article) { create :article }
+
+    subject(:archive_article) { article.archive! }
+
+    it "removes the article from current articles" do
+      expect { archive_article }.to change { Article.current.count }.by(-1)
+    end
+  end
+
   context "#fresh?" do
     let(:fresh_article) { create(:article, :fresh) }
     let(:stale_article) { create(:article, :stale) }
@@ -113,6 +123,18 @@ describe Article do
 
     it "returns true for a stale article" do
       stale_article.stale?.should be_true
+    end
+  end
+
+  context "#unarchive!" do
+    let!(:article) { create :article }
+
+    subject(:unarchive_article) { article.unarchive! }
+
+    before { article.archive! }
+
+    it "add the article to current articles" do
+      expect { unarchive_article }.to change { Article.current.count }.by(1)
     end
   end
 end

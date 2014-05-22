@@ -1,3 +1,6 @@
+- if @article.archived?
+  %p.archived This article has been archived. Please don't trust the information display here.
+
 %aside
   = image_tag @article.author.image
   - if @article.edited? && @article.different_editor?
@@ -12,4 +15,8 @@
   = render "tags/tags", tags: @article.tags
 
 = link_to "Edit Article", edit_article_url(@article), class: "btn-a"
+
+- toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
+= link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn-b", method: :put
+
 = link_to "Delete Article", @article, class: "btn-c", method: :delete

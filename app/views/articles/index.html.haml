@@ -12,7 +12,9 @@
   %aside.categories
     = render "tags/tag_categories", tags: @tags
 
+  = link_to "Archived Articles (#{Article.archived.count})", archived_articles_path
+
 - else
   .main
-    %h1 
+    %h1
       = link_to "Please Log in to Continue", login_path, data: { no_turbolink: true }

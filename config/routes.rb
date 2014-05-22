@@ -10,9 +10,13 @@ Rails.application.routes.draw do
   resources :authors, only: [:index, :show, :new, :create, :update] do
     put :toggle_status, to: "authors#toggle_status", as: "toggle_status"
   end
+
   resources :articles do
+    get :archived, on: :collection
   	put :make_fresh, on: :member
+    put :toggle_archived, on: :member
   end
+
   resources :articles, path: "", only: :show
 
   root "articles#index"

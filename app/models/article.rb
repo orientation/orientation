@@ -9,6 +9,14 @@ class Article < ActiveRecord::Base
 
   validates :slug, uniqueness: true, presence: true
 
+  def self.archived
+    where("archived_at IS NOT NULL")
+  end
+
+  def self.current
+    where(archived_at: nil)
+  end
+
   def self.fresh
     where("updated_at >= ?", 7.days.ago)
   end
@@ -35,6 +43,14 @@ class Article < ActiveRecord::Base
 
   def self.ordered_fresh
     all.order(updated_at: :desc).limit(20)
+  end
+
+  def archive!
+    update_attribute(:archived_at, Time.now.in_time_zone)
+  end
+
+  def archived?
+    !self.archived_at.nil?
   end
 
   def different_editor?
@@ -80,6 +96,10 @@ class Article < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def unarchive!
+    update_attribute(:archived_at, nil)
   end
 
   private
