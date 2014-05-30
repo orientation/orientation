@@ -15,9 +15,5 @@ FactoryGirl.define do
       created_at 7.months.ago
       updated_at 6.days.ago
     end
-
-    trait :archived do
-      archived_at 1.day.ago
-    end
   end
 end
