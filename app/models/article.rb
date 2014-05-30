@@ -42,7 +42,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.ordered_fresh
-    all.order(updated_at: :desc).limit(20)
+    current.order(updated_at: :desc).limit(20)
   end
 
   def archive!
