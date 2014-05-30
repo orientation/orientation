@@ -14,9 +14,11 @@
 %footer
   = render "tags/tags", tags: @article.tags
 
-= link_to "Edit Article", edit_article_url(@article), class: "btn-a"
+= link_to "Edit", edit_article_url(@article), class: "btn-a"
+-# add unsubscribe link
+= link_to "Subscribe", subscribe_article_path(@article), class: 'btn-a', method: :post
 
 - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
 = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn-b", method: :put
 
-= link_to "Delete Article", @article, class: "btn-c", method: :delete
+= link_to "Delete", @article, class: "btn-c", method: :delete

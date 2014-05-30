@@ -24,7 +24,11 @@ class ArticleMailer < MandrillMailer::TemplateMailer
     mandrill_mail template: 'Article Subscription Update',
                   subject: 'Article Subscription Update',
                   from_name: 'Code School', 
-                  to: { email: user.email, name: user.name }
+                  to: { email: user.email, name: user.name }, 
+                  vars: {
+                    'ARTICLE_TITLE' => article.title,
+                    'URL' => article_url(article)
+                  }
   end
 
   private

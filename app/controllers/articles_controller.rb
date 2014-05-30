@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate!
   before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
+  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :subscribe]
   respond_to :html, :json
 
   def archived
@@ -13,7 +14,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    respond_with @article = ArticleDecorator.new(find_article_by_params)
+    respond_with @article
   end
 
   def new
@@ -26,12 +27,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = ArticleDecorator.new(find_article_by_params)
     @tags = @article.tags.collect{ |t| Hash["id" => t.id, "name" => t.name] }
   end
 
   def toggle_archived
-    @article = ArticleDecorator.new(find_article_by_params)
     !@article.archived? ? @article.archive! : @article.unarchive!
 
     flash[:notice] = "Successfully #{@article.archived? ? "archived" : "unarchived"} this article."
@@ -53,6 +52,28 @@ class ArticlesController < ApplicationController
     redirect_to articles_url if @article.destroy
   end
 
+  def subscribe
+    if ArticleSubscriber.new(@article, current_user).subscribe
+      flash[:notice] = "Subscription created. You will receive weekly email notifications 
+        about this article."
+    else
+      flash[:error] = "Error creating subscription."
+    end
+
+    respond_with @article
+  end
+
+  def unsubscribe
+    if ArticleSubscriber.new(@article, current_user).unsubscribe
+      flash[:notice] = "Subscription destroyed. You will no longer receive 
+        weekly email notifications about this article."
+    else
+      flash[:error] = "Error destroying subscription."
+    end
+
+    respond_with @article
+  end
+
   private
 
   def authenticate!
@@ -61,6 +82,10 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:created_at, :updated_at, :title, :content, :tag_tokens, :author_id, :editor_id, :archived_at)
+  end
+
+  def decorate_article
+    @article = ArticleDecorator.new(find_article_by_params)
   end
 
   def find_article_by_params

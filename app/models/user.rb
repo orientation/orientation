@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  belongs_to :article
   has_many :articles, foreign_key: "author_id"
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 

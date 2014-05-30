@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get :archived, on: :collection
   	put :make_fresh, on: :member
     put :toggle_archived, on: :member
+    post :subscribe, on: :member
   end
 
   resources :articles, path: "", only: :show
