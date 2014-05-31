@@ -7,7 +7,7 @@ env:
 bundler_args: --deployment --without development
 cache: bundler
 before_install:
-  - gem install bundler --pre
+  - gem install bundler
   - bundle --version
 before_script:
   - cp config/database.ci.yml config/database.yml
@@ -20,8 +20,9 @@ branches:
     - master
 notifications:
   email: false
-  campfire:
+  hipchat:
     on_success: change
     on_failure: always
+    on_pull_requests: false
     rooms:
-      - secure: "cyEVlNK8v9s66nIlsdycyGUNFKyRIARy74+oOM9RZ+EQcYL2D/0XMsUyevQx\nLFWMN5Clv1N20zhOYhYbUklPSHuT0hVoSfkMSeNlEFiy2HqIrWO8rFqazJLt\nw4HLCtl0AOc77L/1QgBfoU27g4VaPwAZvoUO6MM071wFaCwAIZA="
+      secure: ekfTchIvMNSk4W4FwfuRCMjBx0A9X1A38CDVrXDRHjZaKAplpUHunvWVSOjNfrTQRWlEYCUyPQV63w8LLxLBJesjSsrFa3wFVOwmVbllc4KW63wS4UCwUPR8QUhbV9Rv5J2NoxUKH2r1hgnKFaLbl4X1LpADLzonUxRhpH4+P34=
