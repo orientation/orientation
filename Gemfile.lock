@@ -285,7 +285,7 @@ GEM
     subexec (0.2.3)
     textacular (3.2.0)
       activerecord (>= 3.0, < 4.2)
-    thin (1.6.1)
+    thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
