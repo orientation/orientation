@@ -159,10 +159,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mandrill-api (1.0.49)
+    mandrill-api (1.0.51)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mandrill_mailer (0.4.3)
+    mandrill_mailer (0.4.6)
       actionpack
       activesupport
       mandrill-api (~> 1.0.9)
