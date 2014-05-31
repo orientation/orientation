@@ -73,7 +73,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.3)
+    coffee-script-source (1.7.0)
     columnize (0.3.6)
     daemons (1.1.9)
     debug_inspector (0.0.2)
@@ -100,7 +100,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     excon (0.34.0)
-    execjs (2.0.2)
+    execjs (2.1.0)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.2.1)
@@ -295,7 +295,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.1.0)
+    turbolinks (2.2.2)
       coffee-rails
     tzinfo (1.2.0)
       thread_safe (~> 0.1)
