@@ -299,7 +299,7 @@ GEM
       coffee-rails
     tzinfo (1.2.0)
       thread_safe (~> 0.1)
-    uglifier (2.4.0)
+    uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uniform_notifier (1.4.0)
