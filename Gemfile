@@ -10,7 +10,8 @@ gem 'thin'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.3'
+gem 'sprockets', '2.11.0'
 
 gem 'turbolinks'
 
