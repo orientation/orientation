@@ -5,15 +5,6 @@ task notify_of_staleness: :environment do
   end
 end
 
-desc "Every Monday, send an email update to users who have subscribed to an article"
-task send_article_subscription_update: :environment do
-  if Time.now.monday?
-    Article.fresh.each do |article|
-      ArticleSubscriber.send_updates_for(article)
-    end
-  end
-end
-
 desc "Not those Blue People"
 task recreate_avatars: :environment do
   User.all.each do |u| 
