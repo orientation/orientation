@@ -2,12 +2,22 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   has_and_belongs_to_many :tags
+  has_many :subscribed_users, class_name: "User", foreign_key: "article_subscription_id"
+  has_many :users, :through => :article_subscriptions
 
   attr_reader :tag_tokens
 
   before_validation :generate_slug
 
   validates :slug, uniqueness: true, presence: true
+
+  def self.archived
+    where("archived_at IS NOT NULL")
+  end
+
+  def self.current
+    where(archived_at: nil)
+  end
 
   def self.fresh
     where("updated_at >= ?", 7.days.ago)
@@ -34,7 +44,15 @@ class Article < ActiveRecord::Base
   end
 
   def self.ordered_fresh
-    all.order(updated_at: :desc).limit(20)
+    current.order(updated_at: :desc).limit(20)
+  end
+
+  def archive!
+    update_attribute(:archived_at, Time.now.in_time_zone)
+  end
+
+  def archived?
+    !self.archived_at.nil?
   end
 
   def different_editor?
@@ -80,6 +98,10 @@ class Article < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def unarchive!
+    update_attribute(:archived_at, nil)
   end
 
   private

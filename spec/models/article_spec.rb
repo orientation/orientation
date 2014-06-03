@@ -84,9 +84,24 @@ describe Article do
   context ".ordered_fresh" do
     let!(:fresh_article) { create :article }
     let!(:fresher_article) { create :article }
+    let!(:archived_article) { create :article, :archived }
 
     it "returns the fresher article first" do
       expect(Article.ordered_fresh.first).to eq fresher_article
+    end
+	
+    it "does not include archived articles" do
+      expect(Article.ordered_fresh).to_not include(archived_article)
+    end
+  end
+
+  context "#archive!" do
+    let!(:article) { create :article }
+
+    subject(:archive_article) { article.archive! }
+
+    it "removes the article from current articles" do
+      expect { archive_article }.to change { Article.current.count }.by(-1)
     end
   end
 
@@ -113,6 +128,18 @@ describe Article do
 
     it "returns true for a stale article" do
       stale_article.stale?.should be_true
+    end
+  end
+
+  context "#unarchive!" do
+    let!(:article) { create :article }
+
+    subject(:unarchive_article) { article.unarchive! }
+
+    before { article.archive! }
+
+    it "add the article to current articles" do
+      expect { unarchive_article }.to change { Article.current.count }.by(1)
     end
   end
 end
