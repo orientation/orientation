@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   belongs_to :article
   has_many :articles, foreign_key: "author_id"
+  has_many :article_subscriptions
+  has_many :articles, :through => :article_subscriptions
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
   domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
