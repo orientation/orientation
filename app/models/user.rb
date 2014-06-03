@@ -63,6 +63,11 @@ class User < ActiveRecord::Base
     Delayed::Job.enqueue(StalenessNotificationJob.new(article_ids)) unless article_ids.empty?
   end
 
+  # TODO: improve this query
+  def subscribed_to?(article)
+    article_subscriptions.where(article_id: article.id).where(user_id: self.id).count > 0
+  end
+
   def to_s
     self.name || self.email
   end

@@ -46,4 +46,16 @@ describe User do
       end
     end
   end
+
+  context "#subscribed_to?(article)" do
+    let(:user) { create(:user) }
+    let(:article) { create(:article) }
+    let!(:article_subscription) { create(:article_subscription, user: user, article: article) }
+
+    subject { user.subscribed_to?(article) }
+
+    it 'returns the correct value' do
+      subject.should be_true
+    end
+  end
 end
