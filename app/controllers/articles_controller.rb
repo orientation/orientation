@@ -55,11 +55,11 @@ class ArticlesController < ApplicationController
 	def toggle_subscription
 		if current_user.subscribed_to?(@article) 
 			# TODO: improve this query
-			current_user.article_subscriptions.where(article_id: @article.id).first.destroy
+			current_user.subscriptions.where(article_id: @article.id).first.destroy
 			flash[:notice] = "Subscription destroyed. You will no longer receive 
 				weekly email notifications about this article."
 		else
-			current_user.article_subscriptions.create!(article_id: @article.id)
+			current_user.subscriptions.create!(article_id: @article.id)
 			flash[:notice] = "Subscription created. You will receive weekly email notifications 
 				about this article."
 		end

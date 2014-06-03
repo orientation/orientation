@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   belongs_to :article
   has_many :articles, foreign_key: "author_id"
-  has_many :article_subscriptions
-  has_many :articles, :through => :article_subscriptions
+  has_many :subscriptions, class_name: "ArticleSubscription"
+  has_many :subscription_articles, :through => :article_subscriptions, source: :articles
+
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
   domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
@@ -65,7 +66,7 @@ class User < ActiveRecord::Base
 
   # TODO: improve this query
   def subscribed_to?(article)
-    article_subscriptions.where(article_id: article.id).where(user_id: self.id).count > 0
+    subscriptions.where(article_id: article.id).where(user_id: self.id).count > 0
   end
 
   def to_s
