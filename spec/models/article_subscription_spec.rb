@@ -10,7 +10,5 @@ describe ArticleSubscription do
 		it 'creates a delayed job' do
 			expect { subject }.to create_delayed_job_with(:SendArticleUpdateJob)
 		end
-
 	end
-
 end

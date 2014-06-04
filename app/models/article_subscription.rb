@@ -9,5 +9,4 @@ class ArticleSubscription < ActiveRecord::Base
   def send_updates
     Delayed::Job.enqueue(SendArticleUpdateJob.new(article.id, user.id))
   end
-
 end
