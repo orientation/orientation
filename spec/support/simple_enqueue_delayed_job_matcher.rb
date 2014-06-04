@@ -26,4 +26,8 @@ RSpec::Matchers.define(:create_delayed_job_with) do |expected_job_symbol|
   def organize_array_output(arr)
     arr.map {|i| i.inspect}.join("\n\n")
   end
+
+  def supports_block_expectations?
+    true
+  end
 end
