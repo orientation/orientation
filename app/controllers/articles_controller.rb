@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate!
   before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
-  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :subscribe]
+  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :toggle_subscription]
   respond_to :html, :json
 
   def archived
