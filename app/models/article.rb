@@ -2,12 +2,13 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   has_and_belongs_to_many :tags
-  has_many :subscribed_users, class_name: "User", foreign_key: "article_subscription_id"
-  has_many :users, :through => :article_subscriptions
+  has_many :article_subscriptions
+  has_many :subscribers, :through => :article_subscriptions, class_name: "User"
 
   attr_reader :tag_tokens
 
   before_validation :generate_slug
+  after_save :update_subscribers
 
   validates :slug, uniqueness: true, presence: true
 
@@ -111,6 +112,12 @@ class Article < ActiveRecord::Base
       self.slug
     else
       self.slug = title.parameterize
+    end
+  end
+
+  def update_subscribers
+    article_subscriptions.each do |sub|
+      sub.send_update_for(self.id)
     end
   end
 end

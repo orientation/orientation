@@ -1,6 +1,21 @@
 require "spec_helper"
 
 describe Article do
+  context "after_save" do
+    let(:article) { create(:article) }
+    let(:user) { create(:user) }
+    let!(:article_subscription) { 
+      create(:article_subscription, article: article, user: user)
+    }
+
+    let(:subject) { article.save!}
+
+    it "notifies ArticleSubscription about the change" do
+      ArticleSubscription.any_instance.should_receive(:send_update_for).with(article.reload.id)
+      subject
+    end
+  end
+
   context ".fresh" do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
