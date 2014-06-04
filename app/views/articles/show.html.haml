@@ -18,7 +18,7 @@
   = link_to "Edit", edit_article_url(@article), class: "btn-a"
 
   - toggle_subscription_label = current_user.subscribed_to?(@article) ? "Unsubscribe" : "Subscribe"
-  = link_to "toggle_subscription_label", toggle_subscription_article_url(@article), class: 'btn-a', method: :post
+  = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn-a', method: :post
 
   - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
   = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn-b", method: :put
