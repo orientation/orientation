@@ -47,5 +47,7 @@ RSpec.configure do |config|
   # make it unnecessary to prefix factories with FactoryGirl
   # instead call create, build, or build_stubbed directly
   config.include FactoryGirl::Syntax::Methods
+  
+  config.infer_spec_type_from_file_location!
 end
 

@@ -21,11 +21,11 @@ describe Article do
     let(:stale_article) { create(:article, :stale) }
 
     it "is true for fresh articles" do
-      Article.fresh?(fresh_article).should be_true
+      Article.fresh?(fresh_article).should be_truthy
     end
 
     it "is false for stale articles" do
-      Article.fresh?(stale_article).should be_false
+      Article.fresh?(stale_article).should be_falsey
     end
   end
 
@@ -49,11 +49,11 @@ describe Article do
     let(:stale_article) { create(:article, :stale) }
 
     it "is true for stale articles" do
-      Article.stale?(stale_article).should be_true
+      Article.stale?(stale_article).should be_truthy
     end
 
     it "is false for fresh articles" do
-      Article.stale?(fresh_article).should be_false
+      Article.stale?(fresh_article).should be_falsey
     end
   end
 
@@ -110,11 +110,11 @@ describe Article do
     let(:stale_article) { create(:article, :stale) }
 
     it "returns true for a fresh article" do
-      fresh_article.fresh?.should be_true
+      fresh_article.fresh?.should be_truthy
     end
 
     it "returns false for a non-fresh article" do
-      stale_article.fresh?.should be_false
+      stale_article.fresh?.should be_falsey
     end
   end
 
@@ -123,11 +123,11 @@ describe Article do
     let(:stale_article) { create(:article, :stale) }
 
     it "returns false for a non-stale article" do
-      fresh_article.stale?.should be_false
+      fresh_article.stale?.should be_falsey
     end
 
     it "returns true for a stale article" do
-      stale_article.stale?.should be_true
+      stale_article.stale?.should be_truthy
     end
   end
 

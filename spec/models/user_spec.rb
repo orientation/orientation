@@ -8,9 +8,10 @@ describe User do
     end
 
     let!(:existing_user) { User.create(uid: @old_user[:uid], provider: @old_user[:provider], email: @old_user[:info][:email], name: @old_user[:info][:name])}
+    let(:old_user) { User.find_or_create_from_omniauth(@old_user) }
 
     it "finds existing user" do
-      User.find_or_create_from_omniauth(@old_user).should eq existing_user
+      expect(old_user).to eq existing_user
     end
 
     it "creates user" do
@@ -20,13 +21,13 @@ describe User do
 
   context "#notify_about_stale_articles" do
     let(:author) { article.author }
-    subject { author.notify_about_stale_articles }
+    subject(:notify_about_stale_articles) { author.notify_about_stale_articles }
 
     context "with articles that have not previously been stale" do
       let(:article) { create(:article, :stale, last_notified_author_at: nil) }
 
       it "queues a delayed job" do
-        expect { subject }.to create_delayed_job_with(:StalenessNotificationJob)
+        expect { notify_about_stale_articles }.to create_delayed_job_with(:StalenessNotificationJob)
       end
     end
 
@@ -34,7 +35,7 @@ describe User do
       let(:article) { create(:article, :stale, last_notified_author_at: 8.days.ago) }
 
       it "queues a delayed job" do
-        expect { subject }.to create_delayed_job_with(:StalenessNotificationJob)
+        expect { notify_about_stale_articles }.to create_delayed_job_with(:StalenessNotificationJob)
       end
     end
 
@@ -42,7 +43,7 @@ describe User do
       let(:article) { create(:article, :stale, last_notified_author_at: 2.days.ago) }
 
       it "does not queue a delayed job" do
-        expect { subject }.not_to create_delayed_job_with(:StalenessNotificationJob)
+        expect { notify_about_stale_articles }.not_to create_delayed_job_with(:StalenessNotificationJob)
       end
     end
   end
@@ -52,10 +53,10 @@ describe User do
     let(:article) { create(:article) }
     let!(:article_subscription) { create(:article_subscription, user: user, article: article) }
 
-    subject { user.subscribed_to?(article) }
+    subject(:subscribed_to?) { user.subscribed_to?(article) }
 
     it 'returns the correct value' do
-      subject.should be_true
+      expect(subscribed_to?).to be_truthy
     end
   end
 end
