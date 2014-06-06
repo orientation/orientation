@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def rot
+  def toggle_rotten
     @article = Article.find(params[:id])
     if @article.rot!
       respond_with(@article)
