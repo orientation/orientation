@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate!
   before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
-  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :toggle_subscription]
+  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :toggle_subscription, :toggle_rotten]
   respond_to :html, :json
 
   def archived
@@ -45,10 +45,9 @@ class ArticlesController < ApplicationController
   end
 
   def toggle_rotten
-    @article = Article.find(params[:id])
-    if @article.rot!
-      respond_with(@article)
-    end
+    @article.rotten? @article.refresh! : @article.rot!
+    flash[:notice] = "Successfully #{@article.rotten? ? "rotted" : "refreshed"} this article."
+    respond_with(@article)
   end
 
   def update
