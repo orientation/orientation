@@ -21,7 +21,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.fresh
-    where("updated_at >= ?", 7.days.ago)
+    where("updated_at >= ?", 7.days.ago).where("rotted_at IS NULL")
   end
 
   def self.fresh?(article)
@@ -32,8 +32,16 @@ class Article < ActiveRecord::Base
     where("updated_at < ?", 6.months.ago)
   end
 
+  def self.rotten
+    where("rotted_at IS NOT NULL")
+  end
+
   def self.stale?(article)
     self.stale.include?(article)
+  end
+
+  def self.rotten?(article)
+    self.rotten.include?(article)
   end
 
   def self.text_search(query)
@@ -74,6 +82,21 @@ class Article < ActiveRecord::Base
   # and has never been updated since
   def stale?
     Article.stale? self
+  end
+
+  # an article is rotten when it has been manually marked as rotten and 
+  # the rotted_at timestamp has been set (it defaults to nil)
+  def rotten?
+    Article.rotten? self
+  end
+
+  def refresh!
+    update_attribute(:rotted_at, nil)
+    touch(:updated_at)
+  end
+
+  def rot!
+    update_attribute(:rotted_at, Time.now.in_time_zone)
   end
 
   def never_notified_author?

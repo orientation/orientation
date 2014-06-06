@@ -39,7 +39,14 @@ class ArticlesController < ApplicationController
 
   def make_fresh
     @article = Article.find(params[:id])
-    if @article.touch(:updated_at)
+    if @article.refresh!
+      respond_with(@article)
+    end
+  end
+
+  def rot
+    @article = Article.find(params[:id])
+    if @article.rot!
       respond_with(@article)
     end
   end

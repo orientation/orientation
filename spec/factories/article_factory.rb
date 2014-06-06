@@ -19,5 +19,9 @@ FactoryGirl.define do
     trait :archived do
       archived_at 1.day.ago
     end
+
+    trait :rotten do
+      rotted_at Time.now
+    end
   end
 end

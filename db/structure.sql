@@ -103,7 +103,8 @@ CREATE TABLE articles (
     slug character varying(255),
     editor_id integer,
     last_notified_author_at timestamp without time zone,
-    archived_at timestamp without time zone
+    archived_at timestamp without time zone,
+    rotted_at timestamp without time zone
 );
 
 
@@ -421,4 +422,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140217025247');
 INSERT INTO schema_migrations (version) VALUES ('20140522210252');
 
 INSERT INTO schema_migrations (version) VALUES ('20140602153320');
+
+INSERT INTO schema_migrations (version) VALUES ('20140606204236');
 

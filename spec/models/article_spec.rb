@@ -121,15 +121,104 @@ describe Article do
   end
 
   context "#fresh?" do
-    let(:fresh_article) { create(:article, :fresh) }
-    let(:stale_article) { create(:article, :stale) }
+    subject(:fresh?) { article.fresh? }
 
-    it "returns true for a fresh article" do
-      fresh_article.fresh?.should be_truthy
+    context 'with a fresh article' do
+      let(:article) { create(:article, :fresh) }
+
+      it "returns true" do
+        expect(fresh?).to be_truthy
+      end
     end
 
-    it "returns false for a non-fresh article" do
-      stale_article.fresh?.should be_falsey
+    context 'with a stale article' do
+      let(:article) { create(:article, :stale) }
+
+      it "returns false" do
+        expect(fresh?).to be_falsey
+      end
+    end
+
+    context 'with a rotten article' do
+      let(:article) { create(:article, :rotten) }
+
+      it "returns false" do
+        expect(fresh?).to be_falsey
+      end
+    end
+  end
+
+  context "#refresh!" do
+    subject(:refresh!) { article.refresh! }
+
+    context 'with a fresh article' do
+      let(:article) { create(:article, :fresh) }
+
+      it "keeps it fresh" do
+        expect { refresh! }.not_to change { article.fresh? }
+      end
+    end
+
+    context 'with a stale article' do
+      let(:article) { create(:article, :stale) }
+
+      it "makes it fresh" do
+        expect { refresh! }.to change { article.fresh? }
+      end
+    end
+
+    context 'with a rotten article' do
+      let(:article) { create(:article, :rotten) }
+
+      it "makes it fresh" do
+        expect { refresh! }.to change { article.fresh? }
+      end
+    end
+  end
+
+  context "#rot!" do
+    subject(:rot!) { article.rot! }
+
+    context 'with a fresh article' do
+      let(:article) { create(:article, :fresh) }
+
+      it "makes it rotten" do
+        expect { rot! }.to change { article.rotten? }
+      end
+    end
+
+    context 'with a stale article' do
+      let(:article) { create(:article, :stale) }
+
+      it "makes it rotten" do
+        expect { rot! }.to change { article.rotten? }
+      end
+    end
+
+    context 'with a rotten article' do
+      let(:article) { create(:article, :rotten) }
+
+      it "keeps it rotten" do
+        expect { rot! }.not_to change { article.rotten? }
+      end
+    end
+  end
+
+  context "#rotten?" do
+    let(:fresh_article) { create(:article, :fresh) }
+    let(:stale_article) { create(:article, :stale) }
+    let(:rotten_article) { create(:article, :rotten) }
+
+    it "returns false for a fresh article" do
+      fresh_article.rotten?.should be_falsey
+    end
+
+    it "returns false for a stale article" do
+      fresh_article.rotten?.should be_falsey
+    end
+
+    it "returns true for a rotten article" do
+      rotten_article.rotten?.should be_truthy
     end
   end
 
