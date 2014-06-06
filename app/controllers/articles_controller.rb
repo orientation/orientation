@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
   end
 
   def toggle_rotten
-    @article.rotten? @article.refresh! : @article.rot!
+    @article.rotten? ? @article.refresh! : @article.rot!
     flash[:notice] = "Successfully #{@article.rotten? ? "rotted" : "refreshed"} this article."
     respond_with(@article)
   end
