@@ -1,5 +1,7 @@
 - if @article.archived?
   %p.archived This article has been archived. Please don't trust the information displayed here.
+- if @article.rotten?
+  %p.rotten This article has rotten. The information is partially or completely out of date.
 
 %aside
   = image_tag @article.author.image

@@ -158,10 +158,13 @@ body.articles-index, body.articles-archived
         font-weight: bold
 
 body.articles-show
-  .archived
+  .archived, .rotten
     font-weight: bold
     font-variant: small-caps
+  .archived
     color: red
+  .rotten
+    color: brown
 
   aside
     float: left
@@ -214,3 +217,10 @@ body.articles-show
   @extend .state
   background:
     color: #F3C68C
+
+.rotten
+  @extend .state
+  background:
+    background-color: #785320
+    color: #ccc
+
