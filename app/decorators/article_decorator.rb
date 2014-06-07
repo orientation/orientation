@@ -47,7 +47,7 @@ class ArticleDecorator < ApplicationDecorator
     content_tag(:span, "stale", class: "state stale") if source.stale?
   end
 
-  def staleness
+  def rottenness
     content_tag(:span, "rotten", class: "state rotten") if source.rotten?
   end
 end
