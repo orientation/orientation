@@ -37,16 +37,16 @@ class ArticlesController < ApplicationController
     respond_with @article
   end
 
-  def make_fresh
+  def mark_fresh
     @article = Article.find(params[:id])
     if @article.refresh!
       respond_with(@article)
     end
   end
 
-  def toggle_rotten
-    @article.rotten? ? @article.refresh! : @article.rot!
-    flash[:notice] = "Successfully #{@article.rotten? ? "rotted" : "refreshed"} this article."
+  def report_rot
+    @article.rot!
+    flash[:notice] = "Successfully reported this article as rotten."
     respond_with(@article)
   end
 

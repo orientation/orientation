@@ -7,6 +7,8 @@
 #   ArticleMailer.test(:notify_author_of_staleness, email: <author.email>)
 #
 class ArticleMailer < MandrillMailer::TemplateMailer
+  include ActionView::Helpers::UrlHelper
+
   default from: 'orientation@codeschool.com'
   
   def notify_author_of_staleness(articles)
@@ -45,14 +47,9 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   private
 
   def format_email_content(articles)
-    content = ''
-    articles.each do |article|
-      content += <<-HTML.strip_heredoc
-        <li><a href='#{root_url}/articles/#{article.id}/edit'>#{article.title}</a></li>
-      HTML
+    articles.map do |article|
+      content_tag(:li, link_to(article.title, article_url(article)))
     end
-
-    content
   end
 
 

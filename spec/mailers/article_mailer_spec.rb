@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ArticleMailer do
   let(:user) { create(:user, email: 'aimee@envylabs.com') }
   
-  context "#notify_author_of_staleness" do
+  context ".notify_author_of_staleness" do
     let(:articles) { [create(:article, :stale, author: user)] }
     let(:mailer) { described_class.notify_author_of_staleness(articles) }
 
@@ -15,7 +15,7 @@ describe ArticleMailer do
     it { should be_from(email: 'orientation@codeschool.com') }
   end
 
-  context "#send_updates_for(article, user)" do
+  context ".send_updates_for(article, user)" do
     let(:article) { create(:article) }
     let(:mailer) { described_class.send_updates_for(article, user) }
 
@@ -27,7 +27,7 @@ describe ArticleMailer do
     it { should be_from(email: 'orientation@codeschool.com') }
   end
 
-  context "#send_rotten_notification_for(article, contributors)" do
+  context ".send_rotten_notification_for(article, contributors)" do
     let(:article) { create(:article) }
     let(:contributors) do 
       [article.author, article.editor].compact.map do |user|

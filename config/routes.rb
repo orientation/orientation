@@ -13,10 +13,10 @@ Rails.application.routes.draw do
 
   resources :articles do
     get :archived, on: :collection
-  	put :make_fresh, on: :member
-    put :toggle_archived, on: :member
     post :toggle_subscription, on: :member
-    put :toggle_rotten, on: :member
+    put :report_rot, on: :member
+  	put :mark_fresh, on: :member
+    put :toggle_archived, on: :member
   end
 
   resources :articles, path: "", only: :show

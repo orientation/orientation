@@ -82,22 +82,22 @@ initialize_via_jquery = ->
   $ ->
     initialize("jquery")
 
-make_fresh = ->
-	$ ->
-	  $('#make-fresh').click (e) ->
-		  e.preventDefault()
-		  article_id = $(this).attr('data-id')
+# make_fresh = ->
+# 	$ ->
+# 	  $('#make-fresh').click (e) ->
+# 		  e.preventDefault()
+# 		  article_id = $(this).attr('data-id')
 
-		  $.ajax(
-		    type: 'PUT'
-		    url: '/articles/' + article_id + '/make_fresh'
-		    dataType: 'json'
-		   ).done ->
-	  	 		$('.stale').remove()
-	  	 		$('#make-fresh').remove()
-	  	 		$('#stale-fresh').append '<span class="state fresh">fresh</span>'
+# 		  $.ajax(
+# 		    type: 'PUT'
+# 		    url: '/articles/' + article_id + '/make_fresh'
+# 		    dataType: 'json'
+# 		   ).done ->
+# 	  	 		$('.stale').remove()
+# 	  	 		$('#make-fresh').remove()
+# 	  	 		$('#stale-fresh').append '<span class="state fresh">fresh</span>'
 
 
 initialize_via_turbolinks()
 initialize_via_jquery()
-make_fresh()
+# make_fresh()
