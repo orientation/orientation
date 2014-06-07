@@ -97,6 +97,7 @@ class Article < ActiveRecord::Base
 
   def rot!
     update_attribute(:rotted_at, Time.now.in_time_zone)
+    Delayed::Job.enqueue(SendArticleRottenJob.new(self.id, contributors))
   end
 
   def never_notified_author?
@@ -129,6 +130,12 @@ class Article < ActiveRecord::Base
   end
 
   private
+
+  def contributors
+    User.where(id: [self.author_id, self.editor_id]).map do |user|
+      { name: user.name, email: user.email }
+    end
+  end
 
   def generate_slug
     if self.slug.present? && self.slug == title.parameterize

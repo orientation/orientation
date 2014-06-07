@@ -31,6 +31,17 @@ class ArticleMailer < MandrillMailer::TemplateMailer
                   }
   end
 
+  def send_rotten_notification_for(article, contributors)
+    mandrill_mail template: 'Article Rotten Update',
+                  subject: 'Article Rotten Update',
+                  from_name: 'Code School', 
+                  to: contributors, 
+                  vars: {
+                    'ARTICLE_TITLE' => article.title,
+                    'URL' => article_url(article)
+                  }
+  end
+
   private
 
   def format_email_content(articles)
