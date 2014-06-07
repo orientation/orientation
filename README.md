@@ -16,21 +16,23 @@ It's impossible to use a non-public domain as an OAuth callback URL for Google O
 
 ## Goals
 
-* Easy interface to create internal docs & tutorials
-* Allow support team to find relevant info quickly
-* Be used as a base for customer-facing documentation
+- Easy interface to create internal docs & tutorials
+- Allow support team to find relevant info quickly
+- Be used as a base for customer-facing documentation
 
 ## Features
 
-* Filtered full-text fuzzy article search
-* GitHub-style syntax highlighting & formatting
-* Grouping of articles by tags
+- Filtered full-text fuzzy article search
+- GitHub-style syntax highlighting & formatting
+- Grouping of articles by tags
+- Automatic flagging of articles older than 6 months old or not having been updated in 6 months as "stale" with daily batched email notifications to the article author
+- Subscription to articles in order to receive email notifications when they're updated by anyone
+- Ability to mark articles as "rotten" if out of date and automatically notify all contributors (author & editor)
 
 ## Planned Features
-* Color-coded & icon tags
-* Email notifications when articles are updated (by someone other than you)
-* Article edit log
-* Categories
+- Color-coded & icon tags
+- Article edit log
+- Categories
 
 [ci]: https://magnum.travis-ci.com/codeschool/orientation
 [ci-image]: https://magnum.travis-ci.com/codeschool/orientation.png?token=bYo3ib4PCJrDSsNRgsEK&branch=master
