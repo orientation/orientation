@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate!
   before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
-  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :toggle_subscription, :toggle_rotten]
+  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :toggle_subscription, :report_rot, :mark_fresh]
   respond_to :html, :json
 
   def archived
@@ -38,7 +38,6 @@ class ArticlesController < ApplicationController
   end
 
   def mark_fresh
-    @article = Article.find(params[:id])
     if @article.refresh!
       respond_with(@article)
     end
