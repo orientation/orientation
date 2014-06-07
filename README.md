@@ -2,9 +2,6 @@
 
 Find your way around Code School support.
 
-## Changelog
-http://revision.io/orientation
-
 ## Requirements
 - Ruby 2.0.0
 - PostgreSQL 9.1
