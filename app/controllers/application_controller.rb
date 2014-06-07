@@ -2,11 +2,27 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :authenticate_user!
 
   private
 
   def current_user
-    @current_user ||= AuthorDecorator.decorate(User.find(session[:user_id])) if session[:user_id]
+    @current_user ||= begin
+      user = nil
+      
+      # In the development environment, your current_user will be the
+      # first User in the database. Easy enough ;-)
+      if Rails.env.development?
+        user = User.first or raise "Missing User Error: run `User.create(email: 'test@example.com')` in the console."
+      else
+        user = User.find(session[:user_id]) if session[:user_id].present?
+      end
+
+      # Draper decorators still instantiate a decorator when passed nil,
+      # so we have to be careful not to return anything if no user could 
+      # be found.
+      AuthorDecorator.decorate(user) if user.present?
+    end
   end
   helper_method :current_user
 
@@ -19,8 +35,10 @@ class ApplicationController < ActionController::Base
     if current_user
       true
     else
-      session["return_to"] ||= request.url
-      redirect_to login_path
+      if request.path != login_path
+        session["return_to"] ||= request.url
+        redirect_to login_path
+      end
     end
   end
   helper_method :current_user
