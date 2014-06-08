@@ -49,7 +49,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def format_email_content(articles)
     articles.map do |article|
       content_tag(:li, link_to(article.title, article_url(article)))
-    end
+    end.join
   end
 
 
