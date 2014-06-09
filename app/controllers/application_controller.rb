@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     if current_user
       true
     else
-      if request.path != login_path
+      if (request.path != login_path) and request.local?
         session["return_to"] ||= request.url
         redirect_to login_path
       end
