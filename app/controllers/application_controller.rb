@@ -35,11 +35,17 @@ class ApplicationController < ActionController::Base
     if current_user
       true
     else
-      if (request.path != login_path) and request.local?
-        session["return_to"] ||= request.url
-        redirect_to login_path
-      end
+      session["return_to"] ||= request.url
+      redirect_to login_path unless login_redirect? or oauth_callback?
     end
   end
   helper_method :current_user
+
+  def login_redirect?
+    request.path == login_path
+  end
+
+  def oauth_callback?
+    request.path == oauth_callback
+  end
 end
