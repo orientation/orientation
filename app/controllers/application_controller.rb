@@ -46,6 +46,6 @@ class ApplicationController < ActionController::Base
   end
 
   def oauth_callback?
-    request.path == oauth_callback_path
+    request.path == oauth_callback_path("google_oauth2")
   end
 end
