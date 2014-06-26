@@ -4,9 +4,9 @@
   %p.rotten This article has rotten. The information is partially or completely out of date.
 
 %aside
-  = image_tag @article.author.image
+  = link_to(image_tag(@article.author.image), author_path(@article.author))
   - if @article.edited? && @article.different_editor?
-    = image_tag @article.editor.image
+    = link_to(image_tag(@article.editor.image), author_path(@article.editor))
 %h1= @article.title
 %p.author= @article.authors
 
