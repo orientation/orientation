@@ -113,6 +113,22 @@ class Article < ActiveRecord::Base
     self.never_notified_author? or !self.recently_notified_author?
   end
 
+  # @user - the user to subscribe to this article
+  # Returns the subscription if successfully created
+  # Raises otherwise
+  def subscribe(user)
+    self.subscriptions.find_or_create_by!(user: user)
+  end
+
+  # @user - the user to unsubscribed from this article
+  # Returns true if the unsubscription was successful
+  # Returns false if there was no subscription in the first place
+  def unsubscribe(user)
+    subscription = self.subscriptions.find_by(user: user)
+    return false if subscription.nil?
+    return true if subscription.destroy
+  end
+
   def tag_tokens=(tokens)
     self.tag_ids = Tag.ids_from_tokens(tokens)
   end
