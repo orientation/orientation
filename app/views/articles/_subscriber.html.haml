@@ -1,0 +1,4 @@
+%li.subscriber
+  = link_to subscriber, author_path(subscriber) 
+  subscribed on 
+  = subscriber.subscription_date(@article).to_formatted_s(:long)

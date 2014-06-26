@@ -71,6 +71,10 @@ class ArticlesController < ApplicationController
     respond_with @article
   end
 
+  def subscribers
+    @subscribers = SubscriberDecorator.decorate_collection decorate_article.subscribers
+  end
+
   private
 
   def article_params

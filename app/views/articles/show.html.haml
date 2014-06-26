@@ -15,6 +15,7 @@
 
 %footer
   = render "tags/tags", tags: @article.tags
+  
 
 - if user_signed_in?
   = link_to "Edit", edit_article_url(@article), class: "btn-a"
@@ -32,3 +33,7 @@
   = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn-b", method: :put
 
   = link_to "Delete", @article, class: "btn-c", method: :delete
+
+  .subscribers 
+    = link_to "Subscribers", subscribers_article_path(@article)  
+

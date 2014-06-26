@@ -3,7 +3,7 @@ class Article < ActiveRecord::Base
   belongs_to :editor, class_name: "User"
   has_and_belongs_to_many :tags
   has_many :article_subscriptions
-  has_many :subscribers, :through => :article_subscriptions, class_name: "User"
+  has_many :subscribers, through: :article_subscriptions, class_name: "User", source: :article
 
   attr_reader :tag_tokens
 
