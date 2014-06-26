@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     put :report_rot, on: :member
     put :mark_fresh, on: :member
     put :toggle_archived, on: :member
-    get :subscribers, on: :member
+    get :subscriptions, on: :member
   end
 
   resources :articles, path: "", only: :show

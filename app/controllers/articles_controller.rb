@@ -70,8 +70,8 @@ class ArticlesController < ApplicationController
     respond_with @article
   end
 
-  def subscribers
-    @subscribers = SubscriberDecorator.decorate_collection decorate_article.subscribers
+  def subscriptions
+    @subscriptions = decorate_article.subscriptions.decorate
   end
 
   private
