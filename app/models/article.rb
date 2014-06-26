@@ -2,8 +2,8 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   has_and_belongs_to_many :tags
-  has_many :article_subscriptions
-  has_many :subscribers, through: :article_subscriptions, class_name: "User", source: :article
+  has_many :subscriptions, class_name: "ArticleSubscription"
+  has_many :subscribers, through: :subscriptions, class_name: "User", source: :article
 
   attr_reader :tag_tokens
 
@@ -146,7 +146,7 @@ class Article < ActiveRecord::Base
   end
 
   def update_subscribers
-    article_subscriptions.each do |sub|
+    subscriptions.each do |sub|
       sub.send_update_for(self.id)
     end
   end
