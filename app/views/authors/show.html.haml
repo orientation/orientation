@@ -23,10 +23,10 @@
   - @author.edits.each do |edit|
     %li= link_to edit, edit
 
-%h2 Articles edited (#{@author.edits.count})
+%h2 Article subscriptions (#{@author.subscriptions.count})
 %ul
-  - @author.edits.each do |edit|
-    %li= link_to edit, edit
+  - @author.subscriptions.each do |subscription|
+    %li= link_to subscription.article, article_path(subscription.article)
 
 - if Rails.env.development? or current_user.id == 1
   = simple_form_for :user, url: author_path(@author), method: :patch do |f|
