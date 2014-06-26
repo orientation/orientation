@@ -13,10 +13,15 @@
   = f.submit "Update That Shtick", class: "btn-a"
 
 
-%h2 Articles created (#{@author.articles.count})
+%h2 Created articles (#{@author.articles.count})
 %ul
   - @author.articles.each do |article|
     %li= link_to article, article
+
+%h2 Edited Articles (#{@author.edits.count})
+%ul
+  - @author.edits.each do |edit|
+    %li= link_to edit, edit
 
 %h2 Articles edited (#{@author.edits.count})
 %ul
