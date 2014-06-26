@@ -23,8 +23,9 @@
   - @author.edits.each do |edit|
     %li= link_to edit, edit
 
-= simple_form_for :user, url: author_path(@author), method: :patch do |f|
-  = f.input :avatar, as: :file, required: false, label: "Photo"
-  = f.submit "Upload Avatar", class: "btn-a"
+- if Rails.env.development? or current_user.id == 1
+  = simple_form_for :user, url: author_path(@author), method: :patch do |f|
+    = f.input :avatar, as: :file, required: false, label: "Photo"
+    = f.submit "Upload Avatar", class: "btn-a"
 
 = link_to "Toggle Status", author_toggle_status_path(@author), method: :put
