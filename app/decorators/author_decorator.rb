@@ -1,4 +1,6 @@
 class AuthorDecorator < ApplicationDecorator
+  decorates :user
+  
   delegate_all
   
   def email
