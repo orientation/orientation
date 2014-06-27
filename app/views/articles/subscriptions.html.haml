@@ -1,5 +1,6 @@
 &#8592;
 = link_to " Back to #{@article.title}", @article
 %h1 Subscriptions
+%p These folks will receive emails whenever this article is modified.
 %ul
   = render partial: "subscription", collection: @subscriptions
