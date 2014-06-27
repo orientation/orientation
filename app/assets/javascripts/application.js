@@ -18,4 +18,5 @@
 //= require jquery.tokeninput
 //= require moment
 //= require nprogress
+//= require masonry/jquery.masonry
 //= require_tree .

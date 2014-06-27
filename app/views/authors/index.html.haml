@@ -3,7 +3,7 @@
   = form_tag authors_path, method: :get, remote: true do
     = text_field_tag :search, params[:search], placeholder: "Search authors by name or shtick", autofocus: true
     = submit_tag "Search", class: "btn-a"
-%ul.authors
+%ul.authors.js-masonry 
   = render partial: "authors/author", collection: @authors
     
 = link_to "New Author", new_author_path

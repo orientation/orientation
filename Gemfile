@@ -33,6 +33,7 @@ gem "bugsnag"
 gem 'carrierwave'
 gem "mini_magick"
 gem 'fog'
+gem 'masonry-rails'
 
 group :development do
   gem 'better_errors'

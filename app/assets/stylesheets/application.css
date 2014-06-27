@@ -18,5 +18,10 @@
  *= require token-input-facebook
  *= require jquery.ui.datepicker
  *= require nprogress
+ *= require masonry/basic
+ *= require masonry/centered
+ *= require masonry/fluid
+ *= require masonry/gutters
+ *= require masonry/transitions
  *= require_tree .
 */

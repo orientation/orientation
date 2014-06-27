@@ -176,6 +176,8 @@ GEM
       actionpack
       activesupport
       mandrill-api (~> 1.0.9)
+    masonry-rails (0.2.1)
+      rails
     method_source (0.8.1)
     mime-types (1.25.1)
     mini_magick (3.7.0)
@@ -327,6 +329,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   mandrill_mailer
+  masonry-rails
   mini_magick
   momentjs-rails
   omniauth
