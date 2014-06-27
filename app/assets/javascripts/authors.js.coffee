@@ -1,11 +1,4 @@
-initialize = (method) ->
-  if @initialized == true && !@method == "jquery"
-    console.log "already initialized authors"
-    return false
-
-  @initialized = true
-  @method = method
-  console.log "proceeding with initialization via #{method}"
+$(document).on "page:change", ->
   delay = (ms, func) -> setTimeout func, ms
 
   submit_form = ->
@@ -24,15 +17,7 @@ initialize = (method) ->
     clearTimeout(timeout) if timeout
     timeout = delay 400, -> submit_form()
 
-initialize_via_turbolinks = ->
-  console.log "attempting to initialize via turbolinks"
-  $(window).on "page:change", ->
-    initialize("turbolinks")
-
-initialize_via_jquery = ->
-  console.log "attempting to initialize via jQuery"
-  $ ->
-    initialize("jquery")
-
-initialize_via_turbolinks()
-initialize_via_jquery()
+  $('.authors-index .authors').masonry
+    itemSelector: '.author',
+    columnWidth: (containerWidth) ->
+      containerWidth / 3

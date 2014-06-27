@@ -2,16 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-@initialized = false
-
-initialize = (method) ->
-  if @initialized == true && !@method == "jquery"
-    console.log "already initialized"
-    return false
-
-  @initialized = true
-  @method = method
-  console.log "proceeding with initialization via #{method}"
+$(document).on "page:change", ->
   delay = (ms, func) -> setTimeout func, ms
 
   submit_form = ->
@@ -45,6 +36,7 @@ initialize = (method) ->
   $('#article_tag_tokens').tokenInput '/tags.json',
     theme: "facebook"
     prePopulate: $('#article_tag_tokens').data('load')
+    preventDuplicates: true
 
   localize_datetimes()
 
@@ -71,33 +63,3 @@ focusSearch = ->
 
 unfocusSearch = ->
   $("#search").trigger "blur"
-
-initialize_via_turbolinks = ->
-  console.log "attempting to initialize via turbolinks"
-  $(window).on "page:change", ->
-    initialize("turbolinks")
-
-initialize_via_jquery = ->
-  console.log "attempting to initialize via jQuery"
-  $ ->
-    initialize("jquery")
-
-# make_fresh = ->
-# 	$ ->
-# 	  $('#make-fresh').click (e) ->
-# 		  e.preventDefault()
-# 		  article_id = $(this).attr('data-id')
-
-# 		  $.ajax(
-# 		    type: 'PUT'
-# 		    url: '/articles/' + article_id + '/make_fresh'
-# 		    dataType: 'json'
-# 		   ).done ->
-# 	  	 		$('.stale').remove()
-# 	  	 		$('#make-fresh').remove()
-# 	  	 		$('#stale-fresh').append '<span class="state fresh">fresh</span>'
-
-
-initialize_via_turbolinks()
-initialize_via_jquery()
-# make_fresh()
