@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', github: 'rails/rails', branch: 'master'
+gem 'rails', '~> 4.1.2'
 
 gem 'pg'
 gem 'thin'
