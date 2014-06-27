@@ -2,7 +2,8 @@ class AuthorsController < ApplicationController
   respond_to :html
 
   def index
-    authors = params[:all] ? User.all.text_search(params[:search]) : User.active.text_search(params[:search])
+    ordered_users = User.order(:name).text_search(params[:search])
+    authors = params[:all] ? ordered_users.all : ordered_users.active
     @authors = AuthorDecorator.decorate_collection authors
   end
 
