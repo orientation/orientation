@@ -162,7 +162,7 @@ GEM
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
     minitest (5.3.5)
-    momentjs-rails (2.4.0)
+    momentjs-rails (2.7.0)
       railties (>= 3.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
