@@ -1,4 +1,8 @@
-# Orientation [![Build Status][ci-image]][ci] [![Dependency Status][gemnasium-image]][gemnasium] [![Code Climate][codeclimate-image]][codeclimate] [![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage] 
+# Orientation 
+[![Build Status][ci-image]][ci] 
+[![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage] 
+[![Code Climate][codeclimate-image]][codeclimate] 
+[![Dependency Status][gemnasium-image]][gemnasium] 
 
 Find your way around Code School support.
 
