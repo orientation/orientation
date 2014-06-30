@@ -32,7 +32,7 @@ It's impossible to use a non-public domain as an OAuth callback URL for Google O
 - Categories
 
 [ci]: https://magnum.travis-ci.com/codeschool/orientation
-[ci-image]: https://magnum.travis-ci.com/codeschool/orientation.png?token=bYo3ib4PCJrDSsNRgsEK&branch=master
+[ci-image]: https://magnum.travis-ci.com/codeschool/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
 [gemnasium]: https://gemnasium.com/codeschool/orientation
 [gemnasium-image]: https://gemnasium.com/f8cac37fbe557103d2ae38bcc8815f40.png
 [codeclimate]: (https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
