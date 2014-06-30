@@ -56,6 +56,7 @@ end
 
 group :test do
   gem 'capybara', github: "jnicklas/capybara", branch: "master"
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :doc do

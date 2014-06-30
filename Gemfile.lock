@@ -65,6 +65,8 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
+    codeclimate-test-reporter (0.3.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.0.9)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -88,6 +90,7 @@ GEM
       activerecord (>= 3.0, < 4.2)
       delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     dotenv (0.7.0)
     dotenv-rails (0.7.0)
       dotenv (= 0.7.0)
@@ -264,6 +267,11 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simplecov (0.8.2)
+      docile (~> 1.1.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     slop (3.4.5)
     spring (1.0.0)
     sprockets (2.11.0)
@@ -311,6 +319,7 @@ DEPENDENCIES
   bullet!
   capybara!
   carrierwave
+  codeclimate-test-reporter
   coffee-rails
   delayed_job
   delayed_job_active_record
