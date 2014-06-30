@@ -16,6 +16,29 @@ describe Article do
     end
   end
 
+  context '#author?(user)' do
+    let!(:article) { create(:article) }
+    let(:user) { nil }
+
+    subject(:author?) { article.author?(user) }
+
+    context 'when the user is the article author' do
+      let(:user) { article.author }
+
+      it "returns true" do
+        expect(author?).to be_truthy
+      end
+    end
+
+    context 'when the user is not the article author' do
+      let(:user) { create(:user) }
+
+      it "return false" do
+        expect(author?).to be_falsey
+      end
+    end
+  end
+
   context ".fresh" do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }

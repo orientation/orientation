@@ -56,6 +56,10 @@ class Article < ActiveRecord::Base
     current.order(updated_at: :desc).limit(20)
   end
 
+  def author?(user)
+    self.author == user
+  end
+
   def archive!
     update_attribute(:archived_at, Time.now.in_time_zone)
   end
