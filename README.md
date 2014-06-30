@@ -7,10 +7,28 @@
 Find your way around Code School support.
 
 ## Requirements
-- Ruby 2.0.0
+- Ruby 2.1.0
 - PostgreSQL 9.1
 - Python 2.7 (for Pygments)
 - AWS Access Key ID & AWS Secret Access Key for S3 image uploads
+
+## Installation
+
+- `bundle install`
+- `cp config/database.example.yml config/database.yml`
+- Configure `config/database.yml` with your local Postgres credential (usually `username: root` and no `password`)
+- rake db:create
+- rake db:setup
+- gem install powder
+- powder link
+- powder open
+
+Be aware that you don't have the necessary environment variables to use uploading
+features like the avatar upload, and that you won't be able to use authentication
+either, but you will be logged in as the first user in the database in development.
+
+## Sending with Production data
+- use pgbackups
 
 ## OAuth in development using ngrok
 It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to [ngrok](http://journal.wearebunker.com/post/59684890589/using-ngrok-with-pow-for-development-previews) (`gem install forward`) I can pretend that the URL `http://orientation.ngrok.com` is local by running `ngrok -subdomain=orientation orientation.dev:80`.
