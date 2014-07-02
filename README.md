@@ -49,7 +49,14 @@ It's impossible to use a non-public domain as an OAuth callback URL for Google O
 - Ability to mark articles as "rotten" if out of date and automatically notify all contributors (author & editor)
 
 ## Planned Features
+- Tag merging
+- Better tagging management interface
+- Track article visits
+- Let people say "this was useful"
+- Article news feed
+- Eventually weigh the useful articles higher in search
 - Color-coded & icon tags
+- Authors page leaderboard sorting
 - Article edit log
 - Categories
 
