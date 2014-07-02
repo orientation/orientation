@@ -27,7 +27,7 @@ Be aware that you don't have the necessary environment variables to use uploadin
 features like the avatar upload, and that you won't be able to use authentication
 either, but you will be logged in as the first user in the database in development.
 
-## Sending with Production data
+## Seeding Development Environment with Production data
 - use pgbackups
 
 ## OAuth in development using ngrok
