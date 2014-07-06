@@ -28,20 +28,28 @@ class Article < ActiveRecord::Base
     self.fresh.include?(article)
   end
 
-  def self.stale
-    where("updated_at < ?", 6.months.ago)
+  def self.ordered_fresh
+    fresh.order(updated_at: :desc).limit(20)
+  end
+
+  def self.ordered_current
+    current.order(updated_at: :desc).limit(20)
   end
 
   def self.rotten
     where("rotted_at IS NOT NULL")
   end
 
-  def self.stale?(article)
-    self.stale.include?(article)
-  end
-
   def self.rotten?(article)
     self.rotten.include?(article)
+  end
+
+  def self.stale
+    where("updated_at < ?", 6.months.ago)
+  end
+
+  def self.stale?(article)
+    self.stale.include?(article)
   end
 
   def self.text_search(query)
@@ -50,10 +58,6 @@ class Article < ActiveRecord::Base
     else
       order(updated_at: :desc)
     end
-  end
-
-  def self.ordered_fresh
-    fresh.order(updated_at: :desc).limit(20)
   end
 
   def author?(user)

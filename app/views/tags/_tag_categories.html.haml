@@ -1,3 +1,3 @@
 - unless tags.empty?
   - tags.each do |tag|
-    = render "tags/tag_category", tag: tag, articles: ArticleDecorator.decorate_collection(tag.articles.ordered_fresh)
+    = render "tags/tag_category", tag: tag, articles: ArticleDecorator.decorate_collection(tag.articles.ordered_current)

@@ -119,17 +119,17 @@ describe Article do
     end
   end
 
-  context ".ordered_fresh" do
-    let!(:fresh_article) { create :article }
-    let!(:fresher_article) { create :article }
+  context ".ordered_current" do
+    let!(:recent_article) { create :article }
+    let!(:more_recent_article) { create :article }
     let!(:archived_article) { create :article, :archived }
 
-    it "returns the fresher article first" do
-      expect(Article.ordered_fresh.first).to eq fresher_article
+    it "returns the more recent article first" do
+      expect(Article.ordered_current.first).to eq more_recent_article
     end
 	
     it "does not include archived articles" do
-      expect(Article.ordered_fresh).to_not include(archived_article)
+      expect(Article.ordered_current).to_not include(archived_article)
     end
   end
 
