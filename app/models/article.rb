@@ -21,7 +21,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.fresh
-    where("updated_at >= ?", 7.days.ago).where(rotted_at: nil)
+    where("updated_at >= ?", 7.days.ago).where(archived_at: nil).where(rotted_at: nil)
   end
 
   def self.fresh?(article)

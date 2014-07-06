@@ -133,6 +133,33 @@ describe Article do
     end
   end
 
+  context ".ordered_fresh" do
+    let!(:recent_article) { create :article }
+    let!(:more_recent_article) { create :article }
+    let!(:archived_article) { create :article, :archived }
+    let!(:rotten_article) { create :article, :rotten }
+
+    it "returns the more recent article first" do
+      expect(Article.ordered_fresh.first).to eq more_recent_article
+    end
+
+    it "does not include archived articles" do
+      expect(Article.ordered_fresh).to_not include(archived_article)
+    end
+
+    it "does not include rotten articles" do
+      expect(Article.ordered_fresh).to_not include(archived_article)
+    end
+
+    context "with an updated article" do
+      before { recent_article.touch }
+
+      it "returns the updated article first" do
+        expect(Article.ordered_fresh.first).to eq recent_article
+      end
+    end
+  end
+
   context "#archive!" do
     let!(:article) { create :article }
 
