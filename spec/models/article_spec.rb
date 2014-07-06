@@ -131,6 +131,30 @@ describe Article do
     it "does not include archived articles" do
       expect(Article.ordered_current).to_not include(archived_article)
     end
+
+    context 'with a recently created rotten article' do
+      before { recent_article.rot! }
+
+      it "doesn't return the rotten article first" do
+        expect(Article.ordered_current.first).to_not eq recent_article  
+      end
+
+      it "returns the rotten article last" do
+        expect(Article.ordered_current.last).to eq recent_article
+      end
+    end
+
+    context 'with a recently updated rotten article' do
+      before { recent_article.rot!; recent_article.touch }
+
+      it "doesn't return the rotten article first" do
+        expect(Article.ordered_current.first).to_not eq recent_article  
+      end
+
+      it "returns the rotten article last" do
+        expect(Article.ordered_current.last).to eq recent_article
+      end
+    end
   end
 
   context ".ordered_fresh" do
