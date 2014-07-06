@@ -17,7 +17,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.current
-    where(archived_at: nil)
+    where(archived_at: nil).order("rotted_at DESC")
   end
 
   def self.fresh
