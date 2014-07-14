@@ -13,7 +13,7 @@
         = @author.email_tag
 
     = simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
-      = f.input :shtick, as: :text, required: false, placeholder: "What's this author's shtick? What do they do? ", label: false
+      = f.input :shtick, as: :text, required: false, placeholder: "What does this author do?", label: false
       = f.submit "Update", class: "btn-a"
 
 .articles
