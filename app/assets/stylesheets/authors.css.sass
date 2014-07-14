@@ -23,25 +23,64 @@ body.authors
 
 
 body
-  .author
-    max-width: 92%
-    clear: both
-    .avatar
+  .avatar
+    float: left
+    width: 70px
+    height: 70px
+    margin-right: 0.5em
+    border-radius: 50%
+    margin-bottom: 1.5%
+
+  &.inactive
+    opacity: .75
+
+  .shtick
+    font-weight: bold
+    font-size: 0.8em
+    max-width: 80%
+
+  &.authors-show
+    aside
+      width: 220px
       float: left
-      width: 70px
-      height: 70px
-      margin-right: 0.5em
-      border-radius: 50%
-      margin-bottom: 1.5%
-    &.inactive
-      opacity: .75
+      margin-right: 1em
 
-    .shtick
-      font-weight: bold
-      font-size: 0.8em
-      max-width: 80%
+    .avatar
+      width: 220px
+      height: 220px
+      border-radius: 3%
 
-  #user_shtick
-    min-height: 2em
-    min-width: 10em
+    h1
+      line-height: 1
+    p
+      font-size: 0.9em
+    .bio
+      margin-top: 0
+
+    .edit_user
+      float: left
+
+      #user_shtick
+        font-size: 0.9em
+        min-width: 18em
+        line-height: 1
+        height: 1em
+        margin: 0
+        resize: none
+
+      input[type=submit]
+        margin: .5em 0 0 0
+        width: 5em
+        float: left
+
+
+    h2
+      clear: both
+
+    .author
+      margin-bottom: 1em
+      overflow: hidden
+
+    .articles
+      margin-top: 1em
 

@@ -1,32 +1,36 @@
-%h1
-  = @author.name
-  = @author.active ? "" : " (inactive)"
 .author
-  %aside= image_tag @author.image, class: "avatar"
-%p
-  = @author.email_tag
-  %br Created #{@author.articles.count} articles and edited #{@author.edits.count}.
+  %aside= image_tag @author.large_image, class: "avatar", width: 220, height: 220
+  %h1
+    = @author.name
+    = @author.active ? "" : " (inactive)"
 
+  %p.bio
+    = @author.first_name
+    created #{@author.articles.count} articles and edited #{@author.edits.count}.
 
-= simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
-  = f.input :shtick, as: :text, required: false, placeholder: "What's this author's shtick? What do they do? "
-  = f.submit "Update That Shtick", class: "btn-a"
+    - if @author != current_user
+      %p.email
+        = @author.email_tag
 
+    = simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
+      = f.input :shtick, as: :text, required: false, placeholder: "What's this author's shtick? What do they do? ", label: false
+      = f.submit "Update", class: "btn-a"
 
-%h2 Created articles (#{@author.articles.count})
-%ul
-  - @author.articles.each do |article|
-    %li= link_to article, article
+.articles
+  %h2 Created articles (#{@author.articles.count})
+  %ul
+    - @author.articles.each do |article|
+      %li= link_to article, article
 
-%h2 Edited Articles (#{@author.edits.count})
-%ul
-  - @author.edits.each do |edit|
-    %li= link_to edit, edit
+  %h2 Edited Articles (#{@author.edits.count})
+  %ul
+    - @author.edits.each do |edit|
+      %li= link_to edit, edit
 
-%h2 Article subscriptions (#{@author.subscriptions.count})
-%ul
-  - @author.subscriptions.each do |subscription|
-    %li= link_to subscription.article, article_path(subscription.article)
+  %h2 Article subscriptions (#{@author.subscriptions.count})
+  %ul
+    - @author.subscriptions.each do |subscription|
+      %li= link_to subscription.article, article_path(subscription.article)
 
 - if Rails.env.development? or current_user.id == 1
   = simple_form_for :user, url: author_path(@author), method: :patch do |f|
