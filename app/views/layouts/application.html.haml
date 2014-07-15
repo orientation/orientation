@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Orientation
+    %title= content_for(:page_title) || 'Orientation'
     = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
