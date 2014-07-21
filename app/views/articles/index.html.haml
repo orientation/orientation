@@ -6,7 +6,7 @@
         %main.g-b.g-b--2of3
           .search-bar
             = form_tag articles_path, method: :get, remote: true do
-              = text_field_tag :search, params[:search], placeholder: "Search articles by keyword", autofocus: true
+              = search_field_tag :search, params[:search], placeholder: "Search articles by keyword"
               = submit_tag "Search", class: "btn-a"
 
           %ul.list.js-article-list
