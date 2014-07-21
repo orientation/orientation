@@ -9,13 +9,13 @@
               = text_field_tag :search, params[:search], placeholder: "Search articles by keyword", autofocus: true
               = submit_tag "Search", class: "btn-a"
 
-          %ul.list
+          %ul.list.js-article-list
             = render @articles
 
         %aside.g-b.g-b--1of3
           = render "tags/tag_categories", tags: @tags
 
-        = link_to "Archived Articles (#{Article.archived.count})", archived_articles_path
+          = link_to "Archived Articles (#{Article.archived.count})", archived_articles_path
 
     - else
       %h1

@@ -1,9 +1,8 @@
-- tags = content_tag_for(:li, article.tags){ |t| link_to t.name, tag_path(t) }
-
-%li.article
+%li.card{ 'data-ui-component' => 'article' }
   = article.freshness
   = article.staleness
   = article.rottenness
-  = link_to "#{article.title}", article
-  %ul.tags
-    = tags.html_safe
+  = link_to article.title, article
+  %ul.list.list--inline{ 'data-ui-component' => 'tags' }
+    - article.tags.each do |t|
+      %li.list-item= link_to t.name, tag_path(t)
