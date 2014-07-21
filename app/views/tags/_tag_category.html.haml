@@ -1,10 +1,10 @@
-%div{ class: "#{tag.name.parameterize}"}
-  %h1
-    = tag.name.titleize
-  %ul
-    - articles.each do |article|
-      %li
+%div.card.card--b.mbm{ class: "#{tag.name.parameterize}"}
+  %h1.h2= tag.name.titleize
+  - if tag.articles.size > 5
+    = link_to "> more #{tag.name} articles", tag_path(tag)
+  %ul.list
+    / TODO: Only display the latest five (or pinned) articles
+    - articles.take(5).each do |article|
+      %li.list-item
         = article.freshness
         = link_to article.title, article
-    - if tag.articles.size > 20
-      %li.more= link_to "> more #{tag.name} articles", tag_path(tag) 
