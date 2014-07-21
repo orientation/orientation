@@ -11,9 +11,11 @@
 
 // ----- Open Sans ----- //
 
-// +font-face('OpenSans', 'OpenSans')
-// +font-face('OpenSans', 'OpenSansBold', bold)
-// +font-face('OpenSans', 'OpenSansItalic', normal, italic)
++font-face('OpenSansRegular', 'OpenSans-Regular')
++font-face('OpenSansRegular', 'OpenSans-Bold', bold)
++font-face('OpenSansRegular', 'OpenSans-Italic', normal, italic)
++font-face('OpenSansRegular', 'OpenSans-BoldItalic', bold, italic)
++font-face('OpenSansCondensed', 'OpenSans-Condensed-Bold', bold)
 
 // -------------------------------------
 //   Colors
@@ -55,8 +57,8 @@ $b-boxShadow: 0 2px 0 rgba($c-text, 0.25)
 
 // ----- Typography ----- //
 
-$b-fontFamily-heading: sans-serif
-$b-fontFamily: sans-serif
+$b-fontFamily-heading: 'OpenSansCondensed', sans-serif
+$b-fontFamily: 'OpenSans', sans-serif
 $b-fontSize: 16px
 $b-fontSize-xs: 60%
 $b-fontSize-s: 75%
