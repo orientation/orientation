@@ -1,0 +1,62 @@
+// *************************************
+//
+//   Split
+//   -> Horizontally repellent content
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// %[ul].split[.split--divided]
+//   %[li].split-item
+//     .split-cell[.split-cell--fluid]
+//     .split-cell[.split-cell--fixed]
+//
+// *************************************
+
+.split
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Divided ----- //
+
+.split--divided
+
+  .split-item
+    border-bottom: $b-border
+    padding-bottom: $b-space-s
+    &:last-child
+      border-bottom: 0
+      padding-bottom: 0
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Split Item ----- //
+
+.split-item
+  display: table
+  width: 100%
+  img
+    max-width: none
+
+// ----- Split Cell ----- //
+
+.split-cell
+  display: table-cell
+
+// Fixed width
+
+.split-cell--fixed
+  white-space: nowrap
+
+// Fluid width
+
+.split-cell--fluid
+  width: 10000px
