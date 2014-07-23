@@ -23,25 +23,60 @@
 
 // ----- Palette ----- //
 
-$plum: #4e4e5b
+// White
+
+$white: #fff
+
+// Grayscale (light to dark)
+
+$chicago: #585a5b
+
+// Black
+
+$black: #000
+
+// Blue
+
+$fountain: #4dadc1
+
+// Green
+
+$celadon: #9dd3ad
+
+// Red
+
+$coral: #f38055
+
+// Yellow
+
+$banana: #ffe171
 
 // ----- Base ----- //
 
-$c-background-invert: #fff
-$c-background: #ecf0f1
-$c-border: lighten($plum, 30%)
-$c-highlight: $plum
-$c-subdue: lighten($plum, 40%)
-$c-text-invert: #fff
-$c-text: #444
+$c-background-invert: $white
+$c-background: darken($white, 4%)
+$c-border: darken($c-background-invert, 30%)
+$c-highlight: $fountain
+$c-subdue: lighten($chicago, 40%)
+$c-text-invert: $white
+$c-text: $chicago
 
 // ----- Components ----- //
 
-// ...
+$card--b-background: darken($white, 7%)
 
 // ----- Structures ----- //
 
-// ...
+// Article
+
+$article-title-color: $chicago
+
+// Signal
+
+$signal-background: darken($c-background-invert, 10%)
+$signal--fresh-background: $celadon
+$signal--rotten-background: $coral
+$signal--stale-background: $banana
 
 // -------------------------------------
 //   Base
@@ -112,11 +147,4 @@ $list-space: $b-space
 // ----- Article ----- //
 
 $article-section-border: 1px solid darken($c-background-invert, 10%)
-
-// ----- Signal ----- //
-
-$signal-background: #eae8e6
-$signal--fresh-background: #eae8e6
-$signal--rotten-background: #eae8e6
-$signal--stale-background: #eae8e6
 
