@@ -1,10 +1,19 @@
-%div.card.card--b.mbm{ class: "#{tag.name.parameterize}"}
-  %h1.h2= tag.name.titleize
-  - if tag.articles.size > 5
-    = link_to "> more #{tag.name} articles", tag_path(tag)
+/ TODO: Move conditional presentation to proper location
+- if tag.articles.size > 5
+  .split.mbs
+    .split-item
+      .split-cell.split-cell--fluid
+        %h1.h2.dib= tag.name.titleize
+      .split-cell.split-cell--fixed
+        = link_to "View All", tag_path(tag), class: 'tsm'
+- else
+  .mbs
+    %h1.h2.dib= tag.name.titleize
+
+%div.card.card--b.mbm
   %ul.list
     / TODO: Only display the latest five (or pinned) articles
     - articles.take(5).each do |article|
-      %li.list-item
+      %li.list-item.mbxs
         = article.freshness
-        = link_to article.title, article
+        = link_to article.title, article, class: 'tsm'
