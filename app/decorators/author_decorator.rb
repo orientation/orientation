@@ -25,7 +25,7 @@ class AuthorDecorator < ApplicationDecorator
   end
 
   def image_link
-    link_to image_tag(image, class: 'navatar'), author_path(source)
+    link_to image_tag(image, class: 'thumb dib'), author_path(source)
   end
 
   def email_tag
