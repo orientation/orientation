@@ -1,0 +1,29 @@
+// *************************************
+//
+//   Label
+//   -> Supplementary text
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .label[.label--link]
+//
+// *************************************
+
+.label
+  color: $label-color
+  font-size: $label-fontSize
+  font-weight: bold
+  text-transform: uppercase
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Link ----- //
+
+.label--link
+  &:hover,
+  &:focus
+    color: $label-color-hover
