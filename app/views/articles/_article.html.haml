@@ -1,8 +1,11 @@
-%li.card{ 'data-ui-component' => 'article' }
+%li.card.article.has-signal{ class: ('has-article-footer' unless article.tags.empty? )}
+  .signal
   = article.freshness
   = article.staleness
   = article.rottenness
-  = link_to article.title, article
-  %ul.list.list--inline{ 'data-ui-component' => 'tags' }
-    - article.tags.each do |t|
-      %li.list-item= link_to t.name, tag_path(t)
+  = link_to article.title, article, class: 'article-title'
+  - unless article.tags.empty?
+    .article-footer
+      %ul.list.list--inline{ 'data-ui-component' => 'tag-list' }
+        - article.tags.each do |t|
+          %li.list-item= link_to t.name, tag_path(t), class: 'label label--link'
