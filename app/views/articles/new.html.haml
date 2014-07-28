@@ -1,2 +1,26 @@
-%h1 New Article
-= render "form"
+%main.row
+  .cell.well.well--l
+    .g
+      .g-b.g-b--2of3
+        %p.label Create a New Article
+        = render "form"
+      .g-b.g-b--1of3
+        .card.card--b
+          .card-header
+            %h2.tac Markdown
+          .form.mbf
+            %label.label H2
+            %input.form-input.mbs{ type: 'text', readonly: true, value: '## This is an <h2>' }
+
+            %label.label H3
+            %input.form-input.mbs{ type: 'text', readonly: true, value: '### This is an <h3>' }
+
+            %label.label Strong
+            %input.form-input.mbs{ type: 'text', readonly: true, value: '**Strong text**' }
+
+            %label.label Emphasis
+            %input.form-input.mbs{ type: 'text', readonly: true, value: '_Emphasized text_' }
+
+            %label.label Link
+            %input.form-input{ type: 'text', readonly: true, value: '[Text](http://example.com)' }
+
