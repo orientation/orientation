@@ -6,33 +6,37 @@
     - if @article.rotten?
       %p.rotten This article has rotten. The information is partially or completely out of date.
 
-    %h1= @article.title
-    %p= @article.authors
+    %article
+      %header.mbs
+        %h1.tsxxl= @article.title
+        .bch.pas.tci{ 'data-ui-element' => 'byline'  }
+          %p.mbf= @article.authors
 
-    .g
-      %aside.g-b.g-b--1of6
-        = render "tags/tags", tags: @article.tags
+      .g
+        %aside.g-b.g-b--1of6
+          = render "tags/tags", tags: @article.tags
 
-      .g-b.g-b--4of6
-        .markdown
-          = find_and_preserve do
-            = markdown(@article.content || "No content")
+        .g-b.g-b--4of6
+          .card.markdown.mbm.ptl
+            = find_and_preserve do
+              = markdown(@article.content || "No content")
 
-        - if user_signed_in?
-          = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
+          - if user_signed_in?
+            = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
 
-          - if !@article.rotten?
-            = link_to "Report Rot", report_rot_article_url(@article), class: "btn btn--b", method: :put
+            - if !@article.rotten?
+              = link_to "Report Rot", report_rot_article_url(@article), class: "btn btn--b", method: :put
 
-          - if @article.stale? || @article.rotten?
-            = link_to "Mark Fresh", mark_fresh_article_url(@article), class: "btn btn--b", method: :put
+            - if @article.stale? || @article.rotten?
+              = link_to "Mark Fresh", mark_fresh_article_url(@article), class: "btn btn--b", method: :put
 
-          - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
-          = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
+            - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
+            = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
 
-          = link_to "Delete", @article, class: "btn btn--b", method: :delete
+            = link_to "Delete", @article, class: "btn btn--b", method: :delete
 
-      %aside.g-b.g-b--1of6
-        = link_to "Subscriptions", subscriptions_article_path(@article)
-        - toggle_subscription_label = current_user.subscribed_to?(@article) ? "Unsubscribe" : "Subscribe"
-        = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
+        %aside.g-b.g-b--1of6
+          = link_to "Subscribers", subscriptions_article_path(@article), class: 'dib mbxs mtl'
+          / TODO: Add subscribers' image links
+          - toggle_subscription_label = current_user.subscribed_to?(@article) ? "Unsubscribe" : "Subscribe"
+          = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
