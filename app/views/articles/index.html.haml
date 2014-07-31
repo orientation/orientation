@@ -5,12 +5,12 @@
       .g
         %main.g-b.g-b--2of3
           .split.search-bar.mbm
-            .split-item
+            .form.form--inline.split-item
               .split-cell.split-cell--fluid.prm
                 = form_tag articles_path, method: :get, remote: true do
                   = search_field_tag :search, params[:search], placeholder: "Search articles by keyword", class: 'form-input'
               .split-cell.split-cell--fixed
-                = link_to "New Article", new_article_url, class: 'btn btn--a'
+                = link_to "New Article", new_article_url, class: 'btn btn--a form-btn'
           %ul.list.js-article-list
             = render @articles
 
