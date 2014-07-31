@@ -57,7 +57,7 @@ $c-background-invert: $white
 $c-background: darken($white, 4%)
 $c-border: darken($c-background-invert, 15%)
 $c-highlight: $fountain
-$c-subdue: lighten($chicago, 40%)
+$c-subdue: lighten($chicago, 20%)
 $c-text-invert: $white
 $c-text: $chicago
 
@@ -89,7 +89,7 @@ $article-title-color-hover: lighten($article-title-color, 20%)
 
 // Label
 
-$label-color: lighten($chicago, 20%)
+$label-color: $c-subdue
 $label-color-hover: lighten($label-color, 20%)
 
 // Muted Link
@@ -103,6 +103,15 @@ $signal-background: darken($c-background-invert, 10%)
 $signal--fresh-background: $celadon
 $signal--rotten-background: $coral
 $signal--stale-background: $banana
+
+// ----- Vendor ----- //
+
+// jQuery Tokeninput
+
+$tokeninput-background: $c-background-invert
+$tokeninput-token-background: darken($c-background, 3%)
+$tokeninput-token-color: $c-subdue
+
 
 // -------------------------------------
 //   Base
@@ -194,4 +203,12 @@ $article-section-border: 1px solid darken($c-background-invert, 10%)
 // ----- Label ----- //
 
 $label-fontSize: $b-fontSize-s
+
+// -------------------------------------
+//   Vendor
+// -------------------------------------
+
+// ----- jQuery Tokeninput ----- //
+
+$tokeninput-border: $form-input-border
 
