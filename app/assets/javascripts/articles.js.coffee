@@ -34,7 +34,6 @@ $(document).on "page:change", ->
       evt.preventDefault()
 
   $('#article_tag_tokens').tokenInput '/tags.json',
-    theme: "facebook"
     prePopulate: $('#article_tag_tokens').data('load')
     preventDuplicates: true
 
