@@ -1,0 +1,71 @@
+// *************************************
+//
+//   Dropdown
+//   -> Consecutive menu items
+//
+// *************************************
+
+.dropdown
+  position: relative
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+.dropdown--e
+  .dropdown-menu
+    left: auto
+    right: 0
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+.dropdown.is-active
+  .dropdown-menu
+    display: block
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Item ----- //
+
+.dropdown-item
+  border-bottom: $b-border
+  color: $c-subdue
+  font-size: $b-fontSize-m
+  margin: 0
+  &:last-child
+    border-bottom: 0
+  &:hover,
+  &:focus
+    background: $c-background
+    color: $c-subdue
+
+// Link
+
+.dropdown-item-link
+  color: inherit
+  display: block
+  padding: $b-space-s
+  &:hover,
+  &:focus
+    color: inherit
+
+// ----- Menu ----- //
+
+.dropdown-menu
+  @extend .lr
+  background: $c-background-invert
+  border: $b-border
+  border-radius: $b-borderRadius
+  box-shadow: $b-boxShadow-s
+  display: none
+  left: 0
+  margin-top: $b-space-s
+  min-width: em(140px)
+  position: absolute
+  top: 100%
+  z-index: 1
+
