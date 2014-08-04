@@ -7,22 +7,28 @@
     = csrf_meta_tags
 
   %body{ class: body_class }
-    .row
-      %nav.cell.well
-        %ul.fl
-          %li.logo
-            = link_to image_tag("brackets_banner_logo-black.svg", height: 40, width: 40), root_url
-          %li= link_to "Tags", tags_url
-          %li= link_to "Authors", authors_url
-          %li.new-article= link_to "New Article", new_article_url
-        %ul.fr
-          - if current_user
-            %li.auth
-              = current_user.image_link
-              = current_user.link_tag
-              | #{link_to "Log Out", logout_path, title: current_user.email}
-          - else
-            %li.auth= link_to "Log In", login_path, data: { no_turbolink: true }
+    %header.row.row--a.ov.pbm.ptm{ 'data-ui-element' => 'header' }
+      %nav.split
+        .split-item
+          .split-cell.split-cell--fluid
+            %ul.list.list--inline.tsm
+              %li.list-item
+                = link_to image_tag("brackets_banner_logo-blue.svg", height: 40, width: 40, class: 'vam'), root_url
+              %li.list-item= link_to "Tags", tags_url
+              %li.list-item= link_to "Authors", authors_url
+          .split-cell.split-cell--fixed
+            - if current_user
+              .dropdown.dropdown--e.js-dropdown
+                .js-dropdown-btn
+                  = image_tag 'http://placehold.it/40', class: 'thumb dib vam'
+                  %p.dib.mbf &#9660;
+                %ul.dropdown-menu
+                  %li.dropdown-item
+                    = current_user.name= link_to current_user.name, current_user.link, class: 'dropdown-item-link'
+                  %li.dropdown-item
+                    = link_to "Log Out", logout_path, title: current_user.email, class: 'dropdown-item-link'
+            - else
+              = link_to "Log In", login_path, data: { no_turbolink: true }
 
     - if flash[:error]
       .error= flash[:error]
