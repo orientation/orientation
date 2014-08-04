@@ -20,6 +20,10 @@ class AuthorDecorator < ApplicationDecorator
     source.try :image
   end
 
+  def link
+    author_path(source)
+  end
+
   def large_image
     source.avatar.large.url
   end
