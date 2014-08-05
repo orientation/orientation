@@ -19,4 +19,5 @@
 //= require moment
 //= require nprogress
 //= require masonry/jquery.masonry
+//= require domready
 //= require_tree .
