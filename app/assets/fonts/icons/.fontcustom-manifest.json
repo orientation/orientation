@@ -1,0 +1,50 @@
+{
+  "checksum": {
+    "previous": "8750cf9aef0e1f7c2fee18c165be294b6ad3508aac7057a71bc1169068cc3662",
+    "current": "8750cf9aef0e1f7c2fee18c165be294b6ad3508aac7057a71bc1169068cc3662"
+  },
+  "fonts": [
+    "../icons.ttf",
+    "../icons.svg",
+    "../icons.woff",
+    "../icons.eot"
+  ],
+  "glyphs": {
+    "avatar": {
+      "codepoint": 61697,
+      "source": "./avatar.svg"
+    },
+    "caretDown": {
+      "codepoint": 61698,
+      "source": "./caretDown.svg"
+    }
+  },
+  "options": {
+    "autowidth": true,
+    "config": "fontcustom.yml",
+    "css_selector": ".icon-{{glyph}}",
+    "debug": false,
+    "font_name": "icons",
+    "force": false,
+    "input": {
+      "templates": ".",
+      "vectors": "."
+    },
+    "no_hash": true,
+    "output": {
+      "_icon.sass": "../../stylesheets/components",
+      "css": "..",
+      "fonts": "..",
+      "preview": ".."
+    },
+    "preprocessor_path": null,
+    "quiet": false,
+    "skip_first": false,
+    "templates": [
+      "_icon.sass"
+    ]
+  },
+  "templates": [
+    "../../stylesheets/components/./_icon.sass"
+  ]
+}

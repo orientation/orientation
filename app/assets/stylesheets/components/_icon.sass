@@ -1,0 +1,49 @@
+// *************************************
+//
+//   Icon
+//   -> Based on:
+//    * http://jaydenseric.com/blog/font-icons-like-a-boss-with-sass-and-font-custom
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// %i.icn[.icn--arrowDown|arrowUp|etc..]
+//
+// *************************************
+
+@font-face
+  font-family: icons
+  src: font-url('icons.eot')
+  src: font-url('icons.eot?#iefix') format('embedded-opentype'), font-url('icons.woff') format('woff'), font-url('icons.ttf') format('truetype'), font-url('icons.svg#icons') format('svg')
+  font-weight: normal
+  font-style: normal
+
+.icn::before
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  display: inline-block
+  font-family: "icons"
+  font-style: normal
+  font-weight: normal
+  speak: none
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Setup ----- //
+
+
+.icn--avatar::before
+  content: "\f101"
+
+.icn--caretDown::before
+  content: "\f102"
+
+
+// ----- Middle ----- //
+
+%icn--middle,
+.icn--middle
+  vertical-align: middle
