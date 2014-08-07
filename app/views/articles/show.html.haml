@@ -9,8 +9,15 @@
     %article
       %header.mbs
         %h1.tsxxl= @article.title
-        .bch.pas.tci{ 'data-ui-element' => 'byline'  }
-          %p.mbf= @article.authors
+        .byline
+          .byline-main
+            .byline-author
+              %i.icn.icn--avatar.icn--middle
+              = link_to @article.author, @article.author.link, class: 'label label--link label--link--invert'
+            %span.label.label--invert= @article.created_at_tag
+          .byline-secondary
+            %span.tsi.tss Last edited
+            %span.label.label--invert= @article.updated_at_tag
 
       .g
         %aside.g-b.g-b--1of6
