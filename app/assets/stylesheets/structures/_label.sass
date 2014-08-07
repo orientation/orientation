@@ -21,9 +21,23 @@
 //   Modifiers
 // -------------------------------------
 
+// ----- Inverted ----- //
+
+.label--invert
+  color: $c-text-invert
+
 // ----- Link ----- //
 
 .label--link
   &:hover,
   &:focus
     color: $label-color-hover
+
+// Invert
+
+.label--link--invert
+  color: $c-text-invert
+  letter-spacing: 1px
+  &:hover,
+  &:focus
+    color: $c-text-invert
