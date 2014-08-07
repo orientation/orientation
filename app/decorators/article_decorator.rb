@@ -50,4 +50,18 @@ class ArticleDecorator < ApplicationDecorator
   def rottenness
     content_tag(:span, "rotten", class: "state rotten") if source.rotten?
   end
+
+  def signal
+    state = 'fresh' if source.fresh?
+    state = 'stale' if source.stale?
+    state = 'rotten' if source.rotten?
+
+    screen_reader_text = content_tag(:span, state, class: 'srt')
+
+    if state
+      content_tag(:div, screen_reader_text, class: "signal signal--#{state}")
+    else
+      content_tag(:div, state, class: 'signal')
+    end
+  end
 end
