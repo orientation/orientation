@@ -1,0 +1,48 @@
+// *************************************
+//
+//   Byline
+//   -> Article meta information
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .byline[.byline--modifier](.is-state)(.has-context)
+//   .byline-main
+//     .byline-author
+//   .byline-secondary
+//
+// *************************************
+
+.byline
+  background: rgba($c-highlight, 0.8)
+  color: $c-text-invert
+  +respond-to($g-s)
+    display: flex
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Author ----- //
+
+.byline-author
+  border-right: 2px solid $c-text-invert
+  display: inline-block
+  margin-right: $b-space-s
+  padding-right: $b-space-s
+
+// ----- Main ----- //
+
+.byline-main
+  background: $c-highlight
+  box-sizing: border-box
+  padding: $b-space-s
+
+// ----- Secondary ----- //
+
+.byline-secondary
+  padding: $b-space-s
+  +respond-to($g-s)
+    flex-grow: 1
+    text-align: right
