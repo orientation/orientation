@@ -3,7 +3,7 @@
 
     = f.input_field :title, class: 'form-input form-input--clear mbs tfh tsxl', placeholder: 'Enter an Article Title'
     = f.input_field :content, class: 'form-input form-textarea mbs', rows: 12
-    = f.input_field :tag_tokens, label: "Tags", input_html: { data: {load: @tags} }
+    = f.input :tag_tokens, label: "Tags", input_html: { data: {load: @tags} }
     - if @article.author.blank?
       = f.input :author_id, as: :hidden, input_html: { value: current_user.try(:id) }
     = f.input :editor_id, as: :hidden, input_html: { value: current_user.try(:id) }
