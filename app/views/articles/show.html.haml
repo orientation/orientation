@@ -1,10 +1,10 @@
+- if @article.archived?
+  %p.bulletin.bulletin--warning This article has been archived. Please don't trust the information displayed here.
+- if @article.rotten?
+  %p.bulletin.bulletin--warning This article has gone rotten. The information is partially or completely out-of-date.
+
 %main.row
   .cell.well.well--l
-
-    - if @article.archived?
-      %p.archived This article has been archived. Please don't trust the information displayed here.
-    - if @article.rotten?
-      %p.rotten This article has rotten. The information is partially or completely out of date.
 
     %article
       %header.mbs

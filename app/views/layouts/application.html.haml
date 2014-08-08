@@ -33,8 +33,8 @@
               = link_to "Log In", login_path, data: { no_turbolink: true }
 
     - if flash[:error]
-      .error= flash[:error]
+      .bulletin.bulletin--warning= flash[:error]
     - if flash[:notice]
-      .notice= flash[:notice]
+      .bulletin= flash[:notice]
 
     = yield
