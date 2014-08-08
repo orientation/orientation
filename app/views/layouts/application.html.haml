@@ -12,13 +12,13 @@
     %header.row.row--a.ov.pbm.ptm{ 'data-ui-element' => 'header' }
       %nav.split
         .split-item
-          .split-cell.split-cell--fluid
+          .split-cell
             %ul.list.list--inline.tsm
               %li.list-item
                 = link_to image_tag("brackets_banner_logo-blue.svg", height: 40, width: 40, class: 'vam'), root_url
               %li.list-item= link_to "Tags", tags_url
               %li.list-item= link_to "Authors", authors_url
-          .split-cell.split-cell--fixed
+          .split-cell
             - if current_user
               .dropdown.dropdown--e.js-dropdown
                 .js-dropdown-btn

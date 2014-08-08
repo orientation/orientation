@@ -6,10 +6,10 @@
         %main.g-b.g-b--m--2of3
           .split.search-bar.mbm
             .form.form--inline.split-item
-              .split-cell.split-cell--fluid.prm
+              .split-cell.prm
                 = form_tag articles_path, method: :get, remote: true do
                   = search_field_tag :search, params[:search], placeholder: "Search articles by keyword", class: 'form-input'
-              .split-cell.split-cell--fixed
+              .split-cell
                 = link_to "New Article", new_article_url, class: 'btn btn--a form-btn'
           %ul.list.js-article-list
             = render @articles
