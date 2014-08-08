@@ -1,10 +1,32 @@
-.form
-  = simple_form_for @article do |f|
+.g
+  .g-b.g-b--2of3
+    %p.label.mbxs= label_text
+    .form
+      = simple_form_for @article do |f|
 
-    = f.input_field :title, class: 'form-input form-input--clear mbs tfh tsxl', placeholder: 'Enter an Article Title'
-    = f.input_field :content, class: 'form-input form-textarea mbs', rows: 12
-    = f.input :tag_tokens, label: "Tags", input_html: { data: {load: @tags} }
-    - if @article.author.blank?
-      = f.input :author_id, as: :hidden, input_html: { value: current_user.try(:id) }
-    = f.input :editor_id, as: :hidden, input_html: { value: current_user.try(:id) }
-    = f.button :submit, class: "btn btn--a mtm"
+        = f.input_field :title, class: 'form-input form-input--clear mbs tfh tsxl', placeholder: 'Enter an Article Title'
+        = f.input_field :content, class: 'form-input form-textarea mbs', rows: 12
+        = f.input :tag_tokens, label: "Tags", input_html: { data: {load: @tags} }
+        - if @article.author.blank?
+          = f.input :author_id, as: :hidden, input_html: { value: current_user.try(:id) }
+        = f.input :editor_id, as: :hidden, input_html: { value: current_user.try(:id) }
+        = f.button :submit, class: "btn btn--a mtm"
+  .g-b.g-b--1of3
+    .card.card--b
+      .card-header
+        %h2.tac Markdown
+      .form.mbf
+        %label.label H2
+        %input.form-input.mbs{ type: 'text', readonly: true, value: '## This is an <h2>' }
+
+        %label.label H3
+        %input.form-input.mbs{ type: 'text', readonly: true, value: '### This is an <h3>' }
+
+        %label.label Strong
+        %input.form-input.mbs{ type: 'text', readonly: true, value: '**Strong text**' }
+
+        %label.label Emphasis
+        %input.form-input.mbs{ type: 'text', readonly: true, value: '_Emphasized text_' }
+
+        %label.label Link
+        %input.form-input{ type: 'text', readonly: true, value: '[Text](http://example.com)' }
