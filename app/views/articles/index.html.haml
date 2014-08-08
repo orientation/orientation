@@ -3,7 +3,7 @@
 
     - if user_signed_in?
       .g
-        %main.g-b.g-b--2of3
+        %main.g-b.g-b--m--2of3
           .split.search-bar.mbm
             .form.form--inline.split-item
               .split-cell.split-cell--fluid.prm
@@ -14,7 +14,7 @@
           %ul.list.js-article-list
             = render @articles
 
-        %aside.g-b.g-b--1of3
+        %aside.g-b.g-b--m--1of3
           = render "tags/tag_categories", tags: @tags
 
           = link_to "Archived Articles (#{Article.archived.count})", archived_articles_path
