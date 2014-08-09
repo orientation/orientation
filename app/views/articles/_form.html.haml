@@ -1,5 +1,5 @@
 .g
-  .g-b.g-b--2of3
+  .g-b.g-b--m--2of3
     %p.label.mbxs= label_text
     .form
       = simple_form_for @article do |f|
@@ -11,7 +11,8 @@
           = f.input :author_id, as: :hidden, input_html: { value: current_user.try(:id) }
         = f.input :editor_id, as: :hidden, input_html: { value: current_user.try(:id) }
         = f.button :submit, class: "btn btn--a mtm"
-  .g-b.g-b--1of3
+
+  .g-b.g-b--m--1of3
     .card.card--b
       .card-header
         %h2.tac Markdown
