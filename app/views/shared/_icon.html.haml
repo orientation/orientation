@@ -1,0 +1,8 @@
+- middle = 'icn--middle' if middle
+- title ||= nil
+
+- unless title.nil?
+  %i.icn{ class: "icn--#{icon} #{middle}" }
+    %span.srt= title
+- else
+  %i.icn{ class: "icn--#{icon} #{middle}" }
