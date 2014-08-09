@@ -43,7 +43,10 @@
             = link_to "Delete", @article, class: "btn btn--b", method: :delete
 
         %aside.g-b.g-b--1of6
-          = link_to "Subscribers", subscriptions_article_path(@article), class: 'dib mbxs mtl'
-          / TODO: Add subscribers' image links
-          - toggle_subscription_label = current_user.subscribed_to?(@article) ? "Unsubscribe" : "Subscribe"
+          / TODO(Olivier): Combine %ul and contents into a single partial.
+          / TODO(Olivier): Restore original subscription partial (and view, if needed). I had to overwrite it to access the data :(
+          / TODO(Olivier): Restore @article.subscriptions to @subscriptions. This works, but I don't know why.
+          %ul.list.list--object.mtl
+            = render partial: 'subscription', collection: @article.subscriptions
+          - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
           = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
