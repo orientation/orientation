@@ -8,7 +8,7 @@
 
     %article
       %header.mbs
-        %h1.tsxxl= @article.title
+        %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
         .byline
           .byline-main
             .byline-author
@@ -20,10 +20,17 @@
             %span.label.label--invert= @article.updated_at_tag
 
       .g
-        %aside.g-b.g-b--1of6
+        %aside.g-b.g-b--m--1of6
+          .mbm.mt--m--l
+            - if !@article.rotten?
+              = link_to "Report Rot", report_rot_article_url(@article), class: "btn btn--b", method: :put
+
+            - if @article.stale? || @article.rotten?
+              = link_to "Mark Fresh", mark_fresh_article_url(@article), class: "btn btn--b", method: :put
+
           = render "tags/tags", tags: @article.tags
 
-        .g-b.g-b--4of6
+        .g-b.g-b--m--4of6
           .card.markdown.mbm.ptl
             = find_and_preserve do
               = markdown(@article.content || "No content")
@@ -31,22 +38,16 @@
           - if user_signed_in?
             = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
 
-            - if !@article.rotten?
-              = link_to "Report Rot", report_rot_article_url(@article), class: "btn btn--b", method: :put
-
-            - if @article.stale? || @article.rotten?
-              = link_to "Mark Fresh", mark_fresh_article_url(@article), class: "btn btn--b", method: :put
-
             - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
             = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
 
             = link_to "Delete", @article, class: "btn btn--b", method: :delete
 
-        %aside.g-b.g-b--1of6
+        %aside.g-b.g-b--m--1of6
           / TODO(Olivier): Combine %ul and contents into a single partial.
           / TODO(Olivier): Restore original subscription partial (and view, if needed). I had to overwrite it to access the data :(
           / TODO(Olivier): Restore @article.subscriptions to @subscriptions. This works, but I don't know why.
-          %ul.list.list--object.mtl
+          %ul.list.list--object.mt--m--l
             = render partial: 'subscription', collection: @article.subscriptions
           - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
           = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
