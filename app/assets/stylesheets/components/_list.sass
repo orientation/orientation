@@ -43,6 +43,14 @@
     &:last-child
       margin-right: 0
 
+// Responsive
+
+.list--inline--responsive
+  +respond-to($g-m)
+    > .list-item
+      display: block
+      margin-right: 0
+
 // ----- Object ----- //
 
 .list--object
