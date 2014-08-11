@@ -108,6 +108,12 @@
 .mtxl
   margin-top: $b-space-xl
 
+// Responsive
+
+.mt--m--l
+  +respond-to($g-m)
+    margin-top: $b-space-l
+
 // -------------------------------------
 //   Overflow
 // -------------------------------------
@@ -263,6 +269,16 @@
   font-size: $b-fontSize-xl
 .tsxxl
   font-size: $b-fontSize-xxl
+
+// Responsive
+
+.ts--s--xl
+  +respond-to($g-s)
+    font-size: $b-fontSize-xl
+
+.ts--m--xxl
+  +respond-to($g-m)
+    font-size: $b-fontSize-xxl
 
 // ----- Style ----- //
 
