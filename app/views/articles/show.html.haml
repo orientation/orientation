@@ -31,7 +31,7 @@
           = render "tags/tags", tags: @article.tags
 
         .g-b.g-b--m--4of6
-          .card.markdown.mbm.ptl
+          .card.markdown.mbm.pl--l--m.pr--l--m.ptl
             = find_and_preserve do
               = markdown(@article.content || "No content")
 
