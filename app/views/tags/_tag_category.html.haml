@@ -15,5 +15,4 @@
     / TODO: Only display the latest five (or pinned) articles
     - articles.take(5).each do |article|
       %li.list-item.mbxs
-        = article.freshness
         = link_to article.title, article, class: 'tsm mutedLink'
