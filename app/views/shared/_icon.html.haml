@@ -1,8 +1,9 @@
 - middle = 'icn--middle' if middle
+- klass ||= nil
 - title ||= nil
 
 - unless title.nil?
-  %i.icn{ class: "icn--#{icon} #{middle}" }
+  %i.icn{ class: "icn--#{icon} #{middle} #{klass}" }
     %span.srt= title
 - else
-  %i.icn{ class: "icn--#{icon} #{middle}" }
+  %i.icn{ class: "icn--#{icon} #{middle} #{klass}" }
