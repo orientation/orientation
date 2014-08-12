@@ -3,7 +3,7 @@
 - title ||= nil
 
 - unless title.nil?
-  %i.icn{ class: "icn--#{icon} #{middle} #{klass}" }
-    %span.srt= title
+  %i.icn{ class: "icn--#{icon} #{middle} #{klass}", 'aria-hidden' => true }
+  %span.srt= title
 - else
   %i.icn{ class: "icn--#{icon} #{middle} #{klass}" }
