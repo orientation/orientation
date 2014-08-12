@@ -1,0 +1,65 @@
+// *************************************
+//
+//   Markdown
+//   -> Namespaced Markdown styles
+//
+// *************************************
+
+.markdown
+
+  // ----- Block Content ----- //
+
+  // Blockquote
+
+  blockquote
+    padding-left: $b-space
+
+  // Headings
+
+  h1, h2, h3, h4, h5, h6
+    font-family: $b-fontFamily
+    font-weight: bold
+    margin-bottom: $b-space-s
+
+  h1
+    font-family: $b-fontFamily-heading
+    margin-bottom: $b-space-xs
+
+  h2
+    font-size: $b-fontSize-l
+
+  h3
+    color: $c-subdue
+    font-size: $b-fontSize-l
+    font-style: italic
+    font-weight: normal
+
+  h4
+    letter-spacing: 2px
+    text-transform: uppercase
+
+  h5
+    font-size: $b-fontSize
+
+  h6
+    color: $c-subdue
+    font-size: $b-fontSize
+    font-style: italic
+    font-weight: normal
+
+  // ----- Inline Content ----- //
+
+  // Links
+
+  a
+    &[href^='http']
+      word-wrap: break-word // Break lengthy URLs entered in content
+
+  // Code
+
+  code
+    background: $c-background
+    border-radius: $b-borderRadius
+    display: inline-block
+    padding-left: $b-space-xs
+    padding-right: $b-space-xs
