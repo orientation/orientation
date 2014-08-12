@@ -14,6 +14,7 @@ gem 'sass-rails'
 
 gem 'turbolinks'
 
+gem "autoprefixer-rails"
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'delayed_job'
