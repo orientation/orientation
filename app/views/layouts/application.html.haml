@@ -24,7 +24,7 @@
                 .dropdown.dropdown--e.js-dropdown
                   .js-dropdown-btn
                     = image_tag current_user.image, class: 'thumb dib vam'
-                    %i.icn.icn--caretDown.icn--middle.tcs
+                    = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs' }
                   %ul.dropdown-menu
                     %li.dropdown-item
                       = current_user.name= link_to current_user.name, current_user.link, class: 'dropdown-item-link'
