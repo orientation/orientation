@@ -12,7 +12,17 @@
   // Blockquote
 
   blockquote
+    border-left: 4px solid $c-border
+    margin: $b-space 0
     padding-left: $b-space
+
+  // Lists
+
+  ol, ul
+    padding-left: $b-space
+
+    > li
+      margin-bottom: $b-space-s
 
   // Headings
 
@@ -53,7 +63,7 @@
 
   a
     &[href^='http']
-      word-wrap: break-word // Break lengthy URLs entered in content
+      word-wrap: break-word // NOTE: Added to break URLs entered in content
 
   // Code
 
