@@ -1,40 +1,76 @@
-.author
-  %aside= image_tag @author.large_image, class: "avatar", width: 220, height: 220
-  %h1
-    = @author.name
-    = @author.active ? "" : " (inactive)"
+%main.ro
+  .cell.well.well--l
 
-  %p.bio
-    = @author.first_name
-    created #{@author.articles.count} articles and edited #{@author.edits.count}.
+    .g
 
-    - if @author != current_user
-      %p.email
-        = @author.email_tag
+      .g-b.g-b--m--1of3
 
-    = simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
-      = f.input :shtick, as: :text, required: false, placeholder: "What's this author's shtick? What do they do? ", label: false
-      = f.submit "Update", class: "btn-a"
+        .card.card--b.tac.mbs.has-card-section
+          = image_tag @author.large_image, class: 'mbm ra', width: 160, height: 160
 
-.articles
-  %h2 Created articles (#{@author.articles.count})
-  %ul
-    - @author.articles.each do |article|
-      %li= link_to article, article
+          %h1.tsl
+            = @author.name
+            - unless @author.active
+              %span.db.tsm (Inactive)
 
-  %h2 Edited Articles (#{@author.edits.count})
-  %ul
-    - @author.edits.each do |edit|
-      %li= link_to edit, edit
+          - # TODO(Olivier): Remove hard-coded ID for moderation
+          - if Rails.env.development? or current_user.id == 1
+            .form.tar
+              = simple_form_for :user, url: author_path(@author), method: :patch do |f|
+                = f.input :avatar, as: :file, required: false, label: "Photo"
+                = f.submit "Upload Avatar", class: "btn btn--b"
 
-  %h2 Article subscriptions (#{@author.subscriptions.count})
-  %ul
-    - @author.subscriptions.each do |subscription|
-      %li= link_to subscription.article, article_path(subscription.article)
+          - if current_user == @author
+            .form
+              = simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
+                = f.input_field :shtick, as: :text, required: false, placeholder: "What's this author's shtick? What do they do? ", label: false, class: 'form-input'
+                = f.submit "Update", class: "btn btn--b"
+          - else
+            %p.mbxs= @author.shtick
 
-- if Rails.env.development? or current_user.id == 1
-  = simple_form_for :user, url: author_path(@author), method: :patch do |f|
-    = f.input :avatar, as: :file, required: false, label: "Photo"
-    = f.submit "Upload Avatar", class: "btn-a"
+          - unless @author == current_user
+            %p= mail_to @author.email
 
-= link_to "Toggle Status", author_toggle_status_path(@author), method: :put
+          .card-section.card-section--row
+            %h2.mbs Contributions
+            %p.mbxs.tsm= "Created #{@author.articles.count} article#{ 's' if @author.articles.count != 1 }"
+            %p.mbf.tsm= "Edited #{@author.edits.count} article#{ 's' if @author.articles.count != 1 }"
+
+        .tac.mbm
+          = link_to "Toggle Status", author_toggle_status_path(@author), method: :put
+
+      .g-b.g-b--m--2of3
+
+        %h2.mbs Created
+        - if @author.edits.count > 0
+          - # TODO: Apply signal classes unique to Article decorator
+          %ul.list.mbl
+            - @author.articles.each do |article|
+              %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
+                = link_to article.title, article, class: 'article-title'
+                - unless article.tags.empty?
+                  .article-footer
+                    %ul.list.list--inline{ 'data-ui-component' => 'tag-list' }
+                      - article.tags.each do |t|
+                        %li.list-item= link_to t.name, tag_path(t), class: 'label label--link'
+        - else
+          - if current_user == @author
+            %p
+              Hey, everyone has to start somewhere.
+              = link_to "Create an article", new_article_url, class: 'dib'
+          - else
+            %p= "#{@author.first_name} hasn't created any articles yet."
+
+        %h2.mbs Edited
+        - if @author.edits.count > 0
+          %ul.list
+            - @author.edits.each do |article|
+              %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
+                = link_to article.title, article, class: 'article-title'
+                - unless article.tags.empty?
+                  .article-footer
+                    %ul.list.list--inline{ 'data-ui-component' => 'tag-list' }
+                      - article.tags.each do |t|
+                        %li.list-item= link_to t.name, tag_path(t), class: 'label label--link'
+        - else
+          %p= "#{@author.first_name} loves everything just the way it is."
