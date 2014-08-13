@@ -6,8 +6,7 @@ $(document).on "page:change", ->
   delay = (ms, func) -> setTimeout func, ms
 
   submit_form = ->
-    console.log "submitted that damned form"
-    $('.search-bar form').submit()
+    $('.js-search-form').submit()
  
   localize_datetimes = ->
     dates = $(".articles time")
@@ -24,7 +23,7 @@ $(document).on "page:change", ->
 
   attach_loading_indicators()
 
-  $('#search').on 'keyup', ->
+  $('.js-search-form').on 'keyup', ->
     clearTimeout(timeout) if timeout
     timeout = delay 400, -> submit_form()
 
@@ -51,14 +50,17 @@ $(document).on "page:change", ->
   $(document).on "keyup", keyboardEventHandler
 
 keyboardEventHandler = (event) ->
+  # If user presses <f> or <s>
   if event.keyCode == 70 or event.keyCode == 83
     focusSearch()
 
+  # If user presses <esc>
   if event.keyCode == 27
     unfocusSearch()
 
 focusSearch = ->
-  $("#search").trigger "focus"
+  $('.js-search-input').trigger "focus"
 
+# NOTE: Needed so <esc> blurs inputs in Firefox
 unfocusSearch = ->
-  $("#search").trigger "blur"
+  $('.js-search-input').trigger "blur"

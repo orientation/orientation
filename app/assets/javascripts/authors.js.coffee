@@ -1,9 +1,8 @@
-$(document).on "page:change", ->
+$(document).on 'page:change', ->
   delay = (ms, func) -> setTimeout func, ms
 
   submit_form = ->
-    console.log "submitted that damned form"
-    $('.search-bar form').submit()
+    $('.js-search-form').submit()
 
   attach_loading_indicators = ->
     $(document).on 'page:fetch', -> NProgress.start()
@@ -13,11 +12,6 @@ $(document).on "page:change", ->
 
   attach_loading_indicators()
 
-  $('#search').on 'keyup', ->
+  $('.js-search-input').on 'keyup', ->
     clearTimeout(timeout) if timeout
     timeout = delay 400, -> submit_form()
-
-  $('.authors-index .authors').masonry
-    itemSelector: '.author',
-    columnWidth: (containerWidth) ->
-      containerWidth / 3
