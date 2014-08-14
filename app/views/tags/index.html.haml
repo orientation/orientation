@@ -1,7 +1,15 @@
-%h1 Tags
-- unless @ordered_tags.empty?
-  %ul
-    - @ordered_tags.each do |tag|
-      %li
-        = link_to tag, tag
-        = tag.articles.count
+%main.row
+  .cell.well.well--l
+
+    - #TODO(Olivier): Display tags sorted alphabetically in sections
+    %h1 Tags
+    - unless @ordered_tags.empty?
+      %ul.columns.columns--s--2.columns--m--4.columns--l--5.list
+        - @ordered_tags[0..@ordered_tags.length/2].each do |tag|
+          %li.list-item.mbxs
+            = link_to tag, tag, class: 'label label--link'
+            %span.tsm= tag.articles.count
+        - @ordered_tags[@ordered_tags.length/2..@ordered_tags.length].each do |tag|
+          %li.list-item.mbxs
+            = link_to tag, tag, class: 'label label--link'
+            %span.tsm= tag.articles.count
