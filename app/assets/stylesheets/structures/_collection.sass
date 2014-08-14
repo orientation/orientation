@@ -1,0 +1,46 @@
+// *************************************
+//
+//   Collection
+//   -> Accumulation of items
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .collection[.collection--m--1of3].g
+//   .collection-item.g-b.g-b--m--1of3
+//
+// *************************************
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Breakpoints ----- //
+
++respond-within($g-s, $g-m)
+  .collection--s--1of2
+
+    .collection-item:nth-child(2n + 1)
+      clear: left
+
++respond-within($g-m, $g-l)
+  .collection--m--1of3
+
+    .collection-item:nth-child(3n + 1)
+      clear: left
+
++respond-to($g-l)
+  .collection--l--1of3
+
+    .collection-item:nth-child(3n + 1)
+      clear: left
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Item ----- //
+
+.collection-item
+  margin-bottom: $b-space
