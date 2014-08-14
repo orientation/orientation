@@ -58,6 +58,19 @@
   @media #{$media} and ($query: $val)
     @content
 
+// ----- Respond-within ----- //
+// -> Generates a media query within a range
+//
+// $min - the initial breakpoint size
+// $max - the larger breakpoint size
+// $query - the type of query ('min-width', 'max-width')
+// $media - the media type ('screen', 'print', etc.)
+// @content - the generated content within the mixin
+
+=respond-within($min, $max, $media: screen)
+  @media #{$media} and (min-width: $min) and (max-width: $max)
+    @content
+
 // -------------------------------------
 //   Extends
 // -------------------------------------
