@@ -36,6 +36,10 @@ class Article < ActiveRecord::Base
     current.order(updated_at: :desc).limit(20)
   end
 
+  def self.popular
+    includes(:subscribers).sort_by{|a| a.subscribers.count }.reverse.take(5)
+  end
+
   def self.rotten
     where("rotted_at IS NOT NULL")
   end
@@ -92,7 +96,7 @@ class Article < ActiveRecord::Base
     Article.stale? self
   end
 
-  # an article is rotten when it has been manually marked as rotten and 
+  # an article is rotten when it has been manually marked as rotten and
   # the rotted_at timestamp has been set (it defaults to nil)
   def rotten?
     Article.rotten? self
