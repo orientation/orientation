@@ -1,4 +1,4 @@
-%li.card.article.has-signal{ class: ('has-article-footer' unless article.tags.empty? )}
+%li.card.list-item.article.has-signal{ class: ('has-article-footer' unless article.tags.empty? )}
   = article.signal
   = link_to article.title, article, class: 'article-title'
   - unless article.tags.empty?
