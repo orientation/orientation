@@ -108,12 +108,6 @@
 .mtxl
   margin-top: $b-space-xl
 
-// Responsive
-
-.mt--m--l
-  +respond-to($g-m)
-    margin-top: $b-space-l
-
 // -------------------------------------
 //   Overflow
 // -------------------------------------
@@ -170,8 +164,9 @@
 
 // Responsive
 
-.pl--l--m
-  +respond-to($g-l)
++respond-to($g-l)
+
+  .pl--l--m
     padding-left: $b-space-l
 
 // ----- Right ----- //
@@ -189,8 +184,9 @@
 
 // Responsive
 
-.pr--l--m
-  +respond-to($g-l)
++respond-to($g-l)
+
+  .pr--l--m
     padding-right: $b-space-l
 
 // ----- Top ----- //
@@ -207,6 +203,13 @@
   padding-top: $b-space-l
 .ptxl
   padding-top: $b-space-xl
+
+// Responsive
+
++respond-to($g-m)
+
+  .pt--m--l
+    padding-top: $b-space-l
 
 // -------------------------------------
 //   Positioning
@@ -284,12 +287,14 @@
 
 // Responsive
 
-.ts--s--xl
-  +respond-to($g-s)
++respond-to($g-s)
+
+  .ts--s--xl
     font-size: $b-fontSize-xl
 
-.ts--m--xxl
-  +respond-to($g-m)
++respond-to($g-m)
+
+  .ts--m--xxl
     font-size: $b-fontSize-xxl
 
 // ----- Style ----- //
