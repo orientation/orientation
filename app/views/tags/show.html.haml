@@ -1,5 +1,10 @@
-%h1= @tag
-- unless @tag.articles.empty?
-  %ul
-    - @tag.articles.each do |article|
-      %li= link_to article, article
+%main.row
+  .cell.cell--s.well.well--l
+    %h1.mbs= @tag
+
+    - unless @tag.articles.empty?
+      %ul.list
+        - @tag.articles.each do |article|
+          - # TODO: Add Article fresh/stale/rotten signals
+          %li.card.list-item.article
+            = link_to article, article
