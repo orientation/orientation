@@ -27,9 +27,11 @@
                     = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs' }
                   %ul.dropdown-menu
                     %li.dropdown-item
-                      = current_user.name= link_to current_user.name, current_user.link, class: 'dropdown-item-link'
+                      = link_to current_user.link, class: 'dropdown-item-link' do
+                        %span.tsm= current_user.name
                     %li.dropdown-item
-                      = link_to "Log Out", logout_path, title: current_user.email, class: 'dropdown-item-link'
+                      = link_to logout_path, class: 'dropdown-item-link' do
+                        %span.tsm= 'Log Out'
               - else
                 = link_to "Log In", login_path, data: { no_turbolink: true }
 
