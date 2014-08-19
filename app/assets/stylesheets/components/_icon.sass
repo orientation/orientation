@@ -41,9 +41,20 @@
 .icn--caretDown::before
   content: "\f102"
 
+.icn--clock::before
+  content: "\f103"
+
 
 // ----- Middle ----- //
 
 %icn--middle,
 .icn--middle
   vertical-align: middle
+
+// ----- Padded ----- //
+
+%icn-padded,
+.icn--padded
+  &::before
+    text-align: center
+    width: 1.2em // FIXME: magic number
