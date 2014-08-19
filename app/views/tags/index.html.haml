@@ -1,10 +1,10 @@
 %main.row
-  .cell.well.well--l
+  .cell.cell--s.well.well--l
 
     - #TODO(Olivier): Display tags sorted alphabetically in sections
     %h1 Tags
     - unless @ordered_tags.empty?
-      %ul.columns.columns--s--2.columns--m--4.columns--l--5.list
+      %ul.columns.columns--s--2.columns--m--4.list
         - @ordered_tags[0..@ordered_tags.length/2].each do |tag|
           %li.list-item.mbxs
             = link_to tag, tag, class: 'label label--link'
