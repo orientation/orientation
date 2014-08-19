@@ -12,8 +12,9 @@
         .byline
           .byline-main
             .byline-author
-              = render partial: 'shared/icon', locals: { icon: 'avatar', middle: true }
+              = render partial: 'shared/icon', locals: { icon: 'avatar', padded: true }
               = link_to @article.author, @article.author.link, class: 'label label--link label--link--invert'
+            = render partial: 'shared/icon', locals: { icon: 'clock', padded: true }
             %span.label.label--invert= @article.created_at_tag
           .byline-secondary
             %span.tsi.tss Last edited
