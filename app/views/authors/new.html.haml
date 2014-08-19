@@ -7,15 +7,16 @@
 
         .form-item
           = f.input :name, placeholder: 'Name',
-            label_html: { class: 'label form-label' },
+            label_html: { class: 'form-label label' },
             input_html: { class: 'form-input' }
 
         .form-item
           = f.input :email, as: :email, placeholder: 'Email',
-            label_html: { class: 'label form-label' },
+            label_html: { class: 'form-label label' },
             input_html: { class: 'form-input' }
 
         .form-item
-          = f.input :avatar, as: :file, label: 'Photo'
+          = f.input :avatar, as: :file,
+            label_html: { class: 'form-label label' }
 
-        = f.submit 'Create', class: 'btn btn--a form-btn'
+        = f.submit 'Create Author', class: 'btn btn--a form-btn'
