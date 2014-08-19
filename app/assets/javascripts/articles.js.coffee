@@ -7,12 +7,13 @@ $(document).on "page:change", ->
 
   submit_form = ->
     $('.js-search-form').submit()
- 
+
   localize_datetimes = ->
-    dates = $(".articles time")
+    dates = $('.js-time')
     for date in dates
       old_time = $(date).attr('datetime')
-      new_time = moment(old_time).format('MMM Do YYYY')
+      # NOTE: Affects date display in Article show page
+      new_time = moment(old_time).format('MMMM D, YYYY')
       $(date).html(new_time)
 
   attach_loading_indicators = ->

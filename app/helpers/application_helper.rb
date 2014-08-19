@@ -50,6 +50,6 @@ module ApplicationHelper
   # element with a title tag that display the raw time.
   #
   def time_element(time)
-    time_tag time, time.to_s(:long), title: time
+    time_tag time, time.to_s(:long), title: time, class: 'js-time'
   end
 end
