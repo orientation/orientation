@@ -1,7 +1,21 @@
-%h1 New Author
+%main.row
+  .cell.cell--s.well.well--l
 
-= simple_form_for @author, url: authors_path do |f|
-  = f.input :name, label: false, placeholder: "Name"
-  = f.input :email, as: :email, label: false, placeholder: "Email"
-  = f.input :avatar, as: :file, label: "Photo"
-  = f.submit "Create New Author", class: 'btn-a'
+    .label.mbm Create a New Author
+    .form.card.card--b
+      = simple_form_for @author, url: authors_path do |f|
+
+        .form-item
+          = f.input :name, placeholder: 'Name',
+            label_html: { class: 'label form-label' },
+            input_html: { class: 'form-input' }
+
+        .form-item
+          = f.input :email, as: :email, placeholder: 'Email',
+            label_html: { class: 'label form-label' },
+            input_html: { class: 'form-input' }
+
+        .form-item
+          = f.input :avatar, as: :file, label: 'Photo'
+
+        = f.submit 'Create', class: 'btn btn--a form-btn'
