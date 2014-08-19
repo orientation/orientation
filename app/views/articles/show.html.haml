@@ -21,13 +21,38 @@
             %span.label.label--invert= @article.updated_at_tag
 
       .g
-        %aside.g-b.g-b--m--1of6
-          .mbm.pt--m--l
-            - if !@article.rotten?
-              = link_to "Report Rot", report_rot_article_url(@article), class: "btn btn--b", method: :put
+        %aside.g-b.g-b--m--1of6.mbm.pt--m--l
 
-            - if @article.stale? || @article.rotten?
-              = link_to "Mark Fresh", mark_fresh_article_url(@article), class: "btn btn--b", method: :put
+          .dropdown.mbm.js-dropdown
+            .card.card--xs.has-signal
+              .js-dropdown-btn
+                = @article.signal
+                .split
+                  .split-item
+                    .split-cell
+                      - # TODO: Move conditional presentation to decorator
+                      .label
+                        - if @article.fresh?
+                          Fresh
+                        - if @article.stale?
+                          Stale
+                        - if @article.rotten?
+                          Rotten
+                        - unless @article.fresh? || @article.stale? || @article.rotten?
+                          Normal
+                    .split-cell.tcs.tsm
+                      = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true }
+            .dropdown-menu
+              - unless @article.fresh?
+                .dropdown-item
+                  = link_to mark_fresh_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
+                    .signal.signal--fresh
+                    %span.label Fresh
+              - unless @article.rotten?
+                .dropdown-item
+                  = link_to report_rot_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
+                    .signal.signal--rotten
+                    %span.label Rotten
 
           = render "tags/tags", tags: @article.tags
 
