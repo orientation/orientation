@@ -4,43 +4,59 @@
 //   -> Accumulation of items
 //
 // -------------------------------------
+//   Dependencies
+// -------------------------------------
+//
+//   - components/grid
+//
+// -------------------------------------
 //   Template (Haml)
 // -------------------------------------
 //
-// .collection[.collection--m--1of3].g
-//   .collection-item.g-b.g-b--m--1of3
+// .g.collection[.collection--s|m|l--1of1|1of2|1of3|...]
+//   .g-b[.g-b--s|m|l--1of1|1of2|1of3|...].collection-item
 //
 // *************************************
-
-// -------------------------------------
-//   Modifiers
-// -------------------------------------
-
-// ----- Breakpoints ----- //
-
-+respond-within($g-s, $g-m)
-  .collection--s--1of2
-
-    .collection-item:nth-child(2n + 1)
-      clear: left
-
-+respond-within($g-m, $g-l)
-  .collection--m--1of3
-
-    .collection-item:nth-child(3n + 1)
-      clear: left
-
-+respond-to($g-l)
-  .collection--l--1of3
-
-    .collection-item:nth-child(3n + 1)
-      clear: left
 
 // -------------------------------------
 //   Scaffolding
 // -------------------------------------
 
-// ----- Item ----- //
-
 .collection-item
   margin-bottom: $b-space
+
+// -------------------------------------
+//   Setup
+// -------------------------------------
+
+=collection-device-type($namespace: '', $breakpoint: null)
+
+  @if $namespace != ''
+    [class*='collection#{$namespace}']
+
+      > .collection-item:nth-child(n)
+        clear: none
+
+  %collection-clear#{$namespace}
+    @if $breakpoint == null
+      clear: left
+    @else
+      @media screen and (min-width: #{$breakpoint})
+        clear: left
+
+  @for $i from 1 through $collection-columns
+
+    .collection#{$namespace}--1of#{$i}
+
+      > .collection-item:nth-child(#{$i}n + 1)
+        @extend %collection-clear#{$namespace}
+
+// -------------------------------------
+//   Creation
+// -------------------------------------
+
++collection-device-type()
+
+@each $device in $g-defaults
+  @media screen and (min-width: nth($device, 2))
+    +collection-device-type("--#{nth($device, 1)}")
