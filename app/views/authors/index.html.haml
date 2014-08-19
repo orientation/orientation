@@ -4,13 +4,9 @@
     %h1 Authors
     .g
       .g-b.g-b--m--1of2
-        .split.mbm
-          .form.form--inline.split-item
-            .split-cell.prm
-              = form_tag authors_path, method: :get, remote: true, class: 'form js-search-form' do
-                = text_field_tag :search, params[:search], placeholder: 'Search authors by name or shtick', class: 'js-search-input form-input'
-            .split-cell
-              = submit_tag 'Search', class: 'btn btn--a form-btn'
+        .form.form--inline.mbm
+          = form_tag authors_path, method: :get, remote: true, class: 'form js-search-form' do
+            = text_field_tag :search, params[:search], placeholder: 'Search authors by name or shtick', class: 'js-search-input form-input'
 
     .g.collection.collection--s--1of2.collection--m--1of3.collection--l--1of3.mbm.js-author-list
       = render partial: 'authors/author', collection: @authors
