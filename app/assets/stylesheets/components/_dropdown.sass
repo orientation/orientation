@@ -42,11 +42,10 @@
 // ----- Item ----- //
 
 .dropdown-item
-  border-bottom: $b-border
   color: $c-subdue
   margin: 0
-  &:last-child
-    border-bottom: 0
+  &:not(:first-child)
+    border-top: $b-border
   &:hover,
   &:focus
     background: $c-background
