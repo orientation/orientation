@@ -23,7 +23,7 @@
           - if current_user == @author
             .form
               = simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
-                = f.input_field :shtick, as: :text, required: false, placeholder: "What's this author's shtick? What do they do? ", label: false, class: 'form-input'
+                = f.input_field :shtick, as: :text, required: false, placeholder: "What do they do?", label: false, class: 'form-input'
                 = f.submit "Update", class: "btn btn--b"
           - else
             %p.mbxs= @author.shtick

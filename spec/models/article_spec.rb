@@ -4,7 +4,7 @@ describe Article do
   context "after_save" do
     let(:article) { create(:article) }
     let(:user) { create(:user) }
-    let!(:article_subscription) { 
+    let!(:article_subscription) {
       create(:article_subscription, article: article, user: user)
     }
 
@@ -36,6 +36,19 @@ describe Article do
       it "return false" do
         expect(author?).to be_falsey
       end
+    end
+  end
+
+  context '.popular' do
+    let(:articles) do
+      5.times { create(:article) }
+      Article.all
+    end
+    let(:first_article) { articles.first }
+    let!(:subscriber) { create(:article_subscription, article: first_article ) }
+
+    it "returns the 5 most subscribed to article first" do
+      expect(Article.popular.first).to eq(first_article)
     end
   end
 
@@ -127,7 +140,7 @@ describe Article do
     it "returns the more recent article first" do
       expect(Article.ordered_current.first).to eq more_recent_article
     end
-	
+
     it "does not include archived articles" do
       expect(Article.ordered_current).to_not include(archived_article)
     end
@@ -136,7 +149,7 @@ describe Article do
       before { recent_article.rot! }
 
       it "doesn't return the rotten article first" do
-        expect(Article.ordered_current.first).to_not eq recent_article  
+        expect(Article.ordered_current.first).to_not eq recent_article
       end
 
       it "returns the rotten article last" do
@@ -148,7 +161,7 @@ describe Article do
       before { recent_article.rot!; recent_article.touch }
 
       it "doesn't return the rotten article first" do
-        expect(Article.ordered_current.first).to_not eq recent_article  
+        expect(Article.ordered_current.first).to_not eq recent_article
       end
 
       it "returns the rotten article last" do

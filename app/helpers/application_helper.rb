@@ -52,4 +52,8 @@ module ApplicationHelper
   def time_element(time)
     time_tag time, time.to_s(:long), title: time, class: 'js-time'
   end
+
+  def page_title(title)
+    content_for(:page_title, raw(title))
+  end
 end
