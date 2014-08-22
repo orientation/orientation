@@ -5,19 +5,50 @@
 #    requested via Turbolinks
 #-------------------------------------
 
-# TODO: Modularize clickout behavior
 jQuery ($) ->
 
   domready = ->
 
-    # Event listeners
+    #---------------------------------
+    #
+    #  Dropdown
+    #  -> Contextual menus
+    #
+    #---------------------------------
+
     $('.js-dropdown-btn').on 'click', (e) ->
-      e.stopPropagation()
+      e.stopPropagation() # NOTE: Needed to prevent trigger click event on document
       $(@).closest('.js-dropdown').toggleClass('is-active')
 
+    # TODO: Modularize clickout behavior
     $(document).on 'click', ->
       $('.js-dropdown').removeClass('is-active')
 
+    #---------------------------------
+    #
+    #  Accordion
+    #  -> Collapsable container
+    #
+    #---------------------------------
+
+    # Collapse accordion content on DOM Ready
+    $('.js-accordion-content').hide()
+
+    $('.js-accordion-btn').on 'click', (e) ->
+      console.log 'hello'
+      $(@).closest('.js-accordion').find('.js-accordion-content').slideToggle()
+
+    #---------------------------------
+    #
+    #  Input Select
+    #  -> Automatically select input text
+    #
+    #---------------------------------
+
+    $('.js-input-select').on 'click', ->
+      $(@).focus().select()
+
   # Bind behavior to document load/reload
+  # NOTE: Needed for Turbolinks compatibility
   $(document).ready domready
   $(document).on 'page:load', domready
