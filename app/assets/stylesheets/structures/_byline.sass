@@ -27,10 +27,13 @@
 // ----- Author ----- //
 
 .byline-author
-  border-right: 2px solid $c-text-invert
-  display: inline-block
-  margin-right: $b-space-xs
-  padding-right: $b-space-s
+  +respond-to($g-s, 'max-width')
+    margin-bottom: $b-space-xs
+  +respond-to($g-s)
+    display: inline-block
+    border-right: 2px solid $c-text-invert
+    margin-right: $b-space-xs
+    padding-right: $b-space-s
 
 // ----- Main ----- //
 
