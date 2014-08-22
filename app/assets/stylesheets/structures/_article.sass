@@ -1,0 +1,57 @@
+// *************************************
+//
+//   Article
+//   -> Documentation content item
+//
+// -------------------------------------
+//   Dependencies
+// -------------------------------------
+//
+//   - components/card
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .card.article(.has-article-footer)
+//   .article-title
+//   .article-footer
+//     / ...
+//
+// *************************************
+
+.article
+  padding: $b-space-s
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+.has-article-footer
+  padding-bottom: $b-space-xs
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Footer ----- //
+
+.article-footer
+  border-top: $article-section-border
+  line-height: 1
+  margin-left: -$b-space-s
+  margin-right: -$b-space-s
+  padding-left: $b-space-s
+  padding-right: $b-space-s
+  padding-top: $b-space-xs
+
+// ----- Title ----- //
+
+.article-title
+  color: $article-title-color
+  display: inline-block
+  margin-bottom: $b-space-xs
+  &:hover,
+  &:focus
+    color: $article-title-color-hover
+

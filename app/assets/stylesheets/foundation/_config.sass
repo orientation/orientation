@@ -1,0 +1,245 @@
+// *************************************
+//
+//   Config
+//   -> Fonts, Variables
+//
+// *************************************
+
+// -------------------------------------
+//   @font-face
+// -------------------------------------
+
+// ----- Open Sans ----- //
+
++font-face('OpenSansRegular', 'OpenSans-Regular')
++font-face('OpenSansRegular', 'OpenSans-Bold', bold)
++font-face('OpenSansRegular', 'OpenSans-Italic', normal, italic)
++font-face('OpenSansRegular', 'OpenSans-BoldItalic', bold, italic)
++font-face('OpenSansCondensed', 'OpenSans-Condensed-Bold', bold)
+
+// -------------------------------------
+//   Colors
+// -------------------------------------
+
+// ----- Palette ----- //
+
+// White
+
+$white: #fff
+
+// Grayscale (light to dark)
+
+$chicago: #585a5b
+$baltic: #292b2f
+
+// Black
+
+$black: #000
+
+// Blue
+
+$fountain: #4dadc1
+
+// Green
+
+$celadon: #9dd3ad
+
+// Red
+
+$coral: #f38055
+
+// Yellow
+
+$banana: #ffe171
+
+// ----- Base ----- //
+
+$c-background-invert: $white
+$c-background: darken($white, 4%)
+$c-border: darken($c-background-invert, 15%)
+$c-highlight: $fountain
+$c-subdue: lighten($chicago, 30%)
+$c-text-heading: $chicago
+$c-text-invert: $white
+$c-text: $baltic
+
+// ----- Components ----- //
+
+// Button
+
+$btn--a-background: $c-highlight
+$btn--a-color: $c-text-invert
+$btn--b-background: $c-subdue
+$btn--b-color: $c-text-invert
+
+// Card
+
+$card-background: $c-background-invert
+$card--b-background: darken($c-background, 3%)
+$card-section-background: darken($card-background, 3%)
+$card--b-section--row-background: darken($card--b-background, 5%)
+
+// Form
+
+$form-input-background: $c-background-invert
+$form-input-borderColor: $c-border
+$form-input-focus-borderColor: $c-highlight
+$form-input--clear-color: $chicago
+
+// ----- Structures ----- //
+
+// Article
+
+$article-title-color: lighten($chicago, 15%)
+$article-title-color-hover: lighten($article-title-color, 20%)
+
+// Bulletin
+
+$bulletin-warning-background: $coral
+
+// Label
+
+$label-color: $c-subdue
+$label-hover-color: lighten($label-color, 20%)
+$label--invert-color: $c-text-invert
+$label--link--invert-color: $c-text-invert
+$label--link--invert-hover-color: darken($label--link--invert-color, 10%)
+
+// Muted Link
+
+$mutedLink-color: $c-text
+$mutedLink-color-hover: lighten($label-color, 15%)
+
+// Signal
+
+$signal-background: darken($c-background-invert, 10%)
+$signal--fresh-background: $celadon
+$signal--rotten-background: $coral
+$signal--stale-background: $banana
+
+// ----- Vendor ----- //
+
+// jQuery Tokeninput
+
+$tokeninput-background: $c-background-invert
+$tokeninput-token-background: darken($c-background, 3%)
+$tokeninput-token-color: $c-subdue
+
+
+// -------------------------------------
+//   Base
+// -------------------------------------
+
+// ----- Borders & Box Shadow ----- //
+
+$b-borderRadius: 3px
+$b-borderStyle: solid
+$b-borderWidth: 1px
+$b-border: $b-borderWidth $b-borderStyle $c-border
+$b-boxShadow: 0 1px 1px rgba($black, 0.3)
+$b-boxShadow-s: 0 1px 0 rgba($c-text, 0.25)
+
+// ----- Typography ----- //
+
+$b-fontFamily-heading: 'OpenSansCondensed', sans-serif
+$b-fontFamily-mono: 'Menlo', 'Courier', 'Monaco', monospace
+$b-fontFamily: 'OpenSans', sans-serif
+$b-fontSize: 16px
+$b-fontSize-xs: 60%
+$b-fontSize-s: 75%
+$b-fontSize-m: 90%
+$b-fontSize-l: 150%
+$b-fontSize-xl: 225%
+$b-fontSize-xxl: 330%
+$b-lineHeight: 1.5
+
+// ----- Sizing ----- //
+
+$b-maxWidth: em(1080px)
+$b-maxWidth-s: em(700px)
+$b-space: em(20px)
+$b-space-xs: 0.25 * $b-space
+$b-space-s: 0.5 * $b-space
+$b-space-l: 2 * $b-space
+$b-space-xl: 4 * $b-space
+
+// ----- Transitions ----- //
+
+$b-transition: 0.15s ease-in-out
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+// ----- Button ----- //
+
+$btn-borderRadius: $b-borderRadius
+
+$btn-fontSize: $b-fontSize-s
+$btn--s-fontSize: $b-fontSize-xs
+$btn--l-fontSize: 100%
+$btn-lineHeight: 3
+
+$btn-space: $b-space
+
+// ----- Card ----- //
+
+$card-space: $b-space
+$card-space-xs: 0.25 * $card-space
+
+// ----- Columns ----- //
+
+$columns-columns: 5
+
+// ----- Form ----- //
+
+$form-input-border: 1px solid $form-input-borderColor
+
+// ----- Grid ----- //
+
+// Breakpoints
+
+$g-s: em(480px)
+$g-m: em(800px)
+$g-l: em(1024px)
+
+// Settings
+
+$g-columns: 6
+$g-defaults: 's' $g-s, 'm' $g-m, 'l' $g-l
+$g-gutter: 20px
+$g-silent: false
+
+// Selector
+
+$g-selector: if($g-silent, unquote("%"), unquote("."))
+
+// ----- List ----- //
+
+$list-border: 1px solid #ddd
+$list-space: $b-space
+
+// -------------------------------------
+//   Structures
+// -------------------------------------
+
+// ----- Article ----- //
+
+$article-section-border: 1px solid darken($c-background-invert, 10%)
+
+// Collection
+
+$collection-columns: 3
+
+// ----- Label ----- //
+
+$label-fontSize: $b-fontSize-s
+
+// -------------------------------------
+//   Vendor
+// -------------------------------------
+
+// ----- jQuery Tokeninput ----- //
+
+$tokeninput-border: $form-input-border
+

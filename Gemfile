@@ -14,10 +14,12 @@ gem 'sass-rails'
 
 gem 'turbolinks'
 
+gem "autoprefixer-rails"
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
+gem 'fontcustom'
 gem 'haml-rails'
 gem 'simple_form', '~> 3.0.2'
 gem 'pygments.rb'

@@ -1,3 +1,4 @@
-%ul.tags
+%ul.list.list--inline.list--inline--responsive.mbm
   - tags.each do |tag|
-    %li.tag= link_to tag, tag
+    %li.list-item.mbs
+      = link_to tag, tag, class: 'label label--link'

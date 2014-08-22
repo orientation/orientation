@@ -1,0 +1,91 @@
+// *************************************
+//
+//   List
+//   -> Enumeration of items
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// %ul.list[.list--bordered|inline|object|styled|styled--numbered]
+//   %li.list-item List Item
+//   %li.list-item List Item
+//
+// *************************************
+
+.list
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Divided ----- //
+
+.list--divided
+
+  > .list-item
+    border-bottom: $b-border
+    padding-bottom: $b-space
+    &:last-child
+      border-bottom: 0
+      padding-bottom: 0
+
+// ----- Inline ----- //
+
+.list--inline
+
+  > .list-item
+    display: inline
+    margin-right: $b-space
+    &:last-child
+      margin-right: 0
+
+// Responsive
+
+.list--inline--responsive
+  +respond-to($g-m)
+    > .list-item
+      display: block
+      margin-right: 0
+
+// ----- Object ----- //
+
+.list--object
+  @extend .group
+
+  > .list-item
+    float: left
+    margin-right: $b-space
+    &:last-child
+      margin-right: 0
+
+// ----- Styled ----- //
+
+.list--styled
+  padding-left: $b-space
+
+  > .list-item
+    display: list-item
+    list-style-type: disc
+
+// Numbered
+
+.list--styled--numbered
+
+  > .list-item
+    list-style-type: decimal
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Item ----- //
+
+.list-item
+  display: block
+  margin-bottom: $b-space
+  &:last-child
+    margin-bottom: 0

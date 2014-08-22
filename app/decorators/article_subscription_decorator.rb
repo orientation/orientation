@@ -2,6 +2,10 @@ class ArticleSubscriptionDecorator < ApplicationDecorator
   delegate_all
 
   def created_at
-    object.created_at.to_formatted_s(:long)
+    source.created_at.to_formatted_s(:long)
+  end
+
+  def user
+    source.user.decorate
   end
 end

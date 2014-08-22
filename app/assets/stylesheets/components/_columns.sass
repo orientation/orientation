@@ -1,0 +1,35 @@
+// *************************************
+//
+//   Columns
+//   -> Adjacent vertical blocks
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .columns[.columns--|1|2|3|...]
+//   / ...
+//
+// *************************************
+
+.columns
+  column-gap: $b-space
+
+// -------------------------------------
+//   Setup
+// -------------------------------------
+
+=columns-device-type($namespace: '')
+  @for $i from 1 through $columns-columns
+    .columns--#{$namespace}#{$i}
+      columns: $i
+
+// -------------------------------------
+//   Creation
+// -------------------------------------
+
++columns-device-type()
+
+@each $device in $g-defaults
+  @media screen and (min-width: nth($device, 2))
+    +columns-device-type("#{nth($device, 1)}--")

@@ -1,0 +1,65 @@
+// *************************************
+//
+//   Card
+//   -> Individual style containers
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .card(.has-card-section)
+//   .card-section[.card-section--row]
+//
+// *************************************
+
+.card
+  background: $card-background
+  border-radius: $b-borderRadius
+  box-shadow: $b-boxShadow
+  padding: $card-space
+  position: relative
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Size ----- //
+
+.card--xs
+  padding: $card-space-xs
+
+// ----- Theme ----- //
+
+.card--b
+  background: $card--b-background
+  box-shadow: none
+
+  .card-section--row
+    background: $card--b-section--row-background
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+// ----- Section ----- //
+
+.has-card-section
+  overflow: hidden
+  padding-bottom: 0
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Section ----- //
+
+.card-section
+  border-top: $b-border
+  margin-left: -$b-space
+  margin-right: -$b-space
+  padding: $card-space
+
+// Row
+
+.card-section--row
+  background: darken($card-background, 5%)

@@ -1,0 +1,54 @@
+{
+  "checksum": {
+    "previous": "22aab20991f33f6a75125c5a50e5ca9ce2fe34ddc49a0dab25168957fa2c70d8",
+    "current": "22aab20991f33f6a75125c5a50e5ca9ce2fe34ddc49a0dab25168957fa2c70d8"
+  },
+  "fonts": [
+    "../icons.ttf",
+    "../icons.svg",
+    "../icons.woff",
+    "../icons.eot"
+  ],
+  "glyphs": {
+    "avatar": {
+      "codepoint": 61697,
+      "source": "./avatar.svg"
+    },
+    "caretDown": {
+      "codepoint": 61698,
+      "source": "./caretDown.svg"
+    },
+    "clock": {
+      "codepoint": 61699,
+      "source": "./clock.svg"
+    }
+  },
+  "options": {
+    "autowidth": true,
+    "config": "fontcustom.yml",
+    "css_selector": ".icon-{{glyph}}",
+    "debug": false,
+    "font_name": "icons",
+    "force": false,
+    "input": {
+      "templates": ".",
+      "vectors": "."
+    },
+    "no_hash": true,
+    "output": {
+      "_icon.sass": "../../stylesheets/components",
+      "css": "..",
+      "fonts": "..",
+      "preview": ".."
+    },
+    "preprocessor_path": null,
+    "quiet": false,
+    "skip_first": false,
+    "templates": [
+      "_icon.sass"
+    ]
+  },
+  "templates": [
+    "../../stylesheets/components/./_icon.sass"
+  ]
+}

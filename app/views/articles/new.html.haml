@@ -1,2 +1,3 @@
-%h1 New Article
-= render "form"
+%main.row
+  .cell.well.well--l
+    = render partial: 'form', locals: { label_text: 'Create a New Article'  }

@@ -1,0 +1,93 @@
+// *************************************
+//
+//   Base
+//   -> Tag-level settings
+//
+// *************************************
+
+html
+  background: $c-background
+  color: $c-text
+  font-family: $b-fontFamily
+  font-size: $b-fontSize
+  line-height: $b-lineHeight
+
+body
+  font-size: 100%
+
+// -------------------------------------
+//   Block Content
+// -------------------------------------
+
+// ----- Lists, Paragraphs ----- //
+
+ul, p
+  margin-bottom: $b-space
+  margin-top: 0
+
+li
+  margin-bottom: $b-space-s
+  margin-top: 0
+
+// ----- Headings ----- //
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6
+  color: $c-text-heading
+  font-family: $b-fontFamily-heading
+  font-weight: bold
+  line-height: 1.2
+  margin-bottom: $b-space-xs
+  margin-top: 0
+
+h1, .h1
+  font-size: 225%
+
+h2, .h2
+  font-size: 112.5%
+
+h3, .h3,
+h4, .h4
+  font-size: 100%
+
+// ----- Preformatted Text ----- //
+
+pre
+  font-family: $b-fontFamily-mono
+  font-size: $b-fontSize-m
+
+// -------------------------------------
+//   Inline Content
+// -------------------------------------
+
+// ----- Code ----- //
+
+code
+  font-family: $b-fontFamily-mono
+  font-size: $b-fontSize-m
+
+// ----- Links ----- //
+
+a
+  color: $c-highlight
+  font-weight: bold
+  text-decoration: none
+  transition: $b-transition
+  &:hover,
+  &:focus
+    color: lighten($c-highlight, 20%)
+
+// ----- Images ----- //
+
+img
+  height: auto
+  max-width: 100%
+
+// ----- Strong ----- //
+
+strong
+  color: $c-text-heading

@@ -1,0 +1,54 @@
+// *************************************
+//
+//   Icon
+//   -> Based on:
+//    * http://jaydenseric.com/blog/font-icons-like-a-boss-with-sass-and-font-custom
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// %i.icn[.icn--arrowDown|arrowUp|etc..]
+//
+// *************************************
+
+@font-face
+  font-family: <%= font_name %>
+  src: font-url('<%= font_name %>.eot')
+  src: font-url('<%= font_name %>.eot?#iefix') format('embedded-opentype'), font-url('<%= font_name %>.woff') format('woff'), font-url('<%= font_name %>.ttf') format('truetype'), font-url('<%= font_name %>.svg#<%= font_name %>') format('svg')
+  font-weight: normal
+  font-style: normal
+
+.icn::before
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  display: inline-block
+  font-family: "<%= font_name %>"
+  font-style: normal
+  font-weight: normal
+  speak: none
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Setup ----- //
+
+<% @glyphs.each do |name, value| %>
+.icn--<%= name.to_s %>::before
+  content: "\<%= value[:codepoint].to_s(16) %>"
+<% end %>
+
+// ----- Middle ----- //
+
+%icn--middle,
+.icn--middle
+  vertical-align: middle
+
+// ----- Padded ----- //
+
+%icn-padded,
+.icn--padded
+  &::before
+    text-align: center
+    width: 1.2em // FIXME: magic number
