@@ -57,6 +57,28 @@
     font-style: italic
     font-weight: normal
 
+  // Table
+
+  table
+    background: $c-background-invert
+    font-size: $b-fontSize-m
+    width: 100%
+
+  thead
+    color: $c-text-heading
+
+    tr
+      background: $c-background
+
+  tr
+    &:nth-of-type(even)
+      background: $c-background
+
+  td,
+  th
+    padding: $b-space-s $b-space-xs
+    border: $b-border
+
   // ----- Inline Content ----- //
 
   // Links
