@@ -15,9 +15,11 @@
 //= require jquery_ujs
 //= require turbolinks
 
+//= require orientation
 //= require jquery.tokeninput
 //= require moment
 //= require nprogress
 //= require masonry/jquery.masonry
+//= require tableBank
 //= require domready
 //= require_tree .

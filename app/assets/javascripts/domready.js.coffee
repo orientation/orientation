@@ -35,7 +35,6 @@ jQuery ($) ->
     $('.js-accordion-content').hide()
 
     $('.js-accordion-btn').on 'click', (e) ->
-      console.log 'hello'
       $(@).closest('.js-accordion').find('.js-accordion-content').slideToggle()
 
     #---------------------------------
@@ -47,6 +46,15 @@ jQuery ($) ->
 
     $('.js-input-select').on 'click', ->
       $(@).focus().select()
+
+    #---------------------------------
+    #  Initialization
+    #---------------------------------
+
+    Orientation.tableBank
+      context: $('.markdown')
+      element: $('table')
+      gutter: '20'
 
   # Bind behavior to document load/reload
   # NOTE: Needed for Turbolinks compatibility

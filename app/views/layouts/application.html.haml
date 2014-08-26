@@ -23,7 +23,7 @@
               - if current_user
                 .dropdown.dropdown--e.js-dropdown
                   .js-dropdown-btn
-                    = image_tag current_user.image, class: 'thumb dib vam'
+                    = image_tag current_user.image, height: 40, width: 40, class: 'thumb dib vam'
                     = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs' }
                   %ul.dropdown-menu
                     %li.dropdown-item

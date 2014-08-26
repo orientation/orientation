@@ -1,7 +1,7 @@
 .g-b.g-b--s--1of2.g-b--m--1of3.collection-item
   .bucket
     .bucket-media
-      = author.image_link
+      = author.image_link(80)
     .bucket-content
       = link_to author.name, author_path(author)
       %p.mbf.tsm= author.shtick
