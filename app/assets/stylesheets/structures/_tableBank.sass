@@ -1,0 +1,49 @@
+// *************************************
+//
+//   Table Bank
+//   -> Responsive container for table overflow
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .tableBank
+//   .tableBank-original
+//     .tableBank-original-message
+//     %table.tableBank-original-table
+//   .tableBank-container
+//     %table
+//
+// *************************************
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Container ----- //
+
+.tableBank-container
+  overflow: auto
+
+// ----- Original ----- //
+
+.tableBank-original
+  position: relative
+
+// Message
+
+.tableBank-original-message
+  display: none
+  font-size: $b-fontSize-m
+  font-style: italic
+  margin-bottom: $b-space-xs
+
+// Table
+
+.tableBank-original-table
+  display: none
+  left: 50%
+  margin-top: $b-space-xs
+  position: absolute
+  top: 100%
+  transform: translateX(-50%)
