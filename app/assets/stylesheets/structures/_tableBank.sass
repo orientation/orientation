@@ -17,6 +17,14 @@
 // *************************************
 
 // -------------------------------------
+//   States
+// -------------------------------------
+
+.tableBank.is-active
+  .tableBank-original-table
+    display: table
+
+// -------------------------------------
 //   Scaffolding
 // -------------------------------------
 
@@ -28,12 +36,12 @@
 // ----- Original ----- //
 
 .tableBank-original
+  display: none // NOTE: Toggled via JavaScript-generated `<style>` block
   position: relative
 
 // Message
 
 .tableBank-original-message
-  display: none
   font-size: $b-fontSize-m
   font-style: italic
   margin-bottom: $b-space-xs
@@ -41,7 +49,7 @@
 // Table
 
 .tableBank-original-table
-  display: none
+  display: none // NOTE: Toggled via `is-active`
   left: 50%
   margin-top: $b-space-xs
   position: absolute
