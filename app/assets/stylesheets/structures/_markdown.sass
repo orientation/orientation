@@ -30,7 +30,25 @@
     font-family: $b-fontFamily
     font-weight: bold
     margin-bottom: $b-space-s
+    position: relative
 
+    &:hover,
+    &:focus
+      .anchor
+        display: block
+
+    .anchor
+      color: $c-subdue
+      display: none
+      font-family: $b-fontFamily-heading
+      font-style: normal
+      font-weight: normal
+      position: absolute
+      right: 100%
+      top: 0
+
+      &::before
+        content: '#'
   h1
     font-family: $b-fontFamily-heading
     margin-bottom: $b-space-xs
