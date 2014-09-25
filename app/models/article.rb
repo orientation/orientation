@@ -1,7 +1,7 @@
 class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags, before_add: :validates_tag
   has_many :subscriptions, class_name: "ArticleSubscription"
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
 
@@ -9,12 +9,16 @@ class Article < ActiveRecord::Base
 
   before_validation :generate_slug
   after_save :update_subscribers
+  after_create :increment_tags_counter
+  before_destroy :decrement_tags_counter
 
   validates :slug, uniqueness: true, presence: true
 
   def self.archived
     where("archived_at IS NOT NULL")
   end
+  FRESHNESS_LIMIT = 7.days
+  STALENESS_LIMIT = 6.months
 
   def self.current
     where(archived_at: nil).order("rotted_at DESC")
@@ -125,6 +129,13 @@ class Article < ActiveRecord::Base
     self.never_notified_author? or !self.recently_notified_author?
   end
 
+  def self.reset_tags_count
+    self.all.each do |article|
+      tag_count = article.tags.count
+      article.update_attribute(:tags_count, tag_count)
+    end
+  end
+
   # @user - the user to subscribe to this article
   # Returns the subscription if successfully created
   # Raises otherwise
@@ -176,6 +187,22 @@ class Article < ActiveRecord::Base
   def update_subscribers
     subscriptions.each do |sub|
       sub.send_update_for(self.id)
+    end
+  end
+
+  def validates_tag(tag)
+    self.tags.include?(tag)
+  end
+
+  def increment_tags_counter
+    self.tags.each do |tag|
+      tag.increment!(:articles_count)
+    end
+  end
+
+  def decrement_tags_counter
+    self.tags.each do |tag|
+      tag.decrement!(:articles_count)
     end
   end
 end
