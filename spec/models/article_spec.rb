@@ -333,4 +333,32 @@ describe Article do
       expect { unarchive_article }.to change { Article.current.count }.by(1)
     end
   end
+
+  context 'tags_count' do
+    let!(:article) { create(:article) }
+    let!(:previous_count) { article.tags_count }
+
+    subject(:tags_count) { article.tags_count }
+
+    context 'when a tag is added' do
+      before { create(:tag, articles: [article]) }
+
+      it "increases" do
+        expect(tags_count).to be > previous_count
+      end
+    end
+
+    context 'when a tag is removed' do
+      let!(:tag) { create(:tag, articles: [article]) }
+
+      before do
+        article.tags.first.destroy
+      end
+
+      it "decreases" do
+        expect(tags_count).to be < previous_count
+      end
+    end
+
+  end
 end
