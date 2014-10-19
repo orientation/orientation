@@ -57,16 +57,16 @@ class ArticlesController < ApplicationController
   end
 
   def toggle_subscription
-    if !current_user.subscribed_to?(@article) 
-      @article.subscribe(current_user)
-      flash[:notice] = "Subscription created. You will receive weekly email notifications 
+    if !current_user.subscribed_to?(@article)
+      @article.subscribe(current_user.model)
+      flash[:notice] = "Subscription created. You will receive weekly email notifications
         about this article."
     else
       @article.unsubscribe(current_user)
-      flash[:notice] = "Subscription destroyed. You will no longer receive 
+      flash[:notice] = "Subscription destroyed. You will no longer receive
         weekly email notifications about this article."
     end
-    
+
     respond_with @article
   end
 
