@@ -36,6 +36,8 @@ gem 'carrierwave'
 gem "mini_magick"
 gem 'fog'
 gem 'masonry-rails'
+gem 'paper_trail', '~> 3.0.6'
+gem 'differ'
 
 group :development do
   gem 'better_errors'
