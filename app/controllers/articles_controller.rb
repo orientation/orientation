@@ -74,6 +74,10 @@ class ArticlesController < ApplicationController
     @subscriptions = decorate_article.subscriptions.decorate
   end
 
+  def versions
+    @versions = decorate_article.versions
+  end
+
   private
 
   def article_params

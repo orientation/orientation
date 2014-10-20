@@ -18,9 +18,12 @@ Rails.application.routes.draw do
     put :mark_fresh, on: :member
     put :toggle_archived, on: :member
     get :subscriptions, on: :member
+    get :versions, on: :member
   end
 
   resources :articles, path: "", only: :show
+
+  resources :versions, only: :show
 
   root "articles#index"
 end

@@ -1,0 +1,6 @@
+&#8592;
+= link_to " Back to #{@article.title}", @article
+%h1 Versions
+%p These are all the different recorded versions of this article.
+%ul
+  = render partial: "version", collection: @versions

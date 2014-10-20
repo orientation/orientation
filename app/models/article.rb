@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  has_paper_trail
+
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   has_and_belongs_to_many :tags
