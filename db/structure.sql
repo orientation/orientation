@@ -104,7 +104,8 @@ CREATE TABLE articles (
     editor_id integer,
     last_notified_author_at timestamp without time zone,
     archived_at timestamp without time zone,
-    rotted_at timestamp without time zone
+    rotted_at timestamp without time zone,
+    tags_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -194,7 +195,8 @@ CREATE TABLE tags (
     name character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    slug character varying(255)
+    slug character varying(255),
+    articles_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -256,6 +258,41 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: versions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE versions (
+    id integer NOT NULL,
+    item_type character varying(255) NOT NULL,
+    item_id integer NOT NULL,
+    event character varying(255) NOT NULL,
+    whodunnit character varying(255),
+    object text,
+    object_changes text,
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE versions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -288,6 +325,13 @@ ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclas
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq'::regclass);
 
 
 --
@@ -331,6 +375,14 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY versions
+    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: articles_content; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -370,6 +422,13 @@ CREATE INDEX index_articles_tags_on_article_id_and_tag_id ON articles_tags USING
 --
 
 CREATE UNIQUE INDEX index_tags_on_slug ON tags USING btree (slug);
+
+
+--
+-- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_versions_on_item_type_and_item_id ON versions USING btree (item_type, item_id);
 
 
 --
@@ -424,4 +483,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140522210252');
 INSERT INTO schema_migrations (version) VALUES ('20140602153320');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606204236');
+
+INSERT INTO schema_migrations (version) VALUES ('20140923231243');
+
+INSERT INTO schema_migrations (version) VALUES ('20141020032733');
 
