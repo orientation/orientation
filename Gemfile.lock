@@ -92,7 +92,7 @@ GEM
       activerecord (>= 3.0, < 4.2)
       delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
-    differ (0.1.2)
+    diffy (3.0.7)
     docile (1.1.5)
     dotenv (0.7.0)
     dotenv-rails (0.7.0)
@@ -344,7 +344,7 @@ DEPENDENCIES
   coffee-rails
   delayed_job
   delayed_job_active_record
-  differ
+  diffy
   dotenv-rails
   draper
   factory_girl_rails (~> 4.2.1)

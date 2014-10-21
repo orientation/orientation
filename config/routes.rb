@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :tags
 
   resources :authors, only: [:index, :show, :new, :create, :update] do
-    put :toggle_status, to: "authors#toggle_status", as: "toggle_status"
+    put :toggle_status, to: 'authors#toggle_status', as: 'toggle_status'
   end
 
   resources :articles do
@@ -19,11 +19,12 @@ Rails.application.routes.draw do
     put :toggle_archived, on: :member
     get :subscriptions, on: :member
     get :versions, on: :member
+    resources :versions, controller: 'versions'
   end
 
-  resources :articles, path: "", only: :show
+  resources :articles, path: '', only: :show
 
   resources :versions, only: :show
 
-  root "articles#index"
+  root 'articles#index'
 end

@@ -127,6 +127,10 @@ class Article < ActiveRecord::Base
     self.never_notified_author? or !self.recently_notified_author?
   end
 
+  def diff(old_version, new_version)
+    Differ.diff_by_line(new_version.content, old_version.content).to_s
+  end
+
   # @user - the user to subscribe to this article
   # Returns the subscription if successfully created
   # Raises otherwise

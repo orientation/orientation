@@ -37,7 +37,7 @@ gem "mini_magick"
 gem 'fog'
 gem 'masonry-rails'
 gem 'paper_trail', '~> 3.0.6'
-gem 'differ'
+gem 'diffy'
 
 group :development do
   gem 'better_errors'
