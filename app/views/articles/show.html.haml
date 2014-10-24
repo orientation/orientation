@@ -64,13 +64,19 @@
               = markdown(@article.content || "No content")
 
           - if user_signed_in?
-            .mbm
-              = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
+            .split.split--responsive
+              .split-item
 
-              - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
-              = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
+                .split-cell.mbm
+                  = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
 
-              = link_to "Delete", @article, class: "btn btn--b", method: :delete
+                  - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
+                  = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
+
+                  = link_to "Delete", @article, class: "btn btn--b", method: :delete
+
+                .split-cell.mbm
+                  = link_to 'Older Versions', article_versions_url(@article)
 
         %aside.g-b.g-b--m--1of6.pt--m--l
           / TODO(Olivier): Combine %ul and contents into a single partial.
@@ -79,6 +85,5 @@
           - if @article.subscriptions.count > 0
             %ul.list.list--object
               = render partial: 'subscription', collection: @article.subscriptions.decorate
-          = link_to "Versions", article_versions_url(@article), class: 'btn btn--a'
           - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
           = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
