@@ -1,6 +1,16 @@
-&#8592;
-= link_to " Back to #{@article.title}", @article
-%h1 Versions
-%p These are all the different recorded versions of this article.
-%ul
-  = render partial: "version", collection: @versions
+.row
+  .cell.well.well--l
+
+    %p.mbf
+      %span &#8592;
+      = link_to "Back to \"#{@article.title}\"", @article
+
+.row
+  .cell.cell--s.well
+
+    %h1 Versions
+    %p These are all the different recorded versions of this article.
+
+    .card
+      %ul.list.list--divided
+        = render partial: 'version', collection: @versions
