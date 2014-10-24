@@ -75,7 +75,7 @@ class ArticlesController < ApplicationController
   end
 
   def versions
-    @versions = decorate_article.versions
+    @versions = decorate_article.old_versions
   end
 
   private

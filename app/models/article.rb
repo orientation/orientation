@@ -92,6 +92,10 @@ class Article < ActiveRecord::Base
     Article.fresh? self
   end
 
+  def has_old_versions?
+    self.old_versions.any?
+  end
+
   # an article is stale when it has been created over 4 months ago
   # and has never been updated since
   def stale?
@@ -129,6 +133,10 @@ class Article < ActiveRecord::Base
 
   def diff(old_version, new_version)
     Differ.diff_by_line(new_version.content, old_version.content).to_s
+  end
+
+  def old_versions
+    self.versions.where.not(object: nil)
   end
 
   # @user - the user to subscribe to this article
