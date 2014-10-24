@@ -9,12 +9,19 @@ $(document).on "page:change", ->
     $('.js-search-form').submit()
 
   localize_datetimes = ->
-    dates = $('.js-time')
-    for date in dates
-      old_time = $(date).attr('datetime')
-      # NOTE: Affects date display in Article show page
-      new_time = moment(old_time).format('MMMM D, YYYY')
-      $(date).html(new_time)
+    dates = $('.js-datetime')
+
+    dates.each ->
+      date     = $(@)
+      format   = $(@).data('datetime')
+      old_time = date.attr('datetime')
+
+      if format == 'datetime'
+        new_time = moment(old_time).format('MMMM D, YYYY [at] h:mm A')
+      else
+        new_time = moment(old_time).format('MMMM D, YYYY')
+
+      $(@).html(new_time)
 
   attach_loading_indicators = ->
     $(document).on 'page:fetch', -> NProgress.start()

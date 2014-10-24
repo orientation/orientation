@@ -1,2 +1,5 @@
 %li.list-item
-  = link_to version.created_at.strftime('%B %-d, %Y at %-l:%M%P'), article_version_path(@article, version)
+  = link_to version.created_at, article_version_path(@article, version),
+    class: 'js-datetime',
+    data: { datetime: 'datetime' },
+    datetime: version.created_at
