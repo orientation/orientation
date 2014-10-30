@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
-  domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
+  domain_regex = /\A([\w\.%\+\-]+)@(codeschool)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
 
   mount_uploader :avatar, AvatarUploader
@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 
   def notify_about_stale_articles
     return false unless self.active? # we don't want to send mailers to inactive authors
-    
+
     articles = self.articles.stale.select(&:ready_to_notify_author_of_staleness?)
     article_ids = articles.map(&:id)
     Delayed::Job.enqueue(StalenessNotificationJob.new(article_ids)) unless article_ids.empty?
