@@ -11,9 +11,7 @@
               .split-cell
                 = link_to "New Article", new_article_url, class: 'btn btn--a form-btn'
           %ul.list.js-article-list
-            - @topics.each do |topic, articles|
-              %h1= topic
-              = render articles
+            = render @articles
 
         %aside.g-b.g-b--m--1of3
           = render "tags/tag_categories", tags: @tags

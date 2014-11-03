@@ -1,0 +1,5 @@
+= form_tag results_articles_path, method: :get do
+  = search_field_tag :search, params[:search],
+    class: 'form-input',
+    placeholder: 'Search articles by keyword',
+    autofocus: true

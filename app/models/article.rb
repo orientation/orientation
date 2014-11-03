@@ -12,6 +12,15 @@ class Article < ActiveRecord::Base
 
   validates :slug, uniqueness: true, presence: true
 
+  # @returns [Hash] a hash of categories, and all current articles within each
+  def self.by_topic
+    {}.tap do |grouped|
+      select("distinct topic").map(&:topic).sort.each do |c|
+        grouped[c] = current.where(topic: c).order(:title)
+      end
+    end
+  end
+
   def self.archived
     where("archived_at IS NOT NULL")
   end

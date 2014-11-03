@@ -6,6 +6,10 @@
       = simple_form_for @article do |f|
 
         .form-item
+          = f.text_field :topic, placeholder: 'Enter an Article Topic',
+            class: 'form-input form-input--clear tfh tsl ts--m--xl'
+
+        .form-item
           = f.input_field :title, placeholder: 'Enter an Article Title',
             class: 'form-input form-input--clear tfh tsl ts--m--xl'
 

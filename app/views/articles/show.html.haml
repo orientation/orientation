@@ -21,9 +21,35 @@
             %span.label.label--invert= @article.updated_at_tag
 
       .g
-        %aside.g-b.g-b--m--1of6.mbm.pt--m--l
+        %aside.g-b.g-b--m--2of8.mbm{style: "width: 25%"}
+          .toc
+            = markdown_toc(@article.content)
 
-          .dropdown.mbm.js-dropdown
+        .g-b{ style: "width: 62.5%" }
+          .card.markdown.mbm.pl--l--m.pr--l--m.ptl
+            = find_and_preserve do
+              = markdown(@article.content || "No content")
+
+          - if user_signed_in?
+            .mbm
+              = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
+
+              - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
+              = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
+
+              = link_to "Delete", @article, class: "btn btn--b", method: :delete
+
+        %aside.g-b{ style: "width: 12.5%" }
+          / TODO(Olivier): Combine %ul and contents into a single partial.
+          / TODO(Olivier): Restore original subscription partial (and view, if needed). I had to overwrite it to access the data :(
+          / TODO(Olivier): Restore @article.subscriptions to @subscriptions. This works, but I don't know why.
+          - if @article.subscriptions.count > 0
+            %ul.list.list--object
+              = render partial: 'subscription', collection: @article.subscriptions.decorate
+          - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
+          = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
+
+          .dropdown.mbm.js-dropdown.pt--m--l
             .card.card--xs.has-signal
               .js-dropdown-btn
                 = @article.signal
@@ -46,27 +72,3 @@
                     %span.label Fresh
 
           = render "tags/tags", tags: @article.tags
-
-        .g-b.g-b--m--4of6
-          .card.markdown.mbm.pl--l--m.pr--l--m.ptl
-            = find_and_preserve do
-              = markdown(@article.content || "No content")
-
-          - if user_signed_in?
-            .mbm
-              = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
-
-              - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
-              = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
-
-              = link_to "Delete", @article, class: "btn btn--b", method: :delete
-
-        %aside.g-b.g-b--m--1of6.pt--m--l
-          / TODO(Olivier): Combine %ul and contents into a single partial.
-          / TODO(Olivier): Restore original subscription partial (and view, if needed). I had to overwrite it to access the data :(
-          / TODO(Olivier): Restore @article.subscriptions to @subscriptions. This works, but I don't know why.
-          - if @article.subscriptions.count > 0
-            %ul.list.list--object
-              = render partial: 'subscription', collection: @article.subscriptions.decorate
-          - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
-          = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put

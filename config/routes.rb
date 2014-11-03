@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :articles do
+    get :results, on: :collection
     get :archived, on: :collection
     put :toggle_subscription, on: :member
     put :report_rot, on: :member

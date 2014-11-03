@@ -45,6 +45,10 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 
+  def markdown_toc(text)
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML_TOC).render(text).html_safe
+  end
+
   ##
   # Takes a time and a string to represent it. Outputs a proper <time>
   # element with a title tag that display the raw time.

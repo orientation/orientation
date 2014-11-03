@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
-  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :toggle_subscription, :report_rot, :mark_fresh]
+  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :toggle_subscription, :mark_fresh]
   respond_to :html, :json
 
   def archived
@@ -8,6 +8,12 @@ class ArticlesController < ApplicationController
   end
 
   def index
+    @topics = Article.by_topic
+    @topics.each { |k,v| @topics[k] = ArticleDecorator.decorate_collection(v) }
+    @tags = Tag.by_article_count.take(10)
+  end
+
+  def results
     @articles = ArticleDecorator.decorate_collection(Article.current.includes(:tags).text_search(params[:search]))
     @tags = Tag.by_article_count.take(10)
   end
@@ -71,7 +77,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:created_at, :updated_at, :title, :content, :tag_tokens, :author_id, :editor_id, :archived_at)
+    params.require(:article).permit(:created_at, :updated_at, :topic, :title, :content, :tag_tokens, :author_id, :editor_id, :archived_at)
   end
 
   def decorate_article
