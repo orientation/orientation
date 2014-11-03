@@ -32,7 +32,14 @@ class User < ActiveRecord::Base
       # This means an OAuth profile image can never override an existing Orientation one.
       update_image(user, auth) if user.image.nil?
     else
-      user = create_from_omniauth(auth)
+      # if we can find a user with a matching name, let's avoid creating
+      # a duplicate record for that user and instead update the old user
+      # record with the new auth info (uid) and email (@codeschool.com)
+      if User.find_by(name: auth["info"]["name"])
+        update_old_envylabs_user(auth)
+      else
+        user = create_from_omniauth(auth)
+      end
     end
 
     return user
@@ -78,5 +85,14 @@ class User < ActiveRecord::Base
   def self.update_image(user, auth)
     user.image = auth["info"]["image"]
     user.save
+  end
+
+  def update_old_envylabs_user(auth)
+    self.email = auth["info"]["email"]
+    self.uid = auth["uid"]
+
+    self.save!
+
+    self
   end
 end
