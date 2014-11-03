@@ -6,11 +6,6 @@ FactoryGirl.define do
     slug { title.parameterize }
     content { Faker::Lorem.paragraphs(1).first }
 
-    trait :stale do
-      created_at 7.months.ago
-      updated_at 7.months.ago
-    end
-
     trait :fresh do
       created_at 7.months.ago
       updated_at 6.days.ago
@@ -18,10 +13,6 @@ FactoryGirl.define do
 
     trait :archived do
       archived_at 1.day.ago
-    end
-
-    trait :rotten do
-      rotted_at Time.now
     end
   end
 end

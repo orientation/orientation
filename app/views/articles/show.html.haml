@@ -2,8 +2,6 @@
 
 - if @article.archived?
   %p.bulletin.bulletin--warning This article has been archived. Please don't trust the information displayed here.
-- if @article.rotten?
-  %p.bulletin.bulletin--warning This article has gone rotten. The information is partially or completely out-of-date.
 
 %main.row
   .cell.well.well--l
@@ -36,11 +34,7 @@
                       .label
                         - if @article.fresh?
                           Fresh
-                        - if @article.stale?
-                          Stale
-                        - if @article.rotten?
-                          Rotten
-                        - unless @article.fresh? || @article.stale? || @article.rotten?
+                        - unless @article.fresh?
                           Normal
                     .split-cell.tcs.tsm
                       = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true }
@@ -50,11 +44,6 @@
                   = link_to mark_fresh_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
                     .signal.signal--fresh
                     %span.label Fresh
-              - unless @article.rotten?
-                .dropdown-item
-                  = link_to report_rot_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
-                    .signal.signal--rotten
-                    %span.label Rotten
 
           = render "tags/tags", tags: @article.tags
 

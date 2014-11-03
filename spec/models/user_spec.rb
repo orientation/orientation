@@ -24,47 +24,6 @@ describe User do
     end
   end
 
-  context "#notify_about_stale_articles" do
-    let(:author) { article.author }
-    subject(:notify_about_stale_articles) { author.notify_about_stale_articles }
-
-    context "with articles that have not previously been stale" do
-      let(:article) { create(:article, :stale, last_notified_author_at: nil) }
-
-      it "queues a delayed job" do
-        expect { notify_about_stale_articles }.to create_delayed_job_with(:StalenessNotificationJob)
-      end
-
-      context 'with an inactive author' do
-        before { author.toggle!(:active) }
-
-        it "returns false" do
-          expect(notify_about_stale_articles).to be_falsey
-        end
-
-        it "does not queue a delayed job" do
-          expect { notify_about_stale_articles }.not_to create_delayed_job_with(:StalenessNotificationJob)
-        end
-      end
-    end
-
-    context "with articles that have not yet been added to the queue" do
-      let(:article) { create(:article, :stale, last_notified_author_at: 8.days.ago) }
-
-      it "queues a delayed job" do
-        expect { notify_about_stale_articles }.to create_delayed_job_with(:StalenessNotificationJob)
-      end
-    end
-
-    context "with articles that are already queued" do
-      let(:article) { create(:article, :stale, last_notified_author_at: 2.days.ago) }
-
-      it "does not queue a delayed job" do
-        expect { notify_about_stale_articles }.not_to create_delayed_job_with(:StalenessNotificationJob)
-      end
-    end
-  end
-
   context "#subscribed_to?(article)" do
     let(:user) { create(:user) }
     let(:article) { create(:article) }

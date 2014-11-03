@@ -53,9 +53,7 @@ It's impossible to use a non-public domain as an OAuth callback URL for Google O
 - Filtered full-text fuzzy article search
 - GitHub-style syntax highlighting & formatting
 - Grouping of articles by tags
-- Automatic flagging of articles older than 6 months old or not having been updated in 6 months as "stale" with daily batched email notifications to the article author
 - Subscription to articles in order to receive email notifications when they're updated by anyone
-- Ability to mark articles as "rotten" if out of date and automatically notify all contributors (author & editor)
 
 ## Planned Features
 - Tag merging

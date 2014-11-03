@@ -56,14 +56,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def notify_about_stale_articles
-    return false unless self.active? # we don't want to send mailers to inactive authors
-
-    articles = self.articles.stale.select(&:ready_to_notify_author_of_staleness?)
-    article_ids = articles.map(&:id)
-    Delayed::Job.enqueue(StalenessNotificationJob.new(article_ids)) unless article_ids.empty?
-  end
-
   # TODO: improve this query
   def subscribed_to?(article)
     subscriptions.where(article_id: article.id).where(user_id: self.id).count > 0

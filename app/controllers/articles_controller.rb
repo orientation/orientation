@@ -42,12 +42,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def report_rot
-    @article.rot!
-    flash[:notice] = "Successfully reported this article as rotten."
-    respond_with(@article)
-  end
-
   def update
     redirect_to @article if @article.update_attributes(article_params)
   end

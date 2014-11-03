@@ -5,7 +5,6 @@ ruby '2.1.2'
 gem 'rails', '~> 4.1.2'
 
 gem 'pg'
-gem 'thin'
 
 gem 'uglifier'
 gem 'jquery-rails'
@@ -38,6 +37,7 @@ gem 'fog'
 gem 'masonry-rails'
 
 group :development do
+  gem 'thin'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'powder'

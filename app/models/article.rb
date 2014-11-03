@@ -17,11 +17,11 @@ class Article < ActiveRecord::Base
   end
 
   def self.current
-    where(archived_at: nil).order("rotted_at DESC")
+    where(archived_at: nil).order("created_at ASC")
   end
 
   def self.fresh
-    where("updated_at >= ?", 7.days.ago).where(archived_at: nil).where(rotted_at: nil)
+    where("updated_at >= ?", 7.days.ago).where(archived_at: nil)
   end
 
   def self.fresh?(article)
@@ -38,22 +38,6 @@ class Article < ActiveRecord::Base
 
   def self.popular
     includes(:subscribers).sort_by{|a| a.subscribers.count }.reverse.take(5)
-  end
-
-  def self.rotten
-    where("rotted_at IS NOT NULL")
-  end
-
-  def self.rotten?(article)
-    self.rotten.include?(article)
-  end
-
-  def self.stale
-    where("updated_at < ?", 6.months.ago)
-  end
-
-  def self.stale?(article)
-    self.stale.include?(article)
   end
 
   def self.text_search(query)
@@ -90,39 +74,8 @@ class Article < ActiveRecord::Base
     Article.fresh? self
   end
 
-  # an article is stale when it has been created over 4 months ago
-  # and has never been updated since
-  def stale?
-    Article.stale? self
-  end
-
-  # an article is rotten when it has been manually marked as rotten and
-  # the rotted_at timestamp has been set (it defaults to nil)
-  def rotten?
-    Article.rotten? self
-  end
-
   def refresh!
-    update_attribute(:rotted_at, nil)
     touch(:updated_at)
-  end
-
-  def rot!
-    update_attribute(:rotted_at, Time.now.in_time_zone)
-    Delayed::Job.enqueue(SendArticleRottenJob.new(self.id, contributors))
-  end
-
-  def never_notified_author?
-    self.last_notified_author_at.nil?
-  end
-
-  def recently_notified_author?
-    return false if never_notified_author?
-    self.last_notified_author_at > 1.week.ago
-  end
-
-  def ready_to_notify_author_of_staleness?
-    self.never_notified_author? or !self.recently_notified_author?
   end
 
   # @user - the user to subscribe to this article
