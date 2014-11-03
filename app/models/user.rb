@@ -98,7 +98,9 @@ class User < ActiveRecord::Base
   end
 
   def self.destroy_duplicate_user(user)
-    if User.where(name: user.name).length > 1
+    if User.where(name: user.name).length <= 1
+      return user
+    else
       old_user = User.where(name: user.name).where("email ILIKE ?", "%envylabs.com").first
 
       if old_user
@@ -109,6 +111,8 @@ class User < ActiveRecord::Base
         user.destroy
 
         old_user
+      else
+        return user
       end
     end
   end
