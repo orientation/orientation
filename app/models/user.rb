@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
       # if we can find a user with a matching name, let's avoid creating
       # a duplicate record for that user and instead update the old user
       # record with the new auth info (uid) and email (@codeschool.com)
-      if User.find_by(name: auth["info"]["name"])
-        user = update_old_envylabs_user(auth)
+      if old_user = User.find_by(name: auth["info"]["name"])
+        user = update_old_envylabs_user(old_user, auth)
       else
         user = create_from_omniauth(auth)
       end
@@ -88,16 +88,16 @@ class User < ActiveRecord::Base
     user.save
   end
 
-  def update_old_envylabs_user(auth)
-    self.email = auth["info"]["email"]
-    self.uid = auth["uid"]
+  def self.update_old_envylabs_user(old_user, auth)
+    old_user.email = auth["info"]["email"]
+    old_user.uid = auth["uid"]
 
-    self.save!
+    old_user.save!
 
-    self
+    old_user
   end
 
-  def destroy_duplicate_user(user)
+  def self.destroy_duplicate_user(user)
     if User.where(name: user.name).length > 1
       old_user = User.where(name: user.name).where("email ILIKE ?", "%envylabs.com").first
 
