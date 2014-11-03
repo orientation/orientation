@@ -3,7 +3,6 @@
 --
 
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -21,34 +20,6 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
--- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
-
-
---
--- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
-
-
---
--- Name: pg_trgm; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA public;
-
-
---
--- Name: EXTENSION pg_trgm; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION pg_trgm IS 'text similarity measurement and index searching based on trigrams';
 
 
 SET search_path = public, pg_catalog;
@@ -103,8 +74,7 @@ CREATE TABLE articles (
     slug character varying(255),
     editor_id integer,
     last_notified_author_at timestamp without time zone,
-    archived_at timestamp without time zone,
-    rotted_at timestamp without time zone
+    archived_at timestamp without time zone
 );
 
 
@@ -401,8 +371,6 @@ INSERT INTO schema_migrations (version) VALUES ('20121107205723');
 
 INSERT INTO schema_migrations (version) VALUES ('20121228090236');
 
-INSERT INTO schema_migrations (version) VALUES ('20130218024132');
-
 INSERT INTO schema_migrations (version) VALUES ('20130224191645');
 
 INSERT INTO schema_migrations (version) VALUES ('20130302074219');
@@ -424,4 +392,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140522210252');
 INSERT INTO schema_migrations (version) VALUES ('20140602153320');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606204236');
+
+INSERT INTO schema_migrations (version) VALUES ('20141103041923');
 
