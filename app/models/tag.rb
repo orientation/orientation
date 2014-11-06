@@ -49,7 +49,7 @@ class Tag < ActiveRecord::Base
   ## a destroy, such that we can call `self.articles` on that same record and it works. If it doesn't work, then this can just
   ## be moved to a 'before_destroy'.
 
-  def decrement_tags_counter
+  def decrement_articles_counter
     self.articles.each do |article|
       article.decrement!(:tags_count)
     end

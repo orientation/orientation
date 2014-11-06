@@ -336,27 +336,23 @@ describe Article do
 
   context 'tags_count' do
     let!(:article) { create(:article) }
-    let!(:previous_count) { article.tags_count }
-
-    subject(:tags_count) { article.tags_count }
+    let!(:article_tag_count) { article.tags_count }
 
     context 'when a tag is added' do
-      before { create(:tag, articles: [article]) }
+      subject(:add_tag) { create(:tag, articles: [article]) }
 
       it "increases" do
-        expect(tags_count).to be > previous_count
+        expect { add_tag }.to change { article.tags_count }.by(1)
       end
     end
 
     context 'when a tag is removed' do
       let!(:tag) { create(:tag, articles: [article]) }
 
-      before do
-        article.tags.first.destroy
-      end
+      subject(:remove_tag) { article.tags.reload.first.destroy }
 
       it "decreases" do
-        expect(tags_count).to be < previous_count
+        expect { remove_tag }.to change { article.reload.tags_count }.by(-1)
       end
     end
 
