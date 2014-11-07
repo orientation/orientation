@@ -33,7 +33,7 @@ $(document).on "page:change", ->
 
   $('.js-search-form').on 'keyup', ->
     clearTimeout(timeout) if timeout
-    timeout = delay 400, -> submit_form()
+    timeout = delay 200, -> submit_form()
 
   $('html').on 'keydown','#article_content', (evt)->
     if evt.keyCode == 9

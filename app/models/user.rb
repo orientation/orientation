@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
-  domain_regex = /\A([\w\.%\+\-]+)@(envylabs|codeschool)\.com$\z/
+  domain_regex = /\A([\w\.%\+\-]+)@(codeschool)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
 
   mount_uploader :avatar, AvatarUploader
@@ -31,8 +31,16 @@ class User < ActiveRecord::Base
       # Only update the user's image if they don't already have one.
       # This means an OAuth profile image can never override an existing Orientation one.
       update_image(user, auth) if user.image.nil?
+      user = destroy_duplicate_user(user)
     else
-      user = create_from_omniauth(auth)
+      # if we can find a user with a matching name, let's avoid creating
+      # a duplicate record for that user and instead update the old user
+      # record with the new auth info (uid) and email (@codeschool.com)
+      if old_user = User.find_by(name: auth["info"]["name"])
+        user = update_old_envylabs_user(old_user, auth)
+      else
+        user = create_from_omniauth(auth)
+      end
     end
 
     return user
@@ -58,7 +66,7 @@ class User < ActiveRecord::Base
 
   def notify_about_stale_articles
     return false unless self.active? # we don't want to send mailers to inactive authors
-    
+
     articles = self.articles.stale.select(&:ready_to_notify_author_of_staleness?)
     article_ids = articles.map(&:id)
     Delayed::Job.enqueue(StalenessNotificationJob.new(article_ids)) unless article_ids.empty?
@@ -78,5 +86,34 @@ class User < ActiveRecord::Base
   def self.update_image(user, auth)
     user.image = auth["info"]["image"]
     user.save
+  end
+
+  def self.update_old_envylabs_user(old_user, auth)
+    old_user.email = auth["info"]["email"]
+    old_user.uid = auth["uid"]
+
+    old_user.save!
+
+    old_user
+  end
+
+  def self.destroy_duplicate_user(user)
+    if User.where(name: user.name).length <= 1
+      return user
+    else
+      old_user = User.where(name: user.name).where("email ILIKE ?", "%envylabs.com").first
+
+      if old_user
+        old_user.email = user.email
+        old_user.uid = user.uid
+        old_user.save!
+
+        user.destroy
+
+        old_user
+      else
+        return user
+      end
+    end
   end
 end

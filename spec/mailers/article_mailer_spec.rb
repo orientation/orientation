@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
+
 describe ArticleMailer do
-  let(:user) { create(:user, email: 'aimee@envylabs.com') }
-  
+  let(:user) { create(:user, email: 'aimee@codeschool.com') }
+
   context ".notify_author_of_staleness" do
-    let(:articles) do 
+    let(:articles) do
       3.times { create(:article, :stale, author: user) }
       user.articles
     end
@@ -36,11 +36,11 @@ describe ArticleMailer do
 
   context ".send_rotten_notification_for(article, contributors)" do
     let(:article) { create(:article) }
-    let(:contributors) do 
+    let(:contributors) do
       [article.author, article.editor].compact.map do |user|
         { name: user.name, email: user.email }
       end
-    end 
+    end
 
     let(:mailer) { described_class.send_rotten_notification_for(article, contributors) }
 

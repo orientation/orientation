@@ -3,7 +3,7 @@ class Article < ActiveRecord::Base
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags, before_add: :validates_tag
   has_many :subscriptions, class_name: "ArticleSubscription"
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
 
@@ -11,51 +11,36 @@ class Article < ActiveRecord::Base
 
   before_validation :generate_slug
   after_save :update_subscribers
+  after_create :increment_tags_counter
+  before_destroy :decrement_tags_counter
 
   validates :slug, uniqueness: true, presence: true
 
-  def self.archived
-    where("archived_at IS NOT NULL")
-  end
+  FRESHNESS_LIMIT = 7.days
+  STALENESS_LIMIT = 6.months
 
-  def self.current
-    where(archived_at: nil).order("rotted_at DESC")
-  end
+  scope :archived, -> { where("archived_at IS NOT NULL") }
+  scope :current, -> { where(archived_at: nil).order("rotted_at DESC") }
+  scope :ordered_current, -> { current.order(updated_at: :desc).limit(20) }
+  scope :ordered_fresh, -> { fresh.order(updated_at: :desc).limit(20) }
+  scope :rotten, -> { where("rotted_at IS NOT NULL") }
+  scope :stale, -> { where("updated_at < ?", STALENESS_LIMIT.ago.beginning_of_day) }
 
   def self.fresh
-    where("updated_at >= ?", 7.days.ago).where(archived_at: nil).where(rotted_at: nil)
-  end
-
-  def self.fresh?(article)
-    self.fresh.include?(article)
-  end
-
-  def self.ordered_fresh
-    fresh.order(updated_at: :desc).limit(20)
-  end
-
-  def self.ordered_current
-    current.order(updated_at: :desc).limit(20)
+    where("updated_at >= ?", FRESHNESS_LIMIT.ago.beginning_of_day).
+      where(archived_at: nil).
+      where(rotted_at: nil)
   end
 
   def self.popular
     includes(:subscribers).sort_by{|a| a.subscribers.count }.reverse.take(5)
   end
 
-  def self.rotten
-    where("rotted_at IS NOT NULL")
-  end
-
-  def self.rotten?(article)
-    self.rotten.include?(article)
-  end
-
-  def self.stale
-    where("updated_at < ?", 6.months.ago)
-  end
-
-  def self.stale?(article)
-    self.stale.include?(article)
+  def self.reset_tags_count
+    self.all.each do |article|
+      tag_count = article.tags.count
+      article.update_attribute(:tags_count, tag_count)
+    end
   end
 
   def self.text_search(query)
@@ -89,7 +74,9 @@ class Article < ActiveRecord::Base
   # an article is fresh when it has been created or updated 7 days ago
   # or more recently
   def fresh?
-    Article.fresh? self
+    self.updated_at >= FRESHNESS_LIMIT.ago.beginning_of_day &&
+    self.archived_at == nil &&
+    self.rotted_at == nil
   end
 
   def has_old_versions?
@@ -99,13 +86,13 @@ class Article < ActiveRecord::Base
   # an article is stale when it has been created over 4 months ago
   # and has never been updated since
   def stale?
-    Article.stale? self
+    self.updated_at < STALENESS_LIMIT.ago.beginning_of_day
   end
 
   # an article is rotten when it has been manually marked as rotten and
   # the rotted_at timestamp has been set (it defaults to nil)
   def rotten?
-    Article.rotten? self
+    self.rotted_at != nil
   end
 
   def refresh!
@@ -124,7 +111,7 @@ class Article < ActiveRecord::Base
 
   def recently_notified_author?
     return false if never_notified_author?
-    self.last_notified_author_at > 1.week.ago
+    self.last_notified_author_at > 1.week.ago.beginning_of_day
   end
 
   def ready_to_notify_author_of_staleness?
@@ -190,6 +177,22 @@ class Article < ActiveRecord::Base
   def update_subscribers
     subscriptions.each do |sub|
       sub.send_update_for(self.id)
+    end
+  end
+
+  def validates_tag(tag)
+    self.tags.include?(tag)
+  end
+
+  def increment_tags_counter
+    self.tags.each do |tag|
+      tag.increment!(:articles_count)
+    end
+  end
+
+  def decrement_tags_counter
+    self.tags.each do |tag|
+      tag.decrement!(:articles_count)
     end
   end
 end

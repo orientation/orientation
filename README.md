@@ -19,6 +19,7 @@ Find your way around Code School support.
 - Configure `config/database.yml` with your local Postgres credential (usually `username: root` and no `password`)
 - rake db:create
 - rake db:setup
+- In the Rails console (`rails c`), enter the command `User.create( name: 'Test User', email: 'test@codeschool.com' )`
 - gem install powder
 - powder link
 - powder open

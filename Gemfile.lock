@@ -1,24 +1,3 @@
-GIT
-  remote: git://github.com/flyerhzm/bullet.git
-  revision: a6449063ff77509a5e321faf4cceba7ab48bcce5
-  branch: master
-  specs:
-    bullet (4.7.1)
-      activesupport
-      uniform_notifier (>= 1.4.0)
-
-GIT
-  remote: git://github.com/jnicklas/capybara.git
-  revision: 4842732e6dc406be87374a33aac537703e3949ab
-  branch: master
-  specs:
-    capybara (2.1.0)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (~> 2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,6 +42,15 @@ GEM
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
     builder (3.2.2)
+    bullet (4.14.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -176,6 +164,7 @@ GEM
     mime-types (1.25.1)
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
+    mini_portile (0.6.1)
     minitest (5.3.5)
     momentjs-rails (2.7.0)
       railties (>= 3.1)
@@ -185,7 +174,8 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
-    nokogiri (1.5.9)
+    nokogiri (1.6.4.1)
+      mini_portile (~> 0.6.0)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -292,6 +282,8 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    skylight (0.4.0)
+      activesupport (>= 3.0.0)
     slop (3.4.5)
     spring (1.0.0)
     sprockets (2.11.0)
@@ -323,7 +315,7 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    uniform_notifier (1.4.0)
+    uniform_notifier (1.6.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yajl-ruby (1.1.0)
@@ -337,8 +329,8 @@ DEPENDENCIES
   binding_of_caller
   bourbon
   bugsnag
-  bullet!
-  capybara!
+  bullet
+  capybara
   carrierwave
   codeclimate-test-reporter
   coffee-rails
@@ -375,6 +367,7 @@ DEPENDENCIES
   sass-rails
   sdoc
   simple_form (~> 3.0.2)
+  skylight
   spring
   textacular
   thin

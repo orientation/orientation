@@ -4,6 +4,6 @@ FactoryGirl.define do
     provider "Faker::Lorem.sentence"
     uid { "#{Faker::Number.digit}" }
     name { Faker::Name.name }
-    sequence(:email) { |n| "email#{n}@envylabs.com" }
+    sequence(:email) { |n| "email#{n}@codeschool.com" }
   end
 end
