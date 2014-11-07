@@ -29,7 +29,7 @@ gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'rails_tokeninput'
 gem 'momentjs-rails'
-gem 'textacular', require: 'textacular/rails'
+gem 'textacular'
 gem 'mandrill_mailer'
 gem "bugsnag"
 gem 'carrierwave'
@@ -42,7 +42,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'powder'
-  gem 'bullet', github: 'flyerhzm/bullet', branch: 'master'
+  gem 'bullet'
   gem 'spring'
 end
 
@@ -58,7 +58,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', github: "jnicklas/capybara", branch: "master"
+  gem 'capybara'
   gem "codeclimate-test-reporter", require: nil
 end
 
