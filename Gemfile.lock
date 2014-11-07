@@ -288,6 +288,8 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    skylight (0.4.0)
+      activesupport (>= 3.0.0)
     slop (3.4.5)
     spring (1.0.0)
     sprockets (2.11.0)
@@ -369,6 +371,7 @@ DEPENDENCIES
   sass-rails
   sdoc
   simple_form (~> 3.0.2)
+  skylight
   spring
   textacular
   thin

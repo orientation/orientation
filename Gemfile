@@ -36,6 +36,7 @@ gem 'carrierwave'
 gem "mini_magick"
 gem 'fog'
 gem 'masonry-rails'
+gem 'skylight'
 
 group :development do
   gem 'better_errors'
