@@ -104,7 +104,8 @@ CREATE TABLE articles (
     editor_id integer,
     last_notified_author_at timestamp without time zone,
     archived_at timestamp without time zone,
-    rotted_at timestamp without time zone
+    rotted_at timestamp without time zone,
+    tags_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -194,7 +195,8 @@ CREATE TABLE tags (
     name character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    slug character varying(255)
+    slug character varying(255),
+    articles_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -232,7 +234,8 @@ CREATE TABLE users (
     image character varying(255),
     avatar character varying(255),
     active boolean DEFAULT true,
-    shtick text
+    shtick text,
+    articles_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -424,4 +427,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140522210252');
 INSERT INTO schema_migrations (version) VALUES ('20140602153320');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606204236');
+
+INSERT INTO schema_migrations (version) VALUES ('20140607045935');
+
+INSERT INTO schema_migrations (version) VALUES ('20140923231243');
 
