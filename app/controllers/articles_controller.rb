@@ -81,7 +81,9 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:created_at, :updated_at, :title, :content, :tag_tokens, :author_id, :editor_id, :archived_at)
+    params.require(:article).permit(
+      :created_at, :updated_at, :title, :content, :tag_tokens,
+      :author_id, :editor_id, :archived_at, :guide)
   end
 
   def decorate_article

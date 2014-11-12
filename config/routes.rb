@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :versions, controller: 'versions'
   end
 
-  resources :articles, path: '', only: :show
+  resources :guides, only: [:show, :index]
+
+  resources :articles, path: "", only: :show
 
   resources :versions, only: :show
 

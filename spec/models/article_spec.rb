@@ -39,6 +39,47 @@ describe Article do
     end
   end
 
+  context '#guide?' do
+    let(:article) { create(:article) }
+
+    context 'when the article is not set as a guide' do
+      it "returns false" do
+        expect(article.guide?).to be_falsey
+      end
+    end
+
+    context 'when the article is set as a guide' do\
+      subject(:make_guide) { article.update_attribute(:guide, true) }
+
+      it "returns true" do
+        expect { make_guide }.to change { article.guide? }.from(false).to(true)
+      end
+    end
+
+    context 'when an article is no longer a guide' do
+      before { article.update_attribute(:guide, false) }
+
+      it "returns false" do
+        expect(article.guide?).to be_falsey
+      end
+    end
+  end
+
+  context '.guide' do
+    let!(:guide_article) { create(:article, :guide) }
+    let!(:article) { create(:article) }
+
+    subject(:guide) { Article.guide }
+
+    it "includes guide articles" do
+      expect(guide).to include(guide_article)
+    end
+
+    it "doesn't include non-guide articles" do
+      expect(guide).to_not include(article)
+    end
+  end
+
   context '.popular' do
     let(:articles) do
       5.times { create(:article) }
@@ -56,7 +97,7 @@ describe Article do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
 
-    let(:fresh_articles) { Article.fresh }
+    subject(:fresh_articles) { Article.fresh }
 
     it "includes fresh articles" do
       expect(fresh_articles).to include(fresh_article)
@@ -84,7 +125,7 @@ describe Article do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
 
-    let(:stale_articles) { Article.stale }
+    subject(:stale_articles) { Article.stale }
 
     it "includes stale articles" do
       expect(stale_articles).to include(stale_article)
@@ -176,23 +217,25 @@ describe Article do
     let!(:archived_article) { create :article, :archived }
     let!(:rotten_article) { create :article, :rotten }
 
+    subject(:ordered_fresh) { Article.ordered_fresh }
+
     it "returns the more recent article first" do
-      expect(Article.ordered_fresh.first).to eq more_recent_article
+      expect(ordered_fresh.first).to eq more_recent_article
     end
 
     it "does not include archived articles" do
-      expect(Article.ordered_fresh).to_not include(archived_article)
+      expect(ordered_fresh).to_not include(archived_article)
     end
 
     it "does not include rotten articles" do
-      expect(Article.ordered_fresh).to_not include(archived_article)
+      expect(ordered_fresh).to_not include(archived_article)
     end
 
     context "with an updated article" do
       before { recent_article.touch }
 
       it "returns the updated article first" do
-        expect(Article.ordered_fresh.first).to eq recent_article
+        expect(ordered_fresh.first).to eq recent_article
       end
     end
   end
