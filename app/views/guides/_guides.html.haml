@@ -11,7 +11,7 @@
                   = markdown(guide.content || "No content")
 
               .split-cell
-                = link_to "View Guide", guide_path(guide), class: 'tsm'
+                = link_to "View Guide", article_path(guide), class: 'tsm'
         - else
           .mbs
             %h1.h2.dib= guide.title.titleize
