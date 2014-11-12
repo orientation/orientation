@@ -1,0 +1,15 @@
+- unless guides.empty?
+  - guides.each do |guide|
+    - if guide.content.size > 100
+      .split.mbs
+        .split-item
+          .split-cell
+            %h1.h2.dib= guide.title.titleize
+            = find_and_preserve do
+              = markdown(guide.content || "No content")
+
+          .split-cell
+            = link_to "View Guide", guide_path(guide), class: 'tsm'
+    - else
+      .mbs
+        %h1.h2.dib= guide.title.titleize

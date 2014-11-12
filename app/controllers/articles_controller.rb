@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = ArticleDecorator.decorate_collection(Article.current.includes(:tags).text_search(params[:search]))
-    @tags = Tag.by_article_count.take(10)
+    @guides = ArticleDecorator.decorate_collection(Article.guide)
   end
 
   def show
