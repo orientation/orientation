@@ -41,18 +41,14 @@
 
       .g-b.g-b--m--2of3
 
-        %h2.mbs Created
-        - if @author.edits.count > 0
+        %h2.mbs Created Articles
+        - if @author.articles.count > 0
           - # TODO: Apply signal classes unique to Article decorator
           %ul.list.mbl
             - @author.articles.each do |article|
               %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
                 = link_to article.title, article, class: 'article-title'
-                - unless article.tags.empty?
-                  .article-footer
-                    %ul.list.list--inline{ 'data-ui-component' => 'tag-list' }
-                      - article.tags.each do |t|
-                        %li.list-item= link_to t.name, tag_path(t), class: 'label label--link'
+
         - else
           - if current_user == @author
             %p
@@ -61,16 +57,20 @@
           - else
             %p= "#{@author.first_name} hasn't created any articles yet."
 
-        %h2.mbs Edited
+        %h2.mbs Edited Articles
         - if @author.edits.count > 0
           %ul.list
             - @author.edits.each do |article|
               %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
                 = link_to article.title, article, class: 'article-title'
-                - unless article.tags.empty?
-                  .article-footer
-                    %ul.list.list--inline{ 'data-ui-component' => 'tag-list' }
-                      - article.tags.each do |t|
-                        %li.list-item= link_to t.name, tag_path(t), class: 'label label--link'
         - else
           %p= "#{@author.first_name} loves everything just the way it is."
+
+        %h2.mbs Article Subscriptions
+        - if @author.subscribed_articles.count > 0
+          %ul.list
+            - @author.subscribed_articles.each do |article|
+              %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
+                = link_to article.title, article, class: 'article-title'
+        - else
+          %p= "#{@author.first_name} isn't worried about missing out on anything."
