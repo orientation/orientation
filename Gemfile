@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://jmHhBsgtTRJTgLVqyPpt@gem.fury.io/me/'
 
 ruby '2.1.2'
 
@@ -26,6 +27,8 @@ gem 'pygments.rb'
 gem 'redcarpet'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
+gem 'omniauth-codeschool'
 gem 'draper'
 gem 'rails_tokeninput'
 gem 'momentjs-rails'

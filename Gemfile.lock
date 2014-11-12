@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: http://jmHhBsgtTRJTgLVqyPpt@gem.fury.io/me/
   specs:
     actionmailer (4.1.2)
       actionpack (= 4.1.2)
@@ -184,6 +185,12 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
+    omniauth-codeschool (0.0.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-google-oauth2 (0.2.1)
       omniauth (~> 1.0)
       omniauth-oauth2
@@ -347,6 +354,8 @@ DEPENDENCIES
   mini_magick
   momentjs-rails
   omniauth
+  omniauth-codeschool
+  omniauth-github
   omniauth-google-oauth2
   pg
   powder

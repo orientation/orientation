@@ -7,4 +7,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     image_aspect_ratio: "square",
     image_size: 40
   }
+
+  provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: "user"
 end
