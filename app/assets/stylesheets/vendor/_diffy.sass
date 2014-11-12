@@ -1,0 +1,67 @@
+// *************************************
+//
+//   Diffy
+//   -> Version comparison
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .diff
+//   %ul
+//     %li.del|ins|unchanged
+//       %del|ins|span
+//         %strong
+//
+// *************************************
+
+.diff
+  font-size: 13px
+  font-family: $b-fontFamily-mono
+
+  ul
+    background: #fff
+    display: table
+    list-style: none
+    margin: 0
+    overflow: auto
+    padding: 0
+    width: 100%
+
+  del, ins
+    display: block
+    text-decoration: none
+
+  li
+    display: table-row
+    height: 1em
+    margin: 0
+    padding: 0
+
+    &.ins
+      background: #dfd
+      color: #080
+
+    &.del
+      text-decoration: line-through
+      background: #fee
+      color: #b00
+
+  del, ins, span
+    white-space: pre-wrap
+
+  del strong
+    background: #fcc
+    font-weight: normal
+
+  ins strong
+    background: #9f9
+    font-weight: normal
+
+  li
+
+    &.diff-comment
+      display: none
+
+    &.diff-block-info
+      background: none repeat scroll 0 0 #999
