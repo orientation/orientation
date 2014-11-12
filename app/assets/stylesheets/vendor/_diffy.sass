@@ -20,7 +20,6 @@
   font-family: $b-fontFamily-mono
 
   ul
-    background: #fff
     display: table
     list-style: none
     margin: 0
@@ -39,29 +38,21 @@
     padding: 0
 
     &.ins
-      background: #dfd
-      color: #080
+      background: $diff-insert-background
+      color: $diff-insert-color
 
     &.del
+      background: $diff-delete-background
+      color: $diff-delete-color
       text-decoration: line-through
-      background: #fee
-      color: #b00
 
   del, ins, span
     white-space: pre-wrap
 
   del strong
-    background: #fcc
+    background: $diff-delete-block-background
     font-weight: normal
 
   ins strong
-    background: #9f9
+    background: $diff-insert-block-background
     font-weight: normal
-
-  li
-
-    &.diff-comment
-      display: none
-
-    &.diff-block-info
-      background: none repeat scroll 0 0 #999
