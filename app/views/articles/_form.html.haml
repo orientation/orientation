@@ -17,6 +17,9 @@
             label_html: { class: 'form-label label' },
             input_html: { data: {load: @tags} }
 
+        .form-item
+          = f.input :guide, label: "Guide?"
+
         - if @article.author.blank?
           .form-item
             = f.input :author_id, as: :hidden, input_html: { value: current_user.try(:id) }

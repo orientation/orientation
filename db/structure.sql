@@ -105,7 +105,8 @@ CREATE TABLE articles (
     last_notified_author_at timestamp without time zone,
     archived_at timestamp without time zone,
     rotted_at timestamp without time zone,
-    tags_count integer DEFAULT 0 NOT NULL
+    tags_count integer DEFAULT 0 NOT NULL,
+    guide boolean DEFAULT false
 );
 
 
@@ -431,4 +432,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140606204236');
 INSERT INTO schema_migrations (version) VALUES ('20140607045935');
 
 INSERT INTO schema_migrations (version) VALUES ('20140923231243');
+
+INSERT INTO schema_migrations (version) VALUES ('20141111222212');
 

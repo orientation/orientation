@@ -30,6 +30,10 @@ class Article < ActiveRecord::Base
       where(rotted_at: nil)
   end
 
+  def self.guide
+    where(guide: true)
+  end
+
   def self.popular
     includes(:subscribers).sort_by{|a| a.subscribers.count }.reverse.take(5)
   end
