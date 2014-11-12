@@ -1,16 +1,1 @@
-.row
-  .cell.well.well--l
-
-    %p.mbf
-      %span &#8592;
-      = link_to "Back to \"#{@article.title}\"", @article
-
-.row
-  .cell.cell--s.well
-
-    %h1 Versions
-    %p These are all the different recorded versions of this article.
-
-    .card
-      %ul.list.list--divided
-        = render partial: 'version', collection: @versions.reverse
+= render partial: 'shared/diff', locals: { article: @article, diff: @diff, versions: @versions }
