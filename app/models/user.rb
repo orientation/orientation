@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :article
   has_many :articles, foreign_key: "author_id"
   has_many :subscriptions, class_name: "ArticleSubscription"
-  has_many :subscribed_articles, :through => :subscriptions, source: :articles
+  has_many :subscribed_articles, through: :subscriptions, source: :article
 
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
