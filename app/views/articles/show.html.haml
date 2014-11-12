@@ -75,8 +75,9 @@
 
                   = link_to "Delete", @article, class: "btn btn--b", method: :delete
 
-                .split-cell.mbm
-                  = link_to 'Older Versions', article_versions_url(@article)
+                - if @article.has_old_versions?
+                  .split-cell.mbm
+                    = link_to 'Older Versions', article_versions_url(@article)
 
         %aside.g-b.g-b--m--1of6.pt--m--l
           / TODO(Olivier): Combine %ul and contents into a single partial.
