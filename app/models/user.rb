@@ -97,22 +97,22 @@ class User < ActiveRecord::Base
     old_user
   end
 
-  def self.destroy_duplicate_user(user)
-    if User.where(name: user.name).length <= 1
-      return user
+  def self.destroy_duplicate_user(new_user)
+    if User.where(name: new_user.name).length <= 1
+      return new_user
     else
-      old_user = User.where(name: user.name).where("email ILIKE ?", "%envylabs.com").first
+      old_user = User.where(name: new_user.name).where("email ILIKE ?", "%envylabs.com").first
 
       if old_user
-        old_user.email = user.email
-        old_user.uid = user.uid
+        old_user.email = new_user.email
+        old_user.uid = new_user.uid
         old_user.save!
 
-        user.destroy
+        new_user.destroy
 
         old_user
       else
-        return user
+        return new_user
       end
     end
   end
