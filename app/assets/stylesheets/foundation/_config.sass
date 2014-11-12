@@ -105,10 +105,13 @@ $label--invert-color: $c-text-invert
 $label--link--invert-color: $c-text-invert
 $label--link--invert-hover-color: darken($label--link--invert-color, 10%)
 
-// Muted Link
+// Link
 
-$mutedLink-color: $c-text
-$mutedLink-color-hover: lighten($label-color, 15%)
+$link-color: $c-highlight
+$link-color-hover: lighten($link-color, 20%)
+
+$link--muted-color: lighten($chicago, 10%)
+$link--muted-color-hover: darken($chicago, 15%)
 
 // Signal
 
@@ -121,12 +124,12 @@ $signal--stale-background: $banana
 
 // Diffy
 
-$diff-delete-background: lighten( $coral, 20% )
-$diff-delete-color: darken( $coral, 30% )
+$diff-delete-background: lighten($coral, 20%)
+$diff-delete-color: darken($coral, 30%)
 $diff-delete-block-background: $coral
 
-$diff-insert-background: lighten( $celadon, 15% )
-$diff-insert-color: darken( $celadon, 40% )
+$diff-insert-background: lighten($celadon, 15%)
+$diff-insert-color: darken($celadon, 40%)
 $diff-insert-block-background: $celadon
 
 // jQuery Tokeninput
@@ -134,7 +137,6 @@ $diff-insert-block-background: $celadon
 $tokeninput-background: $c-background-invert
 $tokeninput-token-background: darken($c-background, 3%)
 $tokeninput-token-color: $c-subdue
-
 
 // -------------------------------------
 //   Base

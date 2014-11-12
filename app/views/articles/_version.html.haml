@@ -1,6 +1,6 @@
 %li.list-item.tsm
   - # TODO(Versions): Add 'is-active' class to current version
   = link_to version.created_at, article_version_path(@article, version),
-    class: 'js-datetime',
+    class: 'link link--muted js-datetime',
     data: { datetime: 'datetime' },
     datetime: version.created_at
