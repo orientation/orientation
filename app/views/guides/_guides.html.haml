@@ -1,17 +1,15 @@
 - unless guides.empty?
-  %div.card.card--b.mbm
-    %ul.list
-      - guides.each do |guide|
-        - if guide.content.size > 100
-          .split.mbs
-            .split-item
-              .split-cell
-                %h1.h2.dib= guide.title.titleize
-                = find_and_preserve do
-                  = markdown(guide.content || "No content")
-
-              .split-cell
-                = link_to "View Guide", article_path(guide), class: 'tsm'
-        - else
-          .mbs
-            %h1.h2.dib= guide.title.titleize
+  - guides.each do |guide|
+    .card.card--b.mbm
+      - if guide.content.size > 100
+        .split.mbs
+          .split-item
+            .split-cell
+              %h1.h2.dib= guide.title.titleize
+            .split-cell
+              = link_to "View Guide", article_path(guide), class: 'tsm'
+        .tsm.js-guides
+          = find_and_preserve do
+            = markdown(guide.content || "No content")
+      - else
+        %h1.h2.dib= guide.title.titleize

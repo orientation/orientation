@@ -16,13 +16,14 @@
             .split-cell
               %ul.list.list--inline.tsm
                 %li.list-item
-                  = link_to image_tag("brackets_banner_logo-blue.svg", height: 40, width: 40, class: 'vam'), root_url
+                  = link_to image_tag( 'brackets-blue.svg', height: 40, width: 40, class: 'vam' ), root_url
                 %li.list-item= link_to "Guides", guides_url
                 %li.list-item= link_to "Tags", tags_url
                 %li.list-item= link_to "Authors", authors_url
             .split-cell
               - if current_user
-                .dropdown.dropdown--e.js-dropdown
+                = link_to 'New Article', new_article_url, class: 'btn btn--a form-btn mrm'
+                .dropdown.dropdown--e.js-dropdown.dib
                   .js-dropdown-btn
                     = image_tag current_user.image, height: 40, width: 40, class: 'thumb dib vam'
                     = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs' }
