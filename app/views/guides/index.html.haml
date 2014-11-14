@@ -3,9 +3,10 @@
 
     - #TODO(Olivier): Display tags sorted alphabetically in sections
     %h1 Guides
-    - if @articles
-      - @articles.each do |article|
-        %section.list-item.mbxs
-          = link_to article, article, class: 'label label--link'
-          = find_and_preserve do
-            = markdown(article.content || "No content")
+    %ul.list.js-guides
+      - if @articles
+        - @articles.each do |article|
+          %li.list-item.mbxs
+            = link_to article, article, class: 'label label--link'
+            = find_and_preserve do
+              = markdown(article.content || "No content")

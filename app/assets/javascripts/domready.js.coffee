@@ -39,6 +39,18 @@ jQuery ($) ->
 
     #---------------------------------
     #
+    #  Guide Cleanup
+    #  -> Apply classes to guides
+    #
+    #---------------------------------
+
+    $('.js-guides').find('ol, ul').addClass('list')
+    $('.js-guides').find('ol ol, ul ul').addClass('plm')
+    $('.js-guides').find('li').addClass('list-item')
+    $('.js-guides').children('li').addClass('mbm')
+
+    #---------------------------------
+    #
     #  Input Select
     #  -> Automatically select input text
     #
