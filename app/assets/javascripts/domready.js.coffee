@@ -44,7 +44,7 @@ jQuery ($) ->
     #
     #---------------------------------
 
-    $('.js-guides').find('ol, ul').addClass('list')
+    $('.js-guides').find('ol, ul').addClass('list list--xs')
     $('.js-guides').find('ol ol, ul ul').addClass('plm')
     $('.js-guides').find('li').addClass('list-item')
     $('.js-guides').children('li').addClass('mbm')

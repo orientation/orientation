@@ -44,7 +44,7 @@
         %h2.mbs Created Articles
         - if @author.articles.count > 0
           - # TODO: Apply signal classes unique to Article decorator
-          %ul.list.mbl
+          %ul.list.list--xs.mbl
             - @author.articles.each do |article|
               %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
                 = link_to article.title, article, class: 'article-title'
@@ -59,7 +59,7 @@
 
         %h2.mbs Edited Articles
         - if @author.edits.count > 0
-          %ul.list
+          %ul.list.list--xs.mbl
             - @author.edits.each do |article|
               %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
                 = link_to article.title, article, class: 'article-title'
@@ -68,7 +68,7 @@
 
         %h2.mbs Article Subscriptions
         - if @author.subscribed_articles.count > 0
-          %ul.list
+          %ul.list.list--xs
             - @author.subscribed_articles.each do |article|
               %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
                 = link_to article.title, article, class: 'article-title'
