@@ -6,14 +6,11 @@
         .g-b.g-b--m--2of3.mbm
           .split.mbm
             .form.form--inline.split-item
-              .split-cell.prm
-                = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
-                  = search_field_tag :search, params[:search],
-                    class: 'form-input js-search-input',
-                    placeholder: 'Search articles by keyword',
-                    autofocus: true
-              .split-cell
-                = link_to "New Article", new_article_url, class: 'btn btn--a form-btn'
+              = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
+                = search_field_tag :search, params[:search],
+                  class: 'form-input js-search-input',
+                  placeholder: 'Search articles by keyword',
+                  autofocus: true
           %ul.list.list--xs.js-article-list
             = render @articles
 
