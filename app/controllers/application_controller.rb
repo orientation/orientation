@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= begin
       user = nil
-      
+
       # In the development environment, your current_user will be the
       # first User in the database. Easy enough ;-)
       if Rails.env.development?
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
       end
 
       # Draper decorators still instantiate a decorator when passed nil,
-      # so we have to be careful not to return anything if no user could 
+      # so we have to be careful not to return anything if no user could
       # be found.
       AuthorDecorator.decorate(user) if user.present?
     end
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
       redirect_to login_path unless login_redirect? or oauth_callback?
     end
   end
-  helper_method :current_user
+  helper_method :authenticate_user!
 
   def login_redirect?
     request.path == login_path
