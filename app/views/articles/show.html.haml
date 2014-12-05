@@ -5,12 +5,18 @@
 - if @article.rotten?
   %p.bulletin.bulletin--warning This article has gone rotten. The information is partially or completely out-of-date.
 
+- if @article.guide?
+  .row.row--highlight.row--pattern
+    .cell.well.well--l
+      %h1.tci.tac= @article.title
+
 %main.row
   .cell.well.well--l
 
     %article
       %header.mbs
-        %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
+        - unless @article.guide?
+          %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
         .byline
           .byline-main
             .byline-author
