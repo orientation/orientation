@@ -28,12 +28,13 @@ $(document).on "page:change", ->
     guides   = $('.js-guides')
     articles = $('.js-article-list')
 
-    if $('.js-search-input').val() == ''
-      guides.removeClass('dn')
-      articles.addClass('dn')
-    else
-      guides.addClass('dn')
-      articles.removeClass('dn')
+    if $('body').hasClass('guides-index')
+      if $('.js-search-input').val() == ''
+        guides.removeClass('dn')
+        articles.addClass('dn')
+      else
+        guides.addClass('dn')
+        articles.removeClass('dn')
 
     clearTimeout(timeout) if timeout
     timeout = delay 200, -> submit_form()

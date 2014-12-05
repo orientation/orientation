@@ -24,5 +24,5 @@ Rails.application.routes.draw do
 
   resources :articles, path: "", only: :show
 
-  root "articles#index"
+  root "guides#index"
 end
