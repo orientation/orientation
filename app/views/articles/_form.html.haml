@@ -17,8 +17,12 @@
             label_html: { class: 'form-label label' },
             input_html: { data: {load: @tags} }
 
-        .form-item
-          = f.input :guide, label: "Guide?"
+        .card.card--b.form-item
+          .mbs
+            = f.input :guide, label: 'Make This A Guide',
+              label_html: { class: 'label' },
+              input_html: { class: 'form-input form-input--checkbox' }
+          %p.mbf.tcs.tsi.tsm A "Guide" is a collection of related articles under a particular topic.
 
         - if @article.author.blank?
           .form-item
