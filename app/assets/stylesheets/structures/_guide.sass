@@ -15,13 +15,17 @@
 // *************************************
 
 .guide
+  animation: guide-slide 5s infinite linear
+  animation-play-state: paused
+  background-image: image-url('bg-pattern.svg')
+  background-position: 0 0
+  background-repeat: repeat
   min-height: 150px
   position: relative
-  transition: $b-transition
 
   &:hover,
   &:focus
-    background: darken($c-highlight, 5%)
+    animation-play-state: running
 
 // -------------------------------------
 //   Scaffolding
@@ -50,3 +54,13 @@
   color: $c-text-invert
   font-size: 160%
   margin-bottom: 0
+
+// -------------------------------------
+//   Animation
+// -------------------------------------
+
+@keyframes guide-slide
+  from
+    background-position: 0 0
+  to
+    background-position: 320px 0
