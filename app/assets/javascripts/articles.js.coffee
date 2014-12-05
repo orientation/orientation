@@ -25,6 +25,16 @@ $(document).on "page:change", ->
   attach_loading_indicators()
 
   $('.js-search-form').on 'keyup', ->
+    guides   = $('.js-guides')
+    articles = $('.js-article-list')
+
+    if $('.js-search-input').val() == ''
+      guides.removeClass('dn')
+      articles.addClass('dn')
+    else
+      guides.addClass('dn')
+      articles.removeClass('dn')
+
     clearTimeout(timeout) if timeout
     timeout = delay 200, -> submit_form()
 

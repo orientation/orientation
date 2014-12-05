@@ -2,21 +2,19 @@
   .cell.well.well--l
 
     - if user_signed_in?
-      .g
-        .g-b.g-b--m--2of3.mbm
-          .split.mbm
-            .form.form--inline.split-item
-              = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
-                = search_field_tag :search, params[:search],
-                  class: 'form-input js-search-input',
-                  placeholder: 'Search articles by keyword',
-                  autofocus: true
-          %ul.list.list--xs.js-article-list
-            = render @articles
 
-        .g-b.g-b--m--1of3
-          = render "guides/guides", guides: @guides
+      .form.form--inline
+        = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
+          = search_field_tag :search, params[:search],
+            class: 'form-input js-search-input',
+            placeholder: 'Search articles by keyword',
+            autofocus: true
+
+      %ul.list.list--xs.js-article-list
+
+      = render "guides/guides", guides: @guides
 
     - else
+
       %h1
         = link_to "Please Log in to Continue", login_path, data: { no_turbolink: true }
