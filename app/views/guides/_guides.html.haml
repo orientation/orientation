@@ -1,10 +1,12 @@
 - unless guides.empty?
   .g.js-guides
     - guides.each do |guide|
+      -# NOTE: Rails' .titleize method removes hyphens
+      - title = guide.title =~ /-/ ? guide.title : guide.title.titleize
       .g-b.g-b--m--1of2.g-b--l--1of3.mbm
         = link_to guide do
           .card.card--highlight.guide
             .guide-content
-              %h2.guide-title= guide.title.titleize
+              %h2.guide-title= title
               -# TODO(Olivier): Implement the number of articles in this guide
               %p.guide-meta # Articles
