@@ -1,15 +1,10 @@
 - unless guides.empty?
-  - guides.each do |guide|
-    .card.card--b.mbm
-      - if guide.content.size > 100
-        .split.mbs
-          .split-item
-            .split-cell
-              %h1.h2.dib= guide.title.titleize
-            .split-cell
-              = link_to "View Guide", article_path(guide), class: 'tsm'
-        .tsm.js-guides
-          = find_and_preserve do
-            = markdown(guide.content || "No content")
-      - else
-        %h1.h2.dib= guide.title.titleize
+  .g.js-guides
+    - guides.each do |guide|
+      .g-b.g-b--m--1of2.g-b--l--1of3.mbm
+        = link_to guide do
+          .card.card--highlight.guide
+            .guide-content
+              %h2.guide-title= guide.title.titleize
+              -# TODO(Olivier): Implement the number of articles in this guide
+              %p.guide-meta # Articles

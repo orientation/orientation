@@ -1,0 +1,52 @@
+// *************************************
+//
+//   Guide
+//   -> A guide card
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .guide
+//   .guide-content
+//     [%h2].guide-title Title
+//     %p.guide-meta # Articles
+//
+// *************************************
+
+.guide
+  min-height: 150px
+  position: relative
+  transition: $b-transition
+
+  &:hover,
+  &:focus
+    background: darken($c-highlight, 5%)
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Content ----- //
+
+.guide-content
+  left: 50%
+  position: absolute
+  text-align: center
+  top: 50%
+  transform: translate(-50%, -50%)
+  width: 90%
+
+// ----- Meta ----- //
+
+.guide-meta
+  color: rgba($c-text-invert, 0.45)
+  font-weight: normal
+  margin-bottom: 0
+
+// ----- Title ----- //
+
+.guide-title
+  color: $c-text-invert
+  font-size: 160%
+  margin-bottom: 0
