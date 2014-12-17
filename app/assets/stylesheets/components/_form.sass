@@ -100,6 +100,26 @@
   display: block
   margin-bottom: $b-space-xs
 
+// ----- Overlay ----- //
+
+.form-overlay
+  position: relative
+
+.form-overlay.is-active
+  background: white
+  bottom: 0
+  left: 0
+  position: fixed
+  right: 0
+  top: 0
+  z-index: 9999
+
+  .form-item-toggle--close
+    display: block
+
+  .form-item-toggle--open
+    display: none
+
 // ----- Textarea ----- //
 
 .form-textarea
@@ -109,3 +129,28 @@
 .form-textarea--pre
   resize: none
   white-space: nowrap
+
+.form-textarea.is-editing
+  border: 0
+  bottom: 0
+  font-size: 120%
+  position: fixed
+  left: 50%
+  top: 0
+  transform: translateX(-50%)
+  width: em(750px)
+  z-index: 1000
+
+// ----- Toggle ----- //
+
+.form-item-toggle
+  display: block
+  font-size: 120%
+  position: absolute
+  right: $b-space-s
+  top: $b-space-xs
+  z-index: 1000
+
+.form-item-toggle--close
+  display: none
+  font-size: 130%

@@ -9,8 +9,16 @@
           = f.input_field :title, placeholder: 'Enter an Article Title',
             class: 'form-input form-input--clear tfh tsl ts--m--xl'
 
-        .form-item
-          = f.input_field :content, rows: 12, class: 'form-input form-textarea'
+        .form-item.js-editor
+
+          .form-overlay.js-editor-overlay
+            = link_to '#', class: 'form-item-toggle form-item-toggle--open js-editor-open' do
+              = render partial: 'shared/icon', locals: { icon: 'fullscreen', title: 'Open Editor' }
+
+            = link_to '#', class: 'form-item-toggle form-item-toggle--close js-editor-close' do
+              = render partial: 'shared/icon', locals: { icon: 'unfullscreen', title: 'Close Editor' }
+
+            = f.input_field :content, rows: 12, class: 'form-input form-textarea js-editor-textarea'
 
         .form-item
           = f.input :tag_tokens, label: 'Tags',

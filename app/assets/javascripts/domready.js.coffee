@@ -68,6 +68,25 @@ jQuery ($) ->
       element: $('table')
       gutter: '20'
 
+    # -------------------------------------
+    #   Fullscreen Editor
+    # -------------------------------------
+
+    $('.js-editor-open').on 'click', (event) ->
+      event.preventDefault()
+
+      $('.js-editor-textarea')
+        .addClass('is-editing')
+        .focus()
+        .parent('.js-editor-overlay')
+        .addClass('is-active')
+
+    $(document).on 'click', '.js-editor-close', (event) ->
+      event.preventDefault()
+
+      $('.js-editor-overlay').removeClass('is-active')
+      $('.js-editor-textarea').removeClass('is-editing').focus()
+
   # Bind behavior to document load/reload
   # NOTE: Needed for Turbolinks compatibility
   $(document).ready domready
