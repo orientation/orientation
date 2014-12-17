@@ -72,14 +72,19 @@ jQuery ($) ->
     #   Fullscreen Editor
     # -------------------------------------
 
+    $.fn.redraw = ->
+      $(@).each ->
+        redraw = this.offsetHeight
+
     $('.js-editor-open').on 'click', (event) ->
       event.preventDefault()
 
       $('.js-editor-textarea')
         .addClass('is-editing')
-        .focus()
         .parent('.js-editor-overlay')
         .addClass('is-active')
+
+      setTimeout do $('.js-editor-textarea').focus(), 50
 
     $(document).on 'click', '.js-editor-close', (event) ->
       event.preventDefault()
