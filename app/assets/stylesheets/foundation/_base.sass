@@ -82,9 +82,11 @@ a
   font-weight: bold
   text-decoration: none
   transition: $b-transition
-  &:hover,
-  &:focus
-    color: lighten($c-highlight, 20%)
+
+  &:active,
+  &:focus,
+  &:hover
+    color: darken($c-highlight, 20%)
 
 // ----- Images ----- //
 
