@@ -21,13 +21,24 @@
 // -------------------------------------
 
 .db
-  display: block
+  display: block !important
 .di
-  display: inline
+  display: inline !important
 .dib
-  display: inline-block
+  display: inline-block !important
 .dn
-  display: none
+  display: none !important
+
++respond-to($g-s)
+
+  .db--s
+    display: block !important
+
+  .di--s
+    display: inline !important
+
+  .dn--s
+    display: none !important
 
 // -------------------------------------
 //   Margins
