@@ -91,16 +91,22 @@ $form-input--clear-color: $chicago
 // Article
 
 $article-title-color: lighten($chicago, 15%)
-$article-title-color-hover: lighten($article-title-color, 20%)
+$article-title-color-hover: darken($article-title-color, 20%)
 
 // Bulletin
 
 $bulletin-warning-background: $coral
 
+// Header
+
+$header-background: $c-background-invert
+$header-btn-background: transparent
+$header-btn--state-background: $c-background
+
 // Label
 
 $label-color: $c-subdue
-$label-hover-color: lighten($label-color, 20%)
+$label-hover-color: darken($label-color, 20%)
 $label--invert-color: $c-text-invert
 $label--link--invert-color: $c-text-invert
 $label--link--invert-hover-color: darken($label--link--invert-color, 10%)
@@ -108,7 +114,7 @@ $label--link--invert-hover-color: darken($label--link--invert-color, 10%)
 // Muted Link
 
 $mutedLink-color: $c-text
-$mutedLink-color-hover: lighten($label-color, 15%)
+$mutedLink-color-hover: darken($label-color, 15%)
 
 // Signal
 
@@ -198,7 +204,7 @@ $form-input-border: 1px solid $form-input-borderColor
 
 // Breakpoints
 
-$g-s: em(480px)
+$g-s: em(500px)
 $g-m: em(800px)
 $g-l: em(1024px)
 
@@ -226,9 +232,16 @@ $list-space: $b-space
 
 $article-section-border: 1px solid darken($c-background-invert, 10%)
 
-// Collection
+// ----- Collection ----- //
 
 $collection-columns: 3
+
+// ----- Header ----- //
+
+$header-gutter: $b-space-s
+$header--s--gutter: $b-space
+$header-height: 70px
+$header-btn-padding: $b-space-s
 
 // ----- Label ----- //
 
