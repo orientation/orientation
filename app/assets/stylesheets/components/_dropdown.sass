@@ -8,10 +8,10 @@
 // -------------------------------------
 //
 // .dropdown[.dropdown--e](.is-active)
-//   .dropdown-menu
-//     .dropdown-item
-//     .dropdown-item
-//       .dropdown-item-link
+//   %ul.dropdown-menu
+//     %li.dropdown-item
+//     %li.dropdown-item
+//       %a.dropdown-item-link{ href: '#' }
 //
 // *************************************
 
@@ -22,14 +22,26 @@
 //   Modifiers
 // -------------------------------------
 
+// ----- Position ----- //
+
+// East
+
 .dropdown--e
   .dropdown-menu
     left: auto
     right: 0
 
+// Flush
+
+.dropdown--f
+  .dropdown-menu
+    margin-top: 0
+
 // -------------------------------------
-//   Modifiers
+//   States
 // -------------------------------------
+
+// ----- Active ----- //
 
 .dropdown.is-active
   .dropdown-menu
