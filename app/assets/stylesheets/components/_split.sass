@@ -2,42 +2,32 @@
 //
 //   Split
 //   -> Horizontally repellent content
+//      CodePen: http://codepen.io/johndjameson/pen/nKcep
 //
 // -------------------------------------
 //   Template (Haml)
 // -------------------------------------
 //
-// %[ul].split
-//   %[li].split-item
-//     .split-cell
+// .split
+//   .split-cell Split cell
+//   .split-cell Split cell
 //
 // *************************************
 
 .split
-  list-style-type: none
-  margin: 0
-  padding: 0
+  align-items: baseline
+  display: flex
 
 // -------------------------------------
 //   Scaffolding
 // -------------------------------------
 
-// ----- Split Cell ----- //
+// ----- Cell ----- //
 
 .split-cell
-  display: table-cell
 
   &:first-child
-    width: 10000px
+    flex-grow: 1
 
   &:last-child
-    white-space: nowrap
-
-// ----- Split Item ----- //
-
-.split-item
-  display: table
-  width: 100%
-
-  img
-    max-width: none
+    flex-shrink: 0

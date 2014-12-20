@@ -1,11 +1,10 @@
 / TODO: Move conditional presentation to proper location
 - if tag.articles.size > 5
   .split.mbs
-    .split-item
-      .split-cell
-        %h1.h2.dib= tag.name.titleize
-      .split-cell
-        = link_to "View All", tag_path(tag), class: 'tsm'
+    .split-cell
+      %h1.h2.dib= tag.name.titleize
+    .split-cell
+      = link_to "View All", tag_path(tag), class: 'tsm'
 - else
   .mbs
     %h1.h2.dib= tag.name.titleize
