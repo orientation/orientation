@@ -29,6 +29,7 @@
   > .list-item
     border-bottom: $b-border
     padding-bottom: $b-space
+
     &:last-child
       border-bottom: 0
       padding-bottom: 0
@@ -40,6 +41,7 @@
   > .list-item
     display: inline
     margin-right: $b-space
+
     &:last-child
       margin-right: 0
 
@@ -58,7 +60,9 @@
 // Responsive
 
 .list--inline--responsive
+
   +respond-to($g-m)
+
     > .list-item
       display: block
       margin-right: 0
@@ -108,5 +112,6 @@
 .list-item
   display: block
   margin-bottom: $b-space
+
   &:last-child
     margin-bottom: 0

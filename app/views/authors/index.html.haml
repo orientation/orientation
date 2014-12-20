@@ -11,7 +11,7 @@
               placeholder: 'Search authors by name or shtick',
               autofocus: true
 
-    .g.collection.collection--s--1of2.collection--m--1of3.collection--l--1of3.mbm.js-author-list
+    .g.mbm.js-author-list
       = render partial: 'authors/author', collection: @authors
 
     = link_to 'New Author', new_author_path, class: 'btn btn--b'

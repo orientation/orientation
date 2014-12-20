@@ -34,18 +34,16 @@
 .btn--a
   background: $btn--a-background
   color: $btn--a-color
-  &:hover,
-  &:focus,
-  &:active
+
+  +state
     background: lighten($btn--a-background, 10%)
     color: $btn--a-color
 
 .btn--b
   background: $btn--b-background
   color: $btn--b-color
-  &:hover,
-  &:focus,
-  &:active
+
+  +state
     background: lighten($btn--b-background, 5%)
     color: $btn--b-color
 
@@ -53,9 +51,8 @@
 
 .btn--s
   font-size: $btn--s-fontSize
-  padding: 0 (0.5 * $btn-space)
+  padding: 0 $btn-space-s
 
 .btn--l
   font-size: $btn--l-fontSize
-  padding: 0 (2 * $btn-space)
-
+  padding: 0 $btn-space-l

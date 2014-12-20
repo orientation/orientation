@@ -36,20 +36,19 @@
               .js-dropdown-btn
                 = @article.signal
                 .split
-                  .split-item
-                    .split-cell
-                      - # TODO: Move conditional presentation to decorator
-                      .label
-                        - if @article.fresh?
-                          Fresh
-                        - if @article.stale?
-                          Stale
-                        - if @article.rotten?
-                          Rotten
-                        - unless @article.fresh? || @article.stale? || @article.rotten?
-                          Normal
-                    .split-cell.tcs.tsm
-                      = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true }
+                  .split-cell
+                    - # TODO: Move conditional presentation to decorator
+                    .label
+                      - if @article.fresh?
+                        Fresh
+                      - if @article.stale?
+                        Stale
+                      - if @article.rotten?
+                        Rotten
+                      - unless @article.fresh? || @article.stale? || @article.rotten?
+                        Normal
+                  .split-cell.tcs.tsm
+                    = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true }
             .dropdown-menu
               - unless @article.fresh?
                 .dropdown-item
