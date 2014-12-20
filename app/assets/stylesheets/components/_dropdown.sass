@@ -56,8 +56,10 @@
 .dropdown-item
   color: $c-subdue
   margin: 0
+
   &:not(:first-child)
     border-top: $b-border
+
   &:hover,
   &:focus
     background: $c-background
@@ -69,6 +71,7 @@
   color: inherit
   display: block
   padding: $b-space-s
+
   &:hover,
   &:focus
     color: inherit
@@ -81,8 +84,8 @@
 .dropdown-menu
   @extend .lr
   background: $c-background-invert
-  border: $b-border
   border-radius: $b-borderRadius
+  border: $b-border
   box-shadow: $b-boxShadow
   display: none
   left: 0
@@ -91,4 +94,3 @@
   position: absolute
   top: 100%
   z-index: 1
-

@@ -61,14 +61,15 @@
 
 .form-input
   background: $form-input-background
-  border: $form-input-border
   border-radius: $b-borderRadius
+  border: $form-input-border
   box-sizing: border-box !important
   font-size: 100%
   padding: $b-space-s
   position: relative
   transition: border-color 0.2s ease-in-out
   width: 100%
+
   &:focus
     border-color: $form-input-focus-borderColor
     outline: none
@@ -126,18 +127,22 @@
   overflow: auto
   resize: vertical
 
+// Pre
+
 .form-textarea--pre
   resize: none
   white-space: nowrap
+
+// Editing (state)
 
 .form-textarea.is-editing
   border: 0
   bottom: 0
   font-size: 120%
+  left: 50%
   padding-bottom: $b-space-xl
   padding-top: $b-space-xl
   position: fixed
-  left: 50%
   resize: none
   top: 0
   transform: translateX(-50%)
@@ -153,6 +158,8 @@
   right: $b-space-s
   top: $b-space-xs
   z-index: 1000
+
+// Close
 
 .form-item-toggle--close
   display: none
