@@ -1,8 +1,8 @@
 // *************************************
 //
 //   Bucket
-//   -> Based on:
-//      * http://jsfiddle.net/necolas/rZvEF/
+//   -> Media-supported content
+//      CodePen: http://codepen.io/johndjameson/pen/saEDx
 //
 // -------------------------------------
 //   Template (Haml)
@@ -17,7 +17,7 @@
 // *************************************
 
 .bucket
-  @extend .group
+  display: flex
 
 // -------------------------------------
 //   Modifiers
@@ -26,10 +26,7 @@
 // ----- Flag ----- //
 
 .bucket--flag
-  display: table
-
-  .bucket-content
-    vertical-align: middle
+  align-items: center
 
 // -------------------------------------
 //   Scaffolding
@@ -38,15 +35,13 @@
 // ----- Content ----- //
 
 .bucket-content
-  display: table-cell
-  width: 10000px
+  flex-grow: 1
 
 // ----- Media ----- //
 
 .bucket-media
-  float: left
+  flex-shrink: 0
   margin-right: $b-space
 
   > img
     display: block
-    max-width: none
