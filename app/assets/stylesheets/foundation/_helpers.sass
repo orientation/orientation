@@ -59,6 +59,27 @@
     @content
 
 // -------------------------------------
+//
+//   State
+//   -> Combines state-related pseudo-classes
+//
+// -------------------------------------
+//
+// $class - an optional state class ('is-active')
+//
+// -------------------------------------
+
+=state($class: false)
+
+  @if $class
+    &:active, &:focus, &:hover, &.#{$class}
+      @content
+
+  @else
+    &:active, &:focus, &:hover
+      @content
+
+// -------------------------------------
 //   Extends
 // -------------------------------------
 
