@@ -10,56 +10,57 @@
 
   %body{ class: body_class }
     %header.header
-      .cell
+      .header-row
+        .cell
 
-        %nav.split
-          .split-cell
-            %ul.list.list--inline.list--inline--f.list--inline--flex
-              %li.list-item
-                = link_to root_url, class: 'header-btn' do
-                  = image_tag( 'brackets-blue.svg', height: 40, width: 40, class: 'vam' )
-              %li.list-item
-                = link_to articles_url, class: 'header-btn' do
-                  %span.tsm Articles
-              %li.list-item
-                = link_to tags_url, class: 'header-btn' do
-                  %span.tsm Tags
-              %li.list-item.dn.di--s
-                = link_to authors_url, class: 'header-btn' do
-                  %span.tsm Authors
-              %li.list-item.dn--s
+          %nav.split
+            .split-cell
+              %ul.list.list--inline.list--inline--f.list--inline--flex
+                %li.list-item
+                  = link_to root_url, class: 'header-btn' do
+                    = image_tag( 'brackets-blue.svg', height: 40, width: 40, class: 'vam' )
+                %li.list-item
+                  = link_to articles_url, class: 'header-btn' do
+                    %span.tsm Articles
+                %li.list-item
+                  = link_to tags_url, class: 'header-btn' do
+                    %span.tsm Tags
+                %li.list-item.dn.di--s
+                  = link_to authors_url, class: 'header-btn' do
+                    %span.tsm Authors
+                %li.list-item.dn--s
+                  .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
+                    = link_to '#', class: 'header-btn js-dropdown-btn' do
+                      %span.tsm More
+                    %ul.dropdown-menu.js-dropdown-menu
+                      %li.dropdown-item
+                        = link_to authors_url, class: 'dropdown-item-link' do
+                          %span.tsm Authors
+                      %li.dropdown-item
+                        = link_to new_article_url, class: 'dropdown-item-link' do
+                          %span.tsm New Article
+                      %li.dropdown-item
+                        = link_to current_user.link, class: 'dropdown-item-link' do
+                          %span.tsm My Profile
+                      %li.dropdown-item
+                        = link_to logout_path, class: 'dropdown-item-link' do
+                          %span.tsm Log Out
+            .split-cell.dn.db--s
+              - if current_user
+                = link_to 'New Article', new_article_url, class: 'btn btn--a form-btn mrs'
                 .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
-                  = link_to '#', class: 'header-btn js-dropdown-btn' do
-                    %span.tsm More
-                  %ul.dropdown-menu.js-dropdown-menu
-                    %li.dropdown-item
-                      = link_to authors_url, class: 'dropdown-item-link' do
-                        %span.tsm Authors
-                    %li.dropdown-item
-                      = link_to new_article_url, class: 'dropdown-item-link' do
-                        %span.tsm New Article
+                  .header-btn.js-dropdown-btn
+                    = image_tag current_user.image, height: 40, width: 40, class: 'thumb dib vam'
+                    = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs' }
+                  %ul.dropdown-menu
                     %li.dropdown-item
                       = link_to current_user.link, class: 'dropdown-item-link' do
                         %span.tsm My Profile
                     %li.dropdown-item
                       = link_to logout_path, class: 'dropdown-item-link' do
                         %span.tsm Log Out
-          .split-cell.dn.db--s
-            - if current_user
-              = link_to 'New Article', new_article_url, class: 'btn btn--a form-btn mrs'
-              .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
-                .header-btn.js-dropdown-btn
-                  = image_tag current_user.image, height: 40, width: 40, class: 'thumb dib vam'
-                  = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs' }
-                %ul.dropdown-menu
-                  %li.dropdown-item
-                    = link_to current_user.link, class: 'dropdown-item-link' do
-                      %span.tsm My Profile
-                  %li.dropdown-item
-                    = link_to logout_path, class: 'dropdown-item-link' do
-                      %span.tsm Log Out
-            - else
-              = link_to 'Log In', login_path, data: { no_turbolink: true }
+              - else
+                = link_to 'Log In', login_path, data: { no_turbolink: true }
 
     - if flash[:error]
       .bulletin.bulletin--warning= flash[:error]
