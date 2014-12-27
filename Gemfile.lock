@@ -47,7 +47,7 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
-    bugsnag (2.1.0)
+    bugsnag (2.6.1)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
     builder (3.2.2)
@@ -139,7 +139,7 @@ GEM
       railties (>= 4.0.1)
     hashie (2.0.5)
     hike (1.2.3)
-    httparty (0.13.1)
+    httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
