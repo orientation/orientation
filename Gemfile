@@ -60,9 +60,13 @@ end
 
 group :test do
   gem 'capybara'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :doc do
   gem 'sdoc', require: false
+end
+
+group :production do
+  gem 'rails_12factor'
 end
