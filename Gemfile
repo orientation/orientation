@@ -5,7 +5,7 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 
 gem 'pg'
-gem 'thin'
+gem 'unicorn'
 
 gem 'uglifier'
 gem 'jquery-rails'
@@ -69,4 +69,5 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'rack-timeout'
 end
