@@ -45,6 +45,7 @@ group :development do
   gem 'powder'
   gem 'bullet'
   gem 'spring'
+  gem 'quiet_assets'
 end
 
 group :development, :test do
