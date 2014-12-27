@@ -45,5 +45,10 @@ module Orientation
       g.view_specs false
       g.helper_specs false
     end
+
+    # Opt in for upcoming behavior in next Rails version which stops
+    # suppressing errors raised within `after_rollback` & `after_commit`
+    # ActiveRecord callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
