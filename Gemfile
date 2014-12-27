@@ -37,6 +37,7 @@ gem "mini_magick"
 gem 'fog'
 gem 'masonry-rails'
 gem 'skylight'
+gem 'responders','~> 2.0'
 
 group :development do
   gem 'better_errors'

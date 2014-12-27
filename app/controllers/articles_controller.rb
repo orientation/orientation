@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    redirect_to @article if @article.save
+    respond_with @article if @article.save
   end
 
   def edit
@@ -45,11 +45,11 @@ class ArticlesController < ApplicationController
   def report_rot
     @article.rot!
     flash[:notice] = "Successfully reported this article as rotten."
-    respond_with(@article)
+    respond_with @article
   end
 
   def update
-    redirect_to @article if @article.update_attributes(article_params)
+    respond_with @article if @article.update_attributes(article_params)
   end
 
   def destroy
