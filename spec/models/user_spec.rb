@@ -1,10 +1,11 @@
-require 'spec_helper'
+
 
 describe User do
   context ".find_or_create_from_omniauth" do
     before do
-      @old_user = { 'provider' => 'google_oauth2', 'uid' => '12345', 'info' => { 'name' => 'peter', 'email' => 'peter@envylabs.com' } }.with_indifferent_access
-      @new_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'testuser@envylabs.com' } }.with_indifferent_access
+      @old_user = { 'provider' => 'google_oauth2', 'uid' => '12345', 'info' => { 'name' => 'peter', 'email' => 'peter@codeschool.com' } }.with_indifferent_access
+      @new_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'testuser@codeschool.com' } }.with_indifferent_access
+      @unauthorized_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'evil@example.com' } }.with_indifferent_access
     end
 
     let!(:existing_user) { User.create(uid: @old_user[:uid], provider: @old_user[:provider], email: @old_user[:info][:email], name: @old_user[:info][:name])}
@@ -16,6 +17,10 @@ describe User do
 
     it "creates user" do
       expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.from(1).to(2)
+    end
+
+    it "denies unauthorized user" do
+      expect(User.find_or_create_from_omniauth(@unauthorized_user).valid?).to be_falsey
     end
   end
 
@@ -34,7 +39,7 @@ describe User do
         before { author.toggle!(:active) }
 
         it "returns false" do
-          expect(notify_about_stale_articles).to be_falsey 
+          expect(notify_about_stale_articles).to be_falsey
         end
 
         it "does not queue a delayed job" do

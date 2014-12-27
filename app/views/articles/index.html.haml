@@ -1,20 +1,19 @@
-- if user_signed_in?
-  .main
-    %h1 Articles
-    .search-bar
-      = form_tag articles_path, method: :get, remote: true do
-        = text_field_tag :search, params[:search], placeholder: "Search articles by keyword", autofocus: true
-        = submit_tag "Search", class: "btn-a"
+%main.row
+  .cell.well.well--l
 
-    %ul.article-list
-      = render @articles
+    - if user_signed_in?
 
-  %aside.categories
-    = render "tags/tag_categories", tags: @tags
+      .form.form--inline
+        = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
+          = search_field_tag :search, params[:search],
+            class: 'form-input js-search-input',
+            placeholder: 'Search articles by keyword',
+            autofocus: true
 
-  = link_to "Archived Articles (#{Article.archived.count})", archived_articles_path
+      %ul.list.list--xs.js-article-list
+        = render @articles
 
-- else
-  .main
-    %h1
-      = link_to "Please Log in to Continue", login_path, data: { no_turbolink: true }
+    - else
+
+      %h1
+        = link_to "Please Log in to Continue", login_path, data: { no_turbolink: true }

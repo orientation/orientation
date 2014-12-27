@@ -1,4 +1,4 @@
-%li.subscriber
-  = link_to subscription.user, author_path(subscription.user) 
-  subscribed on 
-  = subscription.created_at
+%li.list-item
+  / TODO(Olivier): Use Author.image_link or nest image in link_to
+  / TODO(JDJ): Add popover/tooltip that reveals subscriber name
+  = subscription.user.image_link

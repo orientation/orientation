@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     get :subscriptions, on: :member
   end
 
+  resources :guides, only: [:show, :index]
+
   resources :articles, path: "", only: :show
 
-  root "articles#index"
+  root "guides#index"
 end

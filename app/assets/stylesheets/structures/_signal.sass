@@ -1,0 +1,45 @@
+// *************************************
+//
+//   Signal
+//   -> Status indicator
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .signal[.signal--fresh][.signal--rotten][.signal--stale]
+//
+// *************************************
+
+.signal
+  background: $signal-background
+  bottom: 0
+  left: 0
+  position: absolute
+  top: 0
+  width: $b-space-s
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+.has-signal
+  overflow: hidden
+  padding-left: $b-space
+  position: relative
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Status ----- //
+
+.signal--fresh
+  background: $signal--fresh-background
+
+.signal--rotten
+  background: $signal--rotten-background
+
+.signal--stale
+  background: $signal--stale-background
+

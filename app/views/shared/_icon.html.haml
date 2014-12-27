@@ -1,0 +1,10 @@
+- middle = 'icn--middle' if middle
+- padded = 'icn--padded' if padded
+- klass ||= nil
+- title ||= nil
+
+- unless title.nil?
+  %i.icn{ class: "icn--#{icon} #{middle} #{padded} #{klass}", 'aria-hidden' => true }
+  %span.srt= title
+- else
+  %i.icn{ class: "icn--#{icon} #{middle} #{padded} #{klass}" }

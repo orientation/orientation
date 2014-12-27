@@ -39,6 +39,47 @@ describe Article do
     end
   end
 
+  context '#guide?' do
+    let(:article) { create(:article) }
+
+    context 'when the article is not set as a guide' do
+      it "returns false" do
+        expect(article.guide?).to be_falsey
+      end
+    end
+
+    context 'when the article is set as a guide' do\
+      subject(:make_guide) { article.update_attribute(:guide, true) }
+
+      it "returns true" do
+        expect { make_guide }.to change { article.guide? }.from(false).to(true)
+      end
+    end
+
+    context 'when an article is no longer a guide' do
+      before { article.update_attribute(:guide, false) }
+
+      it "returns false" do
+        expect(article.guide?).to be_falsey
+      end
+    end
+  end
+
+  context '.guide' do
+    let!(:guide_article) { create(:article, :guide) }
+    let!(:article) { create(:article) }
+
+    subject(:guide) { Article.guide }
+
+    it "includes guide articles" do
+      expect(guide).to include(guide_article)
+    end
+
+    it "doesn't include non-guide articles" do
+      expect(guide).to_not include(article)
+    end
+  end
+
   context '.popular' do
     let(:articles) do
       5.times { create(:article) }
@@ -56,27 +97,27 @@ describe Article do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
 
-    let(:subject) { Article.fresh }
+    subject(:fresh_articles) { Article.fresh }
 
     it "includes fresh articles" do
-      subject.should include(fresh_article)
+      expect(fresh_articles).to include(fresh_article)
     end
 
     it "does not include stale articles" do
-      subject.should_not include(stale_article)
+      expect(fresh_articles).not_to include(stale_article)
     end
   end
 
-  context ".fresh?" do
+  context "#fresh?" do
     let(:fresh_article) { create(:article) }
     let(:stale_article) { create(:article, :stale) }
 
     it "is true for fresh articles" do
-      Article.fresh?(fresh_article).should be_truthy
+      expect(fresh_article.fresh?).to be_truthy
     end
 
     it "is false for stale articles" do
-      Article.fresh?(stale_article).should be_falsey
+      expect(stale_article.fresh?).to be_falsey
     end
   end
 
@@ -84,27 +125,27 @@ describe Article do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
 
-    let(:subject) { Article.stale }
+    subject(:stale_articles) { Article.stale }
 
     it "includes stale articles" do
-      subject.should include(stale_article)
+      expect(stale_articles).to include(stale_article)
     end
 
     it "does not include fresh articles" do
-      subject.should_not include(fresh_article)
+      expect(stale_articles).not_to include(fresh_article)
     end
   end
 
-  context ".stale?" do
+  context "#stale?" do
     let(:fresh_article) { create(:article) }
     let(:stale_article) { create(:article, :stale) }
 
     it "is true for stale articles" do
-      Article.stale?(stale_article).should be_truthy
+      expect(stale_article.stale?).to be_truthy
     end
 
     it "is false for fresh articles" do
-      Article.stale?(fresh_article).should be_falsey
+      expect(fresh_article.stale?).to be_falsey
     end
   end
 
@@ -176,23 +217,25 @@ describe Article do
     let!(:archived_article) { create :article, :archived }
     let!(:rotten_article) { create :article, :rotten }
 
+    subject(:ordered_fresh) { Article.ordered_fresh }
+
     it "returns the more recent article first" do
-      expect(Article.ordered_fresh.first).to eq more_recent_article
+      expect(ordered_fresh.first).to eq more_recent_article
     end
 
     it "does not include archived articles" do
-      expect(Article.ordered_fresh).to_not include(archived_article)
+      expect(ordered_fresh).to_not include(archived_article)
     end
 
     it "does not include rotten articles" do
-      expect(Article.ordered_fresh).to_not include(archived_article)
+      expect(ordered_fresh).to_not include(archived_article)
     end
 
     context "with an updated article" do
       before { recent_article.touch }
 
       it "returns the updated article first" do
-        expect(Article.ordered_fresh.first).to eq recent_article
+        expect(ordered_fresh.first).to eq recent_article
       end
     end
   end
@@ -270,7 +313,7 @@ describe Article do
       let(:article) { create(:article, :fresh) }
 
       it "makes it rotten" do
-        expect { rot! }.to change { article.rotten? }
+        expect { rot! }.to change { article.reload.rotten? }
       end
     end
 
@@ -278,7 +321,7 @@ describe Article do
       let(:article) { create(:article, :stale) }
 
       it "makes it rotten" do
-        expect { rot! }.to change { article.rotten? }
+        expect { rot! }.to change { article.reload.rotten? }
       end
     end
 
@@ -297,15 +340,15 @@ describe Article do
     let(:rotten_article) { create(:article, :rotten) }
 
     it "returns false for a fresh article" do
-      fresh_article.rotten?.should be_falsey
+      expect(fresh_article.rotten?).to be_falsey
     end
 
     it "returns false for a stale article" do
-      fresh_article.rotten?.should be_falsey
+      expect(stale_article.rotten?).to be_falsey
     end
 
     it "returns true for a rotten article" do
-      rotten_article.rotten?.should be_truthy
+      expect(rotten_article.rotten?).to be_truthy
     end
   end
 
@@ -314,11 +357,11 @@ describe Article do
     let(:stale_article) { create(:article, :stale) }
 
     it "returns false for a non-stale article" do
-      fresh_article.stale?.should be_falsey
+      expect(fresh_article.stale?).to be_falsey
     end
 
     it "returns true for a stale article" do
-      stale_article.stale?.should be_truthy
+      expect(stale_article.stale?).to be_truthy
     end
   end
 
@@ -332,5 +375,29 @@ describe Article do
     it "add the article to current articles" do
       expect { unarchive_article }.to change { Article.current.count }.by(1)
     end
+  end
+
+  context 'tags_count' do
+    let!(:article) { create(:article) }
+    let!(:article_tag_count) { article.tags_count }
+
+    context 'when a tag is added' do
+      subject(:add_tag) { create(:tag, articles: [article]) }
+
+      it "increases" do
+        expect { add_tag }.to change { article.tags_count }.by(1)
+      end
+    end
+
+    context 'when a tag is removed' do
+      let!(:tag) { create(:tag, articles: [article]) }
+
+      subject(:remove_tag) { article.tags.reload.first.destroy }
+
+      it "decreases" do
+        expect { remove_tag }.to change { article.reload.tags_count }.by(-1)
+      end
+    end
+
   end
 end

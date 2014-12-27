@@ -1,0 +1,82 @@
+// *************************************
+//
+//   Dropdown
+//   -> Consecutive menu items
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .dropdown[.dropdown--e](.is-active)
+//   .dropdown-menu
+//     .dropdown-item
+//     .dropdown-item
+//       .dropdown-item-link
+//
+// *************************************
+
+.dropdown
+  position: relative
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+.dropdown--e
+  .dropdown-menu
+    left: auto
+    right: 0
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+.dropdown.is-active
+  .dropdown-menu
+    display: block
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Item ----- //
+
+.dropdown-item
+  color: $c-subdue
+  margin: 0
+  &:not(:first-child)
+    border-top: $b-border
+  &:hover,
+  &:focus
+    background: $c-background
+    color: $c-subdue
+
+// Link
+
+.dropdown-item-link
+  color: inherit
+  display: block
+  padding: $b-space-s
+  &:hover,
+  &:focus
+    color: inherit
+
+.dropdown-item-link--xs
+  padding: $b-space-xs
+
+// ----- Menu ----- //
+
+.dropdown-menu
+  @extend .lr
+  background: $c-background-invert
+  border: $b-border
+  border-radius: $b-borderRadius
+  box-shadow: $b-boxShadow
+  display: none
+  left: 0
+  margin-top: $b-space-s
+  min-width: em(140px)
+  position: absolute
+  top: 100%
+  z-index: 1
+

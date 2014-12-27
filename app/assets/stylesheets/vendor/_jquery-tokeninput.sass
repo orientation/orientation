@@ -1,0 +1,97 @@
+// *************************************
+//
+//   jQuery Tokeninput
+//   -> http://loopj.com/jquery-tokeninput/
+//
+// *************************************
+
+.token-input-list
+  @extend .lr
+  background: $tokeninput-background
+  border-radius: $b-borderRadius
+  border: $tokeninput-border
+  cursor: text
+  font-size: $b-fontSize-m
+  overflow: hidden
+  padding: $b-space-s
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Token ----- //
+
+.token-input-token
+  background: $tokeninput-token-background
+  border-radius: $b-borderRadius
+  color: $tokeninput-token-color
+  display: inline-block
+  font-weight: bold
+  margin: 0 $b-space-s 0 0
+  text-transform: uppercase
+  vertical-align: middle
+
+  // Tag text
+  > p
+    border-right: $tokeninput-border
+    display: inline-block
+    margin: 0
+    padding: $b-space-xs $b-space-s
+
+  // Delete tag 'x' button
+  > .token-input-delete-token
+    cursor: pointer
+    display: inline-block
+    padding: $b-space-xs $b-space-s
+
+// State
+
+.token-input-token.token-input-selected-token
+  background: $c-highlight
+  color: $c-text-invert
+
+// ----- Input Token ----- //
+
+.token-input-input-token
+  display: inline-block
+  margin: 0
+  vertical-align: middle
+  width: 10px // NOTE: This sets an initial width (overwritten by inline style via JavaScript)
+
+  > input
+    border: 0
+    background: none
+
+// ----- Dropdown ----- //
+
+.token-input-dropdown
+  background: $tokeninput-background
+  border: $tokeninput-border
+  border-radius: $b-borderRadius
+  box-sizing: border-box
+  cursor: default
+  font-size: $b-fontSize-m
+  margin-top: $b-space-xs // Positioning handled via JavaScript
+
+  // Instructive text
+  > p
+    color: $c-subdue
+    margin: 0
+    padding: $b-space-xs
+
+  > ul
+    @extend .lr
+
+    > li
+      padding: $b-space-s
+      margin-bottom: 0
+
+      &.token-input-selected-dropdown-item
+        background: $c-highlight
+        color: $c-text-invert
+
+      // Text matching search argument
+      > em
+        font-style: normal
+        font-weight: bold
+

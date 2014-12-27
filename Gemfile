@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '4.2.0.beta1'
+gem 'rails', '4.2.0'
 
 gem 'pg'
 gem 'thin'
@@ -10,14 +10,16 @@ gem 'thin'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'sass-rails', '5.0.0.beta1'
+gem 'sass-rails', '5.0.0'
 
 gem 'turbolinks'
 
+gem "autoprefixer-rails"
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
+gem 'fontcustom'
 gem 'haml-rails'
 gem 'simple_form', '~> 3.0.2'
 gem 'pygments.rb'
@@ -27,19 +29,20 @@ gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'rails_tokeninput'
 gem 'momentjs-rails'
-gem 'textacular', require: 'textacular/rails'
+gem 'textacular'
 gem 'mandrill_mailer'
 gem "bugsnag"
 gem 'carrierwave'
 gem "mini_magick"
 gem 'fog'
 gem 'masonry-rails'
+gem 'skylight'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'powder'
-  gem 'bullet', github: 'flyerhzm/bullet', branch: 'master'
+  gem 'bullet'
   gem 'spring'
 end
 
@@ -55,7 +58,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', github: "jnicklas/capybara", branch: "master"
+  gem 'capybara'
   gem "codeclimate-test-reporter", require: nil
 end
 

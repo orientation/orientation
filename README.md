@@ -1,8 +1,8 @@
-# Orientation 
-[![Build Status][ci-image]][ci] 
-[![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage] 
-[![Code Climate][codeclimate-image]][codeclimate] 
-[![Dependency Status][gemnasium-image]][gemnasium] 
+# Orientation
+[![Build Status][ci-image]][ci]
+[![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage]
+[![Code Climate][codeclimate-image]][codeclimate]
+[![Dependency Status][gemnasium-image]][gemnasium]
 
 Find your way around Code School support.
 
@@ -19,6 +19,7 @@ Find your way around Code School support.
 - Configure `config/database.yml` with your local Postgres credential (usually `username: root` and no `password`)
 - rake db:create
 - rake db:setup
+- In the Rails console (`rails c`), enter the command `User.create( name: 'Test User', email: 'test@codeschool.com' )`
 - gem install powder
 - powder link
 - powder open
@@ -29,6 +30,14 @@ either, but you will be logged in as the first user in the database in developme
 
 ## Seeding Development Environment with Production data
 - use pgbackups
+
+If you want to see avatars in development, you will need to create a file called `.env` in your root folder.
+
+Inside of the file, you should put the following:
+
+```
+S3_BUCKET=codeschool
+```
 
 ## OAuth in development using ngrok
 It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to [ngrok](http://journal.wearebunker.com/post/59684890589/using-ngrok-with-pow-for-development-previews) (`gem install forward`) I can pretend that the URL `http://orientation.ngrok.com` is local by running `ngrok -subdomain=orientation orientation.dev:80`.

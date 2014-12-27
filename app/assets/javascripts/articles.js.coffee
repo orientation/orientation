@@ -6,14 +6,14 @@ $(document).on "page:change", ->
   delay = (ms, func) -> setTimeout func, ms
 
   submit_form = ->
-    console.log "submitted that damned form"
-    $('.search-bar form').submit()
- 
+    $('.js-search-form').submit()
+
   localize_datetimes = ->
-    dates = $(".articles time")
+    dates = $('.js-time')
     for date in dates
       old_time = $(date).attr('datetime')
-      new_time = moment(old_time).format('MMM Do YYYY')
+      # NOTE: Affects date display in Article show page
+      new_time = moment(old_time).format('MMMM D, YYYY')
       $(date).html(new_time)
 
   attach_loading_indicators = ->
@@ -24,9 +24,20 @@ $(document).on "page:change", ->
 
   attach_loading_indicators()
 
-  $('#search').on 'keyup', ->
+  $('.js-search-form').on 'keyup', ->
+    guides   = $('.js-guides')
+    articles = $('.js-article-list')
+
+    if $('body').hasClass('guides-index')
+      if $('.js-search-input').val() == ''
+        guides.removeClass('dn')
+        articles.addClass('dn')
+      else
+        guides.addClass('dn')
+        articles.removeClass('dn')
+
     clearTimeout(timeout) if timeout
-    timeout = delay 400, -> submit_form()
+    timeout = delay 200, -> submit_form()
 
   $('html').on 'keydown','#article_content', (evt)->
     if evt.keyCode == 9
@@ -34,7 +45,6 @@ $(document).on "page:change", ->
       evt.preventDefault()
 
   $('#article_tag_tokens').tokenInput '/tags.json',
-    theme: "facebook"
     prePopulate: $('#article_tag_tokens').data('load')
     preventDuplicates: true
 
@@ -52,14 +62,17 @@ $(document).on "page:change", ->
   $(document).on "keyup", keyboardEventHandler
 
 keyboardEventHandler = (event) ->
+  # If user presses <f> or <s>
   if event.keyCode == 70 or event.keyCode == 83
     focusSearch()
 
+  # If user presses <esc>
   if event.keyCode == 27
     unfocusSearch()
 
 focusSearch = ->
-  $("#search").trigger "focus"
+  $('.js-search-input').trigger "focus"
 
+# NOTE: Needed so <esc> blurs inputs in Firefox
 unfocusSearch = ->
-  $("#search").trigger "blur"
+  $('.js-search-input').trigger "blur"

@@ -1,0 +1,10 @@
+# http://jaydenseric.com/blog/font-icons-like-a-boss-with-sass-and-font-custom
+# https://github.com/FontCustom/fontcustom#configuration
+
+font_name: icons
+no_hash: true
+autowidth: true
+output:
+  fonts: ..
+  _icon.sass: ../../stylesheets/components
+templates: [_icon.sass]

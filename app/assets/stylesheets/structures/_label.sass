@@ -1,0 +1,43 @@
+// *************************************
+//
+//   Label
+//   -> Supplementary text
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .label[.label--link]
+//
+// *************************************
+
+.label
+  color: $label-color
+  font-size: $label-fontSize
+  font-weight: bold
+  text-transform: uppercase
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Inverted ----- //
+
+.label--invert
+  color: $label--invert-color
+
+// ----- Link ----- //
+
+.label--link
+  &:hover,
+  &:focus
+    color: $label-hover-color
+
+// Invert
+
+.label--link--invert
+  color: $label--link--invert-color
+  letter-spacing: 1px
+  &:hover,
+  &:focus
+    color: $label--link--invert-hover-color

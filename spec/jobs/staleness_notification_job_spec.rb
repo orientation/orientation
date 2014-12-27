@@ -1,26 +1,30 @@
 # -*- encoding : utf-8 -*-
-require 'spec_helper' 
+require 'spec_helper'
 
 describe StalenessNotificationJob do
+  before do
+    allow(ArticleMailer).to receive(:notify_author_of_staleness) { mailer }
+  end
+
+  let(:mailer) { double("ArticleMailer", deliver: true) }
   let(:articles) { [create(:article, :stale)] }
 
-  let(:job) { StalenessNotificationJob.new(articles) }
-  subject(:perform_job) { job.perform }
+  subject(:perform_job) { StalenessNotificationJob.new(articles).perform }
 
   it "sends an ArticleMailer" do
-    mailer = double("ArticleMailer", deliver: true)
-    
-    ArticleMailer.should_receive(:notify_author_of_staleness).and_return(mailer)
+    expect(mailer).to receive(:deliver)
     perform_job
-  end
-  
-  it "sets each article's last_notified_author_at to the date the job is run" do
-    perform_job
-    expect(articles.last.reload.last_notified_author_at).to eq Date.today
   end
 
-  it "does not modify the updated_at value" do
-    perform_job
-    expect(articles.last.updated_at).to be_within(0.1).of(articles.last.created_at)
+  context "as side-effects" do
+    before { perform_job }
+
+    it "sets each article's last_notified_author_at to the date the job is run" do
+      expect(articles.last.reload.last_notified_author_at).to eq Date.today
+    end
+
+    it "does not modify the updated_at value" do
+      expect(articles.last.updated_at).to be_within(0.1).of(articles.last.created_at)
+    end
   end
 end

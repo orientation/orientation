@@ -1,0 +1,111 @@
+// *************************************
+//
+//   Form
+//   -> Fields, selects, & such
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// %form.form
+//   %fieldset.form-field
+//     %label.form-label(for="email") Email
+//     %input.form-input(type="email" id="email")
+//
+// *************************************
+
+.form
+  margin-bottom: $b-space
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Condensed ----- //
+
+.form--condensed
+
+  .form-field
+    margin-bottom: $b-space-s
+
+// ----- Inline ----- //
+
+.form--inline
+
+  .form-btn,
+  .form-input
+    max-height: 36px
+    vertical-align: middle
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Field ----- //
+
+.form-field
+  border: 0
+  margin-bottom: $b-space
+  padding: 0
+
+// Inline
+
+.form-field--inline
+
+  .form-btn
+    display: block
+    line-height: 2.9
+    min-width: 100%
+
+// ----- Input ----- //
+
+.form-input
+  background: $form-input-background
+  border: $form-input-border
+  border-radius: $b-borderRadius
+  box-sizing: border-box !important
+  font-size: 100%
+  padding: $b-space-s
+  position: relative
+  transition: border-color 0.2s ease-in-out
+  width: 100%
+  &:focus
+    border-color: $form-input-focus-borderColor
+    outline: none
+
+// Clear
+
+.form-input--clear
+  background: none
+  border: 0
+  border-bottom: $form-input-border
+  border-radius: 0
+  color: $form-input--clear-color
+  padding: 0 0
+
+// Checkbox
+
+.form-input--checkbox
+  margin-right: $b-space-xs
+  width: auto
+
+// ----- Item ----- //
+
+.form-item
+  margin-bottom: $b-space
+
+// ----- Label ----- //
+
+.form-label
+  display: block
+  margin-bottom: $b-space-xs
+
+// ----- Textarea ----- //
+
+.form-textarea
+  overflow: auto
+  resize: vertical
+
+.form-textarea--pre
+  resize: none
+  white-space: nowrap

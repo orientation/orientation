@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = ArticleDecorator.decorate_collection(Article.current.includes(:tags).text_search(params[:search]))
-    @tags = Tag.by_article_count.take(10)
+    @guides = ArticleDecorator.decorate_collection(Article.guide)
   end
 
   def show
@@ -57,16 +57,16 @@ class ArticlesController < ApplicationController
   end
 
   def toggle_subscription
-    if !current_user.subscribed_to?(@article) 
+    if !current_user.subscribed_to?(@article)
       @article.subscribe(current_user)
-      flash[:notice] = "Subscription created. You will receive weekly email notifications 
+      flash[:notice] = "Subscription created. You will receive weekly email notifications
         about this article."
     else
       @article.unsubscribe(current_user)
-      flash[:notice] = "Subscription destroyed. You will no longer receive 
+      flash[:notice] = "Subscription destroyed. You will no longer receive
         weekly email notifications about this article."
     end
-    
+
     respond_with @article
   end
 
@@ -77,7 +77,9 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:created_at, :updated_at, :title, :content, :tag_tokens, :author_id, :editor_id, :archived_at)
+    params.require(:article).permit(
+      :created_at, :updated_at, :title, :content, :tag_tokens,
+      :author_id, :editor_id, :archived_at, :guide)
   end
 
   def decorate_article

@@ -2,7 +2,7 @@ class ArticleDecorator < ApplicationDecorator
   delegate_all
 
   def authors
-    output = "by #{author.link_tag} on #{created_at_tag} "
+    output = "#{author.link_tag} #{created_at_tag} "
 
     if editor && updated_at_tag
       if editor.id != source.author_id
@@ -26,7 +26,7 @@ class ArticleDecorator < ApplicationDecorator
   def updated_at_tag
     time_element(source.updated_at.in_time_zone)
   end
-  
+
   def author
     AuthorDecorator.new(source.author)
   end
@@ -49,5 +49,19 @@ class ArticleDecorator < ApplicationDecorator
 
   def rottenness
     content_tag(:span, "rotten", class: "state rotten") if source.rotten?
+  end
+
+  def signal
+    state = 'fresh' if source.fresh?
+    state = 'stale' if source.stale?
+    state = 'rotten' if source.rotten?
+
+    screen_reader_text = content_tag(:span, state, class: 'srt')
+
+    if state
+      content_tag(:div, screen_reader_text, class: "signal signal--#{state}")
+    else
+      content_tag(:div, state, class: 'signal')
+    end
   end
 end

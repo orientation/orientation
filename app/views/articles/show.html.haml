@@ -1,41 +1,89 @@
 - page_title @article.title
 
 - if @article.archived?
-  %p.archived This article has been archived. Please don't trust the information displayed here.
+  %p.bulletin.bulletin--warning This article has been archived. Please don't trust the information displayed here.
 - if @article.rotten?
-  %p.rotten This article has rotten. The information is partially or completely out of date.
+  %p.bulletin.bulletin--warning This article has gone rotten. The information is partially or completely out-of-date.
 
-%aside
-  = link_to(image_tag(@article.author.image), author_path(@article.author))
-  - if @article.edited? && @article.different_editor?
-    = link_to(image_tag(@article.editor.image), author_path(@article.editor))
-%h1= @article.title
-%p.author= @article.authors
+- if @article.guide?
+  .row.row--highlight.row--pattern
+    .cell.well.well--l
+      %h1.tci.tac= @article.title
 
-.markdown
-  = markdown(@article.content || "No content")
+%main.row
+  .cell.well.well--l
 
-%footer
-  = render "tags/tags", tags: @article.tags
-  
+    %article
+      %header.mbs
+        - unless @article.guide?
+          %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
+        .byline
+          .byline-main
+            .byline-author
+              = render partial: 'shared/icon', locals: { icon: 'avatar', padded: true }
+              = link_to @article.author, @article.author.link, class: 'label label--link label--link--invert'
+            = render partial: 'shared/icon', locals: { icon: 'clock', padded: true }
+            %span.label.label--invert= @article.created_at_tag
+          .byline-secondary
+            %span.tsi.tss Last edited
+            %span.label.label--invert= @article.updated_at_tag
 
-- if user_signed_in?
-  = link_to "Edit", edit_article_url(@article), class: "btn-a"
+      .g
+        %aside.g-b.g-b--m--1of6.mbm.pt--m--l
 
-  - toggle_subscription_label = current_user.subscribed_to?(@article) ? "Unsubscribe" : "Subscribe"
-  = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn-a', method: :put
+          .dropdown.mbm.js-dropdown
+            .card.card--xs.has-signal
+              .js-dropdown-btn
+                = @article.signal
+                .split
+                  .split-item
+                    .split-cell
+                      - # TODO: Move conditional presentation to decorator
+                      .label
+                        - if @article.fresh?
+                          Fresh
+                        - if @article.stale?
+                          Stale
+                        - if @article.rotten?
+                          Rotten
+                        - unless @article.fresh? || @article.stale? || @article.rotten?
+                          Normal
+                    .split-cell.tcs.tsm
+                      = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true }
+            .dropdown-menu
+              - unless @article.fresh?
+                .dropdown-item
+                  = link_to mark_fresh_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
+                    .signal.signal--fresh
+                    %span.label Fresh
+              - unless @article.rotten?
+                .dropdown-item
+                  = link_to report_rot_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
+                    .signal.signal--rotten
+                    %span.label Rotten
 
-  - if !@article.rotten?
-    = link_to "Report Rot", report_rot_article_url(@article), class: "btn-b", method: :put
+          = render "tags/tags", tags: @article.tags
 
-  - if @article.stale? || @article.rotten?
-    = link_to "Mark Fresh", mark_fresh_article_url(@article), class: "btn-b", method: :put    
+        .g-b.g-b--m--4of6
+          .card.markdown.mbm.pl--l--m.pr--l--m.ptl
+            = find_and_preserve do
+              = markdown(@article.content || "No content")
 
-  - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
-  = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn-b", method: :put
+          - if user_signed_in?
+            .mbm
+              = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
 
-  = link_to "Delete", @article, class: "btn-c", method: :delete
+              - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
+              = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
 
-  .subscriptions 
-    = link_to "Subscriptions", subscriptions_article_path(@article)  
+              = link_to "Delete", @article, class: "btn btn--b", method: :delete
 
+        %aside.g-b.g-b--m--1of6.pt--m--l
+          / TODO(Olivier): Combine %ul and contents into a single partial.
+          / TODO(Olivier): Restore original subscription partial (and view, if needed). I had to overwrite it to access the data :(
+          / TODO(Olivier): Restore @article.subscriptions to @subscriptions. This works, but I don't know why.
+          - if @article.subscriptions.count > 0
+            %ul.list.list--object
+              = render partial: 'subscription', collection: @article.subscriptions.decorate
+          - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
+          = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put

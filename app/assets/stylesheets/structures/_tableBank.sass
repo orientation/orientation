@@ -1,0 +1,57 @@
+// *************************************
+//
+//   Table Bank
+//   -> Responsive container for table overflow
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .tableBank
+//   .tableBank-original
+//     .tableBank-original-message
+//     %table.tableBank-original-table
+//   .tableBank-container
+//     %table
+//
+// *************************************
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+.tableBank.is-active
+  .tableBank-original-table
+    display: table
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Container ----- //
+
+.tableBank-container
+  overflow: auto
+
+// ----- Original ----- //
+
+.tableBank-original
+  display: none // NOTE: Toggled via JavaScript-generated `<style>` block
+  position: relative
+
+// Message
+
+.tableBank-original-message
+  font-size: $b-fontSize-m
+  font-style: italic
+  margin-bottom: $b-space-xs
+
+// Table
+
+.tableBank-original-table
+  display: none // NOTE: Toggled via `is-active`
+  left: 50%
+  margin-top: $b-space-xs
+  position: absolute
+  top: 100%
+  transform: translateX(-50%)

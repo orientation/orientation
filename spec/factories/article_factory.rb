@@ -23,5 +23,9 @@ FactoryGirl.define do
     trait :rotten do
       rotted_at Time.now
     end
+
+    trait :guide do
+      guide true
+    end
   end
 end
