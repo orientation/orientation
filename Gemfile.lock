@@ -90,7 +90,7 @@ GEM
       activesupport (>= 3.0)
       request_store (~> 1.0.3)
     erubis (2.7.0)
-    eventmachine (1.0.3)
+    eventmachine (1.0.4)
     excon (0.31.0)
     execjs (2.2.1)
     factory_girl (4.2.0)
