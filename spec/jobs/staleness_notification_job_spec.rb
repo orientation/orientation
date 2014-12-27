@@ -2,6 +2,8 @@
 require 'spec_helper'
 
 describe StalenessNotificationJob do
+  before(:all) { skip "Staleness notification jobs have been disabled for now." }
+
   before do
     allow(ArticleMailer).to receive(:notify_author_of_staleness) { mailer }
   end

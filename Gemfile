@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '~> 4.1.2'
+gem 'rails', '4.2.0'
 
 gem 'pg'
 gem 'thin'
@@ -10,7 +10,7 @@ gem 'thin'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'sass-rails'
+gem 'sass-rails', '5.0.0'
 
 gem 'turbolinks'
 
@@ -37,6 +37,7 @@ gem "mini_magick"
 gem 'fog'
 gem 'masonry-rails'
 gem 'skylight'
+gem 'responders','~> 2.0'
 
 group :development do
   gem 'better_errors'
