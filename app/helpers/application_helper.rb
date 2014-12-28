@@ -23,7 +23,7 @@ module ApplicationHelper
 
   def markdown(text)
     renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: false)
-    Redcarpet::Markdown.new(renderer, markdown_options).render(text).html_safe
+    Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
   end
 
   def table_of_contents(text)
@@ -56,8 +56,7 @@ module ApplicationHelper
       strikethrough: true,
       superscript: true,
       tables: true,
-      with_toc_data: true,
-      footnotes: true
+      with_toc_data: true
     }
   end
 end
