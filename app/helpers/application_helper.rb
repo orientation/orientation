@@ -30,19 +30,12 @@ module ApplicationHelper
 
   def markdown(text)
     renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: false)
-    options = {
-      autolink: true,
-      no_intra_emphasis: true,
-      fenced_code_blocks: true,
-      disable_indented_code_blocks: true,
-      lax_spacing: true,
-      lax_html_blocks: true,
-      strikethrough: true,
-      superscript: true,
-      tables: true,
-      with_toc_data: true
-    }
-    Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+    Redcarpet::Markdown.new(renderer, markdown_options).render(text).html_safe
+  end
+
+  def table_of_contents(text)
+    renderer = Redcarpet::Render::HTML_TOC.new(nesting_level: 2)
+    Redcarpet::Markdown.new(renderer, markdown_options).render(text).html_safe
   end
 
   ##
@@ -55,5 +48,23 @@ module ApplicationHelper
 
   def page_title(title)
     content_for(:page_title, raw(title))
+  end
+
+  private
+
+  def markdown_options
+    {
+      autolink: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      disable_indented_code_blocks: true,
+      lax_spacing: true,
+      lax_html_blocks: true,
+      strikethrough: true,
+      superscript: true,
+      tables: true,
+      with_toc_data: true,
+      footnotes: true
+    }
   end
 end

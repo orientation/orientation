@@ -65,6 +65,11 @@
 
         .g-b.g-b--m--4of6
           .card.markdown.mbm.pl--l--m.pr--l--m.ptl
+            - toc = table_of_contents(@article.content || "")
+            - unless toc.empty?
+              .table-of-contents
+                Table of Contents
+                = toc
             = find_and_preserve do
               = markdown(@article.content || "No content")
 
