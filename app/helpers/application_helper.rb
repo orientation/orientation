@@ -5,14 +5,7 @@ module ApplicationHelper
 
   class HTMLwithPygments < Redcarpet::Render::HTML
     def header(title, level)
-      @headers ||= []
       permalink = title.gsub(/\W+/, '-').downcase
-
-      if @headers.include? permalink
-        permalink += '_1'
-        permalink = permalink.succ while @headers.include? permalink
-      end
-      @headers << permalink
       %(
         <h#{level} id=\"#{permalink}\"><a name="#{permalink}" class="anchor" href="##{permalink}"></a>#{title}</h#{level}>
       )
