@@ -25,6 +25,9 @@ class SessionsController < ApplicationController
   protected
 
   def auth_hash
-    request.env['omniauth.auth']
+    # calling to_h because Strong Parameters don't allow direct access
+    # to request parameters, even when passed to a class outside the
+    # controller scope.
+    request.env['omniauth.auth'].to_h
   end
 end
