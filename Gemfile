@@ -35,6 +35,7 @@ gem "bugsnag"
 gem 'carrierwave'
 gem "mini_magick"
 gem 'fog'
+gem 'unf'
 gem 'masonry-rails'
 gem 'skylight'
 gem 'responders','~> 2.0'
