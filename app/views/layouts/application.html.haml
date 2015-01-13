@@ -6,6 +6,7 @@
     %title= content_for(:page_title) || 'Orientation'
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
 
   %body{ class: body_class }
