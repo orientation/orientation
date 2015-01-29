@@ -1,4 +1,5 @@
 Bugsnag.configure do |config|
-  config.api_key = "d93e2358b8d2578c62f5b83b2166cf6d"
+  # the API key is set with the BUGSNAG_API_KEY environment variable
+  # config.api_key = "NOPE"
   config.notify_release_stages = ["production"]
 end

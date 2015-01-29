@@ -39,8 +39,26 @@ Inside of the file, you should put the following:
 S3_BUCKET=codeschool
 ```
 
-## OAuth in development using ngrok
-It's impossible to use a non-public domain as an OAuth callback URL for Google OAuth2. To circumvent that, I use Pow locally with the app pointing to orientation.dev and thanks to [ngrok](http://journal.wearebunker.com/post/59684890589/using-ngrok-with-pow-for-development-previews) (`gem install forward`) I can pretend that the URL `http://orientation.ngrok.com` is local by running `ngrok -subdomain=orientation orientation.dev:80`.
+## OAuth in development
+In development we cheat around OAuth by simply using User.find(1) as the
+current user because it's easy and we're lazy. Testing OAuth in dev is
+hard.
+
+## Deployment
+
+### Required Environment Variables
+
+- `S3_ACCESS_KEY_ID`
+- `S3_SECRET_ACCESS_KEY`
+- `S3_BUCKET`
+- `MANDRILL_API_KEY`
+- `MANDRILL_DOMAIN`
+- `MANDRILL_PASSWORD`
+- `MANDRILL_USERNAME`
+- `GOOGLE_KEY`
+- `GOOGLE_SECRET`
+- `SKYLIGHT_AUTHENTICATION`
+- `BUGSNAG_API_KEY`
 
 ## Goals
 
