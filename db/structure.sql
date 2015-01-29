@@ -356,6 +356,13 @@ CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at
 
 
 --
+-- Name: index_articles_on_archived_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_articles_on_archived_at ON articles USING btree (archived_at);
+
+
+--
 -- Name: index_articles_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -434,4 +441,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140607045935');
 INSERT INTO schema_migrations (version) VALUES ('20140923231243');
 
 INSERT INTO schema_migrations (version) VALUES ('20141111222212');
+
+INSERT INTO schema_migrations (version) VALUES ('20150117041549');
 
