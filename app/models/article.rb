@@ -4,6 +4,8 @@ class Article < ActiveRecord::Base
   has_and_belongs_to_many :tags, before_add: :validates_tag
   has_many :subscriptions, class_name: "ArticleSubscription"
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
+  has_many :endorsements, class_name: "ArticleEndorsement"
+  has_many :endorsers, through: :endorsements, class_name: "User", source: :user
 
   attr_reader :tag_tokens
 
@@ -116,6 +118,12 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def contributors
+    User.where(id: [self.author_id, self.editor_id]).uniq.map do |user|
+      { name: user.name, email: user.email }
+    end
+  end
+
   # @user - the user to subscribe to this article
   # Returns the subscription if successfully created
   # Raises otherwise
@@ -130,6 +138,22 @@ class Article < ActiveRecord::Base
     subscription = self.subscriptions.find_by(user: user)
     return false if subscription.nil?
     return true if subscription.destroy
+  end
+
+  # @user - the user to have endorse this article
+  # Returns the endorsement if successfully created
+  # Raises otherwise
+  def endorse_by(user)
+    self.endorsements.find_or_create_by!(user: user)
+  end
+
+  # @user - the user to have unendorse this article
+  # Returns true if the unendorsement was successful
+  # Returns false if there was no endorsement in the first place
+  def unendorse_by(user)
+    endorsement = self.endorsements.find_by(user: user)
+    return false if endorsement.nil?
+    return true if endorsement.destroy
   end
 
   def tag_tokens=(tokens)
@@ -149,12 +173,6 @@ class Article < ActiveRecord::Base
   end
 
   private
-
-  def contributors
-    User.where(id: [self.author_id, self.editor_id]).map do |user|
-      { name: user.name, email: user.email }
-    end
-  end
 
   def generate_slug
     if self.slug.present? && self.slug == title.parameterize
