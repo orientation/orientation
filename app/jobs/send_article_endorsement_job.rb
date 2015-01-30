@@ -1,4 +1,4 @@
-class SendArticleEndorsementJob < Struct.new(:endorsement_id, :user_id)
+class SendArticleEndorsementJob < Struct.new(:endorsement_id)
   def perform
     endorsement = ArticleEndorsement.find(endorsement_id)
     contributors = endorsement.article.contributors
