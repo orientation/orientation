@@ -8,11 +8,13 @@ describe Article do
       create(:article_subscription, article: article, user: user)
     }
 
-    let(:subject) { article.save!}
+    before { article.subscriptions.reload }
+
+    subject(:save_article) { article.save! }
 
     it "notifies ArticleSubscription about the change" do
-      ArticleSubscription.any_instance.should_receive(:send_update)
-      subject
+      expect_any_instance_of(ArticleSubscription).to receive(:send_update)
+      save_article
     end
   end
 
