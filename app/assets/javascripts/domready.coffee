@@ -6,8 +6,7 @@
 
 jQuery ($) ->
 
-  domready = ->
-
+  documentReady = ->
     Orientation.accordion()
     Orientation.autoSubmit()
     Orientation.dropdown()
@@ -16,8 +15,9 @@ jQuery ($) ->
     Orientation.tableBank.init()
 
   # -------------------------------------
-  #   Turbolinks & DOM Ready Handlers
+  #   Set Event Handlers
   # -------------------------------------
 
-  $( document ).ready( domready )
-  $( document ).on( 'page:load', domready )
+  $( document ).on
+    'ready'     : documentReady
+    'page:load' : documentReady
