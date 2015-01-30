@@ -127,5 +127,5 @@
 #   Usage
 # -------------------------------------
 #
-# Admin.tableBank.init()
+# Orientation.tableBank.init()
 #

@@ -31,5 +31,5 @@
 #   Usage
 # -------------------------------------
 #
-# Admin.dropdown()
+# Orientation.dropdown()
 #

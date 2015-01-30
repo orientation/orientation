@@ -26,5 +26,5 @@
 #   Usage
 # -------------------------------------
 #
-# Admin.accordion()
+# Orientation.accordion()
 #

@@ -21,5 +21,5 @@
 #   Usage
 # -------------------------------------
 #
-# Admin.inputSelect()
+# Orientation.inputSelect()
 #

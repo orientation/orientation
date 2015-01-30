@@ -21,5 +21,5 @@
 #   Usage
 # -------------------------------------
 #
-# Admin.autoSubmit()
+# Orientation.autoSubmit()
 #
