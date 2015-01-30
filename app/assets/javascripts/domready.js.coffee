@@ -44,8 +44,8 @@ jQuery ($) ->
     #
     #---------------------------------
 
-    $('.js-input-select').on 'click', ->
-      $(@).focus().select()
+    $('.js-inputSelect').on 'focus', ->
+      $(@).trigger( 'select' )
 
     #---------------------------------
     #  Initialization
