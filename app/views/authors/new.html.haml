@@ -2,21 +2,22 @@
   .cell.cell--s.well.well--l
 
     .label.mbm Create a New Author
+
     .form.card.card--b
-      = simple_form_for @author, url: authors_path do |f|
+      = simple_form_for @author, url: authors_path do | f |
 
-        .form-item
-          = f.input :name, placeholder: 'Name',
-            label_html: { class: 'form-label label' },
-            input_html: { class: 'form-input' }
+        %fieldset.form-field
+          = f.label :name, class: 'form-label label'
+          = f.input_field :name, placeholder: 'Name', class: 'form-input'
 
-        .form-item
-          = f.input :email, as: :email, placeholder: 'Email',
-            label_html: { class: 'form-label label' },
-            input_html: { class: 'form-input' }
+        %fieldset.form-field
+          = f.label :email, class: 'form-label label'
+          = f.email_field :email, placeholder: 'Email', class:'form-input'
 
-        .form-item
-          = f.input :avatar, as: :file,
-            label_html: { class: 'form-label label' }
+        %fieldset.form-field.mbl
+          = f.label :avatar do
+            %label.form-label.label Avatar
+            %span.btn.btn--b Choose file
+            = f.file_field :avatar, class: 'dn'
 
         = f.submit 'Create Author', class: 'btn btn--a form-btn'
