@@ -2,14 +2,15 @@
   .g-b.g-b--m--2of3
 
     %p.label.mbxs= label_text
-    .form
-      = simple_form_for @article do |f|
 
-        .form-item
+    .form
+      = simple_form_for @article do | f |
+
+        .form-field
           = f.input_field :title, placeholder: 'Enter an Article Title',
             class: 'form-input form-input--clear tfh tsl ts--m--xl'
 
-        .form-item.js-editor
+        .form-field.js-editor
 
           .form-overlay.js-editor-overlay
             = link_to '#', class: 'form-item-toggle form-item-toggle--open js-editor-open' do
@@ -20,23 +21,25 @@
 
             = f.input_field :content, rows: 12, class: 'form-input form-textarea js-editor-textarea'
 
-        .form-item
-          = f.input :tag_tokens, label: 'Tags',
-            label_html: { class: 'form-label label' },
-            input_html: { data: {load: @tags} }
+        .form-field
+          = f.label :tag_tokens do
+            %span.form-label.label Tags
+            = f.input_field :tag_tokens, data: { load: @tags }
 
-        .card.card--b.form-item
-          .mbs
-            = f.input :guide, label: 'Make This A Guide',
-              label_html: { class: 'label' },
-              input_html: { class: 'form-input form-input--checkbox' }
-          %p.mbf.tcs.tsi.tsm A "Guide" is a collection of related articles under a particular topic.
+        .card.card--b
+
+          .form-field.form-field--inline.mbf
+            = f.label :guide, class: 'dib mbxs' do
+              = f.input_field :guide, class: 'form-input form-input--checkbox'
+              %span.form-label.label Make This a Guide
+
+            %p.mbf.tcs.tsi.tsm A "Guide" is a collection of related articles under a particular topic.
 
         - if @article.author.blank?
-          .form-item
+          .form-field
             = f.input :author_id, as: :hidden, input_html: { value: current_user.try(:id) }
 
-        .form-item
+        .form-field.mbl
           = f.input :editor_id, as: :hidden, input_html: { value: current_user.try(:id) }
 
         = f.button :submit, class: 'btn btn--a btn--l'
