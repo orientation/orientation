@@ -55,7 +55,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'faker'
   gem 'pry-rails'
-  gem 'pry-debugger', platform: :ruby_19
+  gem 'pry-byebug'
   gem 'pry-remote'
   gem 'fuubar'
 end
