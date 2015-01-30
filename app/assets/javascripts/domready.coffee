@@ -12,6 +12,11 @@ jQuery ($) ->
     Orientation.dropdown()
     Orientation.inputSelect()
 
+    Orientation.tableBank
+      context : $('.markdown')
+      element : $('table')
+      gutter  : '20'
+
     #---------------------------------
     #
     #  Accordion
@@ -25,14 +30,6 @@ jQuery ($) ->
     $( '.js-accordion-btn' ).on 'click', ( event ) ->
       $(@).closest( '.js-accordion' ).find( '.js-accordion-content' ).slideToggle()
 
-    #---------------------------------
-    #  Initialization
-    #---------------------------------
-
-    Orientation.tableBank
-      context : $('.markdown')
-      element : $('table')
-      gutter  : '20'
 
     # -------------------------------------
     #   Fullscreen Editor
