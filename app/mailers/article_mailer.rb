@@ -3,19 +3,19 @@
 #
 # article - a stale article (an article that has not been updated for several months)
 #
-# This email can be tested using the `.test` method:    
+# This email can be tested using the `.test` method:
 #   ArticleMailer.test(:notify_author_of_staleness, email: <author.email>)
 #
 class ArticleMailer < MandrillMailer::TemplateMailer
   include ActionView::Helpers::UrlHelper
 
   default from: 'orientation@codeschool.com'
-  
+
   def notify_author_of_staleness(articles)
     author = articles.last.author
-    mandrill_mail template: 'Stale Article Alert',
+    mandrill_mail template: 'stale-article-alert',
                   subject: 'Some of your Orientation articles might be stale',
-                  from_name: 'Code School',
+                  from_name: 'Orientation',
                   to: { email: author.email, name: author.name },
                   vars: {
                     'CONTENT' => format_email_content(articles)
@@ -23,10 +23,10 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   end
 
   def send_updates_for(article, user)
-    mandrill_mail template: 'Article Subscription Update',
-                  subject: 'Article Subscription Update',
-                  from_name: 'Code School', 
-                  to: { email: user.email, name: user.name }, 
+    mandrill_mail template: 'article-subscription-update',
+                  subject: "#{article.title} was just updated",
+                  from_name: 'Orientation',
+                  to: { email: user.email, name: user.name },
                   vars: {
                     'ARTICLE_TITLE' => article.title,
                     'URL' => article_url(article)
@@ -34,11 +34,24 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   end
 
   def send_rotten_notification_for(article, contributors)
-    mandrill_mail template: 'Article Rotten Update',
+    mandrill_mail template: 'article-rotten-update',
                   subject: 'Article Rotten Update',
-                  from_name: 'Code School', 
-                  to: contributors, 
+                  from_name: 'Orientation',
+                  to: contributors,
                   vars: {
+                    'ARTICLE_TITLE' => article.title,
+                    'URL' => article_url(article)
+                  }
+  end
+
+  def send_endorsement_for(article, author, endorser)
+    mandrill_mail template: 'article-endorsement-notification',
+                  subject: "#{endorser.name} found #{article.title} useful!",
+                  from_name: 'Orientation',
+                  to: { email: author.email, name: author.name },
+                  vars: {
+                    'ENDORSER_NAME' => endorser.name,
+                    'ENDORSER_URL' => author_url(endorser),
                     'ARTICLE_TITLE' => article.title,
                     'URL' => article_url(article)
                   }
@@ -57,9 +70,9 @@ class ArticleMailer < MandrillMailer::TemplateMailer
     articles = [
       MandrillMailer::Mock.new({
         id: 1,
-        title: 'Test', 
-        author: MandrillMailer::Mock.new({ 
-          email: options[:email] 
+        title: 'Test',
+        author: MandrillMailer::Mock.new({
+          email: options[:email]
         })
       })
     ]

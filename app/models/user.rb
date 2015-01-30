@@ -76,12 +76,12 @@ class User < ActiveRecord::Base
 
   # TODO: improve this query
   def subscribed_to?(article)
-    subscriptions.where(article_id: article.id).where(user_id: self.id).count > 0
+    subscriptions.where(article_id: article.id, user_id: self.id).count > 0
   end
 
   # TODO: improve this query
   def endorsing?(article)
-    endorsements.where(article_id: article.id).where(user_id: self.id).count > 0
+    endorsements.where(article_id: article.id, user_id: self.id).count > 0
   end
 
   def to_s

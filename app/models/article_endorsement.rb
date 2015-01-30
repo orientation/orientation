@@ -2,9 +2,9 @@ class ArticleEndorsement < ActiveRecord::Base
   belongs_to :article
   belongs_to :user
 
-  def send_update
-    Delayed::Job.enqueue(SendArticleUpdateJob.new(self.id, user.id))
+  after_create :send_endorsement
+
+  def send_endorsement
+    Delayed::Job.enqueue(SendArticleEndorsementJob.new(self.id))
   end
-
-
 end

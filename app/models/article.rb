@@ -145,9 +145,9 @@ class Article < ActiveRecord::Base
   # Returns true if the unendorsement was successful
   # Returns false if there was no endorsement in the first place
   def unendorse_by(user)
-    subscription = self.endorsements.find_by(user: user)
-    return false if endorsements.nil?
-    return true if endorsements.destroy
+    endorsement = self.endorsements.find_by(user: user)
+    return false if endorsement.nil?
+    return true if endorsement.destroy
   end
 
   def tag_tokens=(tokens)
