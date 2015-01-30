@@ -8,6 +8,7 @@ jQuery ($) ->
 
   domready = ->
 
+    Orientation.accordion()
     Orientation.autoSubmit()
     Orientation.dropdown()
     Orientation.inputSelect()
@@ -16,20 +17,6 @@ jQuery ($) ->
       context : $('.markdown')
       element : $('table')
       gutter  : '20'
-
-    #---------------------------------
-    #
-    #  Accordion
-    #  -> Collapsable container
-    #
-    #---------------------------------
-
-    # Collapse accordion content on DOM Ready
-    $( '.js-accordion-content' ).hide()
-
-    $( '.js-accordion-btn' ).on 'click', ( event ) ->
-      $(@).closest( '.js-accordion' ).find( '.js-accordion-content' ).slideToggle()
-
 
     # -------------------------------------
     #   Fullscreen Editor
