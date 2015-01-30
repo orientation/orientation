@@ -13,7 +13,7 @@ describe ArticleMailer do
     subject { mailer }
 
     it { should send_email_to(email: user.email) }
-    it { should use_template('Stale Article Alert') }
+    it { should use_template('stale-article-alert') }
     it { should have_subject('Some of your Orientation articles might be stale') }
     # If the slug for all artuckes are in the email, it's a safe bet the full URLs are as well.
     it { articles.each { |article| should include_merge_var_content(article.slug) } }
@@ -29,8 +29,8 @@ describe ArticleMailer do
     subject { mailer }
 
     it { should send_email_to(email: user.email) }
-    it { should use_template('Article Subscription Update') }
-    it { should have_subject('Article Subscription Update') }
+    it { should use_template('article-subscription-update') }
+    it { should have_subject("#{article.title} was just updated") }
     it { should be_from(email: 'orientation@codeschool.com') }
   end
 
@@ -47,8 +47,24 @@ describe ArticleMailer do
     subject { mailer }
 
     it { should send_email_to(email: contributors.first[:email]) }
-    it { should use_template('Article Rotten Update') }
+    it { should use_template('article-rotten-update') }
     it { should have_subject('Article Rotten Update') }
+    it { should be_from(email: 'orientation@codeschool.com') }
+  end
+
+  context ".send_endorsement_notification_for(article, author, endorser)" do
+    let(:article) { create(:article) }
+    let(:contributors) { article.contributors }
+    let(:endorsement) { create(:article_endorsement, article: article) }
+    let(:endorser) { endorsement.user }
+
+    let(:mailer) { described_class.send_endorsement_notification_for(article, contributors, endorser) }
+
+    subject { mailer }
+
+    it { should send_email_to(email: contributors.first[:email]) }
+    it { should use_template('article-endorsement-notification') }
+    it { should have_subject("#{endorser.name} found #{article.title} useful!") }
     it { should be_from(email: 'orientation@codeschool.com') }
   end
 

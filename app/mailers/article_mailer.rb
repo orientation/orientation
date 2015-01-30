@@ -44,11 +44,11 @@ class ArticleMailer < MandrillMailer::TemplateMailer
                   }
   end
 
-  def send_endorsement_for(article, author, endorser)
+  def send_endorsement_notification_for(article, contributors, endorser)
     mandrill_mail template: 'article-endorsement-notification',
                   subject: "#{endorser.name} found #{article.title} useful!",
                   from_name: 'Orientation',
-                  to: { email: author.email, name: author.name },
+                  to: contributors,
                   vars: {
                     'ENDORSER_NAME' => endorser.name,
                     'ENDORSER_URL' => author_url(endorser),

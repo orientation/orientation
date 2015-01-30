@@ -118,6 +118,12 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def contributors
+    User.where(id: [self.author_id, self.editor_id]).uniq.map do |user|
+      { name: user.name, email: user.email }
+    end
+  end
+
   # @user - the user to subscribe to this article
   # Returns the subscription if successfully created
   # Raises otherwise
@@ -167,12 +173,6 @@ class Article < ActiveRecord::Base
   end
 
   private
-
-  def contributors
-    User.where(id: [self.author_id, self.editor_id]).map do |user|
-      { name: user.name, email: user.email }
-    end
-  end
 
   def generate_slug
     if self.slug.present? && self.slug == title.parameterize
