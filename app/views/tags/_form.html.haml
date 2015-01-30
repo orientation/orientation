@@ -1,3 +1,9 @@
-= simple_form_for @tag do |f|
-  = f.input :name
-  = f.button :submit, class: "btn-a"
+= simple_form_for @tag do | f |
+
+  %fieldset.form-field.mbl
+
+    = f.label :name do
+      %span.form-label.label Tag Name
+      = f.input_field :name, class: 'form-input'
+
+  = f.button :submit, class: 'btn btn--a btn--l'
