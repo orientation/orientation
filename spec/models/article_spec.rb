@@ -11,7 +11,7 @@ describe Article do
     let(:subject) { article.save!}
 
     it "notifies ArticleSubscription about the change" do
-      ArticleSubscription.any_instance.should_receive(:send_update_for).with(article.reload.id)
+      ArticleSubscription.any_instance.should_receive(:send_update)
       subject
     end
   end

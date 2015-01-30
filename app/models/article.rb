@@ -165,8 +165,8 @@ class Article < ActiveRecord::Base
   end
 
   def update_subscribers
-    subscriptions.each do |sub|
-      sub.send_update_for(self.id)
+    subscriptions.each do |subscription|
+      subscription.send_update
     end
   end
 
