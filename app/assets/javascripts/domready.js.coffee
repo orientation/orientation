@@ -37,6 +37,15 @@ jQuery ($) ->
     $('.js-accordion-btn').on 'click', (e) ->
       $(@).closest('.js-accordion').find('.js-accordion-content').slideToggle()
 
+    # -------------------------------------
+    #
+    #   Auto Submit
+    #
+    # -------------------------------------
+
+    $('.js-autoSubmit').on 'change', ->
+      $(@).closest('form').trigger('submit')
+
     #---------------------------------
     #
     #  Input Select
