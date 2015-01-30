@@ -1,4 +1,4 @@
-%main.ro
+%main.row
   .cell.well.well--l
 
     .g
@@ -15,16 +15,27 @@
 
           - # TODO(Olivier): Remove hard-coded ID for moderation
           - if Rails.env.development? or current_user.id == 1
-            .form.tar
-              = simple_form_for :user, url: author_path(@author), method: :patch do |f|
-                = f.input :avatar, as: :file, required: false, label: "Photo"
-                = f.submit "Upload Avatar", class: "btn btn--b"
+            .form
+              = simple_form_for :user, url: author_path( @author ), method: :patch do | f |
+
+                %fieldset.form-field
+                  = f.label :avatar do
+                    %span.btn.btn--b Choose photo
+                    = f.file_field :avatar, required: false, class: 'dn js-autoSubmit'
 
           - if current_user == @author
             .form
-              = simple_form_for @author.source, url: author_path(@author), method: :patch do |f|
-                = f.input_field :shtick, as: :text, required: false, placeholder: "What do they do?", label: false, class: 'form-input'
-                = f.submit "Update", class: "btn btn--b"
+              = simple_form_for @author.source, url: author_path( @author ), method: :patch do | f |
+
+                %fieldset.form-field
+                  - if @author == current_user
+                    = f.text_area :shtick, required: false, placeholder: 'What do you do?',
+                     class: 'form-input form-input--textarea'
+                  - else
+                    = f.text_area :shtick, required: false, placeholder: 'What do they do?',
+                     class: 'form-input form-input--textarea'
+
+                = f.submit 'Update', class: 'btn btn--b'
           - else
             %p.mbxs= @author.shtick
 
@@ -33,11 +44,11 @@
 
           .card-section.card-section--row
             %h2.mbs Contributions
-            %p.mbxs.tsm= "Created #{@author.articles.count} article#{ 's' if @author.articles.count != 1 }"
-            %p.mbf.tsm= "Edited #{@author.edits.count} article#{ 's' if @author.articles.count != 1 }"
+            %p.mbxs.tsm Created #{ pluralize( @author.articles.count, 'article' ) }
+            %p.mbf.tsm Edited #{ pluralize( @author.edits.count, 'article' ) }
 
         .tac.mbm
-          = link_to "Toggle Status", author_toggle_status_path(@author), method: :put
+          = link_to 'Toggle Status', author_toggle_status_path( @author ), method: :put
 
       .g-b.g-b--m--2of3
 
@@ -45,32 +56,31 @@
         - if @author.articles.count > 0
           - # TODO: Apply signal classes unique to Article decorator
           %ul.list.list--xs.mbl
-            - @author.articles.each do |article|
-              %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
+            - @author.articles.each do | article |
+              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
                 = link_to article.title, article, class: 'article-title'
-
         - else
           - if current_user == @author
             %p
               Hey, everyone has to start somewhere.
-              = link_to "Create an article", new_article_url, class: 'dib'
+              = link_to 'Create an article', new_article_url, class: 'dib'
           - else
-            %p= "#{@author.first_name} hasn't created any articles yet."
+            %p #{ @author.first_name } hasn't created any articles yet.
 
         %h2.mbs Edited Articles
         - if @author.edits.count > 0
           %ul.list.list--xs.mbl
-            - @author.edits.each do |article|
-              %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
+            - @author.edits.each do | article |
+              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
                 = link_to article.title, article, class: 'article-title'
         - else
-          %p= "#{@author.first_name} loves everything just the way it is."
+          %p #{ @author.first_name } hasn't edited any articles yet.
 
         %h2.mbs Article Subscriptions
         - if @author.subscribed_articles.count > 0
           %ul.list.list--xs
-            - @author.subscribed_articles.each do |article|
-              %li.card.list-item.article{ class: ('has-article-footer' unless article.tags.empty? )}
+            - @author.subscribed_articles.each do | article |
+              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
                 = link_to article.title, article, class: 'article-title'
         - else
-          %p= "#{@author.first_name} isn't worried about missing out on anything."
+          %p #{ @author.first_name } isn't subscribed to any articles yet.

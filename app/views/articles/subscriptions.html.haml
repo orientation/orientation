@@ -1,6 +1,12 @@
-&#8592;
-= link_to " Back to #{@article.title}", @article
-%h1 Subscriptions
-%p These folks will receive emails whenever this article is modified.
-%ul
-  = render partial: "subscription", collection: @subscriptions
+.row
+  .cell.cell--s.well.well--l
+
+    .mbm
+      = link_to @article do
+        &#8592; Back to #{ @article.title }
+
+    %h1 Subscriptions
+    %p These folks will receive emails whenever this article is modified.
+
+    %ul.list
+      = render partial: 'subscription', collection: @subscriptions

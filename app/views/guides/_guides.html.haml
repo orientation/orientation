@@ -1,5 +1,5 @@
 - unless guides.empty?
-  .g.js-guides
+  .g
     - guides.each do |guide|
       -# NOTE: Rails' .titleize method removes hyphens
       - title = guide.title =~ /-/ ? guide.title : guide.title.titleize

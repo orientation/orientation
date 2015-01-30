@@ -37,17 +37,14 @@ jQuery ($) ->
     $('.js-accordion-btn').on 'click', (e) ->
       $(@).closest('.js-accordion').find('.js-accordion-content').slideToggle()
 
-    #---------------------------------
+    # -------------------------------------
     #
-    #  Guide Cleanup
-    #  -> Apply classes to guides
+    #   Auto Submit
     #
-    #---------------------------------
+    # -------------------------------------
 
-    $('.js-guides').find('ol, ul').addClass('list list--xs')
-    $('.js-guides').find('ol ol, ul ul').addClass('plm')
-    $('.js-guides').find('li').addClass('list-item')
-    $('.js-guides').children('li').addClass('mbm')
+    $('.js-autoSubmit').on 'change', ->
+      $(@).closest('form').trigger('submit')
 
     #---------------------------------
     #
@@ -56,8 +53,8 @@ jQuery ($) ->
     #
     #---------------------------------
 
-    $('.js-input-select').on 'click', ->
-      $(@).focus().select()
+    $('.js-inputSelect').on 'focus', ->
+      $(@).trigger( 'select' )
 
     #---------------------------------
     #  Initialization
