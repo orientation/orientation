@@ -1,9 +1,8 @@
-#-------------------------------------
-#  DOM Ready
-#  - Runs globally when the document
-#    is ready or when a new page is
-#    requested via Turbolinks
-#-------------------------------------
+# *************************************
+#
+#   Document Ready
+#
+# *************************************
 
 jQuery ($) ->
 
@@ -16,13 +15,13 @@ jQuery ($) ->
     #
     #---------------------------------
 
-    $('.js-dropdown-btn').on 'click', (e) ->
-      e.stopPropagation() # NOTE: Needed to prevent trigger click event on document
-      $(@).closest('.js-dropdown').toggleClass('is-active')
+    $('.js-dropdown-btn').on 'click', ( event ) ->
+      event.stopPropagation()
+      $(@).closest( '.js-dropdown' ).toggleClass( 'is-active' )
 
     # TODO: Modularize clickout behavior
-    $(document).on 'click', ->
-      $('.js-dropdown').removeClass('is-active')
+    $( document ).on 'click', ->
+      $( '.js-dropdown' ).removeClass( 'is-active' )
 
     #---------------------------------
     #
@@ -32,10 +31,10 @@ jQuery ($) ->
     #---------------------------------
 
     # Collapse accordion content on DOM Ready
-    $('.js-accordion-content').hide()
+    $( '.js-accordion-content' ).hide()
 
-    $('.js-accordion-btn').on 'click', (e) ->
-      $(@).closest('.js-accordion').find('.js-accordion-content').slideToggle()
+    $( '.js-accordion-btn' ).on 'click', ( event ) ->
+      $(@).closest( '.js-accordion' ).find( '.js-accordion-content' ).slideToggle()
 
     # -------------------------------------
     #
@@ -43,8 +42,8 @@ jQuery ($) ->
     #
     # -------------------------------------
 
-    $('.js-autoSubmit').on 'change', ->
-      $(@).closest('form').trigger('submit')
+    $( '.js-autoSubmit' ).on 'change', ->
+      $(@).closest( 'form' ).trigger( 'submit' )
 
     #---------------------------------
     #
@@ -61,9 +60,9 @@ jQuery ($) ->
     #---------------------------------
 
     Orientation.tableBank
-      context: $('.markdown')
-      element: $('table')
-      gutter: '20'
+      context : $('.markdown')
+      element : $('table')
+      gutter  : '20'
 
     # -------------------------------------
     #   Fullscreen Editor
@@ -73,23 +72,25 @@ jQuery ($) ->
       $(@).each ->
         redraw = this.offsetHeight
 
-    $('.js-editor-open').on 'click', (event) ->
+    $( '.js-editor-open' ).on 'click', ( event ) ->
       event.preventDefault()
 
-      $('.js-editor-textarea')
-        .addClass('is-editing')
-        .parent('.js-editor-overlay')
-        .addClass('is-active')
+      $( '.js-editor-textarea' )
+        .addClass( 'is-editing' )
+        .parent( '.js-editor-overlay' )
+        .addClass( 'is-active' )
 
-      setTimeout do $('.js-editor-textarea').focus(), 50
+      setTimeout $('.js-editor-textarea').focus(), 50
 
-    $(document).on 'click', '.js-editor-close', (event) ->
+    $(document).on 'click', '.js-editor-close', ( event ) ->
       event.preventDefault()
 
-      $('.js-editor-overlay').removeClass('is-active')
-      $('.js-editor-textarea').removeClass('is-editing').focus()
+      $( '.js-editor-overlay' ).removeClass( 'is-active' )
+      $( '.js-editor-textarea' ).removeClass( 'is-editing' ).focus()
 
-  # Bind behavior to document load/reload
-  # NOTE: Needed for Turbolinks compatibility
-  $(document).ready domready
-  $(document).on 'page:load', domready
+  # -------------------------------------
+  #   Turbolinks & DOM Ready Handlers
+  # -------------------------------------
+
+  $( document ).ready( domready )
+  $( document ).on( 'page:load', domready )
