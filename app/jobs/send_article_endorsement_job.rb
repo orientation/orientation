@@ -5,6 +5,6 @@ class SendArticleEndorsementJob < Struct.new(:endorsement_id)
     article = endorsement.article
     endorser = endorsement.user
 
-    ArticleMailer.send_endorsement_for(article, contributors, endorser).deliver
+    ArticleMailer.send_endorsement_notification_for(article, contributors, endorser).deliver
   end
 end
