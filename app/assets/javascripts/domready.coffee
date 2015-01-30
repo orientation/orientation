@@ -9,22 +9,8 @@ jQuery ($) ->
   domready = ->
 
     Orientation.autoSubmit()
+    Orientation.dropdown()
     Orientation.inputSelect()
-
-    #---------------------------------
-    #
-    #  Dropdown
-    #  -> Contextual menus
-    #
-    #---------------------------------
-
-    $('.js-dropdown-btn').on 'click', ( event ) ->
-      event.stopPropagation()
-      $(@).closest( '.js-dropdown' ).toggleClass( 'is-active' )
-
-    # TODO: Modularize clickout behavior
-    $( document ).on 'click', ->
-      $( '.js-dropdown' ).removeClass( 'is-active' )
 
     #---------------------------------
     #
