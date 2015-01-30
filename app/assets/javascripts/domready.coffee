@@ -8,6 +8,7 @@ jQuery ($) ->
 
   domready = ->
 
+    Orientation.autoSubmit()
     Orientation.inputSelect()
 
     #---------------------------------
@@ -37,15 +38,6 @@ jQuery ($) ->
 
     $( '.js-accordion-btn' ).on 'click', ( event ) ->
       $(@).closest( '.js-accordion' ).find( '.js-accordion-content' ).slideToggle()
-
-    # -------------------------------------
-    #
-    #   Auto Submit
-    #
-    # -------------------------------------
-
-    $( '.js-autoSubmit' ).on 'change', ->
-      $(@).closest( 'form' ).trigger( 'submit' )
 
     #---------------------------------
     #  Initialization
