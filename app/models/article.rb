@@ -134,6 +134,22 @@ class Article < ActiveRecord::Base
     return true if subscription.destroy
   end
 
+  # @user - the user to have endorse this article
+  # Returns the endorsement if successfully created
+  # Raises otherwise
+  def endorse_by(user)
+    self.endorsements.find_or_create_by!(user: user)
+  end
+
+  # @user - the user to have unendorse this article
+  # Returns true if the unendorsement was successful
+  # Returns false if there was no endorsement in the first place
+  def unendorse_by(user)
+    subscription = self.endorsements.find_by(user: user)
+    return false if endorsements.nil?
+    return true if endorsements.destroy
+  end
+
   def tag_tokens=(tokens)
     self.tag_ids = Tag.ids_from_tokens(tokens)
   end

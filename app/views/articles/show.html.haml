@@ -90,3 +90,5 @@
           - if @article.endorsements.count > 0
             %ul.list.list--object
               = render partial: 'endorsement', collection: @article.endorsements.decorate
+          - toggle_endorsement_label = current_user.endorsing?(@article) ? 'Unendorse' : "Endorse"
+          = link_to toggle_endorsement_label, toggle_endorsement_article_url(@article), class: 'btn btn--a', method: :put

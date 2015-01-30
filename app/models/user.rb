@@ -79,6 +79,11 @@ class User < ActiveRecord::Base
     subscriptions.where(article_id: article.id).where(user_id: self.id).count > 0
   end
 
+  # TODO: improve this query
+  def endorsing?(article)
+    endorsements.where(article_id: article.id).where(user_id: self.id).count > 0
+  end
+
   def to_s
     self.name || self.email
   end
