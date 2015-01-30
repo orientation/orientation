@@ -86,3 +86,7 @@
               = render partial: 'subscription', collection: @article.subscriptions.decorate
           - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
           = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
+
+          - if @article.endorsements.count > 0
+            %ul.list.list--object
+              = render partial: 'endorsement', collection: @article.endorsements.decorate

@@ -4,6 +4,8 @@ class Article < ActiveRecord::Base
   has_and_belongs_to_many :tags, before_add: :validates_tag
   has_many :subscriptions, class_name: "ArticleSubscription"
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
+  has_many :endorsements, class_name: "ArticleEndorsement"
+  has_many :endorsers, through: :endorsements, class_name: "User", source: :user
 
   attr_reader :tag_tokens
 

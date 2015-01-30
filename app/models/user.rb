@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :articles, foreign_key: "author_id"
   has_many :subscriptions, class_name: "ArticleSubscription"
   has_many :subscribed_articles, through: :subscriptions, source: :article
+  has_many :endorsements, class_name: "ArticleEndorsement"
+  has_many :endorsed_articles, through: :endorsements, source: :article
 
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
