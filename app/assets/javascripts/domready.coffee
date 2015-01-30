@@ -8,6 +8,8 @@ jQuery ($) ->
 
   domready = ->
 
+    Orientation.inputSelect()
+
     #---------------------------------
     #
     #  Dropdown
@@ -44,16 +46,6 @@ jQuery ($) ->
 
     $( '.js-autoSubmit' ).on 'change', ->
       $(@).closest( 'form' ).trigger( 'submit' )
-
-    #---------------------------------
-    #
-    #  Input Select
-    #  -> Automatically select input text
-    #
-    #---------------------------------
-
-    $('.js-inputSelect').on 'focus', ->
-      $(@).trigger( 'select' )
 
     #---------------------------------
     #  Initialization
