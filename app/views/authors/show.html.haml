@@ -28,8 +28,12 @@
               = simple_form_for @author.source, url: author_path( @author ), method: :patch do | f |
 
                 %fieldset.form-field
-                  = f.text_area :shtick, required: false, placeholder: 'What do they do?',
-                   class: 'form-input form-input--textarea'
+                  - if @author == current_user
+                    = f.text_area :shtick, required: false, placeholder: 'What do you do?',
+                     class: 'form-input form-input--textarea'
+                  - else
+                    = f.text_area :shtick, required: false, placeholder: 'What do they do?',
+                     class: 'form-input form-input--textarea'
 
                 = f.submit 'Update', class: 'btn btn--b'
           - else
