@@ -1,64 +1,131 @@
-#-------------------------------------
+# *************************************
 #
-#  Table Bank
-#  -> Responsive container for table overflow
+#   Dropdown
+#   -> Responsive table overflow
 #
-#-------------------------------------
+# *************************************
 #
-# options.context - the container element
-# options.element - the element (jQuery)
-# options.gutter - window gutter width (px)
+# @param element              { jQuery object }
+# @param context              { jQuery object }
+# @param elementClass         { string }
+# @param containerClass       { string }
+# @param originalClass        { string }
+# @param originalMessageClass { string }
+# @param originalTableClass   { string }
+# @param toggleClass          { string }
+# @param activeClass          { string }
+# @param gutter               { integer }
 #
-#-------------------------------------
+# *************************************
 
-@Orientation.tableBank = (options) ->
+@Orientation.tableBank = do ->
 
-  addEventListeners = (context) ->
-    context.find('.js-tableBank-toggle').on 'click', (e) ->
-      e.preventDefault()
-      context.closest('.tableBank').toggleClass 'is-active'
+  # -------------------------------------
+  #   Private Variables
+  # -------------------------------------
 
-  addStyleSheet = (width) ->
-    gutter = options.gutter * 2
+  _settings = {}
 
-    $('head').append("
+  # -------------------------------------
+  #   Initialize
+  # -------------------------------------
+
+  init = ( options ) ->
+    _settings = $.extend
+      element              : $( 'table' )
+      context              : $( '.js-tableBank' )
+      elementClass         : 'tableBank'
+      containerClass       : 'tableBank-container'
+      originalClass        : 'tableBank-original'
+      originalMessageClass : 'tableBank-original-message'
+      originalTableClass   : 'tableBank-original-table'
+      toggleClass          : 'js-tableBank-toggle'
+      activeClass          : 'is-active'
+      gutter               : 20
+    , _settings
+
+    _wrapTables()
+
+  # -------------------------------------
+  #   Set Event Handlers
+  # -------------------------------------
+
+  _setEventHandlers = ( context ) ->
+    context.find( ".#{ _settings.toggleClass }" ).on 'click', ( event ) ->
+      event.preventDefault()
+      context.closest( ".#{ _settings.elementClass }" ).toggleClass( _settings.activeClass )
+
+  # -------------------------------------
+  #   Add Style Sheet
+  # -------------------------------------
+
+  _addStyleSheet = ( tableWidth ) ->
+    gutter = _settings.gutter * 2
+
+    $( 'head' ).append """
       <style>
-        @media screen and (min-width: #{width + (gutter) }px) {
-
-          .tableBank--#{width} .tableBank-original {
+        @media screen and ( min-width: #{ tableWidth + ( gutter ) }px ) {
+          .#{ _settings.elementClass }--#{ tableWidth } .#{ _settings.originalClass } {
             display: block;
           }
         }
 
-        @media screen and (max-width: #{width + (gutter) }px) {
-
-          .tableBank.tableBank--#{width}.is-active .tableBank-original {
+        @media screen and ( max-width: #{ tableWidth + ( gutter ) }px ) {
+          .#{ _settings.elementClass }.#{ _settings.elementClass }--#{ tableWidth }.#{ _settings.activeClass } .#{ _settings.originalClass } {
             display: none;
           }
-
         }
       </style>
-    ")
+    """
 
-  options.context.find(options.element).each ->
-    element = $(@)
-    originalTableElement = element.clone().addClass 'tableBank-original-table'
-    width = element.width()
+  # -------------------------------------
+  #   Wrap Tables
+  # -------------------------------------
 
-    messageText = "This table has been contained to fit, but you can <a href='#' class='js-tableBank-toggle' data-no-turbolink>toggle the original.</a>"
-    originalBlock = "<div class='tableBank-original'><p class='tableBank-original-message'>#{messageText}</p></div>"
+  _wrapTables = ->
+    _settings.context.find( _settings.element ).each ->
 
-    element.wrap "<div class='tableBank tableBank--#{width}'></div>"
-    element.before originalBlock
+      element = $(@)
+      originalTableElement = element.clone().addClass( _settings.originalTableClass )
+      tableWidth = element.width()
 
-    if width > options.context.innerWidth()
-      tableBankElement = element.closest '.tableBank'
-      originalElement = tableBankElement.find '.tableBank-original'
-      originalElement.append originalTableElement
+      messageText = """
+        This table has been contained to fit, but you can
+        <a href='#' class='#{ _settings.toggleClass }' data-no-turbolink>
+          toggle the original.
+        </a>
+      """
 
-      element.wrap '<div class="tableBank-container"></div>'
+      originalBlock = """
+        <div class='#{ _settings.originalClass }'>
+          <p class='#{ _settings.originalMessageClass }'>#{ messageText }</p>
+        </div>
+      """
 
-      addStyleSheet width
-      addEventListeners tableBankElement
-    else
-      element.wrap '<div class="tableBank-container"></div>'
+      element.wrap( "<div class='#{ _settings.elementClass } #{ _settings.elementClass }--#{ tableWidth }'></div>" )
+      element.before( originalBlock )
+
+      if tableWidth > _settings.context.innerWidth()
+        tableBankElement = element.closest( ".#{ _settings.elementClass }" )
+        originalElement  = tableBankElement.find( ".#{ _settings.originalClass }" )
+        originalElement.append( originalTableElement )
+
+        element.wrap( "<div class='#{ _settings.containerClass }'></div>" )
+
+        _addStyleSheet( tableWidth )
+        _setEventHandlers( tableBankElement )
+      else
+        element.wrap "<div class='#{ _settings.containerClass }'></div>"
+
+  # -------------------------------------
+  #   Public Methods
+  # -------------------------------------
+
+  init: init
+
+# -------------------------------------
+#   Usage
+# -------------------------------------
+#
+# Admin.tableBank.init()
+#

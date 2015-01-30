@@ -13,11 +13,7 @@ jQuery ($) ->
     Orientation.dropdown()
     Orientation.editor()
     Orientation.inputSelect()
-
-    Orientation.tableBank
-      context : $('.markdown')
-      element : $('table')
-      gutter  : '20'
+    Orientation.tableBank.init()
 
   # -------------------------------------
   #   Turbolinks & DOM Ready Handlers
