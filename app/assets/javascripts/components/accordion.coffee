@@ -5,7 +5,9 @@
 #
 # *************************************
 #
-# @param element { jQuery object }
+# @param element        { jQuery object }
+# @param buttonElement  { jQuery object }
+# @param contentElement { jQuery object }
 #
 # *************************************
 
@@ -19,7 +21,6 @@
   settings.contentElement.hide()
 
   settings.buttonElement.on 'click', ( event ) ->
-    console.log 'string'
     $(@).closest( settings.element ).find( settings.contentElement ).slideToggle()
 
 # -------------------------------------
