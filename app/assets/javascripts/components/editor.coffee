@@ -5,7 +5,14 @@
 #
 # *************************************
 #
-# @param element { jQuery object }
+# @param element         { jQuery object }
+# @param openElement     { jQuery object }
+# @param closeElement    { jQuery object }
+# @param overlayElement  { jQuery object }
+# @param textareaElement { jQuery object }
+# @param closeQuery      { string }
+# @param activeClass     { string }
+# @param editingClass    { string }
 #
 # *************************************
 
@@ -33,10 +40,17 @@
       .parent( settings.overlayElement )
       .addClass( settings.activeClass )
 
-    settings.textareaElement.focus()
+    settings.textareaElement.trigger( 'focus' )
 
   $( document ).on 'click', settings.closeQuery, ( event ) ->
     event.preventDefault()
 
     settings.overlayElement.removeClass( settings.activeClass )
-    settings.textareaElement.removeClass( settings.editingClass ).focus()
+    settings.textareaElement.removeClass( settings.editingClass ).trigger( 'focus' )
+
+# -------------------------------------
+#   Usage
+# -------------------------------------
+#
+# Orientation.editor()
+#
