@@ -1,8 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+jQuery ($) ->
 
-$(document).on "page:change", ->
   delay = (ms, func) -> setTimeout func, ms
 
   submit_form = ->
@@ -16,13 +13,7 @@ $(document).on "page:change", ->
       new_time = moment(old_time).format('MMMM D, YYYY')
       $(date).html(new_time)
 
-  attach_loading_indicators = ->
-    $(document).on 'page:fetch', -> NProgress.start()
-    $(document).on 'page:load', -> NProgress.done()
-
   timeout = null
-
-  attach_loading_indicators()
 
   $('.js-search-form').on 'keyup', ->
     guides   = $('.js-guides')
