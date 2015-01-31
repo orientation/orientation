@@ -91,7 +91,7 @@
 
       messageText = """
         This table has been contained to fit, but you can
-        <a href='#' class='#{ _settings.toggleClass }' data-no-turbolink>
+        <a href='#' class='#{ _settings.toggleClass }'>
           toggle the original.
         </a>
       """
