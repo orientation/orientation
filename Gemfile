@@ -9,7 +9,6 @@ gem 'unicorn'
 
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'sass-rails', '5.0.0'
 
 gem 'autoprefixer-rails'
@@ -34,7 +33,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'unf'
-gem 'masonry-rails'
 gem 'skylight'
 gem 'responders','~> 2.0'
 

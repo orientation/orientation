@@ -11,11 +11,8 @@
 
 #= require jquery
 #= require jquery.tokeninput
-#= require jquery.ui.datepicker
 #= require jquery_ujs
-#= require masonry/jquery.masonry
 #= require moment
-#= require nprogress
 
 # -------------------------------------
 #   Base
