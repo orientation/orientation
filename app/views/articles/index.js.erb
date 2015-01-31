@@ -1,1 +1,9 @@
-$( '.js-article-list' ).html( "<%= escape_javascript( render( @articles ) ) %>" );
+( function() {
+  var articleMarkup = '<%= escape_javascript( render( @articles ) ) %>';
+
+  if ( $( '.js-articleSearch' ).length ) {
+    $( '.js-articleSearch-results' ).html( articleMarkup )
+  } else {
+    $( '.js-search-results' ).html( articleMarkup )
+  }
+} )();

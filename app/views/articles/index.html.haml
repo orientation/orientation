@@ -3,15 +3,17 @@
 
     - if user_signed_in?
 
-      .form.form--inline
-        = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
-          = search_field_tag :search, params[:search],
-            class: 'form-input js-search-input',
-            placeholder: 'Search articles by keyword',
-            autofocus: true
+      .js-search
 
-      %ul.list.list--xs.js-article-list
-        = render @articles
+        .form.form--inline
+          = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
+            = search_field_tag :search, params[:search],
+              class: 'form-input js-search-input',
+              placeholder: 'Search articles by keyword',
+              autofocus: true
+
+        %ul.list.list--xs.js-search-results
+          = render @articles
 
     - else
 
