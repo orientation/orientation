@@ -9,12 +9,9 @@ gem 'unicorn'
 
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'sass-rails', '5.0.0'
 
-gem 'turbolinks'
-
-gem "autoprefixer-rails"
+gem 'autoprefixer-rails'
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'delayed_job'
@@ -31,12 +28,11 @@ gem 'rails_tokeninput'
 gem 'momentjs-rails'
 gem 'textacular'
 gem 'mandrill_mailer'
-gem "bugsnag"
+gem 'bugsnag'
 gem 'carrierwave'
-gem "mini_magick"
+gem 'mini_magick'
 gem 'fog'
 gem 'unf'
-gem 'masonry-rails'
 gem 'skylight'
 gem 'responders','~> 2.0'
 

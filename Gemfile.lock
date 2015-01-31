@@ -146,8 +146,6 @@ GEM
     jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.2.1)
-      railties (>= 3.2.16)
     json (1.8.2)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -167,8 +165,6 @@ GEM
       actionpack
       activesupport
       mandrill-api (~> 1.0.9)
-    masonry-rails (0.2.1)
-      rails
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_magick (3.7.0)
@@ -327,8 +323,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.6.0)
@@ -371,9 +365,7 @@ DEPENDENCIES
   fuubar
   haml-rails
   jquery-rails
-  jquery-ui-rails
   mandrill_mailer
-  masonry-rails
   mini_magick
   momentjs-rails
   omniauth
@@ -398,7 +390,6 @@ DEPENDENCIES
   skylight
   spring
   textacular
-  turbolinks
   uglifier
   unf
   unicorn
