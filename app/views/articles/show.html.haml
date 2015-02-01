@@ -49,12 +49,7 @@
 
         %aside.g-b.g-b--m--1of3
 
-          - toc = table_of_contents( @article.content || '' )
-          - unless toc.empty?
-            %h2.label.mbs Table of Contents
-            .js-toc= toc
-
-          .dropdown.mbm.js-dropdown
+          .dropdown.mbl.js-dropdown
             .card.card--xs.has-signal
               .js-dropdown-btn
                 = @article.signal
@@ -84,17 +79,24 @@
                     .signal.signal--rotten
                     %span.label Rotten
 
-          / TODO(Olivier): Combine %ul and contents into a single partial.
-          / TODO(Olivier): Restore original subscription partial (and view, if needed). I had to overwrite it to access the data :(
-          / TODO(Olivier): Restore @article.subscriptions to @subscriptions. This works, but I don't know why.
-          - if @article.subscriptions.count > 0
-            %ul.list.list--object
-              = render partial: 'subscription', collection: @article.subscriptions.decorate
-          - toggle_subscription_label = current_user.subscribed_to?( @article ) ? 'Unsubscribe' : 'Subscribe'
-          = link_to toggle_subscription_label, toggle_subscription_article_url( @article ), class: 'btn btn--a', method: :put
+          - toc = table_of_contents( @article.content || '' )
+          - unless toc.empty?
+            .mbl
+              %h2.label.mbs Table of Contents
+              .js-toc= toc
 
-          - if @article.endorsements.count > 0
-            %ul.list.list--object
-              = render partial: 'endorsement', collection: @article.endorsements.decorate
-          - toggle_endorsement_label = current_user.endorsing?( @article ) ? 'Unendorse' : 'Endorse'
-          = link_to toggle_endorsement_label, toggle_endorsement_article_url( @article ), class: 'btn btn--a', method: :put
+          .mbl
+            %h2.label.mbs Subscribers
+            - if @article.subscriptions.count > 0
+              %ul.list.list--object
+                = render partial: 'subscription', collection: @article.subscriptions.decorate
+            - toggle_subscription_label = current_user.subscribed_to?( @article ) ? 'Unsubscribe' : 'Subscribe'
+            = link_to toggle_subscription_label, toggle_subscription_article_url( @article ), class: 'btn btn--a', method: :put
+
+          .mbl
+            %h2.label.mbs Endorsements
+            - if @article.endorsements.count > 0
+              %ul.list.list--object
+                = render partial: 'endorsement', collection: @article.endorsements.decorate
+            - toggle_endorsement_label = current_user.endorsing?( @article ) ? 'Unendorse' : 'Endorse'
+            = link_to toggle_endorsement_label, toggle_endorsement_article_url( @article ), class: 'btn btn--a', method: :put
