@@ -52,7 +52,7 @@
           - toc = table_of_contents( @article.content || '' )
           - unless toc.empty?
             %h2.label.mbs Table of Contents
-            = toc
+            .js-toc= toc
 
           .dropdown.mbm.js-dropdown
             .card.card--xs.has-signal

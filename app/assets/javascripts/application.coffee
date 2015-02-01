@@ -56,3 +56,10 @@ jQuery ($) ->
       $(date).html(new_time)
 
   localize_datetimes()
+
+  # ----- Table of Contents ----- #
+
+  tocElement = $( '.js-toc' )
+
+  tocElement.find( 'ul' ).addClass( 'list list--s list--divided list--divided--s mbm' )
+  tocElement.find( 'li' ).addClass( 'list-item tsm' )
