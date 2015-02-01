@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def table_of_contents(text)
-    renderer = Redcarpet::Render::HTML_TOC.new(nesting_level: 2)
+    renderer = Redcarpet::Render::HTML_TOC.new(nesting_level: 4)
     Redcarpet::Markdown.new(renderer, markdown_options).render(text).html_safe
   end
 
