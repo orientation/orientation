@@ -7,7 +7,9 @@
 //   Template (Haml)
 // -------------------------------------
 //
-// .card(.has-card-section)
+// (.has-card-section)
+//
+// .card[.card--b|highlight]
 //   .card-section[.card-section--row]
 //
 // *************************************
@@ -36,6 +38,11 @@
 
   .card-section--row
     background: $card--b-section--row-background
+
+.card--highlight
+  background: $c-highlight
+  box-shadow: none
+  color: $c-text-invert
 
 // -------------------------------------
 //   Context

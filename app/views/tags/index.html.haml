@@ -3,6 +3,7 @@
 
     - #TODO(Olivier): Display tags sorted alphabetically in sections
     %h1 Tags
+
     - unless @ordered_tags.empty?
       %ul.columns.columns--s--2.columns--m--4.list
         - @ordered_tags[0..@ordered_tags.length/2].each do |tag|

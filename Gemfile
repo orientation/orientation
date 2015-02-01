@@ -1,20 +1,17 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.2.0'
 
-gem 'rails', '~> 4.1.2'
+gem 'rails', '4.2.0'
 
 gem 'pg'
-gem 'thin'
+gem 'unicorn'
 
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'sass-rails'
+gem 'sass-rails', '5.0.0'
 
-gem 'turbolinks'
-
-gem "autoprefixer-rails"
+gem 'autoprefixer-rails'
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'delayed_job'
@@ -31,14 +28,16 @@ gem 'rails_tokeninput'
 gem 'momentjs-rails'
 gem 'textacular'
 gem 'mandrill_mailer'
-gem "bugsnag"
+gem 'bugsnag'
 gem 'carrierwave'
-gem "mini_magick"
+gem 'mini_magick'
 gem 'fog'
 gem 'masonry-rails'
 gem 'paper_trail', '~> 3.0.6'
 gem 'diffy'
+gem 'unf'
 gem 'skylight'
+gem 'responders','~> 2.0'
 
 group :development do
   gem 'better_errors'
@@ -46,6 +45,7 @@ group :development do
   gem 'powder'
   gem 'bullet'
   gem 'spring'
+  gem 'quiet_assets'
 end
 
 group :development, :test do
@@ -54,16 +54,21 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'faker'
   gem 'pry-rails'
-  gem 'pry-debugger', platform: :ruby_19
+  gem 'pry-byebug'
   gem 'pry-remote'
   gem 'fuubar'
 end
 
 group :test do
   gem 'capybara'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :doc do
   gem 'sdoc', require: false
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'rack-timeout'
 end

@@ -20,10 +20,10 @@
   font-style: normal
 
 .icn::before
-  -moz-osx-font-smoothing: grayscale
-  -webkit-font-smoothing: antialiased
   display: inline-block
   font-family: "<%= font_name %>"
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
   font-style: normal
   font-weight: normal
   speak: none
@@ -49,6 +49,7 @@
 
 %icn-padded,
 .icn--padded
+
   &::before
     text-align: center
     width: 1.2em // FIXME: magic number

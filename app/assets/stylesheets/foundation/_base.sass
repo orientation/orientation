@@ -77,15 +77,14 @@ code
 
 // ----- Links ----- //
 
-a, %a
-  color: $link-color
+a
+  color: $c-highlight
   font-weight: bold
   text-decoration: none
   transition: $b-transition
 
-  &:hover,
-  &:focus
-    color: $link-color-hover
+  +state
+    color: darken($c-highlight, 20%)
 
 // ----- Images ----- //
 

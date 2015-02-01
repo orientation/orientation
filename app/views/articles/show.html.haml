@@ -5,12 +5,18 @@
 - if @article.rotten?
   %p.bulletin.bulletin--warning This article has gone rotten. The information is partially or completely out-of-date.
 
+- if @article.guide?
+  .row.row--highlight.row--pattern
+    .cell.well.well--l
+      %h1.tci.tac= @article.title
+
 %main.row
   .cell.well.well--l
 
     %article
       %header.mbs
-        %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
+        - unless @article.guide?
+          %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
         .byline
           .byline-main
             .byline-author
@@ -30,20 +36,19 @@
               .js-dropdown-btn
                 = @article.signal
                 .split
-                  .split-item
-                    .split-cell
-                      - # TODO: Move conditional presentation to decorator
-                      .label
-                        - if @article.fresh?
-                          Fresh
-                        - if @article.stale?
-                          Stale
-                        - if @article.rotten?
-                          Rotten
-                        - unless @article.fresh? || @article.stale? || @article.rotten?
-                          Normal
-                    .split-cell.tcs.tsm
-                      = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true }
+                  .split-cell
+                    - # TODO: Move conditional presentation to decorator
+                    .label
+                      - if @article.fresh?
+                        Fresh
+                      - if @article.stale?
+                        Stale
+                      - if @article.rotten?
+                        Rotten
+                      - unless @article.fresh? || @article.stale? || @article.rotten?
+                        Normal
+                  .split-cell.tcs.tsm
+                    = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true }
             .dropdown-menu
               - unless @article.fresh?
                 .dropdown-item
@@ -59,7 +64,7 @@
           = render "tags/tags", tags: @article.tags
 
         .g-b.g-b--m--4of6
-          .card.markdown.mbm.pl--l--m.pr--l--m.ptl
+          .card.markdown.mbm.pl--l--m.pr--l--m.ptl.js-tableBank
             = find_and_preserve do
               = markdown(@article.content || "No content")
 
@@ -88,3 +93,9 @@
               = render partial: 'subscription', collection: @article.subscriptions.decorate
           - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
           = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
+
+          - if @article.endorsements.count > 0
+            %ul.list.list--object
+              = render partial: 'endorsement', collection: @article.endorsements.decorate
+          - toggle_endorsement_label = current_user.endorsing?(@article) ? 'Unendorse' : "Endorse"
+          = link_to toggle_endorsement_label, toggle_endorsement_article_url(@article), class: 'btn btn--a', method: :put

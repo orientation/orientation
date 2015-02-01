@@ -21,7 +21,11 @@
   ol, ul
     padding-left: $b-space
 
-    > li
+    ol, ul
+      margin-top: $b-space-s
+      margin-bottom: 0
+
+    li
       margin-bottom: $b-space-s
 
   // Headings
@@ -32,8 +36,8 @@
     margin-bottom: $b-space-s
     position: relative
 
-    &:hover,
-    &:focus
+    +state
+
       .anchor
         display: block
 
@@ -49,6 +53,7 @@
 
       &::before
         content: '#'
+
   h1
     font-family: $b-fontFamily-heading
     margin-bottom: $b-space-xs
@@ -58,16 +63,14 @@
 
   h3
     color: $c-subdue
-    font-size: $b-fontSize-l
-    font-style: italic
+    font-size: 120%
     font-weight: normal
 
   h4
-    letter-spacing: 2px
-    text-transform: uppercase
+    font-size: $b-fontSize
 
   h5
-    font-size: $b-fontSize
+    font-size: $b-fontSize-m
 
   h6
     color: $c-subdue

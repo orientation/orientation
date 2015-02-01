@@ -13,23 +13,18 @@
 //   .g-b[.g-b--center|1of2|1of3|...]
 //   .g-b[.g-b--center|1of2|1of3|...]
 //   .g-b[.g-b--center|1of2|1of3|...]
-//   .g-b[.g-b--center|1of2|1of3|...]
 //
 // *************************************
 
 #{$g-selector}g
-  @extend .group
-  display: block
-  margin-left: -$g-gutter / 2
-  margin-right: -$g-gutter / 2
+  display: flex
+  flex-wrap: wrap
+  margin-left: -$g-gutter
 
 #{$g-selector}g-b
-  -moz-box-sizing: border-box
   box-sizing: border-box
-  float: left
   margin: 0
-  padding-left: $g-gutter / 2
-  padding-right: $g-gutter / 2
+  padding-left: $g-gutter
   width: 100%
 
 // -------------------------------------
@@ -39,8 +34,6 @@
 // ----- Center ----- //
 
 #{$g-selector}g-b--center
-  display: block
-  float: none
   margin: 0 auto
 
 // -------------------------------------
@@ -178,4 +171,3 @@
 @each $device in $g-defaults
   @media screen and (min-width: nth($device, 2))
     +g-device-type("#{nth($device, 1)}--")
-

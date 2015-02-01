@@ -91,27 +91,25 @@ $form-input--clear-color: $chicago
 // Article
 
 $article-title-color: lighten($chicago, 15%)
-$article-title-color-hover: lighten($article-title-color, 20%)
+$article-title--state-color: darken($article-title-color, 20%)
 
 // Bulletin
 
 $bulletin-warning-background: $coral
 
+// Header
+
+$header-background: $c-background-invert
+$header-btn-background: transparent
+$header-btn--state-background: $c-background
+
 // Label
 
 $label-color: $c-subdue
-$label-hover-color: lighten($label-color, 20%)
+$label--state-color: darken($label-color, 20%)
 $label--invert-color: $c-text-invert
 $label--link--invert-color: $c-text-invert
-$label--link--invert-hover-color: darken($label--link--invert-color, 10%)
-
-// Link
-
-$link-color: $c-highlight
-$link-color-hover: lighten($link-color, 20%)
-
-$link--muted-color: lighten($chicago, 10%)
-$link--muted-color-hover: darken($chicago, 15%)
+$label--link--invert--state-color: darken($label--link--invert-color, 10%)
 
 // Signal
 
@@ -122,23 +120,12 @@ $signal--stale-background: $banana
 
 // ----- Vendor ----- //
 
-// Diffy
-
-$diff-delete-background: lighten($coral, 20%)
-$diff-delete-color: darken($coral, 30%)
-$diff-delete-block-background: $coral
-$diff-delete-block-color: darken($coral, 50%)
-
-$diff-insert-background: lighten($celadon, 15%)
-$diff-insert-color: darken($celadon, 40%)
-$diff-insert-block-background: $celadon
-$diff-insert-block-color: darken($celadon, 50%)
-
 // jQuery Tokeninput
 
 $tokeninput-background: $c-background-invert
 $tokeninput-token-background: darken($c-background, 3%)
 $tokeninput-token-color: $c-subdue
+
 
 // -------------------------------------
 //   Base
@@ -150,8 +137,7 @@ $b-borderRadius: 3px
 $b-borderStyle: solid
 $b-borderWidth: 1px
 $b-border: $b-borderWidth $b-borderStyle $c-border
-$b-boxShadow: 0 1px 1px rgba($black, 0.3)
-$b-boxShadow-s: 0 1px 0 rgba($c-text, 0.25)
+$b-boxShadow: 0 1px 0 rgba($black, 0.2)
 
 // ----- Typography ----- //
 
@@ -172,10 +158,10 @@ $b-lineHeight: 1.5
 $b-maxWidth: em(1080px)
 $b-maxWidth-s: em(700px)
 $b-space: em(20px)
-$b-space-xs: 0.25 * $b-space
-$b-space-s: 0.5 * $b-space
-$b-space-l: 2 * $b-space
-$b-space-xl: 4 * $b-space
+$b-space-xs: $b-space * 0.25
+$b-space-s: $b-space * 0.5
+$b-space-l: $b-space * 2
+$b-space-xl: $b-space * 4
 
 // ----- Transitions ----- //
 
@@ -195,11 +181,13 @@ $btn--l-fontSize: 100%
 $btn-lineHeight: 3
 
 $btn-space: $b-space
+$btn-space-s: $btn-space * 0.5
+$btn-space-l: $btn-space * 2
 
 // ----- Card ----- //
 
 $card-space: $b-space
-$card-space-xs: 0.25 * $card-space
+$card-space-xs: $card-space * 0.25
 
 // ----- Columns ----- //
 
@@ -213,7 +201,7 @@ $form-input-border: 1px solid $form-input-borderColor
 
 // Breakpoints
 
-$g-s: em(480px)
+$g-s: em(500px)
 $g-m: em(800px)
 $g-l: em(1024px)
 
@@ -241,9 +229,16 @@ $list-space: $b-space
 
 $article-section-border: 1px solid darken($c-background-invert, 10%)
 
-// Collection
+// ----- Collection ----- //
 
 $collection-columns: 3
+
+// ----- Header ----- //
+
+$header-gutter: $b-space-s
+$header--s--gutter: $b-space
+$header-height: 70px
+$header-btn-padding: $b-space-s
 
 // ----- Label ----- //
 
@@ -256,4 +251,3 @@ $label-fontSize: $b-fontSize-s
 // ----- jQuery Tokeninput ----- //
 
 $tokeninput-border: $form-input-border
-

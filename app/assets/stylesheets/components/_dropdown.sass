@@ -8,10 +8,10 @@
 // -------------------------------------
 //
 // .dropdown[.dropdown--e](.is-active)
-//   .dropdown-menu
-//     .dropdown-item
-//     .dropdown-item
-//       .dropdown-item-link
+//   %ul.dropdown-menu
+//     %li.dropdown-item
+//     %li.dropdown-item
+//       %a.dropdown-item-link{ href: '#' }
 //
 // *************************************
 
@@ -22,14 +22,28 @@
 //   Modifiers
 // -------------------------------------
 
+// ----- Position ----- //
+
+// East
+
 .dropdown--e
+
   .dropdown-menu
     left: auto
     right: 0
 
+// Flush
+
+.dropdown--f
+
+  .dropdown-menu
+    margin-top: 0
+
 // -------------------------------------
-//   Modifiers
+//   States
 // -------------------------------------
+
+// ----- Active ----- //
 
 .dropdown.is-active
   .dropdown-menu
@@ -44,10 +58,11 @@
 .dropdown-item
   color: $c-subdue
   margin: 0
+
   &:not(:first-child)
     border-top: $b-border
-  &:hover,
-  &:focus
+
+  +state
     background: $c-background
     color: $c-subdue
 
@@ -57,8 +72,8 @@
   color: inherit
   display: block
   padding: $b-space-s
-  &:hover,
-  &:focus
+
+  +state
     color: inherit
 
 .dropdown-item-link--xs
@@ -69,9 +84,9 @@
 .dropdown-menu
   @extend .lr
   background: $c-background-invert
-  border: $b-border
   border-radius: $b-borderRadius
-  box-shadow: $b-boxShadow-s
+  border: $b-border
+  box-shadow: $b-boxShadow
   display: none
   left: 0
   margin-top: $b-space-s
@@ -79,4 +94,3 @@
   position: absolute
   top: 100%
   z-index: 1
-

@@ -1,35 +1,41 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2014-8-18: Created.
+2014-12-17: Created with FontForge (http://fontforge.org)
 -->
-<svg xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20120731 at Mon Aug 18 23:30:13 2014
- By John D. Jameson
-Created by John D. Jameson with FontForge 2.0 (http://fontforge.sf.net)
+Created by FontForge 20141127 at Wed Dec 17 09:52:42 2014
+ By Drew Barontini
+Copyright (c) 2014, Drew Barontini
 </metadata>
 <defs>
-<font id="icons" horiz-adv-x="512" >
+<font id="icons" horiz-adv-x="454" >
   <font-face 
     font-family="icons"
-    font-weight="500"
+    font-weight="400"
     font-stretch="normal"
     units-per-em="512"
-    panose-1="2 0 6 3 0 0 0 0 0 0"
+    panose-1="2 0 5 3 0 0 0 0 0 0"
     ascent="448"
     descent="-64"
     bbox="0 -64 512 448"
     underline-thickness="25.6"
     underline-position="-51.2"
-    unicode-range="U+F101-F103"
+    unicode-range="U+F101-F105"
   />
     <missing-glyph />
-    <glyph glyph-name="uniF102" unicode="&#xf102;" 
+    <glyph glyph-name="uniF102" unicode="&#xf102;" horiz-adv-x="512" 
 d="M512 383l-256 -320l-256 320h512z" />
+    <glyph glyph-name="uniF104" unicode="&#xf104;" 
+d="M134 406l-32 -32l106 -108l-51 -52l-109 106l-32 -32l-6 67l-10 67l67 -9zM298 214l-52 52l106 108l-32 32l67 7l67 9l-9 -67l-7 -67l-32 32zM157 170l51 -52l-106 -108l32 -32l-67 -7l-67 -9l10 67l6 67l32 -32zM438 96l7 -67l9 -67l-67 9l-67 7l32 32l-106 108l52 52
+l108 -106z" />
+    <glyph glyph-name="uniF105" unicode="&#xf105;" 
+d="M67 243l32 32l-99 99l51 48l96 -99l32 32l7 -64l9 -64l-64 7zM387 243l-64 -9l-64 -7l10 64l6 64l32 -32l99 99l48 -48l-99 -99zM387 138l-32 -26l99 -102l-48 -48l-99 102l-32 -32l-6 64l-10 58l64 -4zM67 138l64 12l64 4l-9 -58l-7 -64l-29 32l-99 -102l-51 48l99 102z
+" />
     <glyph glyph-name="uniF101" unicode="&#xf101;" horiz-adv-x="478" 
 d="M312 196c38 24 63 66 63 115c0 75 -61 137 -136 137s-137 -62 -137 -137c0 -49 26 -91 64 -115c-96 -35 -166 -138 -166 -260h239h239c0 122 -70 225 -166 260z" />
-    <glyph glyph-name="uniF103" unicode="&#xf103;" 
+    <glyph glyph-name="uniF103" unicode="&#xf103;" horiz-adv-x="512" 
 d="M256 448c-141 0 -256 -115 -256 -256s115 -256 256 -256s256 115 256 256s-115 256 -256 256zM279 320v-137h137v-55h-192v192h55z" />
   </font>
 </defs></svg>

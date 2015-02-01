@@ -3,10 +3,12 @@ class User < ActiveRecord::Base
   has_many :articles, foreign_key: "author_id"
   has_many :subscriptions, class_name: "ArticleSubscription"
   has_many :subscribed_articles, through: :subscriptions, source: :article
+  has_many :endorsements, class_name: "ArticleEndorsement"
+  has_many :endorsed_articles, through: :endorsements, source: :article
 
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
-  domain_regex = /\A([\w\.%\+\-]+)@(codeschool)\.com$\z/
+  domain_regex = /\A([\w\.%\+\-]+)@(codeschool|pluralsight|smarterer)\.com$\z/
   validates :email, presence: true, format: { with: domain_regex }
 
   mount_uploader :avatar, AvatarUploader
@@ -74,7 +76,12 @@ class User < ActiveRecord::Base
 
   # TODO: improve this query
   def subscribed_to?(article)
-    subscriptions.where(article_id: article.id).where(user_id: self.id).count > 0
+    subscriptions.where(article_id: article.id, user_id: self.id).count > 0
+  end
+
+  # TODO: improve this query
+  def endorsing?(article)
+    endorsements.where(article_id: article.id, user_id: self.id).count > 0
   end
 
   def to_s

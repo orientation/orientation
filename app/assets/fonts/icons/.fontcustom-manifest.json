@@ -1,7 +1,7 @@
 {
   "checksum": {
-    "previous": "22aab20991f33f6a75125c5a50e5ca9ce2fe34ddc49a0dab25168957fa2c70d8",
-    "current": "22aab20991f33f6a75125c5a50e5ca9ce2fe34ddc49a0dab25168957fa2c70d8"
+    "previous": "9b4b8517a29935f5d5256b87dd9daf18a45c5fd9010d739fb32bba0b6b651417",
+    "current": "9b4b8517a29935f5d5256b87dd9daf18a45c5fd9010d739fb32bba0b6b651417"
   },
   "fonts": [
     "../icons.ttf",
@@ -21,6 +21,14 @@
     "clock": {
       "codepoint": 61699,
       "source": "./clock.svg"
+    },
+    "fullscreen": {
+      "codepoint": 61700,
+      "source": "./fullscreen.svg"
+    },
+    "unfullscreen": {
+      "codepoint": 61701,
+      "source": "./unfullscreen.svg"
     }
   },
   "options": {
@@ -28,6 +36,10 @@
     "config": "fontcustom.yml",
     "css_selector": ".icon-{{glyph}}",
     "debug": false,
+    "font_ascent": 448,
+    "font_descent": 64,
+    "font_design_size": 16,
+    "font_em": 512,
     "font_name": "icons",
     "force": false,
     "input": {
@@ -43,12 +55,11 @@
     },
     "preprocessor_path": null,
     "quiet": false,
-    "skip_first": false,
     "templates": [
       "_icon.sass"
     ]
   },
   "templates": [
-    "../../stylesheets/components/./_icon.sass"
+    "../../stylesheets/components/_icon.sass"
   ]
 }

@@ -1,6 +1,14 @@
 class ArticlesController < ApplicationController
   before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
-  before_filter :decorate_article, only: [:show, :edit, :toggle_archived, :toggle_subscription, :report_rot, :mark_fresh]
+  before_filter :decorate_article, only: [
+    :show,
+    :edit,
+    :toggle_archived,
+    :toggle_subscription,
+    :toggle_endorsement,
+    :report_rot,
+    :mark_fresh
+  ]
   respond_to :html, :json
 
   def archived
@@ -22,7 +30,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    redirect_to @article if @article.save
+    respond_with @article if @article.save
   end
 
   def edit
@@ -45,11 +53,11 @@ class ArticlesController < ApplicationController
   def report_rot
     @article.rot!
     flash[:notice] = "Successfully reported this article as rotten."
-    respond_with(@article)
+    respond_with @article
   end
 
   def update
-    redirect_to @article if @article.update_attributes(article_params)
+    respond_with @article if @article.update_attributes(article_params)
   end
 
   def destroy
@@ -65,6 +73,18 @@ class ArticlesController < ApplicationController
       @article.unsubscribe(current_user)
       flash[:notice] = "Subscription destroyed. You will no longer receive
         weekly email notifications about this article."
+    end
+
+    respond_with @article
+  end
+
+  def toggle_endorsement
+    if !current_user.endorsing?(@article)
+      @article.endorse_by(current_user)
+      flash[:notice] = "Endorsement created. Thanks for taking the time to make someone feel good about their work."
+    else
+      @article.unendorse_by(current_user)
+      flash[:notice] = "Endorsement withdrawn. You're ruthless, aren't you?"
     end
 
     respond_with @article

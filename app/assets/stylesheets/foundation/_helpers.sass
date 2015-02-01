@@ -59,6 +59,25 @@
     @content
 
 // -------------------------------------
+//
+//   State
+//   -> Combines state-related pseudo-classes
+//
+// -------------------------------------
+//
+// $class - an optional state class ('is-active')
+//
+// -------------------------------------
+
+=state($class: false)
+  @if $class
+    &:active, &:focus, &:hover, &.#{$class}
+      @content
+  @else
+    &:active, &:focus, &:hover
+      @content
+
+// -------------------------------------
 //   Extends
 // -------------------------------------
 
@@ -68,11 +87,6 @@
   clear: both
   content: ''
   display: table
-
-// ----- Debug ----- //
-
-.debug
-  background-color: pink !important
 
 // ----- Ellipsis ----- //
 
@@ -87,11 +101,12 @@
   background-color: transparent
   border: 0
   overflow: hidden
+
   &::before
     content: ''
     display: block
-    width: 0
     height: 150%
+    width: 0
 
 // ----- List Reset ----- //
 
@@ -117,4 +132,3 @@
 // -------------------------------------
 
 // ...
-

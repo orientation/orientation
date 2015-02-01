@@ -15,6 +15,7 @@
 .row
   overflow: hidden
   padding: 0 $b-space-s
+
   +respond-to($g-s)
     padding: 0 $b-space
 
@@ -27,3 +28,10 @@
 .row--a
   background: $c-background-invert
 
+.row--highlight
+  background: $c-highlight
+
+.row--pattern
+  background-image: image-url('bg-pattern.svg')
+  background-position: center
+  background-repeat: repeat

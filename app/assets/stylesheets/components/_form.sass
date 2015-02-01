@@ -45,7 +45,7 @@
 
 .form-field
   border: 0
-  margin-bottom: $b-space
+  margin: 0 0 $b-space
   padding: 0
 
 // Inline
@@ -57,18 +57,22 @@
     line-height: 2.9
     min-width: 100%
 
+  .form-label
+    display: inline-block
+
 // ----- Input ----- //
 
 .form-input
   background: $form-input-background
-  border: $form-input-border
   border-radius: $b-borderRadius
+  border: $form-input-border
   box-sizing: border-box !important
   font-size: 100%
   padding: $b-space-s
   position: relative
   transition: border-color 0.2s ease-in-out
   width: 100%
+
   &:focus
     border-color: $form-input-focus-borderColor
     outline: none
@@ -83,10 +87,11 @@
   color: $form-input--clear-color
   padding: 0 0
 
-// ----- Item ----- //
+// Checkbox
 
-.form-item
-  margin-bottom: $b-space
+.form-input--checkbox
+  margin-right: $b-space-xs
+  width: auto
 
 // ----- Label ----- //
 
@@ -94,12 +99,66 @@
   display: block
   margin-bottom: $b-space-xs
 
+// ----- Overlay ----- //
+
+.form-overlay
+  position: relative
+
+.form-overlay.is-active
+  background: white
+  bottom: 0
+  left: 0
+  position: fixed
+  right: 0
+  top: 0
+  z-index: 9999
+
+  .form-field-toggle--close
+    display: block
+
+  .form-field-toggle--open
+    display: none
+
 // ----- Textarea ----- //
 
 .form-textarea
   overflow: auto
   resize: vertical
 
+// Pre
+
 .form-textarea--pre
   resize: none
   white-space: nowrap
+
+// Editing (state)
+
+.form-textarea.is-editing
+  border: 0
+  bottom: 0
+  font-size: 120%
+  left: 50%
+  padding-bottom: $b-space-xl
+  padding-top: $b-space-xl
+  position: fixed
+  resize: none
+  top: 0
+  transform: translateX(-50%)
+  width: em(750px)
+  z-index: 1000
+
+// ----- Toggle ----- //
+
+.form-field-toggle
+  display: block
+  font-size: 120%
+  position: absolute
+  right: $b-space-s
+  top: $b-space-xs
+  z-index: 1000
+
+// Close
+
+.form-field-toggle--close
+  display: none
+  font-size: 130%

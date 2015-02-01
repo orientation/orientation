@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :articles do
     get :archived, on: :collection
     put :toggle_subscription, on: :member
+    put :toggle_endorsement, on: :member
     put :report_rot, on: :member
     put :mark_fresh, on: :member
     put :toggle_archived, on: :member
@@ -28,5 +29,5 @@ Rails.application.routes.draw do
 
   resources :versions, only: :show
 
-  root 'articles#index'
+  root "guides#index"
 end
