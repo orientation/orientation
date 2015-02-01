@@ -14,9 +14,12 @@
   .cell.well.well--l
 
     %article
-      %header.mbs
+
+      %header.mbl
         - unless @article.guide?
+          = render 'tags/tags', tags: @article.tags
           %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
+
         .byline
           .byline-main
             .byline-author
@@ -29,7 +32,27 @@
             %span.label.label--invert= @article.updated_at_tag
 
       .g
-        %aside.g-b.g-b--m--1of6.mbm.pt--m--l
+        .g-b.g-b--m--2of3
+
+          .markdown.mbm.js-tableBank
+            = find_and_preserve do
+              = markdown( @article.content || 'No content' )
+
+          - if user_signed_in?
+            .mbm
+              = link_to 'Edit', edit_article_url( @article ), class: 'btn btn--a'
+
+              - toggle_archived_label = !@article.archived? ? 'Archive' : 'Unarchive'
+              = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', method: :put
+
+              = link_to 'Delete', @article, class: 'btn btn--b', method: :delete
+
+        %aside.g-b.g-b--m--1of3
+
+          - toc = table_of_contents( @article.content || '' )
+          - unless toc.empty?
+            %h2.label.mbs Table of Contents
+            = toc
 
           .dropdown.mbm.js-dropdown
             .card.card--xs.has-signal
@@ -52,48 +75,26 @@
             .dropdown-menu
               - unless @article.fresh?
                 .dropdown-item
-                  = link_to mark_fresh_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
+                  = link_to mark_fresh_article_url( @article ), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
                     .signal.signal--fresh
                     %span.label Fresh
               - unless @article.rotten?
                 .dropdown-item
-                  = link_to report_rot_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
+                  = link_to report_rot_article_url( @article ), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
                     .signal.signal--rotten
                     %span.label Rotten
 
-          = render "tags/tags", tags: @article.tags
-
-        .g-b.g-b--m--4of6
-          .card.markdown.mbm.pl--l--m.pr--l--m.ptl.js-tableBank
-            - toc = table_of_contents(@article.content || "")
-            - unless toc.empty?
-              .table-of-contents
-                Table of Contents
-                = toc
-            = find_and_preserve do
-              = markdown(@article.content || "No content")
-
-          - if user_signed_in?
-            .mbm
-              = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
-
-              - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
-              = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
-
-              = link_to "Delete", @article, class: "btn btn--b", method: :delete
-
-        %aside.g-b.g-b--m--1of6.pt--m--l
           / TODO(Olivier): Combine %ul and contents into a single partial.
           / TODO(Olivier): Restore original subscription partial (and view, if needed). I had to overwrite it to access the data :(
           / TODO(Olivier): Restore @article.subscriptions to @subscriptions. This works, but I don't know why.
           - if @article.subscriptions.count > 0
             %ul.list.list--object
               = render partial: 'subscription', collection: @article.subscriptions.decorate
-          - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
-          = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
+          - toggle_subscription_label = current_user.subscribed_to?( @article ) ? 'Unsubscribe' : 'Subscribe'
+          = link_to toggle_subscription_label, toggle_subscription_article_url( @article ), class: 'btn btn--a', method: :put
 
           - if @article.endorsements.count > 0
             %ul.list.list--object
               = render partial: 'endorsement', collection: @article.endorsements.decorate
-          - toggle_endorsement_label = current_user.endorsing?(@article) ? 'Unendorse' : "Endorse"
-          = link_to toggle_endorsement_label, toggle_endorsement_article_url(@article), class: 'btn btn--a', method: :put
+          - toggle_endorsement_label = current_user.endorsing?( @article ) ? 'Unendorse' : 'Endorse'
+          = link_to toggle_endorsement_label, toggle_endorsement_article_url( @article ), class: 'btn btn--a', method: :put
