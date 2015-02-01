@@ -58,6 +58,38 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: article_endorsements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE article_endorsements (
+    id integer NOT NULL,
+    user_id integer,
+    article_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: article_endorsements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE article_endorsements_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: article_endorsements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE article_endorsements_id_seq OWNED BY article_endorsements.id;
+
+
+--
 -- Name: article_subscriptions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -263,6 +295,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY article_endorsements ALTER COLUMN id SET DEFAULT nextval('article_endorsements_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY article_subscriptions ALTER COLUMN id SET DEFAULT nextval('article_subscriptions_id_seq'::regclass);
 
 
@@ -292,6 +331,14 @@ ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclas
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: article_endorsements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY article_endorsements
+    ADD CONSTRAINT article_endorsements_pkey PRIMARY KEY (id);
 
 
 --
@@ -353,6 +400,13 @@ CREATE INDEX articles_title ON articles USING gin (to_tsvector('english'::regcon
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
+
+
+--
+-- Name: index_articles_on_archived_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_articles_on_archived_at ON articles USING btree (archived_at);
 
 
 --
@@ -434,4 +488,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140607045935');
 INSERT INTO schema_migrations (version) VALUES ('20140923231243');
 
 INSERT INTO schema_migrations (version) VALUES ('20141111222212');
+
+INSERT INTO schema_migrations (version) VALUES ('20150117041549');
+
+INSERT INTO schema_migrations (version) VALUES ('20150129150300');
 

@@ -9,12 +9,9 @@ gem 'unicorn'
 
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'sass-rails', '5.0.0'
 
-gem 'turbolinks'
-
-gem "autoprefixer-rails"
+gem 'autoprefixer-rails'
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'delayed_job'
@@ -31,11 +28,11 @@ gem 'rails_tokeninput'
 gem 'momentjs-rails'
 gem 'textacular'
 gem 'mandrill_mailer'
-gem "bugsnag"
+gem 'bugsnag'
 gem 'carrierwave'
-gem "mini_magick"
+gem 'mini_magick'
 gem 'fog'
-gem 'masonry-rails'
+gem 'unf'
 gem 'skylight'
 gem 'responders','~> 2.0'
 
@@ -54,7 +51,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'faker'
   gem 'pry-rails'
-  gem 'pry-debugger', platform: :ruby_19
+  gem 'pry-byebug'
   gem 'pry-remote'
   gem 'fuubar'
 end

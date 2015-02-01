@@ -3,5 +3,11 @@ development: &development
   password: '123-asdf'
   api_key:  '123-asdf'
 
-test: 
+test:
   <<: *development
+
+# Use environment variables for production
+# MANDRILL_API_KEY:             asdasdasd-W-asdasda
+# MANDRILL_DOMAIN:              heroku.com
+# MANDRILL_PASSWORD:            xxxx-W-Wc89iaw
+# MANDRILL_USERNAME:            email@example.com

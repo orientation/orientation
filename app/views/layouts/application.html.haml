@@ -5,13 +5,13 @@
     %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }
     %title= content_for(:page_title) || 'Orientation'
     = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
 
   %body{ class: body_class }
     %header.header
-      .header-row
-        .cell
+      .cell
+        .header-row
 
           %nav.split
             .split-cell
@@ -60,7 +60,7 @@
                       = link_to logout_path, class: 'dropdown-item-link' do
                         %span.tsm Log Out
               - else
-                = link_to 'Log In', login_path, data: { no_turbolink: true }
+                = link_to 'Log In', login_path
 
     - if flash[:error]
       .bulletin.bulletin--warning= flash[:error]
@@ -68,3 +68,5 @@
       .bulletin= flash[:notice]
 
     = yield
+
+    = javascript_include_tag 'application'
