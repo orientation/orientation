@@ -116,9 +116,21 @@ $label--link--invert--state-color: darken($label--link--invert-color, 10%)
 // Signal
 
 $signal-background: darken($c-background-invert, 10%)
-$signal--fresh-background: $celadon
+$signal--fresh-background: $york
 $signal--rotten-background: $coral
 $signal--stale-background: $banana
+
+// Switch
+
+$switch-btn--state-color: $c-text-invert
+
+$switch-btn--error-background: lighten( $c-error, 20% )
+$switch-btn--error-color: $c-error
+$switch-btn--error--state-background: $c-error
+
+$switch-btn--success-background: lighten( $c-success, 20% )
+$switch-btn--success-color: $c-success
+$switch-btn--success--state-background: $c-success
 
 // ----- Vendor ----- //
 
@@ -127,7 +139,6 @@ $signal--stale-background: $banana
 $tokeninput-background: $c-background-invert
 $tokeninput-token-background: darken($c-background, 3%)
 $tokeninput-token-color: $c-subdue
-
 
 // -------------------------------------
 //   Base
@@ -245,6 +256,10 @@ $header-btn-padding: $b-space-s
 // ----- Label ----- //
 
 $label-fontSize: $b-fontSize-s
+
+// ----- Switch ----- //
+
+$switch-borderRadius: $b-borderRadius
 
 // -------------------------------------
 //   Vendor
