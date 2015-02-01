@@ -61,5 +61,7 @@ jQuery ($) ->
 
   tocElement = $( '.js-toc' )
 
-  tocElement.find( 'ul' ).addClass( 'list list--s list--divided list--divided--s mbm' )
+  tocElement.find( 'ul' ).addClass( 'list list--s' )
+  tocElement.children( 'ul' ).addClass( 'list--divided list--divided--s mbm' )
+  tocElement.find( 'ul' ).find( 'ul' ).addClass( 'mlm mts' )
   tocElement.find( 'li' ).addClass( 'list-item tsm' )
