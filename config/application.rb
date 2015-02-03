@@ -34,6 +34,9 @@ module Orientation
     # Version of your assets, change this if you want to expire all your assets.
     config.assets.version = '1.0'
 
+    # Precompilation assets list
+    config.assets.precompile += %w( vendor.js )
+
     # Prevent Rails from initializing during the precompile phase on Heroku
     config.assets.initialize_on_precompile = false
 
