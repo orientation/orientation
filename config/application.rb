@@ -37,6 +37,9 @@ module Orientation
     # Precompilation assets list
     config.assets.precompile += %w( vendor.js )
 
+    # Asset paths list
+    config.assets.paths << Rails.root.join('bower_components')
+
     # Prevent Rails from initializing during the precompile phase on Heroku
     config.assets.initialize_on_precompile = false
 

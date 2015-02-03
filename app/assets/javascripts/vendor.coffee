@@ -6,6 +6,6 @@
 # *************************************
 
 #= require jquery
-#= require jquery.tokeninput
-#= require jquery_ujs
-#= require moment
+#= require jquery-tokeninput
+#= require jquery-ujs
+#= require momentjs

@@ -20,6 +20,7 @@ Find your way around Code School support.
 - rake db:create
 - rake db:setup
 - In the Rails console (`rails c`), enter the command `User.create( name: 'Test User', email: 'test@codeschool.com' )`
+- `bower install` (`npm install -g bower`, if you don't have it)
 - gem install powder
 - powder link
 - powder open
