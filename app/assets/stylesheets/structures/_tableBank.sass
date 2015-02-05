@@ -22,6 +22,9 @@
 
 .tableBank.is-active
 
+  .tableBank-container table
+    visibility: hidden
+
   .tableBank-original-table
     display: table
 
@@ -37,7 +40,7 @@
 // ----- Original ----- //
 
 .tableBank-original
-  display: none // NOTE: Toggled via JavaScript-generated `<style>` block
+  display: none // NOTE: Toggled via script-generated `<style>` block
   position: relative
 
 // Message
@@ -50,8 +53,9 @@
 // Table
 
 .tableBank-original-table
-  display: none // NOTE: Toggled via `is-active`
-  left: 50%
+  display: none
+  left: 75% // FIXME: Magic number!
+  margin-left: $g-gutter * 0.25 // FIXME: Magic number!
   margin-top: $b-space-xs
   position: absolute
   top: 100%
