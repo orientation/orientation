@@ -68,24 +68,23 @@ hard.
 
 ## Features
 
-- Filtered full-text fuzzy article search
 - GitHub-style syntax highlighting & formatting
 - Grouping of articles by tags
-- Automatic flagging of articles older than 6 months old or not having been updated in 6 months as "stale" with daily batched email notifications to the article author
-- Subscription to articles in order to receive email notifications when they're updated by anyone
-- Ability to mark articles as "rotten" if out of date and automatically notify all contributors (author & editor)
+- Auto-flagging of old articles (> 6 months) as "stale"
+- Subscription to articles to receive email updates
+- Mark out-of-date articles as "rotten" to notify all contributors (author & editor)
+- Mark articles as "fresh" to signal that they are still/now up-to-date
+- Endorse useful or well-written articles (notifies contributors for good feels)
+- Guides (meta-article groups of articles)
 
 ## Planned Features
+- Better search (full-text fuzzy on title/content/tags)
+- Weigh endorsed articles higher in search
 - Tag merging
 - Better tagging management interface
 - Track article visits
-- Let people say "this was useful"
 - Article news feed
-- Eventually weigh the useful articles higher in search
-- Color-coded & icon tags
-- Authors page leaderboard sorting
 - Article edit log
-- Categories
 
 [ci]: https://magnum.travis-ci.com/codeschool/orientation
 [ci-image]: https://magnum.travis-ci.com/codeschool/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
