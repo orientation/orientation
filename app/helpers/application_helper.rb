@@ -19,6 +19,13 @@ module ApplicationHelper
         Pygments.highlight(code, lexer: safe_language)
       end
     end
+
+    def list_item(content, list_type)
+      content.gsub!("[ ]", "<input type='checkbox'>") if content.match(/^\[{1}\s\]{1}/)
+      content.gsub!("[x]", "<input type='checkbox' checked>") if content.match(/^\[{1}(x|X)\]{1}/)
+
+      "<li>#{content}</li>"
+    end
   end
 
   def markdown(text)
