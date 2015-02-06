@@ -5,14 +5,7 @@ module ApplicationHelper
 
   class HTMLwithPygments < Redcarpet::Render::HTML
     def header(title, level)
-      @headers ||= []
       permalink = title.gsub(/\W+/, '-').downcase
-
-      if @headers.include? permalink
-        permalink += '_1'
-        permalink = permalink.succ while @headers.include? permalink
-      end
-      @headers << permalink
       %(
         <h#{level} id=\"#{permalink}\"><a name="#{permalink}" class="anchor" href="##{permalink}"></a>#{title}</h#{level}>
       )
@@ -30,19 +23,12 @@ module ApplicationHelper
 
   def markdown(text)
     renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: false)
-    options = {
-      autolink: true,
-      no_intra_emphasis: true,
-      fenced_code_blocks: true,
-      disable_indented_code_blocks: true,
-      lax_spacing: true,
-      lax_html_blocks: true,
-      strikethrough: true,
-      superscript: true,
-      tables: true,
-      with_toc_data: true
-    }
-    Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+    Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
+  end
+
+  def table_of_contents(text)
+    renderer = Redcarpet::Render::HTML_TOC.new(nesting_level: 4)
+    Redcarpet::Markdown.new(renderer, markdown_options).render(text).html_safe
   end
 
   ##
@@ -55,5 +41,22 @@ module ApplicationHelper
 
   def page_title(title)
     content_for(:page_title, raw(title))
+  end
+
+  private
+
+  def markdown_options
+    {
+      autolink: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      disable_indented_code_blocks: true,
+      lax_spacing: true,
+      lax_html_blocks: true,
+      strikethrough: true,
+      superscript: true,
+      tables: true,
+      with_toc_data: true
+    }
   end
 end

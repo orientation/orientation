@@ -47,3 +47,13 @@ jQuery ($) ->
       $(date).html(new_time)
 
   localize_datetimes()
+
+  # ----- Table of Contents ----- #
+
+  tocElement = $( '.js-toc' )
+
+  tocElement.find( 'ul' ).addClass( 'list list--s' )
+  tocElement.children( 'ul' ).addClass( 'list--divided list--divided--s mbm' )
+  tocElement.children( 'ul' ).children( 'li' ).addClass( 'tsm' )
+  tocElement.find( 'ul' ).find( 'ul' ).addClass( 'mlm mts' )
+  tocElement.find( 'li' ).addClass( 'list-item' )

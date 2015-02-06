@@ -6,20 +6,17 @@
 // *************************************
 
 .highlight {
-  background: darken($c-background, 3%);
+  background: $highlight-background;
+  color: $highlight-color;
   margin-bottom: $b-space;
-  margin-left: -$b-space-l;
-  margin-right: -$b-space-l;
   padding: $b-space;
-  padding-left: $b-space-l;
-  padding-right: $b-space-l;
+
   > pre {
     margin: 0;
   }
 }
 
 .highlight .hll { background-color: #d6d6d6 }
-.highlight  { color: #4d4d4c }
 .highlight .c { color: #8e908c } /* Comment */
 .highlight .err { color: #c82829 } /* Error */
 .highlight .k { color: #8959a8 } /* Keyword */

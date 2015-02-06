@@ -34,6 +34,13 @@
       border-bottom: 0
       padding-bottom: 0
 
+// Sizes
+
+.list--divided--s
+
+  > .list-item
+    padding-bottom: $b-space-s
+
 // ----- Inline ----- //
 
 .list--inline
@@ -62,6 +69,20 @@
   > .list-item
     margin-right: 0
 
+// Styled
+
+.list--inline--styled
+
+  > .list-item:not(:first-child)
+
+    &::before
+      color: rgba($c-subdue, 0.5)
+      content: '\2022'
+      display: inline-block
+      margin-right: $b-space-xs
+      position: relative
+      top: 0.125em
+
 // Responsive
 
 .list--inline--responsive
@@ -84,6 +105,11 @@
       margin-right: 0
 
 // ----- Sizes ----- //
+
+.list--s
+
+  > .list-item
+    margin-bottom: $b-space-s
 
 // Extra Small
 

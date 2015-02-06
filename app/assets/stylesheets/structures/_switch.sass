@@ -1,0 +1,49 @@
+// *************************************
+//
+//   Switch
+//   -> State toggle
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .switch
+//   .switch-btn[.switch-btn--error|success](.is-active)
+//
+// *************************************
+
+.switch
+  border-radius: $switch-borderRadius
+  display: flex
+  overflow: hidden
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Button ----- //
+
+.switch-btn
+  border-radius: 0
+  flex-grow: 1
+
+  +state('is-active')
+    color: $switch-btn--state-color
+
+// Error
+
+.switch-btn--error
+  background: $switch-btn--error-background
+  color: $switch-btn--error-color
+
+  +state('is-active')
+    background: $switch-btn--error--state-background
+
+// Success
+
+.switch-btn--success
+  background: $switch-btn--success-background
+  color: $switch-btn--success-color
+
+  +state('is-active')
+    background: $switch-btn--success--state-background

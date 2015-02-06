@@ -42,7 +42,7 @@ $fountain: #4dadc1
 
 // Green
 
-$celadon: #9dd3ad
+$york: #72c297
 
 // Red
 
@@ -57,8 +57,10 @@ $banana: #ffe171
 $c-background-invert: $white
 $c-background: darken($white, 4%)
 $c-border: darken($c-background-invert, 15%)
+$c-error: $coral
 $c-highlight: $fountain
 $c-subdue: lighten($chicago, 30%)
+$c-success: $york
 $c-text-heading: $chicago
 $c-text-invert: $white
 $c-text: $baltic
@@ -114,18 +116,34 @@ $label--link--invert--state-color: darken($label--link--invert-color, 10%)
 // Signal
 
 $signal-background: darken($c-background-invert, 10%)
-$signal--fresh-background: $celadon
+$signal--fresh-background: $york
 $signal--rotten-background: $coral
 $signal--stale-background: $banana
 
+// Switch
+
+$switch-btn--state-color: $c-text-invert
+
+$switch-btn--error-background: lighten($c-error, 25%)
+$switch-btn--error-color: lighten($c-error, 10%)
+$switch-btn--error--state-background: $c-error
+
+$switch-btn--success-background: lighten($c-success, 25%)
+$switch-btn--success-color: lighten($c-success, 10%)
+$switch-btn--success--state-background: $c-success
+
 // ----- Vendor ----- //
+
+// Highlight
+
+$highlight-background: darken($c-background, 3%)
+$highlight-color: #4d4d4c
 
 // jQuery Tokeninput
 
 $tokeninput-background: $c-background-invert
 $tokeninput-token-background: darken($c-background, 3%)
 $tokeninput-token-color: $c-subdue
-
 
 // -------------------------------------
 //   Base
@@ -135,7 +153,7 @@ $tokeninput-token-color: $c-subdue
 
 $b-borderRadius: 3px
 $b-borderStyle: solid
-$b-borderWidth: 1px
+$b-borderWidth: 2px
 $b-border: $b-borderWidth $b-borderStyle $c-border
 $b-boxShadow: 0 1px 0 rgba($black, 0.2)
 
@@ -155,7 +173,7 @@ $b-lineHeight: 1.5
 
 // ----- Sizing ----- //
 
-$b-maxWidth: em(1080px)
+$b-maxWidth: em(1000px)
 $b-maxWidth-s: em(700px)
 $b-space: em(20px)
 $b-space-xs: $b-space * 0.25
@@ -193,6 +211,10 @@ $card-space-xs: $card-space * 0.25
 
 $columns-columns: 5
 
+// ----- Dropdown ----- //
+
+$dropdown-border: 1px solid $c-border
+
 // ----- Form ----- //
 
 $form-input-border: 1px solid $form-input-borderColor
@@ -209,7 +231,7 @@ $g-l: em(1024px)
 
 $g-columns: 6
 $g-defaults: 's' $g-s, 'm' $g-m, 'l' $g-l
-$g-gutter: 20px
+$g-gutter: 40px
 $g-silent: false
 
 // Selector
@@ -243,6 +265,10 @@ $header-btn-padding: $b-space-s
 // ----- Label ----- //
 
 $label-fontSize: $b-fontSize-s
+
+// ----- Switch ----- //
+
+$switch-borderRadius: $b-borderRadius
 
 // -------------------------------------
 //   Vendor
