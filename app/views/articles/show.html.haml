@@ -11,91 +11,82 @@
       %h1.tci.tac= @article.title
 
 %main.row
-  .cell.well.well--l
+  %article.cell.well.well--l
 
-    %article
-      %header.mbs
-        - unless @article.guide?
-          %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
-        .byline
-          .byline-main
-            .byline-author
-              = render partial: 'shared/icon', locals: { icon: 'avatar', padded: true }
-              = link_to @article.author, @article.author.link, class: 'label label--link label--link--invert'
-            = render partial: 'shared/icon', locals: { icon: 'clock', padded: true }
-            %span.label.label--invert= @article.created_at_tag
-          .byline-secondary
-            %span.tsi.tss Last edited
-            %span.label.label--invert= @article.updated_at_tag
+    %header.mbl
+      - unless @article.guide?
+        = render 'tags/tags', tags: @article.tags
 
-      .g
-        %aside.g-b.g-b--m--1of6.mbm.pt--m--l
+        %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
 
-          .dropdown.mbm.js-dropdown
-            .card.card--xs.has-signal
-              .js-dropdown-btn
-                = @article.signal
-                .split
-                  .split-cell
-                    - # TODO: Move conditional presentation to decorator
-                    .label
-                      - if @article.fresh?
-                        Fresh
-                      - if @article.stale?
-                        Stale
-                      - if @article.rotten?
-                        Rotten
-                      - unless @article.fresh? || @article.stale? || @article.rotten?
-                        Normal
-                  .split-cell.tcs.tsm
-                    = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true }
-            .dropdown-menu
-              - unless @article.fresh?
-                .dropdown-item
-                  = link_to mark_fresh_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
-                    .signal.signal--fresh
-                    %span.label Fresh
-              - unless @article.rotten?
-                .dropdown-item
-                  = link_to report_rot_article_url(@article), method: :put, class: 'dropdown-item-link dropdown-item-link--xs has-signal' do
-                    .signal.signal--rotten
-                    %span.label Rotten
+      .byline
+        .byline-main
+          .byline-author
+            = render partial: 'shared/icon', locals: { icon: 'avatar', padded: true }
+            = link_to @article.author, @article.author.link, class: 'label label--link label--link--invert'
+          = render partial: 'shared/icon', locals: { icon: 'clock', padded: true }
+          %span.label.label--invert= @article.created_at_tag
+        .byline-secondary
+          %span.tsi.tss Last edited
+          %span.label.label--invert= @article.updated_at_tag
 
-          = render "tags/tags", tags: @article.tags
+    .g
+      .g-b.g-b--m--2of3
 
-        .g-b.g-b--m--4of6
-          .card.markdown.mbm.pl--l--m.pr--l--m.ptl.js-tableBank
-            = find_and_preserve do
-              = markdown(@article.content || "No content")
+        .markdown.bdrb.mbm.js-tableBank
+          = find_and_preserve do
+            = markdown( @article.content || 'No content' )
 
-          - if user_signed_in?
-            .split.split--responsive
-              .split-item
+        - if user_signed_in?
+          %ul.list.list--inline.list--inline--xs.mbm
+            %li.list-item
+              = link_to 'Edit', edit_article_url( @article ), class: 'btn btn--a'
+            %li.list-item
+              - toggle_archived_label = !@article.archived? ? 'Archive' : 'Unarchive'
+              = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', method: :put
+            %li.list-item
+              = link_to 'Delete', @article, class: 'btn btn--b', method: :delete
+            - if @article.has_old_versions?
+              %li.list-item
+                = link_to 'Older Versions', article_versions_url(@article)
 
-                .split-cell.mbm
-                  = link_to "Edit", edit_article_url(@article), class: "btn btn--a"
+      %aside.g-b.g-b--m--1of3
 
-                  - toggle_archived_label = !@article.archived? ? "Archive" : "Unarchive"
-                  = link_to toggle_archived_label, toggle_archived_article_url(@article), class: "btn btn--b", method: :put
+        .switch.mbl
+          = link_to 'Fresh', mark_fresh_article_url( @article ), method: :put,
+            class: "btn switch-btn switch-btn--success #{ 'is-active' if @article.fresh? }"
+          = link_to 'Rotten', report_rot_article_url( @article ), method: :put,
+            class: "btn switch-btn switch-btn--error #{ 'is-active' if @article.rotten? }"
 
-                  = link_to "Delete", @article, class: "btn btn--b", method: :delete
+        - toc = table_of_contents( @article.content || '' )
+        - unless toc.empty?
+          .mbl
+            .bdrb.pbxs.mbs
+              %h2.label Table of Contents
+            .js-toc= toc
 
-                - if @article.has_old_versions?
-                  .split-cell.mbm
-                    = link_to 'Older Versions', article_versions_url(@article)
-
-        %aside.g-b.g-b--m--1of6.pt--m--l
-          / TODO(Olivier): Combine %ul and contents into a single partial.
-          / TODO(Olivier): Restore original subscription partial (and view, if needed). I had to overwrite it to access the data :(
-          / TODO(Olivier): Restore @article.subscriptions to @subscriptions. This works, but I don't know why.
+        .mbl
+          .split.bdrb.mbs.pbxs
+            .split-cell
+              %h2.label Subscribers
+            .split-cell
+              - toggle_subscription_label = current_user.subscribed_to?( @article ) ? 'Unsubscribe' : 'Subscribe'
+              = link_to toggle_subscription_label, toggle_subscription_article_url( @article ), class: 'tss', method: :put
           - if @article.subscriptions.count > 0
             %ul.list.list--object
               = render partial: 'subscription', collection: @article.subscriptions.decorate
-          - toggle_subscription_label = current_user.subscribed_to?(@article) ? 'Unsubscribe' : "Subscribe"
-          = link_to toggle_subscription_label, toggle_subscription_article_url(@article), class: 'btn btn--a', method: :put
+          - else
+            %p.mbf.tcs.tsi.tsm Subscribe to receive updates about this article.
 
+        .mbl
+          .split.bdrb.mbs.pbxs
+            .split-cell
+              %h2.label Endorsements
+            .split-cell
+              - toggle_endorsement_label = current_user.endorsing?( @article ) ? 'Unendorse' : 'Endorse'
+              = link_to toggle_endorsement_label, toggle_endorsement_article_url( @article ), class: 'tss', method: :put
           - if @article.endorsements.count > 0
             %ul.list.list--object
               = render partial: 'endorsement', collection: @article.endorsements.decorate
-          - toggle_endorsement_label = current_user.endorsing?(@article) ? 'Unendorse' : "Endorse"
-          = link_to toggle_endorsement_label, toggle_endorsement_article_url(@article), class: 'btn btn--a', method: :put
+          - else
+            %p.mbf.tcs.tsi.tsm Endorse this article if you find it helpful.

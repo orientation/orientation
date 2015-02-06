@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/vmg/redcarpet.git
+  revision: cba30111b1f69c30f9cf1d05c56713816f610dc3
+  branch: master
+  specs:
+    redcarpet (3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -44,9 +51,6 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
-    bourbon (3.1.8)
-      sass (>= 3.2.0)
-      thor
     bugsnag (2.6.1)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
@@ -144,9 +148,6 @@ GEM
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
     i18n (0.7.0)
-    jquery-rails (3.1.1)
-      railties (>= 3.0, < 5.0)
-      thor (>= 0.14, < 2.0)
     json (1.8.2)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -166,14 +167,14 @@ GEM
       actionpack
       activesupport
       mandrill-api (~> 1.0.9)
+    masonry-rails (0.2.4)
+      railties
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
     mini_portile (0.6.1)
     minitest (5.5.1)
-    momentjs-rails (2.7.0)
-      railties (>= 3.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
@@ -265,7 +266,6 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    redcarpet (3.0.0)
     request_store (1.0.6)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
@@ -351,7 +351,6 @@ DEPENDENCIES
   autoprefixer-rails
   better_errors
   binding_of_caller
-  bourbon
   bugsnag
   bullet
   capybara
@@ -369,10 +368,9 @@ DEPENDENCIES
   fontcustom
   fuubar
   haml-rails
-  jquery-rails
   mandrill_mailer
+  masonry-rails
   mini_magick
-  momentjs-rails
   omniauth
   omniauth-google-oauth2
   paper_trail (~> 3.0.6)
@@ -387,7 +385,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails_12factor
   rails_tokeninput
-  redcarpet
+  redcarpet!
   responders (~> 2.0)
   rspec-rails (~> 2.99.0)
   sass-rails (= 5.0.0)
