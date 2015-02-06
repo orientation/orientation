@@ -20,11 +20,11 @@ module ApplicationHelper
       end
     end
 
-    def list_item(content, list_type)
-      content.gsub!("[ ]", "<input type='checkbox'>") if content.match(/^\[{1}\s\]{1}/)
-      content.gsub!("[x]", "<input type='checkbox' checked>") if content.match(/^\[{1}(x|X)\]{1}/)
+    def normal_text(text)
+      text.gsub!("[ ]", "<input type='checkbox'>") if text.match(/^\[{1}\s\]{1}/)
+      text.gsub!("[x]", "<input type='checkbox' checked>") if text.match(/^\[{1}(x|X)\]{1}/)
 
-      "<li>#{content}</li>"
+      text
     end
   end
 
