@@ -11,11 +11,11 @@
       .g-b.g-b--m--1of3.mbm
         .card.card--b
           %ul.list.list--divided
-            - # TODO(Versions): Make this always work :^)
+            - # TODO(Versions): Make this visible on both articles/versions and versions/show
             - if versions
               = render partial: 'version', collection: versions.reverse
 
       .g-b.g-b--m--2of3
         .card
           != diff
-          - # TODO(Versions): Render most recent diff here
+          - # TODO(Versions): Render most recent diff here on articles/versions
