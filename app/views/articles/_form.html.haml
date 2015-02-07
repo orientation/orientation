@@ -35,9 +35,6 @@
 
             %p.mbf.tcs.tsi.tsm A "Guide" is a collection of related articles under a particular topic.
 
-        .form-item
-          = f.input :guide, label: "Guide?"
-
         - if @article.author.blank?
           .form-field
             = f.input :author_id, as: :hidden, input_html: { value: current_user.try(:id) }
