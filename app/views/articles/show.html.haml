@@ -38,17 +38,19 @@
             = markdown( @article.content || 'No content' )
 
         - if user_signed_in?
-          %ul.list.list--inline.list--inline--xs.mbm
-            %li.list-item
-              = link_to 'Edit', edit_article_url( @article ), class: 'btn btn--a'
-            %li.list-item
-              - toggle_archived_label = !@article.archived? ? 'Archive' : 'Unarchive'
-              = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', method: :put
-            %li.list-item
-              = link_to 'Delete', @article, class: 'btn btn--b', method: :delete
+          .split.split--responsive.mbm.mbf--m
+            .split-cell
+              %ul.list.list--inline.list--inline--xs.mbm.mbf--m
+                %li.list-item
+                  = link_to 'Edit', edit_article_url( @article ), class: 'btn btn--a'
+                %li.list-item
+                  - toggle_archived_label = !@article.archived? ? 'Archive' : 'Unarchive'
+                  = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', method: :put
+                %li.list-item
+                  = link_to 'Delete', @article, class: 'btn btn--b', method: :delete
             - if @article.has_old_versions?
-              %li.list-item
-                = link_to 'Older Versions', article_versions_url(@article)
+              .split-cell
+                = link_to 'Older Versions', article_versions_url( @article ), class: 'tsm'
 
       %aside.g-b.g-b--m--1of3
 
