@@ -5,16 +5,16 @@
 #
 # *************************************
 #
-# @param element { jQuery object }
+# @param $element { jQuery object }
 #
 # *************************************
 
 @Orientation.autoSubmit = ( options ) ->
   settings = $.extend
-    element : $( '.js-autoSubmit' )
+    $element : $( '.js-autoSubmit' )
   , options
 
-  settings.element.on 'change', ->
+  settings.$element.on 'change', ->
     $(@).closest( 'form' ).trigger( 'submit' )
 
 # -------------------------------------

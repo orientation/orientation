@@ -5,48 +5,48 @@
 #
 # *************************************
 #
-# @param element         { jQuery object }
-# @param openElement     { jQuery object }
-# @param closeElement    { jQuery object }
-# @param overlayElement  { jQuery object }
-# @param textareaElement { jQuery object }
-# @param closeQuery      { string }
-# @param activeClass     { string }
-# @param editingClass    { string }
+# @param $element     { jQuery object }
+# @param $open        { jQuery object }
+# @param $close       { jQuery object }
+# @param $overlay     { jQuery object }
+# @param $textarea    { jQuery object }
+# @param closeQuery   { string }
+# @param activeClass  { string }
+# @param editingClass { string }
 #
 # *************************************
 
 @Orientation.editor = ( options ) ->
   settings = $.extend
-    element         : $( '.js-editor' )
-    openElement     : $( '.js-editor-open' )
-    closeElement    : $( '.js-editor-close' )
-    overlayElement  : $( '.js-editor-overlay' )
-    textareaElement : $( '.js-editor-textarea' )
-    closeQuery      : '.js-editor-close'
-    activeClass     : 'is-active'
-    editingClass    : 'is-editing'
+    $element     : $( '.js-editor' )
+    $open        : $( '.js-editor-open' )
+    $close       : $( '.js-editor-close' )
+    $overlay     : $( '.js-editor-overlay' )
+    $textarea    : $( '.js-editor-textarea' )
+    closeQuery   : '.js-editor-close'
+    activeClass  : 'is-active'
+    editingClass : 'is-editing'
   , options
 
   $.fn.redraw = ->
     $(@).each ->
       redraw = this.offsetHeight
 
-  settings.openElement.on 'click', ( event ) ->
+  settings.$open.on 'click', ( event ) ->
     event.preventDefault()
 
-    settings.textareaElement
+    settings.$textarea
       .addClass( settings.editingClass )
-      .parent( settings.overlayElement )
+      .parent( settings.$overlay )
       .addClass( settings.activeClass )
 
-    settings.textareaElement.trigger( 'focus' )
+    settings.$textarea.trigger( 'focus' )
 
   $( document ).on 'click', settings.closeQuery, ( event ) ->
     event.preventDefault()
 
-    settings.overlayElement.removeClass( settings.activeClass )
-    settings.textareaElement.removeClass( settings.editingClass ).trigger( 'focus' )
+    settings.$overlay.removeClass( settings.activeClass )
+    settings.$textarea.removeClass( settings.editingClass ).trigger( 'focus' )
 
 # -------------------------------------
 #   Usage

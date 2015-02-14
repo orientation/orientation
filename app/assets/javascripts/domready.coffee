@@ -17,19 +17,19 @@ jQuery ($) ->
   Orientation.tableBank.init()
 
   Orientation.search
-    element        : $( '.js-articleSearch' )
-    formElement    : $( '.js-articleSearch-form' )
-    inputElement   : $( '.js-articleSearch-input' )
-    resultsElement : $( '.js-articleSearch-results' )
-    callback       : ( settings ) ->
+    $element : $( '.js-articleSearch' )
+    $form    : $( '.js-articleSearch-form' )
+    $input   : $( '.js-articleSearch-input' )
+    $results : $( '.js-articleSearch-results' )
+    callback : ( settings ) ->
       guidesElement = $( '.js-guideList' )
 
-      if settings.inputElement.val()
+      if settings.$input.val()
         guidesElement.addClass( 'dn' )
-        settings.resultsElement.removeClass( 'dn' )
+        settings.$results.removeClass( 'dn' )
       else
         guidesElement.removeClass( 'dn' )
-        settings.resultsElement.addClass( 'dn' )
+        settings.$results.addClass( 'dn' )
 
   # ----- Vendor ----- #
 
