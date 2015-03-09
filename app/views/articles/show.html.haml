@@ -27,6 +27,9 @@
           = render partial: 'shared/icon', locals: { icon: 'clock', padded: true }
           %span.label.label--invert= @article.created_at_tag
         .byline-secondary
+          - if @article.editor
+            %span.dib.mrxs{ 'data-toggle' => 'tooltip', title: @article.editor.name }
+              %span.mrxs.tsi.tss #{@article.editor.image_link(30)}
           %span.tsi.tss Last edited
           %span.label.label--invert= @article.updated_at_tag
 
