@@ -3,6 +3,6 @@
   = link_to article.title, article, class: 'article-title'
   - unless article.tags.empty?
     .article-footer
-      %ul.list.list--inline.list--inline--xs{ 'data-ui-component' => 'tag-list' }
+      %ul.list.list--inline.list--inline--xs
         - article.tags.each do |t|
           %li.list-item= link_to t.name, tag_path(t), class: 'label label--link'
