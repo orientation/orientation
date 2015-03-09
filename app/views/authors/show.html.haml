@@ -11,7 +11,7 @@
           %h1.tsl
             = @author.name
             - unless @author.active
-              %span.db.tsm (Inactive)
+              %span.db.tss (Inactive)
 
           - # TODO(Olivier): Remove hard-coded ID for moderation
           - if Rails.env.development? or current_user.id == 1
@@ -44,8 +44,8 @@
 
           .card-section.card-section--row
             %h2.mbs Contributions
-            %p.mbxs.tsm Created #{ pluralize( @author.articles.count, 'article' ) }
-            %p.mbf.tsm Edited #{ pluralize( @author.edits.count, 'article' ) }
+            %p.mbxs.tss Created #{ pluralize( @author.articles.count, 'article' ) }
+            %p.mbf.tss Edited #{ pluralize( @author.edits.count, 'article' ) }
 
         .tac.mbm
           = link_to 'Toggle Status', author_toggle_status_path( @author ), method: :put

@@ -21,30 +21,30 @@
                     = image_tag( 'brackets-blue.svg', height: 40, width: 40, class: 'vam' )
                 %li.list-item
                   = link_to articles_url, class: 'header-btn' do
-                    %span.tsm Articles
+                    %span.tss Articles
                 %li.list-item
                   = link_to tags_url, class: 'header-btn' do
-                    %span.tsm Tags
+                    %span.tss Tags
                 %li.list-item.dn.di--s
                   = link_to authors_url, class: 'header-btn' do
-                    %span.tsm Authors
+                    %span.tss Authors
                 %li.list-item.dn--s
                   .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
                     = link_to '#', class: 'header-btn js-dropdown-btn' do
-                      %span.tsm More
+                      %span.tss More
                     %ul.dropdown-menu.js-dropdown-menu
                       %li.dropdown-item
                         = link_to authors_url, class: 'dropdown-item-link' do
-                          %span.tsm Authors
+                          %span.tss Authors
                       %li.dropdown-item
                         = link_to new_article_url, class: 'dropdown-item-link' do
-                          %span.tsm New Article
+                          %span.tss New Article
                       %li.dropdown-item
                         = link_to current_user.link, class: 'dropdown-item-link' do
-                          %span.tsm My Profile
+                          %span.tss My Profile
                       %li.dropdown-item
                         = link_to logout_path, class: 'dropdown-item-link' do
-                          %span.tsm Log Out
+                          %span.tss Log Out
             .split-cell.dn.db--s
               - if current_user
                 = link_to 'New Article', new_article_url, class: 'btn btn--a form-btn mrs'
@@ -55,10 +55,10 @@
                   %ul.dropdown-menu
                     %li.dropdown-item
                       = link_to current_user.link, class: 'dropdown-item-link' do
-                        %span.tsm My Profile
+                        %span.tss My Profile
                     %li.dropdown-item
                       = link_to logout_path, class: 'dropdown-item-link' do
-                        %span.tsm Log Out
+                        %span.tss Log Out
               - else
                 = link_to 'Log In', login_path
 

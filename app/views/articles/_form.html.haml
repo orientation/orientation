@@ -33,7 +33,7 @@
               = f.input_field :guide, class: 'form-input form-input--checkbox'
               %span.form-label.label Make This a Guide
 
-            %p.mbf.tcs.tsi.tsm A "Guide" is a collection of related articles under a particular topic.
+            %p.mbf.tcs.tsi.tss A "Guide" is a collection of related articles under a particular topic.
 
         - if @article.author.blank?
           .form-field
@@ -56,7 +56,7 @@
               .split-cell
                 %span.form-label.label Headings
               .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tss' }
+                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
             .js-accordion-content
               %input.form-input.mbs.js-inputSelect{ type: 'text', readonly: true, value: '## This is an h2' }
               %input.form-input.mbs.js-inputSelect{ type: 'text', readonly: true, value: '### This is an h3' }
@@ -71,7 +71,7 @@
               .split-cell
                 %span.form-label.label Links
               .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tss' }
+                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
             .js-accordion-content
               %input.form-input.mbf.js-inputSelect{ type: 'text', readonly: true, value: '[This is a link](http://example.com)' }
 
@@ -82,7 +82,7 @@
               .split-cell
                 %span.form-label.label Lists
               .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tss' }
+                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
             .js-accordion-content
               %textarea.form-input.form-textarea.form-textarea--pre.mbs.js-inputSelect{ readonly: true, rows: 3 }
                 \- This is the first item in an unordered list
@@ -100,7 +100,7 @@
               .split-cell
                 %span.form-label.label Code
               .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tss' }
+                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
             .js-accordion-content
               %input.form-input.mbs.js-inputSelect{ type: 'text', readonly: true, value: '`This is inline code`' }
               %textarea.form-input.form-textarea.form-textarea--pre.js-inputSelect{ readonly: true, rows: 3 }
@@ -115,7 +115,7 @@
               .split-cell
                 %span.form-label.label Strong
               .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tss' }
+                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
             .js-accordion-content
               %input.form-input.mbf.js-inputSelect{ type: 'text', readonly: true, value: '**This text is strong**' }
 
@@ -126,6 +126,6 @@
               .split-cell
                 %span.form-label.label Emphasis
               .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tss' }
+                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
             .js-accordion-content
               %input.form-input.mbf.js-inputSelect{ type: 'text', readonly: true, value: '_This text is emphasized_' }
