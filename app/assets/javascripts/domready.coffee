@@ -6,15 +6,13 @@
 
 jQuery ($) ->
 
-  # ----- Components ----- #
+  # ----- Functions ----- #
 
   Orientation.accordion()
   Orientation.autoSubmit()
   Orientation.dropdown()
   Orientation.editor()
-  Orientation.inputSelect()
   Orientation.search()
-  Orientation.tableBank.init()
 
   Orientation.search
     $element : $( '.js-articleSearch' )
@@ -30,6 +28,11 @@ jQuery ($) ->
       else
         guidesElement.removeClass( 'dn' )
         settings.$results.addClass( 'dn' )
+
+  # ----- Modules ----- #
+
+  Orientation.selectText.init()
+  Orientation.tableBank.init()
 
   # ----- Vendor ----- #
 
