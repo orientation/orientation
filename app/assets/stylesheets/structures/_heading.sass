@@ -1,0 +1,71 @@
+// *************************************
+//
+//   Heading
+//   -> Selectable anchor
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .heading(active)
+//   .heading-link
+//   .heading-text
+//
+// *************************************
+
+.heading
+  color: inherit
+  display: block
+  font-weight: inherit
+  outline: 0
+  position: relative
+
+  +state
+    color: inherit
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// ----- Active ----- //
+
+.heading.is-active
+
+  .heading-link
+    background: transparent
+    display: block
+    left: 0
+    outline: 0
+    padding: 0
+    position: absolute
+    top: 0
+
+  .heading-text
+    visibility: hidden
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Link ----- //
+
+.heading-link
+  border: 0
+  box-sizing: border-box
+  display: none
+  width: 100%
+
+// ----- Text ----- //
+
+.heading-text
+  cursor: pointer
+  position: relative
+
+  &:hover
+
+    &::before
+      content: '#'
+      position: absolute
+      right: 100%
+      top: 0
+      transform: translateX(-5px)
