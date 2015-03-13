@@ -11,6 +11,7 @@ jQuery ($) ->
   Orientation.accordion()
   Orientation.autoSubmit()
   Orientation.dropdown()
+  Orientation.headingLink()
   Orientation.editor()
   Orientation.search()
 
