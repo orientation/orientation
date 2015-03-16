@@ -7,7 +7,10 @@ module ApplicationHelper
     def header(title, level)
       permalink = title.gsub(/\W+/, '-').downcase
       %(
-        <h#{level} id=\"#{permalink}\"><a name="#{permalink}" class="anchor" href="##{permalink}"></a>#{title}</h#{level}>
+          <a id='#{permalink}' class='heading js-headingLink' href='##{permalink}'>
+            <input class='heading-link js-headingLink-link' value='##{permalink}' readonly>
+            <h#{level} class='heading-text js-headingLink-heading'>#{title}</h#{level}>
+          </a>
       )
     end
 
