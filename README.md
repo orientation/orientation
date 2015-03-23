@@ -15,7 +15,9 @@ The goal of Orientation was to make a single point of entry for any
 internal question someone might have about our organization:
 
 > How can I help with bugs, maintenance and other issues?
+
 > Do we give student discounts?
+
 > How can I help on support?
 
 ### Home
@@ -132,6 +134,15 @@ to be acknowledged. This is not a manipulative reward-system, it's just a way
 to make everyone on your team appreciate the effort involved with keeping
 information fresh and well-disseminated.
 
+### Authentication
+
+I originally tried to make Orientatio as easy to onboard to as possible for
+people in our team. While a huge majority of us had GitHub accounts, not everyone
+did. Nor was it realistic to expect non-developers to setup a GitHub account
+just to use a documentation tool. We did — however have — company Google Apps
+accounts, so this is what I used. I want to enable custom OAuth providers soon
+(see )
+
 ## Requirements
 
 - Ruby 2.2.0
@@ -214,7 +225,7 @@ hard.
 - Better tagging management interface
 - Track article visits
 - Article news feed
-- Article edit log
+- [Article edit log and versioning](https://github.com/codeschool/orientation/pull/67)
 
 [ci]: https://magnum.travis-ci.com/codeschool/orientation
 [ci-image]: https://magnum.travis-ci.com/codeschool/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
