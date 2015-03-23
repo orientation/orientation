@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://jmHhBsgtTRJTgLVqyPpt@gem.fury.io/me/'
 
 ruby '2.2.0'
 
@@ -21,6 +22,8 @@ gem 'pygments.rb'
 gem 'redcarpet', github: 'vmg/redcarpet', branch: 'master'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
+gem 'omniauth-codeschool'
 gem 'draper'
 gem 'rails_tokeninput'
 gem 'textacular'
