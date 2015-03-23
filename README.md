@@ -1,9 +1,11 @@
-# Orientation
+# ![Orientation][orientation-logo]
 
 [![Build Status][ci-image]][ci]
 [![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage]
 [![Code Climate][codeclimate-image]][codeclimate]
 [![Dependency Status][gemnasium-image]][gemnasium]
+
+
 
 ## What is Orientation?
 
@@ -225,17 +227,18 @@ hard.
 - Better tagging management interface
 - Track article visits
 - Article news feed
-- [Article edit log and versioning](https://github.com/codeschool/orientation/pull/67)
+- [Article edit log and versioning](https://github.com/olivierlacan/orientation/pull/67)
 
-[ci]: https://magnum.travis-ci.com/codeschool/orientation
-[ci-image]: https://magnum.travis-ci.com/codeschool/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
-[gemnasium]: https://gemnasium.com/codeschool/orientation
+[ci]: https://magnum.travis-ci.com/olivierlacan/orientation
+[ci-image]: https://magnum.travis-ci.com/olivierlacan/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
+[gemnasium]: https://gemnasium.com/olivierlacan/orientation
 [gemnasium-image]: https://gemnasium.com/f8cac37fbe557103d2ae38bcc8815f40.svg
 [codeclimate]: (https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
 [codeclimate-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/gpa.svg
 [codeclimate-coverage]: https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
 [codeclimate-coverage-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/coverage.svg
 
+[orientation-logo]: https://github.com/olivierlacan/orientation/blob/master/public/orientation_logo.png
 [homepage]: https://cloud.githubusercontent.com/assets/65950/6779965/33a1f756-d161-11e4-9c80-fb8a7d4a2cfc.png
 [article-index]: https://cloud.githubusercontent.com/assets/65950/6779981/6d0ef6ce-d161-11e4-91cf-4d497bc032a5.png
 [author-index]: https://cloud.githubusercontent.com/assets/65950/6780070/3d29733e-d162-11e4-929e-c693bc0d6de0.png
