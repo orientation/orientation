@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
-  domain_regex = /\A([\w\.%\+\-]+)@(codeschool|pluralsight|smarterer)\.com$\z/
-  validates :email, presence: true, format: { with: domain_regex }
+  DOMAIN_REGEX = /\A([\w\.%\+\-]+)@(codeschool|pluralsight|smarterer)\.com$\z/
+  validates :email, presence: true, format: { with: DOMAIN_REGEX }
 
   mount_uploader :avatar, AvatarUploader
 
