@@ -1,6 +1,6 @@
 namespace :orientation do
   desc "Install a fresh new Orientation"
-  task install: :environment do
+  task :install do
     cp '.env.example', '.env'
     cp 'config/database.yml.example', 'config/database.yml'
     puts "You should now configure .env with your local database settings..."
