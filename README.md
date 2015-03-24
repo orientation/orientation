@@ -156,6 +156,10 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 - Node.js (for Bower)
 - Bower
 
+Both Node and Python are available on Heroku if you decide to deploy there,
+which means there should not be any issues when deploying or running Orientation
+there.
+
 ### Services
 - AWS S3 bucket for image uploads
 - Mandrill account for transactional emails
