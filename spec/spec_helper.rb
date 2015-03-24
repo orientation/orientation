@@ -2,7 +2,7 @@
 # run a test coverage analysis, simply run specs with:
 #   COVERAGE=true rspec spec/
 #
-if ENV["COVERAGE"] # || ENV["TRAVIS"]
+if ENV["COVERAGE"] || ENV["TRAVIS"]
   require "codeclimate-test-reporter"
   CodeClimate::TestReporter.start
 end
