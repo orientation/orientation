@@ -155,7 +155,7 @@ information fresh and well-disseminated.
 
 ### Authentication
 
-I originally tried to make Orientatio as easy to onboard to as possible for
+I originally tried to make Orientation as easy to onboard to as possible for
 people in our team. While a huge majority of us had GitHub accounts, not everyone
 did. Nor was it realistic to expect non-developers to setup a GitHub account
 just to use a documentation tool. We did — however have — company Google Apps
