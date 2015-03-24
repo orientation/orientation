@@ -40,13 +40,13 @@ RSpec::Matchers.define :send_email_to do |expected_to|
     opts_found
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     <<-MESSAGE.strip_heredoc
     Expected to variables: #{mailer_to_data(mailer).inspect} to include data: #{expected_to.inspect} but it does not.
   MESSAGE
   end
 
-  failure_message_for_should_not do |actual|
+  failure_message_when_negated do |actual|
     <<-MESSAGE.strip_heredoc
     Expected to variables: #{mailer_to_data(mailer).inspect} to not include data: #{expected_to.inspect} but it does.
   MESSAGE

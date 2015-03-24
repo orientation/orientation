@@ -21,13 +21,13 @@ RSpec::Matchers.define :be_from do |expected_options|
     !bool_arr.compact.any? {|i| i == false}
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     <<-MESSAGE.strip_heredoc
     Expected from vars: #{mailer_from_email(mailer).inspect} to be: #{expected_options.inspect}.
   MESSAGE
   end
 
-  failure_message_for_should_not do |actual|
+  failure_message_when_negated do |actual|
     <<-MESSAGE.strip_heredoc
     Expected from vars: #{mailer_from_email(mailer).inspect} to not be: #{expected_options.inspect}.
   MESSAGE
