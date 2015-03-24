@@ -5,8 +5,6 @@
 [![Code Climate][codeclimate-image]][codeclimate]
 [![Dependency Status][gemnasium-image]][gemnasium]
 
-
-
 ## What is Orientation?
 
 Documentation is hard. People forget to write it, and they are asked the
@@ -23,6 +21,7 @@ internal question someone might have about our organization:
 > How can I help on support?
 
 ### Home
+
 ![homepage][homepage]
 
 The home page is composed of the Guides you've created. Everything
@@ -36,6 +35,7 @@ This is what a lovely guide can look like:
 ![guide example][guide-example]
 
 ### Articles
+
 Since guides are articles, how do articles work? I'm glad you finally
 decided to fake interest!
 
@@ -50,6 +50,7 @@ I haven't really made the full-text search feature good enough yet to be satisfi
 in that regard. But hopefully that will change soon.
 
 #### Creating new articles
+
 Writing a new article is way more exciting:
 
 ![writting a new article][writing-article]
@@ -91,6 +92,7 @@ It's also possible for anyone to mark an article as `Rotten`. That action *will*
 notify the contributors of the article (original author and last editor).
 
 ### Authors
+
 Intrinsic motivation is the best, so how do we encourage people to write
 documentation without treating them like children and offering them candy as a
 reward? Well the first step is to recognize their contribution in a reasonable
@@ -119,6 +121,7 @@ of people who share the same first name.
 ![adams][adams]
 
 ### Subscriptions & Endorsements
+
 If you're an avid documentation reader, Orientation gives you two interesting options.
 
 ![subscription][subscription]
@@ -142,8 +145,7 @@ I originally tried to make Orientatio as easy to onboard to as possible for
 people in our team. While a huge majority of us had GitHub accounts, not everyone
 did. Nor was it realistic to expect non-developers to setup a GitHub account
 just to use a documentation tool. We did — however have — company Google Apps
-accounts, so this is what I used. I want to enable custom OAuth providers soon
-(see )
+accounts, so this is what I used. I want to enable custom OAuth providers soon.
 
 ## Requirements
 
@@ -169,6 +171,7 @@ features like the avatar upload, and that you won't be able to use authenticatio
 either, but you will be logged in as the first user in the database in development.
 
 ## Seeding Development Environment with Production data
+
 - use pgbackups
 
 If you want to see avatars in development, you will need to create a file called `.env` in your root folder.
@@ -188,17 +191,10 @@ hard.
 
 ### Required Environment Variables
 
-- `S3_ACCESS_KEY_ID`
-- `S3_SECRET_ACCESS_KEY`
-- `S3_BUCKET`
-- `MANDRILL_API_KEY`
-- `MANDRILL_DOMAIN`
-- `MANDRILL_PASSWORD`
-- `MANDRILL_USERNAME`
-- `GOOGLE_KEY`
-- `GOOGLE_SECRET`
-- `SKYLIGHT_AUTHENTICATION`
-- `BUGSNAG_API_KEY`
+See [.env.example](.env.example) file. Note that if you host your Orientation
+on Heroku you'll need to set those environment variables manually. I recommend
+[dotenv-heroku](https://github.com/sideshowcoder/dotenv-heroku) to do this easily
+using you local (git-ignored) `.env` file as a canonical source.
 
 ## Goals
 
