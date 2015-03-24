@@ -70,6 +70,18 @@ improve search. Typing a tag that doesn't exist gives you the option to create i
 The 'Make this a guide' checkbox is mostly self-explanatory. All it will do is
 display this article on the homepage as a guide.
 
+![Table of Contents][table-of-contents]
+
+All Markdown headings (`#` for heading 1, `##` for heading 2, etc.) you include
+in an article will be extracted to create a table of contents. This is especially
+useful for long articles that describe an intricate process with multiple parts.
+
+![Anchor Links][anchor-links]
+
+You will also find anchor links on any heading so that you can give someone a link
+that will take them directly to the top of the relevant section you meant to share.
+A hash symbol appears next to headings to let you know you can use them as links.
+
 #### Dealing with information rot
 
 By writing and editing a lot of internal documentation for our team (151 to date),
@@ -246,6 +258,8 @@ using you local (git-ignored) `.env` file as a canonical source.
 [guide-example]: https://cloud.githubusercontent.com/assets/65950/6780336/7942d6a6-d164-11e4-9ce5-38af74c67a3c.png
 [subscription]: https://cloud.githubusercontent.com/assets/65950/6788416/8e90c2d6-d199-11e4-98f7-4f6779ffc461.png
 [endorsement]: https://cloud.githubusercontent.com/assets/65950/6788434/ac043776-d199-11e4-9f6a-8e158cc46ac9.png
+[table-of-contents]: https://cloud.githubusercontent.com/assets/65950/6807782/e9544b36-d250-11e4-9d50-f26d77225795.png
+[anchor-links]: https://cloud.githubusercontent.com/assets/65950/6807862/615949ba-d251-11e4-9eba-3ccdfe8f3897.png
 
 ## License
 
