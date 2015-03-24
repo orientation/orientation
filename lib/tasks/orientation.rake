@@ -4,6 +4,7 @@ namespace :orientation do
   desc "Install a fresh new Orientation on your machine"
   task :install do
     puts "Installing Orientation..."
+    system 'bundle install'
     cp '.env.example', '.env'
     cp 'config/database.example.yml', 'config/database.yml'
     puts "You should now configure .env with your local database settings..."

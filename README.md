@@ -159,11 +159,7 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 
 ## Installation
 
-- `bundle install`
-- `rake orientation:setup`
-- Configure `config/database.yml` with your local Postgres credential (usually `username: root` and no `password`)
-- `bower install` (`npm install -g bower`, if you don't have it)
-
+- `rake orientation:install`
 Be aware that you don't have the necessary environment variables to use uploading
 features like the avatar upload, and that you won't be able to use authentication
 either, but you will be logged in as the first user in the database in development.
