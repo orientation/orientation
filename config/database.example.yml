@@ -1,9 +1,9 @@
 development: &postgres
   adapter: postgresql
   encoding: unicode
-  database: orientation_development
-  username: username
-  password: password
+  database: <%= Rails.application.secrets[:database][:name] %>
+  username: <%= Rails.application.secrets[:database][:username] %>
+  password: <%= Rails.application.secrets[:database][:password] %>
 
 test:
   <<: *postgres
