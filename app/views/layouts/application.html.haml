@@ -18,7 +18,7 @@
               %ul.list.list--inline.list--inline--f.list--inline--flex
                 %li.list-item
                   = link_to root_url, class: 'header-btn' do
-                    = image_tag( 'brackets-blue.svg', height: 40, width: 40, class: 'vam' )
+                    = image_tag( ENV['ORIENTATION_LOGO'], height: 40, width: 40, class: 'vam' )
                 %li.list-item
                   = link_to articles_url, class: 'header-btn' do
                     %span.tss Articles
