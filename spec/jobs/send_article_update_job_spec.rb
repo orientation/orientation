@@ -11,7 +11,7 @@ describe SendArticleUpdateJob do
   it "sends an ArticleMailer" do
     mailer = double("ArticleMailer", deliver: true)
     
-    ArticleMailer.should_receive(:send_updates_for).and_return(mailer)
+    expect(ArticleMailer).to receive(:send_updates_for).and_return(mailer)
     perform_job
   end
 end

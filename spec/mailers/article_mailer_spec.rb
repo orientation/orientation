@@ -12,14 +12,14 @@ describe ArticleMailer do
 
     subject { mailer }
 
-    it { should send_email_to(email: user.email) }
-    it { should use_template('stale-article-alert') }
-    it { should have_subject('Some of your Orientation articles might be stale') }
+    it { is_expected.to send_email_to(email: user.email) }
+    it { is_expected.to use_template('stale-article-alert') }
+    it { is_expected.to have_subject('Some of your Orientation articles might be stale') }
     # If the slug for all artuckes are in the email, it's a safe bet the full URLs are as well.
-    it { articles.each { |article| should include_merge_var_content(article.slug) } }
-    it { should include_merge_var_content(articles.second.slug) }
-    it { should include_merge_var_content(articles.third.slug) }
-    it { should be_from(email: 'orientation@codeschool.com') }
+    it { articles.each { |article| is_expected.to include_merge_var_content(article.slug) } }
+    it { is_expected.to include_merge_var_content(articles.second.slug) }
+    it { is_expected.to include_merge_var_content(articles.third.slug) }
+    it { is_expected.to be_from(email: 'orientation@codeschool.com') }
   end
 
   context ".send_updates_for(article, user)" do
@@ -28,10 +28,10 @@ describe ArticleMailer do
 
     subject { mailer }
 
-    it { should send_email_to(email: user.email) }
-    it { should use_template('article-subscription-update') }
-    it { should have_subject("#{article.title} was just updated") }
-    it { should be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to send_email_to(email: user.email) }
+    it { is_expected.to use_template('article-subscription-update') }
+    it { is_expected.to have_subject("#{article.title} was just updated") }
+    it { is_expected.to be_from(email: 'orientation@codeschool.com') }
   end
 
   context ".send_rotten_notification_for(article, contributors)" do
@@ -46,10 +46,10 @@ describe ArticleMailer do
 
     subject { mailer }
 
-    it { should send_email_to(email: contributors.first[:email]) }
-    it { should use_template('article-rotten-update') }
-    it { should have_subject('Article Rotten Update') }
-    it { should be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to send_email_to(email: contributors.first[:email]) }
+    it { is_expected.to use_template('article-rotten-update') }
+    it { is_expected.to have_subject('Article Rotten Update') }
+    it { is_expected.to be_from(email: 'orientation@codeschool.com') }
   end
 
   context ".send_endorsement_notification_for(article, author, endorser)" do
@@ -62,10 +62,10 @@ describe ArticleMailer do
 
     subject { mailer }
 
-    it { should send_email_to(email: contributors.first[:email]) }
-    it { should use_template('article-endorsement-notification') }
-    it { should have_subject("#{endorser.name} found #{article.title} useful!") }
-    it { should be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to send_email_to(email: contributors.first[:email]) }
+    it { is_expected.to use_template('article-endorsement-notification') }
+    it { is_expected.to have_subject("#{endorser.name} found #{article.title} useful!") }
+    it { is_expected.to be_from(email: 'orientation@codeschool.com') }
   end
 
 end
