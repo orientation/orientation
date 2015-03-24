@@ -1,4 +1,4 @@
-# Orientation Features
+# Orientation
 
 Documentation is hard. People forget to write it, and they are asked the
 same question over and over again. When they finally do write it down,
@@ -12,6 +12,35 @@ internal question someone might have about our organization:
 > Do we give student discounts?
 
 > How can I help on support?
+
+## Purpose
+
+- Easy interface to create internal docs & tutorials
+- Allow support team to find relevant info quickly
+- Keep information up-to-date
+- Propagate information through the team
+- To be an information base for separate customer-facing documentation
+
+## Features
+
+### Current
+
+- Guides (meta-article groups of articles)
+- Subscription to articles to receive email updates
+- GitHub-style Markdown syntax highlighting & formatting
+- Auto-flagging of old articles (> 6 months) as "stale"
+- Mark out-of-date articles as "rotten" to notify all contributors (author & editor)
+- Mark articles as "fresh" to signal that they are now up-to-date
+- Endorse useful or well-written articles (notifies contributors for good feels)
+- Article tagging
+
+### Planned
+
+- Better search (full-text fuzzy on title/content/tags)
+- Weigh endorsed & most visited articles higher in search
+- [Article edit log and versioning](https://github.com/olivierlacan/orientation/pull/67)
+- Use URL slug versioning to prevent breaking external references
+
 
 ## Home
 
