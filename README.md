@@ -263,4 +263,4 @@ using you local (git-ignored) `.env` file as a canonical source.
 
 ## License
 
-Orientation is MIT licensed by see [LICENSE](LICENSE) for details.
+Orientation is MIT licensed. See [LICENSE](LICENSE) for details.
