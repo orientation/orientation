@@ -1,11 +1,11 @@
-
+require 'spec_helper'
 
 describe User do
   context ".find_or_create_from_omniauth" do
     before do
       @old_user = { 'provider' => 'google_oauth2', 'uid' => '12345', 'info' => { 'name' => 'peter', 'email' => 'peter@codeschool.com' } }.with_indifferent_access
       @new_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'testuser@codeschool.com' } }.with_indifferent_access
-      @unauthorized_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'evil@example.com' } }.with_indifferent_access
+      @other_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'other@example.com' } }.with_indifferent_access
     end
 
     let!(:existing_user) { User.create(uid: @old_user[:uid], provider: @old_user[:provider], email: @old_user[:info][:email], name: @old_user[:info][:name])}
@@ -15,12 +15,24 @@ describe User do
       expect(old_user).to eq existing_user
     end
 
-    it "creates user" do
+    it "creates the user" do
       expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.from(1).to(2)
     end
 
-    it "denies unauthorized user" do
-      expect(User.find_or_create_from_omniauth(@unauthorized_user).valid?).to be_falsey
+    context "when email_whitelist? returns false" do
+      it "doesn't denies unauthorized user" do
+        with_modified_env(ORIENTATION_EMAIL_WHITELIST: nil) do
+          expect(User.find_or_create_from_omniauth(@other_user).valid?).to be_truthy
+        end
+      end
+    end
+
+    context "when email_whitelist? returns true" do
+      it "denies access to a user whose email address isn't included in the whitelist" do
+        with_modified_env(ORIENTATION_EMAIL_WHITELIST: "codeschool.com:pluralsight.com") do
+          expect(User.find_or_create_from_omniauth(@other_user).valid?).to be_falsey
+        end
+      end
     end
   end
 

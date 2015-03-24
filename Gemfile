@@ -50,6 +50,7 @@ end
 group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'climate_control'
 end
 
 group :production do

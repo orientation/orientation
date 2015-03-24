@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
-  DOMAIN_REGEX = /\A([\w\.%\+\-]+)@(codeschool|pluralsight|smarterer)\.com$\z/
-  validates :email, presence: true, format: { with: DOMAIN_REGEX }
+  validates :email, presence: true
+  validate :whitelisted_email, if: -> { self.class.email_whitelist? }
 
   mount_uploader :avatar, AvatarUploader
 
@@ -121,6 +121,20 @@ class User < ActiveRecord::Base
       else
         return new_user
       end
+    end
+  end
+
+  def self.email_whitelist?
+    !!ENV['ORIENTATION_EMAIL_WHITELIST']
+  end
+
+  def email_whitelist
+    ENV["ORIENTATION_EMAIL_WHITELIST"].split(":")
+  end
+
+  def whitelisted_email
+    unless email_whitelist.any? { |email| email.include?(self.email) }
+      errors.add(:email, "is doesn't match the email domain whitelist: #{email_whitelist}")
     end
   end
 end
