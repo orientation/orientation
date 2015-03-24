@@ -1,5 +1,12 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+# Coverage testing disabled by default except on Travis, if you want to
+# run a test coverage analysis, simply run specs with:
+#   COVERAGE=true rspec spec/
+#
+if ENV["COVERAGE"] || ENV["TRAVIS"]
+  require "codeclimate-test-reporter"
+  CodeClimate::TestReporter.start
+end
+
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -44,13 +51,13 @@ RSpec.configure do |config|
 
   OmniAuth.config.test_mode = true
   omniauth_hash = { 'uid' => '777777', 'name' => 'mockuser' }
-    
+
   OmniAuth.config.add_mock(:google_oauth2, omniauth_hash)
 
   # make it unnecessary to prefix factories with FactoryGirl
   # instead call create, build, or build_stubbed directly
   config.include FactoryGirl::Syntax::Methods
-  
+
   config.infer_spec_type_from_file_location!
 end
 
