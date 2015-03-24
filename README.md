@@ -63,20 +63,8 @@ using you local (git-ignored) `.env` file as a canonical source.
 
 ## Development
 
-### Seeding Development Environment with Production data
-
-- use pgbackups
-
-If you want to see avatars in development, you will need to create a file called `.env` in your root folder.
-
-Inside of the file, you should put the following:
-
-```
-S3_BUCKET=codeschool
-```
-
 ### OAuth in development
-In development we cheat around OAuth by simply using User.find(1) as the
+In development we cheat around OAuth by simply using `User.first` as the
 current user because it's easy and we're lazy. Testing OAuth in dev is
 hard.
 
