@@ -1,6 +1,9 @@
-
-
 describe User do
+  context "Validations" do
+    it { should allow_value("test@pluralsight.com").for(:email) }
+    it { should allow_value("test@example.com").for(:email) }
+  end
+
   context ".find_or_create_from_omniauth" do
     before do
       @old_user = { 'provider' => 'google_oauth2', 'uid' => '12345', 'info' => { 'name' => 'peter', 'email' => 'peter@codeschool.com' } }.with_indifferent_access
@@ -17,10 +20,6 @@ describe User do
 
     it "creates user" do
       expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.from(1).to(2)
-    end
-
-    it "denies unauthorized user" do
-      expect(User.find_or_create_from_omniauth(@unauthorized_user).valid?).to be_falsey
     end
   end
 
