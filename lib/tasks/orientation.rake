@@ -13,22 +13,22 @@ namespace :orientation do
     puts "Make sure you also set the `DATABASE_USERNAME` and `DATABASE_PASSWORD` keys"
     puts "Once you're done, run `rake db:create db:setup`."
 
-    bower_installed? = system 'which bower'
+    bower_installed = system 'which bower'
 
-    if bower_installed?
+    if bower_installed
       system 'bower install'
     else
-      npm_installed? = system 'which npm'
+      npm_installed = system 'which npm'
 
-      if npm_installed?
+      if npm_installed
         puts "You have npm installed, so you can install Bower with:"
         puts "npm install -g bower"
         puts "After that, just run `bower install` and you'll be good to go."
       else
         puts "You don't seem to have npm installed."
-        brew_installed? = system 'which brew'
+        brew_installed = system 'which brew'
 
-        if brew_installed?
+        if brew_installed
           puts "You can install npm through Homebrew with:"
           puts "brew install npm"
         else
@@ -38,5 +38,6 @@ namespace :orientation do
           puts "npm install -g bower && bower install"
         end
       end
+    end
   end
 end
