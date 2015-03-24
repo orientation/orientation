@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1280 800" enable-background="new 0 0 1280 800" xml:space="preserve">
+	 viewBox="221 0 800 800" enable-background="new 221 0 800 800" xml:space="preserve">
 <g id="Layer_1_1_" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
 	<title>Artboard 1</title>
 	<desc>Created with Sketch.</desc>
 	<g id="Page-1" sketch:type="MSPage">
 		<g id="Artboard-1" sketch:type="MSArtboardGroup">
-			<path id="Shape" sketch:type="MSShapeGroup" fill="#A5A6A7" d="M16.4,416.8c-202.2,0-365.6,163.4-365.6,365.6
-				S-185.8,1148,16.4,1148S382,984.6,382,782.4S218.6,416.8,16.4,416.8L16.4,416.8z M16.4,1081.3c-165.6,0-298.9-133.3-298.9-298.9
-				s133.3-298.9,298.9-298.9s298.9,133.3,298.9,298.9S182,1081.3,16.4,1081.3L16.4,1081.3z"/>
+			<path id="Shape" sketch:type="MSShapeGroup" fill="#A5A6A7" d="M620.8,34.4c-202.2,0-365.6,163.4-365.6,365.6
+				s163.4,365.6,365.6,365.6S986.4,602.2,986.4,400S823,34.4,620.8,34.4L620.8,34.4z M620.8,698.9c-165.6,0-298.9-133.3-298.9-298.9
+				s133.3-298.9,298.9-298.9S919.8,234.4,919.8,400S786.4,698.9,620.8,698.9L620.8,698.9z"/>
 		</g>
 	</g>
 </g>
 <g id="Layer_2">
-	<circle fill="#72C297" cx="16.4" cy="449.1" r="64.5"/>
-	<circle fill="#72C297" cx="16.4" cy="1115.7" r="64.5"/>
-	<circle fill="#72C297" cx="-316.9" cy="784.6" r="64.5"/>
-	<circle fill="#72C297" cx="349.7" cy="784.6" r="64.5"/>
-	<circle fill="#72C297" cx="-220.2" cy="1019" r="64.5"/>
-	<circle fill="#72C297" cx="253" cy="548" r="64.5"/>
-	<circle fill="#72C297" cx="-220.2" cy="548" r="64.5"/>
-	<circle fill="#72C297" cx="253" cy="1019" r="64.5"/>
+	<circle fill="#72C297" cx="620.8" cy="66.7" r="64.5"/>
+	<circle fill="#72C297" cx="620.8" cy="733.3" r="64.5"/>
+	<circle fill="#72C297" cx="287.5" cy="402.2" r="64.5"/>
+	<circle fill="#72C297" cx="954.2" cy="402.2" r="64.5"/>
+	<circle fill="#72C297" cx="384.3" cy="636.6" r="64.5"/>
+	<circle fill="#72C297" cx="857.4" cy="165.6" r="64.5"/>
+	<circle fill="#72C297" cx="384.3" cy="165.6" r="64.5"/>
+	<circle fill="#72C297" cx="857.4" cy="636.6" r="64.5"/>
 </g>
 </svg>
