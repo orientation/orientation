@@ -1,6 +1,6 @@
 {
   "name": "Orientation",
-  "homepage": "https://github.com/codeschool/orientation",
+  "homepage": "https://github.com/olivierlacan/orientation",
   "private": true,
   "dependencies": {
     "bootstrap": "~3.3.2",
