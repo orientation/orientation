@@ -232,12 +232,9 @@ using you local (git-ignored) `.env` file as a canonical source.
 ## Planned Features
 
 - Better search (full-text fuzzy on title/content/tags)
-- Weigh endorsed articles higher in search
-- Tag merging
-- Better tagging management interface
-- Track article visits
-- Article news feed
+- Weigh endorsed & most visited articles higher in search
 - [Article edit log and versioning](https://github.com/olivierlacan/orientation/pull/67)
+- Use URL slug versioning to prevent breaking external references
 
 [ci]: https://magnum.travis-ci.com/olivierlacan/orientation
 [ci-image]: https://magnum.travis-ci.com/olivierlacan/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
