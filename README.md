@@ -39,10 +39,18 @@ there.
 
 ## Installation
 
-- `rake orientation:install`
-Be aware that you don't have the necessary environment variables to use uploading
-features like the avatar upload, and that you won't be able to use authentication
-either, but you will be logged in as the first user in the database in development.
+Almost one step: `rake orientation:install`
+
+Make sure to check the [installation task](lib/tasks/orientation.rake) if
+anything strange happens during installation.
+
+Once you're done, pay close attention to the `.env` file that will appear at the
+root. It's copied from [`.env.example`](.env.example) and contains all the
+environment variables needed to configure Orientation.
+
+Since setting up S3 is a bit tedious, avatar uploads use local file storage in development.
+Likewise, OAuth is disabled in development and you will be signed in as whichever
+user is returned from `User.first`.
 
 ## Deployment
 
