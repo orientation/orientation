@@ -43,7 +43,7 @@ end
 
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'faker'
   gem 'pry-rails'
