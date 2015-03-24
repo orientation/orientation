@@ -149,10 +149,14 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 
 ## Requirements
 
+### Software
 - Ruby 2.2.0
 - PostgreSQL 9.1
 - Python 2.7 (for Pygments)
+- Node.js (for Bower)
 - Bower
+
+### Services
 - AWS S3 bucket for image uploads
 - Mandrill account for transactional emails
 - Google account for authentication (for now)
