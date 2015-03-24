@@ -152,19 +152,17 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 - Ruby 2.2.0
 - PostgreSQL 9.1
 - Python 2.7 (for Pygments)
-- AWS Access Key ID & AWS Secret Access Key for S3 image uploads
+- Bower
+- AWS S3 bucket for image uploads
+- Mandrill account for transactional emails
+- Google account for authentication (for now)
 
 ## Installation
 
 - `bundle install`
-- `cp config/database.example.yml config/database.yml`
+- `rake orientation:setup`
 - Configure `config/database.yml` with your local Postgres credential (usually `username: root` and no `password`)
-- rake db:create
-- rake db:setup
 - `bower install` (`npm install -g bower`, if you don't have it)
-- gem install powder
-- powder link
-- powder open
 
 Be aware that you don't have the necessary environment variables to use uploading
 features like the avatar upload, and that you won't be able to use authentication
