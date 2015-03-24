@@ -99,6 +99,8 @@ old quick and people were tired of receiving tons of emails to nag them into
 either updating their articles or verifying that they were still fresh. So this
 is a work in progress.
 
+![Fresh or Rotten?][fresh-rotten]
+
 It's possible for anyone to mark an article as `Fresh` to confirm that it is.
 It's also possible for anyone to mark an article as `Rotten`. That action *will*
 notify the contributors of the article (original author and last editor).
@@ -251,10 +253,11 @@ using you local (git-ignored) `.env` file as a canonical source.
 [author-index]: https://cloud.githubusercontent.com/assets/65950/6780070/3d29733e-d162-11e4-929e-c693bc0d6de0.png
 [author-filtering]: https://cloud.githubusercontent.com/assets/65950/6780115/96e747ca-d162-11e4-8ca7-2ee14dd37ec8.png
 [adams]: https://cloud.githubusercontent.com/assets/65950/6780138/c888cf92-d162-11e4-8369-2c0cd88afeb5.png
-[writing-article]: https://cloud.githubusercontent.com/assets/65950/6780209/6967596a-d163-11e4-9957-31d78c4cdd4e.png
+[writing-article]: https://cloud.githubusercontent.com/assets/65950/6807643/0190a074-d250-11e4-872e-5dc80bf790ff.png
 [guide-example]: https://cloud.githubusercontent.com/assets/65950/6780336/7942d6a6-d164-11e4-9ce5-38af74c67a3c.png
 [subscription]: https://cloud.githubusercontent.com/assets/65950/6788416/8e90c2d6-d199-11e4-98f7-4f6779ffc461.png
 [endorsement]: https://cloud.githubusercontent.com/assets/65950/6788434/ac043776-d199-11e4-9f6a-8e158cc46ac9.png
+[fresh-rotten]: https://cloud.githubusercontent.com/assets/65950/6807673/203e337e-d250-11e4-948f-a7fc20c61f7b.png
 [table-of-contents]: https://cloud.githubusercontent.com/assets/65950/6807782/e9544b36-d250-11e4-9d50-f26d77225795.png
 [anchor-links]: https://cloud.githubusercontent.com/assets/65950/6807862/615949ba-d251-11e4-9eba-3ccdfe8f3897.png
 
