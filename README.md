@@ -246,3 +246,7 @@ using you local (git-ignored) `.env` file as a canonical source.
 [guide-example]: https://cloud.githubusercontent.com/assets/65950/6780336/7942d6a6-d164-11e4-9ce5-38af74c67a3c.png
 [subscription]: https://cloud.githubusercontent.com/assets/65950/6788416/8e90c2d6-d199-11e4-98f7-4f6779ffc461.png
 [endorsement]: https://cloud.githubusercontent.com/assets/65950/6788434/ac043776-d199-11e4-9f6a-8e158cc46ac9.png
+
+## License
+
+Orientation is MIT licensed by see [LICENSE](LICENSE) for details.
