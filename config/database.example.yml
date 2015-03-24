@@ -1,10 +1,10 @@
-development: &postgres
+development: &defaults
   adapter: postgresql
   encoding: unicode
-  database: <%= Rails.application.secrets[:database][:name] %>
-  username: <%= Rails.application.secrets[:database][:username] %>
-  password: <%= Rails.application.secrets[:database][:password] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 test:
-  <<: *postgres
-  database: orientation_test
+  <<: *defaults
+  database: <%= ENV['TEST_DATABASE_NAME'] %>
