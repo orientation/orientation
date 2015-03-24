@@ -5,10 +5,8 @@ ruby '2.2.0'
 gem 'rails', '4.2.1'
 
 gem 'pg'
-
 gem 'uglifier'
 gem 'sass-rails', '5.0.0'
-
 gem 'autoprefixer-rails'
 gem 'coffee-rails'
 gem 'delayed_job'
@@ -23,13 +21,12 @@ gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'textacular'
 gem 'mandrill_mailer'
-gem 'bugsnag'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
-gem 'unf'
-gem 'skylight'
 gem 'responders','~> 2.0'
+gem 'skylight'
+gem 'bugsnag'
 
 group :development do
   gem 'better_errors'
@@ -53,10 +50,6 @@ end
 group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
-end
-
-group :doc do
-  gem 'sdoc', require: false
 end
 
 group :production do
