@@ -87,7 +87,7 @@ this out](doc/OAUTH.md).
 [ci]: https://travis-ci.org/olivierlacan/orientation
 [ci-image]: https://travis-ci.org/olivierlacan/orientation.svg?branch=master
 [gemnasium]: https://gemnasium.com/olivierlacan/orientation
-[gemnasium-image]: https://gemnasium.com/f8cac37fbe557103d2ae38bcc8815f40.svg
+[gemnasium-image]: https://gemnasium.com/olivierlacan/orientation.svg
 [codeclimate]: (https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
 [codeclimate-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/gpa.svg
 [codeclimate-coverage]: https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
