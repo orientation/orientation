@@ -16,7 +16,6 @@ gem 'pg'
 gem 'autoprefixer-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
-gem 'fontcustom'
 gem 'haml-rails'
 gem 'simple_form', '~> 3.1.0'
 gem 'pygments.rb'
@@ -39,6 +38,7 @@ group :development do
   gem 'powder'
   gem 'bullet'
   gem 'quiet_assets'
+  gem 'fontcustom'
 end
 
 group :development, :test do
