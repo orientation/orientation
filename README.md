@@ -1,7 +1,7 @@
 # ![Orientation][orientation-logo]
 
 [![Build Status][ci-image]][ci]
-[![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage]
+[![Test Coverage][codeclimate-coverage-image]][codeclimate]
 [![Code Climate][codeclimate-image]][codeclimate]
 [![Dependency Status][gemnasium-image]][gemnasium]
 
@@ -88,10 +88,9 @@ this out](doc/OAUTH.md).
 [ci-image]: https://travis-ci.org/olivierlacan/orientation.svg?branch=master
 [gemnasium]: https://gemnasium.com/olivierlacan/orientation
 [gemnasium-image]: https://gemnasium.com/olivierlacan/orientation.svg
-[codeclimate]: (https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
-[codeclimate-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/gpa.svg
-[codeclimate-coverage]: https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
-[codeclimate-coverage-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/coverage.svg
+[codeclimate]: https://codeclimate.com/github/olivierlacan/orientation
+[codeclimate-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/gpa.svg
+[codeclimate-coverage-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/coverage.svg
 
 [orientation-logo]: https://github.com/olivierlacan/orientation/blob/master/public/orientation_logo.png
 [orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png
