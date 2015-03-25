@@ -1,0 +1,89 @@
+// *************************************
+//
+//   Tooltip
+//   -> Contexual overlay
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .tooltip[...]
+//
+// *************************************
+
+.tooltip
+  display: block
+  font-size: $b-fontSize-xs
+  line-height: $tooltip-lineHeight
+  opacity: 0
+  position: absolute
+  transition: opacity $b-transition
+  visibility: visible
+  z-index: 100
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Positions ----- //
+
+@each $position in $tooltip-positions
+
+  .tooltip.#{$position}
+    padding-#{$position}: $tooltip-caretSize
+    padding-#{opposite-position($position)}: $tooltip-caretSize
+    @if $position == 'top' or $position == 'left'
+      margin-#{$position}: -$tooltip-caretSize
+    @else
+      margin-#{opposite-position($position)}: $tooltip-caretSize
+
+    .tooltip-arrow
+      border-#{$position}-color: $tooltip-background
+      @if $position == 'top' or $position == 'bottom'
+        #{opposite-position($position)}: 0
+        left: 50%
+        margin-left: -$tooltip-caretSize
+      @if $position == 'left' or $position == 'right'
+        #{opposite-position($position)}: 0
+        top: 50%
+        margin-top: -$tooltip-caretSize
+      @if $position == 'top'
+        border-width: $tooltip-caretSize $tooltip-caretSize 0
+      @if $position == 'left'
+        border-width: $tooltip-caretSize 0 $tooltip-caretSize $tooltip-caretSize
+      @if $position == 'right'
+        border-width: $tooltip-caretSize $tooltip-caretSize $tooltip-caretSize 0
+      @if $position == 'bottom'
+        border-width: 0 $tooltip-caretSize $tooltip-caretSize
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// ----- In ----- //
+
+.tooltip.in
+  opacity: 1
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Arrow ----- //
+
+.tooltip-arrow
+  border-color: transparent
+  border-style: solid
+  height: 0
+  position: absolute
+  width: 0
+
+// ----- Inner ----- //
+
+.tooltip-inner
+  background: $tooltip-background
+  border-radius: $b-borderRadius
+  color: $tooltip-color
+  max-width: $tooltip-maxWidth
+  padding: $b-space-xs $b-space $b-space-s
+  text-align: center

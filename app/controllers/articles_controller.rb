@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    respond_with @article if @article.save
+    redirect_to article_path(@article) if @article.save
   end
 
   def edit
@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    respond_with @article if @article.update_attributes(article_params)
+    redirect_to article_path(@article) if @article.update_attributes(article_params)
   end
 
   def destroy

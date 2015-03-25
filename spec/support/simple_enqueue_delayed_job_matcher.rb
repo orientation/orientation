@@ -15,11 +15,11 @@ RSpec::Matchers.define(:create_delayed_job_with) do |expected_job_symbol|
     Delayed::Job.any? {|job| job.handler =~ /#{expected_job_symbol.to_s}/}
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     "Expected the given action to create a delayed job with content: '#{expected_job_symbol.to_s}' but got: \n\n#{organize_array_output(Delayed::Job.all)}"
   end
 
-  failure_message_for_should_not do |actual|
+  failure_message_when_negated do |actual|
     "Expected the given action to not create a delayed job with content: '#{expected_job_symbol.to_s}' but got: \n\n#{organize_array_output(Delayed::Job.all)}"
   end
 

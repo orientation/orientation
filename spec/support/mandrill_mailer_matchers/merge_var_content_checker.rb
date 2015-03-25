@@ -17,22 +17,22 @@ RSpec::Matchers.define :include_merge_var_content do |expected_data|
   match do |actual|
     has_match = false
 
-    matches = merge_vars_from(actual).find do |hash| 
+    matches = merge_vars_from(actual).find do |hash|
       hash['name'] == 'CONTENT'
-    end 
+    end
 
     has_match = matches['content'].include?(expected_data)
 
     has_match
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     <<-MESSAGE.strip_heredoc
     Expected merge variables: #{merge_vars_from(actual).inspect} to include content: #{expected_data}.
   MESSAGE
   end
 
-  failure_message_for_should_not do |actual|
+  failure_message_when_negated do |actual|
     <<-MESSAGE.strip_heredoc
     Expected merge variables: #{merge_vars_from(actual).inspect} to not include content: #{expected_data}.
   MESSAGE

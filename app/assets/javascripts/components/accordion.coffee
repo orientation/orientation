@@ -5,23 +5,23 @@
 #
 # *************************************
 #
-# @param element        { jQuery object }
-# @param buttonElement  { jQuery object }
-# @param contentElement { jQuery object }
+# @param $element { jQuery object }
+# @param $button  { jQuery object }
+# @param $content { jQuery object }
 #
 # *************************************
 
 @Orientation.accordion = ( options ) ->
   settings = $.extend
-    element        : $( '.js-accordion' )
-    buttonElement  : $( '.js-accordion-btn' )
-    contentElement : $( '.js-accordion-content' )
+    $element : $( '.js-accordion' )
+    $button  : $( '.js-accordion-btn' )
+    $content : $( '.js-accordion-content' )
   , options
 
-  settings.contentElement.hide()
+  settings.$content.hide()
 
-  settings.buttonElement.on 'click', ( event ) ->
-    $(@).closest( settings.element ).find( settings.contentElement ).slideToggle()
+  settings.$button.on 'click', ( event ) ->
+    $(@).closest( settings.$element ).find( settings.$content ).slideToggle()
 
 # -------------------------------------
 #   Usage

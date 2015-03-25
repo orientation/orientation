@@ -1,6 +1,7 @@
 class GuidesController < ApplicationController
   def index
     @articles = ArticleDecorator.decorate_collection(Article.guide)
+    redirect_to(articles_path) if @articles.empty?
   end
 
   def show

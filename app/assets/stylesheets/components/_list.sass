@@ -7,9 +7,9 @@
 //   Template (Haml)
 // -------------------------------------
 //
-// %ul.list[.list--bordered|inline|object|styled|styled--numbered]
-//   %li.list-item List Item
-//   %li.list-item List Item
+// %ul.list[xs|s bordered divided[s] inline[f|xs flex responsive styled] object styled[numbered]]
+//
+//   %li.list-item
 //
 // *************************************
 
@@ -59,15 +59,15 @@
 
 // Sizes
 
-.list--inline--xs
-
-  > .list-item
-    margin-right: $b-space-xs
-
 .list--inline--f
 
   > .list-item
     margin-right: 0
+
+.list--inline--xs
+
+  > .list-item
+    margin-right: $b-space-xs
 
 // Styled
 
@@ -101,22 +101,21 @@
   > .list-item
     float: left
     margin-right: $b-space
+
     &:last-child
       margin-right: 0
 
 // ----- Sizes ----- //
 
-.list--s
-
-  > .list-item
-    margin-bottom: $b-space-s
-
-// Extra Small
-
 .list--xs
 
   > .list-item
     margin-bottom: $b-space-xs
+
+.list--s
+
+  > .list-item
+    margin-bottom: $b-space-s
 
 // ----- Styled ----- //
 

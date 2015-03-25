@@ -27,7 +27,10 @@
           = render partial: 'shared/icon', locals: { icon: 'clock', padded: true }
           %span.label.label--invert= @article.created_at_tag
         .byline-secondary
-          %span.tsi.tss Last edited
+          - if @article.editor
+            %span.dib.mrxs{ 'data-toggle' => 'tooltip', title: @article.editor.name }
+              %span.mrxs.tsi.tsxs #{@article.editor.image_link(30)}
+          %span.tsi.tsxs Last edited
           %span.label.label--invert= @article.updated_at_tag
 
     .g
@@ -73,12 +76,12 @@
               %h2.label Subscribers
             .split-cell
               - toggle_subscription_label = current_user.subscribed_to?( @article ) ? 'Unsubscribe' : 'Subscribe'
-              = link_to toggle_subscription_label, toggle_subscription_article_url( @article ), class: 'tss', method: :put
+              = link_to toggle_subscription_label, toggle_subscription_article_url( @article ), class: 'tsxs', method: :put
           - if @article.subscriptions.count > 0
             %ul.list.list--object
               = render partial: 'subscription', collection: @article.subscriptions.decorate
           - else
-            %p.mbf.tcs.tsi.tsm Subscribe to receive updates about this article.
+            %p.mbf.tcs.tsi.tss Subscribe to receive updates about this article.
 
         .mbl
           .split.bdrb.mbs.pbxs
@@ -86,9 +89,9 @@
               %h2.label Endorsements
             .split-cell
               - toggle_endorsement_label = current_user.endorsing?( @article ) ? 'Unendorse' : 'Endorse'
-              = link_to toggle_endorsement_label, toggle_endorsement_article_url( @article ), class: 'tss', method: :put
+              = link_to toggle_endorsement_label, toggle_endorsement_article_url( @article ), class: 'tsxs', method: :put
           - if @article.endorsements.count > 0
             %ul.list.list--object
               = render partial: 'endorsement', collection: @article.endorsements.decorate
           - else
-            %p.mbf.tcs.tsi.tsm Endorse this article if you find it helpful.
+            %p.mbf.tcs.tsi.tss Endorse this article if you find it helpful.

@@ -4,6 +4,8 @@ class Tag < ActiveRecord::Base
   after_create :increment_articles_counter
   before_destroy :decrement_articles_counter
 
+  validates :name, uniqueness: true
+
   def to_s
     name
   end

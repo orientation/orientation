@@ -17,13 +17,13 @@ RSpec::Matchers.define :have_subject do |expected_subject|
     mailer_subject(mailer) == expected_subject
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     <<-MESSAGE.strip_heredoc
     Expected subject: #{mailer_subject(mailer).inspect} to be: #{expected_subject.inspect}.
   MESSAGE
   end
 
-  failure_message_for_should_not do |actual|
+  failure_message_when_negated do |actual|
     <<-MESSAGE.strip_heredoc
     Expected subject: #{mailer_subject(mailer).inspect} to not be: #{expected_subject.inspect}.
   MESSAGE

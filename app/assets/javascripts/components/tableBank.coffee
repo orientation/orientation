@@ -5,8 +5,8 @@
 #
 # *************************************
 #
-# @param element              { jQuery object }
-# @param context              { jQuery object }
+# @param $element             { jQuery object }
+# @param $context             { jQuery object }
 # @param elementClass         { string }
 # @param containerClass       { string }
 # @param originalClass        { string }
@@ -32,8 +32,8 @@
 
   init = ( options ) ->
     _settings = $.extend
-      element              : $( 'table' )
-      context              : $( '.js-tableBank' )
+      $element              : $( 'table' )
+      $context              : $( '.js-tableBank' )
       elementClass         : 'tableBank'
       containerClass       : 'tableBank-container'
       originalClass        : 'tableBank-original'
@@ -50,10 +50,10 @@
   #   Set Event Handlers
   # -------------------------------------
 
-  _setEventHandlers = ( context ) ->
-    context.find( ".#{ _settings.toggleClass }" ).on 'click', ( event ) ->
+  _setEventHandlers = ( $context ) ->
+    $context.find( ".#{ _settings.toggleClass }" ).on 'click', ( event ) ->
       event.preventDefault()
-      context.closest( ".#{ _settings.elementClass }" ).toggleClass( _settings.activeClass )
+      $context.closest( ".#{ _settings.elementClass }" ).toggleClass( _settings.activeClass )
 
   # -------------------------------------
   #   Add Style Sheet
@@ -83,11 +83,11 @@
   # -------------------------------------
 
   _wrapTables = ->
-    _settings.context.find( _settings.element ).each ->
+    _settings.$context.find( _settings.$element ).each ->
 
-      element = $(@)
-      originalTableElement = element.clone().addClass( _settings.originalTableClass )
-      tableWidth = element.width()
+      $element = $(@)
+      $originalTable = $element.clone().addClass( _settings.originalTableClass )
+      tableWidth = $element.width()
 
       messageText = """
         This table has been contained to fit, but you can
@@ -102,20 +102,20 @@
         </div>
       """
 
-      element.wrap( "<div class='#{ _settings.elementClass } #{ _settings.elementClass }--#{ tableWidth }'></div>" )
-      element.before( originalBlock )
+      $element.wrap( "<div class='#{ _settings.elementClass } #{ _settings.elementClass }--#{ tableWidth }'></div>" )
+      $element.before( originalBlock )
 
-      if tableWidth > _settings.context.innerWidth()
-        tableBankElement = element.closest( ".#{ _settings.elementClass }" )
-        originalElement  = tableBankElement.find( ".#{ _settings.originalClass }" )
-        originalElement.append( originalTableElement )
+      if tableWidth > _settings.$context.innerWidth()
+        $tableBank = $element.closest( ".#{ _settings.elementClass }" )
+        $original  = $tableBank.find( ".#{ _settings.originalClass }" )
+        $original.append( $originalTable )
 
-        element.wrap( "<div class='#{ _settings.containerClass }'></div>" )
+        $element.wrap( "<div class='#{ _settings.containerClass }'></div>" )
 
         _addStyleSheet( tableWidth )
-        _setEventHandlers( tableBankElement )
+        _setEventHandlers( $tableBank )
       else
-        element.wrap "<div class='#{ _settings.containerClass }'></div>"
+        $element.wrap "<div class='#{ _settings.containerClass }'></div>"
 
   # -------------------------------------
   #   Public Methods

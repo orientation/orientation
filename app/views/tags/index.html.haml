@@ -9,8 +9,8 @@
         - @ordered_tags[0..@ordered_tags.length/2].each do |tag|
           %li.list-item.mbxs
             = link_to tag, tag, class: 'label label--link'
-            %span.tsm= tag.articles.count
+            %span.tss= tag.articles.count
         - @ordered_tags[@ordered_tags.length/2..@ordered_tags.length].each do |tag|
           %li.list-item.mbxs
             = link_to tag, tag, class: 'label label--link'
-            %span.tsm= tag.articles.count
+            %span.tss= tag.articles.count

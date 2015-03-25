@@ -8,7 +8,7 @@
 //   Template (Haml)
 // -------------------------------------
 //
-// %i.icn[.icn--arrowDown|arrowUp|etc..]
+// %i.icn[arrowDown|arrowUp|...]
 //
 // *************************************
 
@@ -20,10 +20,10 @@
   font-style: normal
 
 .icn::before
+  display: inline-block
+  font-family: 'icons'
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
-  display: inline-block
-  font-family: "icons"
   font-style: normal
   font-weight: normal
   speak: none
@@ -34,21 +34,20 @@
 
 // ----- Setup ----- //
 
-
 .icn--avatar::before
-  content: "\f101"
+  content: '\f101'
 
 .icn--caretDown::before
-  content: "\f102"
+  content: '\f102'
 
 .icn--clock::before
-  content: "\f103"
+  content: '\f103'
 
 .icn--fullscreen::before
-  content: "\f104"
+  content: '\f104'
 
 .icn--unfullscreen::before
-  content: "\f105"
+  content: '\f105'
 
 
 // ----- Middle ----- //
@@ -61,6 +60,7 @@
 
 %icn-padded,
 .icn--padded
+
   &::before
     text-align: center
-    width: 1.2em // FIXME: magic number
+    width: 1.2em // FIXME: Magic number!

@@ -1,10 +1,10 @@
-development: &postgres
+development: &defaults
   adapter: postgresql
   encoding: unicode
-  database: orientation_development
-  username: username
-  password: password
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 test:
-  <<: *postgres
-  database: orientation_test
+  <<: *defaults
+  database: <%= ENV['TEST_DATABASE_NAME'] %>

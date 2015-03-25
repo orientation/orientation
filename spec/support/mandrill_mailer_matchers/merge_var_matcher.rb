@@ -24,13 +24,13 @@ RSpec::Matchers.define :have_merge_data do |expected_data|
     has_match
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     <<-MESSAGE.strip_heredoc
     Expected merge variables: #{merge_vars_from(actual).inspect} to include data: #{expected_data.inspect} but it does not.
   MESSAGE
   end
 
-  failure_message_for_should_not do |actual|
+  failure_message_when_negated do |actual|
     <<-MESSAGE.strip_heredoc
     Expected merge variables: #{merge_vars_from(actual).inspect} to not include data: #{expected_data.inspect} but it does.
   MESSAGE

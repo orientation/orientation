@@ -1,97 +1,85 @@
-# Orientation
+# ![Orientation][orientation-logo]
+
 [![Build Status][ci-image]][ci]
 [![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage]
 [![Code Climate][codeclimate-image]][codeclimate]
 [![Dependency Status][gemnasium-image]][gemnasium]
 
-Find your way around Code School support.
+## What is Orientation?
+
+![Orientation's Homepage][orientation-homepage]
+
+See [FEATURES](FEATURES.md) for features and benefits.
+
+### Authentication
+
+I originally tried to make Orientation as easy to onboard to as possible for
+people in our team. While a huge majority of us had GitHub accounts, not everyone
+did. Nor was it realistic to expect non-developers to setup a GitHub account
+just to use a documentation tool. We did — however have — company Google Apps
+accounts, so this is what I used. I want to enable custom OAuth providers soon.
 
 ## Requirements
-- Ruby 2.1.0
+
+### Software
+- Ruby 2.2.0
 - PostgreSQL 9.1
 - Python 2.7 (for Pygments)
-- AWS Access Key ID & AWS Secret Access Key for S3 image uploads
+- Node.js (for Bower)
+- Bower
+
+Both Node and Python are available on Heroku if you decide to deploy there,
+which means there should not be any issues when deploying or running Orientation
+there.
+
+### Services
+- AWS S3 bucket for image uploads
+- Mandrill account for transactional emails
+- Google account for authentication (for now)
 
 ## Installation
 
-- `bundle install`
-- `cp config/database.example.yml config/database.yml`
-- Configure `config/database.yml` with your local Postgres credential (usually `username: root` and no `password`)
-- rake db:create
-- rake db:setup
-- `bower install` (`npm install -g bower`, if you don't have it)
-- gem install powder
-- powder link
-- powder open
+Almost one step: `rake orientation:install`
 
-Be aware that you don't have the necessary environment variables to use uploading
-features like the avatar upload, and that you won't be able to use authentication
-either, but you will be logged in as the first user in the database in development.
+Make sure to check the [installation task](lib/tasks/orientation.rake) if
+anything strange happens during installation.
 
-## Seeding Development Environment with Production data
-- use pgbackups
+Once you're done, pay close attention to the `.env` file that will appear at the
+root. It's copied from [`.env.example`](.env.example) and contains all the
+environment variables needed to configure Orientation.
 
-If you want to see avatars in development, you will need to create a file called `.env` in your root folder.
-
-Inside of the file, you should put the following:
-
-```
-S3_BUCKET=codeschool
-```
-
-## OAuth in development
-In development we cheat around OAuth by simply using User.find(1) as the
-current user because it's easy and we're lazy. Testing OAuth in dev is
-hard.
+Since setting up S3 is a bit tedious, avatar uploads use local file storage in development.
+Likewise, OAuth is disabled in development and you will be signed in as whichever
+user is returned from `User.first`.
 
 ## Deployment
 
 ### Required Environment Variables
 
-- `S3_ACCESS_KEY_ID`
-- `S3_SECRET_ACCESS_KEY`
-- `S3_BUCKET`
-- `MANDRILL_API_KEY`
-- `MANDRILL_DOMAIN`
-- `MANDRILL_PASSWORD`
-- `MANDRILL_USERNAME`
-- `GOOGLE_KEY`
-- `GOOGLE_SECRET`
-- `SKYLIGHT_AUTHENTICATION`
-- `BUGSNAG_API_KEY`
+See [.env.example](.env.example) file. Note that if you host your Orientation
+on Heroku you'll need to set those environment variables manually. I recommend
+[dotenv-heroku](https://github.com/sideshowcoder/dotenv-heroku) to do this easily
+using you local (git-ignored) `.env` file as a canonical source.
 
-## Goals
+## Development
 
-- Easy interface to create internal docs & tutorials
-- Allow support team to find relevant info quickly
-- Be used as a base for customer-facing documentation
+### OAuth in development
+In development we cheat around OAuth by simply using `User.first` as the
+current user because it's easy and we're lazy. Testing OAuth in dev is
+hard.
 
-## Features
-
-- Filtered full-text fuzzy article search
-- GitHub-style syntax highlighting & formatting
-- Grouping of articles by tags
-- Automatic flagging of articles older than 6 months old or not having been updated in 6 months as "stale" with daily batched email notifications to the article author
-- Subscription to articles in order to receive email notifications when they're updated by anyone
-- Ability to mark articles as "rotten" if out of date and automatically notify all contributors (author & editor)
-
-## Planned Features
-- Tag merging
-- Better tagging management interface
-- Track article visits
-- Let people say "this was useful"
-- Article news feed
-- Eventually weigh the useful articles higher in search
-- Color-coded & icon tags
-- Authors page leaderboard sorting
-- Article edit log
-- Categories
-
-[ci]: https://magnum.travis-ci.com/codeschool/orientation
-[ci-image]: https://magnum.travis-ci.com/codeschool/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
-[gemnasium]: https://gemnasium.com/codeschool/orientation
-[gemnasium-image]: https://gemnasium.com/f8cac37fbe557103d2ae38bcc8815f40.png
+[ci]: https://magnum.travis-ci.com/olivierlacan/orientation
+[ci-image]: https://magnum.travis-ci.com/olivierlacan/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
+[gemnasium]: https://gemnasium.com/olivierlacan/orientation
+[gemnasium-image]: https://gemnasium.com/f8cac37fbe557103d2ae38bcc8815f40.svg
 [codeclimate]: (https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
-[codeclimate-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/gpa.png
+[codeclimate-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/gpa.svg
 [codeclimate-coverage]: https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
-[codeclimate-coverage-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/coverage.png
+[codeclimate-coverage-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/coverage.svg
+
+[orientation-logo]: https://github.com/olivierlacan/orientation/blob/master/public/orientation_logo.png
+[orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png
+
+## License
+
+Orientation is MIT licensed. See [LICENSE](LICENSE) for details.

@@ -46,6 +46,21 @@
       src: url('#{$path}.eot')
       src: url('#{$path}.eot?#iefix') format('embedded-opentype'), url('#{$path}.woff') format('woff'), url('#{$path}.ttf') format('truetype'), url('#{$path}.svg##{$family}') format('svg')
 
+// ----- Opposite Position ----- //
+// -> Returns the opposite side
+//
+// $side - the side to return the opposite of
+
+@function opposite-position($side)
+  @if $side == 'top'
+    @return 'bottom'
+  @if $side == 'bottom'
+    @return 'top'
+  @if $side == 'left'
+    @return 'right'
+  @if $side == 'right'
+    @return 'left'
+
 // ----- Respond-to ----- //
 // -> Generates a media query
 //
@@ -58,16 +73,10 @@
   @media #{$media} and ($query: $val)
     @content
 
-// -------------------------------------
-//
-//   State
-//   -> Combines state-related pseudo-classes
-//
-// -------------------------------------
+// ----- State ----- //
+// -> Combines state-related pseudo-classes
 //
 // $class - an optional state class ('is-active')
-//
-// -------------------------------------
 
 =state($class: false)
   @if $class
