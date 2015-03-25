@@ -23,4 +23,4 @@ notifications:
   email: false
 addons:
   code_climate:
-    repo_token: 8439cc8914b3303d4cdf247fab922d07564d14693cdfe9e0c7c37ffaecd6ff53
+    repo_token: 75408d377a0b3c1ab512bf3fb634617bccf2a1065f8c513e352139427ec8e1fb
