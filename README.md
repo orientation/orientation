@@ -9,7 +9,7 @@
 
 ![Orientation's Homepage][orientation-homepage]
 
-See [FEATURES](FEATURES.md) for features and benefits.
+See [FEATURES](doc/FEATURES.md) for features and benefits.
 
 ### Authentication
 
@@ -67,6 +67,9 @@ using you local (git-ignored) `.env` file as a canonical source.
 In development we cheat around OAuth by simply using `User.first` as the
 current user because it's easy and we're lazy. Testing OAuth in dev is
 hard.
+
+If you're curious what the OmniAuth hash from Google OAuth 2 looks like [check
+this out](doc/OAUTH.md).
 
 [ci]: https://magnum.travis-ci.com/olivierlacan/orientation
 [ci-image]: https://magnum.travis-ci.com/olivierlacan/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
