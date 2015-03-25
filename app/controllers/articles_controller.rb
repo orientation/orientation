@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new.decorate
+    @article = Article.new(title: params[:title]).decorate
   end
 
   def create
