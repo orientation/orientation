@@ -7,9 +7,22 @@
 
 ## What is Orientation?
 
+Documentation is hard. People forget to write it, and they are asked the
+same question over and over again. When they finally do write it down,
+people can't find it or it gets out of date before it can be useful.
+
+The goal of Orientation was to make a single point of entry for any
+internal question someone might have about our organization:
+
+> How can I help with bugs, maintenance and other issues?
+
+> Do we give student discounts?
+
+> How can I help on support?
+
 ![Orientation's Homepage][orientation-homepage]
 
-See [FEATURES](doc/FEATURES.md) for features and benefits.
+Here's [how Orientation works](doc/FEATURES.md).
 
 ### Authentication
 
