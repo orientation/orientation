@@ -1,7 +1,7 @@
 This project has no CHANGELOG, for the following reasons:
 
 - It's a huge app
-- It evolves way too often
+- It evolves quickly
 - Its boundaries are not clearly defined
-- The feature list is still in flux because this is an experiment
-- It's an app, not a library, none of your code should depend on it
+- The feature list is still in flux
+- It's an app, not a library. Your code should depend on it.
