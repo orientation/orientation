@@ -133,8 +133,8 @@ class User < ActiveRecord::Base
   end
 
   def whitelisted_email
-    unless email_whitelist.any? { |email| email.include?(self.email) }
-      errors.add(:email, "is doesn't match the email domain whitelist: #{email_whitelist}")
+    if email_whitelist.none? { |email| self.email.include?(email) }
+      errors.add(:email, "doesn't match the email domain whitelist: #{email_whitelist}")
     end
   end
 end

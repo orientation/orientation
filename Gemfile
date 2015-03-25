@@ -4,11 +4,16 @@ ruby '2.2.0'
 
 gem 'rails', '4.2.1'
 
-gem 'pg'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
-gem 'sass-rails', '5.0.0'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.1.0'
+
+gem 'pg'
+
 gem 'autoprefixer-rails'
-gem 'coffee-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'fontcustom'
@@ -36,7 +41,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'powder'
   gem 'bullet'
-  gem 'spring'
   gem 'quiet_assets'
 end
 
@@ -48,6 +52,9 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-remote'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
 end
 
 group :test do

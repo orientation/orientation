@@ -1,15 +1,28 @@
 # ![Orientation][orientation-logo]
 
 [![Build Status][ci-image]][ci]
-[![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage]
+[![Test Coverage][codeclimate-coverage-image]][codeclimate]
 [![Code Climate][codeclimate-image]][codeclimate]
 [![Dependency Status][gemnasium-image]][gemnasium]
 
 ## What is Orientation?
 
+Documentation is hard. People forget to write it, and they are asked the
+same question over and over again. When they finally do write it down,
+people can't find it or it gets out of date before it can be useful.
+
+The goal of Orientation was to make a single point of entry for any
+internal question someone might have about our organization:
+
+> How can I help with bugs, maintenance and other issues?
+
+> Do we give student discounts?
+
+> How can I help on support?
+
 ![Orientation's Homepage][orientation-homepage]
 
-See [FEATURES](FEATURES.md) for features and benefits.
+Here's [how Orientation works](doc/FEATURES.md).
 
 ### Authentication
 
@@ -68,14 +81,16 @@ In development we cheat around OAuth by simply using `User.first` as the
 current user because it's easy and we're lazy. Testing OAuth in dev is
 hard.
 
-[ci]: https://magnum.travis-ci.com/olivierlacan/orientation
-[ci-image]: https://magnum.travis-ci.com/olivierlacan/orientation.svg?token=bYo3ib4PCJrDSsNRgsEK&branch=master
+If you're curious what the OmniAuth hash from Google OAuth 2 looks like [check
+this out](doc/OAUTH.md).
+
+[ci]: https://travis-ci.org/olivierlacan/orientation
+[ci-image]: https://travis-ci.org/olivierlacan/orientation.svg?branch=master
 [gemnasium]: https://gemnasium.com/olivierlacan/orientation
-[gemnasium-image]: https://gemnasium.com/f8cac37fbe557103d2ae38bcc8815f40.svg
-[codeclimate]: (https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
-[codeclimate-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/gpa.svg
-[codeclimate-coverage]: https://codeclimate.com/repos/5158ce6d56b102723b001780/feed
-[codeclimate-coverage-image]: https://codeclimate.com/repos/5158ce6d56b102723b001780/badges/741c4f4d03a1a9e12804/coverage.svg
+[gemnasium-image]: https://gemnasium.com/olivierlacan/orientation.svg
+[codeclimate]: https://codeclimate.com/github/olivierlacan/orientation
+[codeclimate-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/gpa.svg
+[codeclimate-coverage-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/coverage.svg
 
 [orientation-logo]: https://github.com/olivierlacan/orientation/blob/master/public/orientation_logo.png
 [orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png
