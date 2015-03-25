@@ -1,6 +1,7 @@
 language: ruby
 rvm:
   - 2.2.0
+sudo: false
 env:
   global:
     SPEC_OPTS=--backtrace --color
