@@ -1,9 +1,34 @@
+<% new_article_link = link_to("Create one!", new_article_path(title: params[:search])) %>
+
 ( function() {
+  var fallback = "No articles found. <%= escape_javascript(new_article_link) %></a>";
   var articleMarkup = '<%= escape_javascript( render( @articles ) ) %>';
 
+
+  // the js-articleSearch is only present on the guides#index view
   if ( $( '.js-articleSearch' ).length ) {
-    $( '.js-articleSearch-results' ).html( articleMarkup )
+
+    // there are matching results
+    if ( articleMarkup ) {
+      $( '.js-articleSearch-results' ).html( articleMarkup );
+
+    // there are no matching results
+    } else {
+      $( '.js-articleSearch-results' ).html( fallback );
+    }
+
+  // this branch adds results to the articles#index view
   } else {
-    $( '.js-search-results' ).html( articleMarkup )
+
+    $( '.js-search-results' ).html( articleMarkup );
+
+    // there are matching results
+    if ( articleMarkup ) {
+      $( '.js-search-results' ).html( articleMarkup );
+
+    // there are no matching results
+    } else {
+      $( '.js-search-results' ).html( fallback );
+    }
   }
 } )();
