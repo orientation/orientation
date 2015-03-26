@@ -80,7 +80,7 @@ using you local (git-ignored) `.env` file as a canonical source.
 
 Orientation uses a Sass-based CSS architecture called [MVCSS](http://mvcss.io/).
 It was extracted from [Envy](http://madewithenvy.com) and [Code School](http//codeschool.com)
-by both front-end teams.
+work by both front-end teams.
 
 It's not nearly as complex as a framework. The basic gist is that we try to
 keep things as modular and dynamic as possible. Magic values are not welcome.
