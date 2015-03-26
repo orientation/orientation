@@ -12,9 +12,9 @@
                 placeholder: 'Search articles by keyword',
                 autofocus: true
           .split-cell.mlxs
-            = link_to "Fresh", fresh_articles_path, class: "btn #{action_name == 'fresh' ? 'btn--a' : ''}"
-            = link_to "Stale", stale_articles_path, class: "btn #{action_name == 'stale' ? 'btn--a' : ''}"
-            = link_to "Rotten", rotten_articles_path, class: "btn #{action_name == 'rotten' ? 'btn--a' : ''}"
+            = link_to "Fresh", fresh_articles_path, class: "btn #{action_name == 'fresh' ? 'btn--b' : ''}"
+            = link_to "Stale", stale_articles_path, class: "btn #{action_name == 'stale' ? 'btn--b' : ''}"
+            = link_to "Rotten", rotten_articles_path, class: "btn #{action_name == 'rotten' ? 'btn--b' : ''}"
 
         %ul.list.list--xs.js-search-results
           = render @articles
