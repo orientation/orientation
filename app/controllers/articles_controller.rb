@@ -11,12 +11,8 @@ class ArticlesController < ApplicationController
   ]
   respond_to :html, :json
 
-  def archived
-    @archived_articles = ArticleDecorator.decorate_collection(Article.archived.includes(:tags))
-  end
-
   def index
-    @articles = ArticleDecorator.decorate_collection(Article.current.includes(:tags).text_search(params[:search]))
+    @articles = fetch_articles
     @guides = ArticleDecorator.decorate_collection(Article.guide)
   end
 
@@ -35,6 +31,26 @@ class ArticlesController < ApplicationController
 
   def edit
     @tags = @article.tags.collect{ |t| Hash["id" => t.id, "name" => t.name] }
+  end
+
+  def fresh
+    @articles = fetch_articles(Article.fresh)
+    render :index
+  end
+
+  def stale
+    @articles = fetch_articles(Article.stale)
+    render :index
+  end
+
+  def rotten
+    @articles = fetch_articles(Article.rotten)
+    render :index
+  end
+
+  def archived
+    @articles = fetch_articles(Article.archived)
+    render :index
   end
 
   def toggle_archived
@@ -104,6 +120,11 @@ class ArticlesController < ApplicationController
 
   def decorate_article
     @article = ArticleDecorator.new(find_article_by_params)
+  end
+
+  def fetch_articles(scope = nil)
+    scope ||= Article.current
+    ArticleDecorator.decorate_collection(scope.includes(:tags).text_search(params[:search]))
   end
 
   def find_article_by_params

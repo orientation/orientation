@@ -4,13 +4,17 @@
     - if user_signed_in?
 
       .js-search
-
-        .form.form--inline
-          = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
-            = search_field_tag :search, params[:search],
-              class: 'form-input js-search-input',
-              placeholder: 'Search articles by keyword',
-              autofocus: true
+        .split
+          .split-cell.form.form--inline
+            = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
+              = search_field_tag :search, params[:search],
+                class: 'form-input js-search-input',
+                placeholder: 'Search articles by keyword',
+                autofocus: true
+          .split-cell.mlxs
+            = link_to "Fresh", fresh_articles_path, class: "btn #{action_name == 'fresh' ? 'btn--a' : ''}"
+            = link_to "Stale", stale_articles_path, class: "btn #{action_name == 'stale' ? 'btn--a' : ''}"
+            = link_to "Rotten", rotten_articles_path, class: "btn #{action_name == 'rotten' ? 'btn--a' : ''}"
 
         %ul.list.list--xs.js-search-results
           = render @articles
