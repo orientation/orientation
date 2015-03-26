@@ -76,6 +76,17 @@ using you local (git-ignored) `.env` file as a canonical source.
 
 ## Development
 
+### Styling
+
+Orientation uses a Sass-based CSS architecture called [MVCSS](http://mvcss.io/).
+It was extracted from [Envy](http://madewithenvy.com) and [Code School](http//codeschool.com)
+by both front-end teams.
+
+It's not nearly as complex as a framework. The basic gist is that we try to
+keep things as modular and dynamic as possible. Magic values are not welcome.
+If you contribute styling changes to Orientation, please take the time to get
+the lay of the land.
+
 ### OAuth in development
 In development we cheat around OAuth by simply using `User.first` as the
 current user because it's easy and we're lazy. Testing OAuth in dev is
