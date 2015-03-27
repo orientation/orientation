@@ -83,12 +83,10 @@ class ArticlesController < ApplicationController
   def toggle_subscription
     if !current_user.subscribed_to?(@article)
       @article.subscribe(current_user)
-      flash[:notice] = "Subscription created. You will receive weekly email notifications
-        about this article."
+      flash[:notice] = "You will now receive email notifications when this article is updated."
     else
       @article.unsubscribe(current_user)
-      flash[:notice] = "Subscription destroyed. You will no longer receive
-        weekly email notifications about this article."
+      flash[:notice] = "You will no longer receive email notifications when this article is updated."
     end
 
     respond_with @article
@@ -97,10 +95,10 @@ class ArticlesController < ApplicationController
   def toggle_endorsement
     if !current_user.endorsing?(@article)
       @article.endorse_by(current_user)
-      flash[:notice] = "Endorsement created. Thanks for taking the time to make someone feel good about their work."
+      flash[:notice] = "Thanks for taking the time to make someone feel good about their work."
     else
       @article.unendorse_by(current_user)
-      flash[:notice] = "Endorsement withdrawn. You're ruthless, aren't you?"
+      flash[:notice] = "Giving it, and taking it right back. Ruthless, aren't we?"
     end
 
     respond_with @article
