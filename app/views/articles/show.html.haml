@@ -40,15 +40,14 @@
           = find_and_preserve do
             = markdown( @article.content || 'No content' )
 
-        - if user_signed_in?
-          %ul.list.list--inline.list--inline--xs.mbm
-            %li.list-item
-              = link_to 'Edit', edit_article_url( @article ), class: 'btn btn--a'
-            %li.list-item
-              - toggle_archived_label = !@article.archived? ? 'Archive' : 'Unarchive'
-              = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', method: :put
-            %li.list-item
-              = link_to 'Delete', @article, class: 'btn btn--b', method: :delete
+        %ul.list.list--inline.list--inline--xs.mbm
+          %li.list-item
+            = link_to 'Edit', edit_article_url( @article ), class: 'btn btn--a'
+          %li.list-item
+            - toggle_archived_label = !@article.archived? ? 'Archive' : 'Unarchive'
+            = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', method: :put
+          %li.list-item
+            = link_to 'Delete', @article, class: 'btn btn--b', method: :delete
 
       %aside.g-b.g-b--m--1of3
 

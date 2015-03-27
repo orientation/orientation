@@ -1,24 +1,16 @@
 %main.row
   .cell.well.well--l
+    .js-articleSearch
 
-    - if user_signed_in?
+      .form.form--inline
+        = form_tag articles_path, method: :get, remote: true, class: 'js-articleSearch-form' do
+          = search_field_tag :search, params[:search],
+            class: 'form-input js-articleSearch-input',
+            placeholder: 'Search articles by keyword',
+            autofocus: true
 
-      .js-articleSearch
+      %ul.list.list--xs.js-articleSearch-results.dn.mbm
+        = render @articles
 
-        .form.form--inline
-          = form_tag articles_path, method: :get, remote: true, class: 'js-articleSearch-form' do
-            = search_field_tag :search, params[:search],
-              class: 'form-input js-articleSearch-input',
-              placeholder: 'Search articles by keyword',
-              autofocus: true
-
-        %ul.list.list--xs.js-articleSearch-results.dn.mbm
-          = render @articles
-
-      .mbm.js-guideList
-        = render 'guides/guides', guides: @articles
-
-    - else
-
-      %h1
-        = link_to 'Please Log in to Continue', login_path
+    .mbm.js-guideList
+      = render 'guides/guides', guides: @articles
