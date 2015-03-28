@@ -16,7 +16,7 @@
 
 @Orientation.search = ( options ) ->
   settings = $.extend
-    element    : $( '.js-search' )
+    $element    : $( '.js-search' )
     $form      : $( '.js-search-form' )
     $input     : $( '.js-search-input' )
     $results   : $( '.js-search-results' )
