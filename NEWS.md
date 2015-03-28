@@ -8,7 +8,7 @@ This is [not a change log](CHANGELOG.md).
 
 Each article state now has its own "state" page to easily find Fresh, Stale, or Rotten articles.
 
-There's also two additional "states": Archived and Popular. Archived articles are excluded from search so it's good to be able to find them somewhere if they need to be referenced (or deleted). Popular articles are simply ordered by endorsements and subscriptions. I plan to add views to that calculation soon.
+There's also two additional "states": Archived and Popular. Archived articles are excluded from search so it's good to be able to find them somewhere if they need to be referenced (or deleted). Popular articles are ordered by endorsements first, subscriptions, and a brand new visits counter third.
 
 Hovering over each filter button displays a definition of each state, which should help with discoverability.
 
@@ -26,3 +26,6 @@ I realize as I'm typing this that I may need to paginate this for active teams o
 
 ### Stale articles
 Previously stale articles included rotten articles as well. I've decided to segregate these two scopes/states from now on because articles in these two categories require very different levels of attention from readers and editors.
+
+### Article visits
+This is an invisible feature for now (aside from the Popular Articles page which will be impacted by it) but I've just added a simple visits counter on articles. It's automatically incremented any time the show page for an article is loaded. I might consider making more user-specific stats in the future to help you find articles you've consulted a lot but this is a good first step.
