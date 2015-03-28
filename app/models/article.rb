@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
   include Dateable
+  extend ActionView::Helpers::DateHelper
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
@@ -20,6 +21,12 @@ class Article < ActiveRecord::Base
 
   FRESHNESS_LIMIT = 7.days
   STALENESS_LIMIT = 6.months
+
+  FRESHNESS = "Created within the last #{distance_of_time_in_words(FRESHNESS_LIMIT)}."
+  STALENESS = "Updated over #{distance_of_time_in_words(STALENESS_LIMIT)} ago."
+  ROTTENNESS = "Deemed in need of an update."
+  POPULARITY = "Endorsed or subscribed to by more people."
+  ARCHIVAL = "Deemed outdated & are ignored in searches."
 
   scope :archived, -> { where("archived_at IS NOT NULL") }
   scope :current, -> { where(archived_at: nil).order("rotted_at DESC") }
