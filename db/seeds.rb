@@ -8,7 +8,7 @@
 
 User.create(
   name: "Alvar Hanso",
-  email: "alvar@codeschool.com",
+  email: "alvar@hanso.dk",
   avatar: File.open('public/alvar.jpg'),
   shtick: "I stare at stuff inside buildings"
 )
