@@ -20,11 +20,11 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def created_at_tag
-    time_element(source.created_at.in_time_zone)
+    time_element(source.created_at)
   end
 
   def updated_at_tag
-    time_element(source.updated_at.in_time_zone)
+    time_element(source.updated_at)
   end
 
   def author

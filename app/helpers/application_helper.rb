@@ -45,8 +45,16 @@ module ApplicationHelper
   # Takes a time and a string to represent it. Outputs a proper <time>
   # element with a title tag that display the raw time.
   #
-  def time_element(time)
-    time_tag time, time.to_s(:long), title: time, class: 'js-time'
+  def time_element(time, css_class = 'js-time')
+    time = time.in_time_zone
+    time_tag time, time.to_s(:long), title: time, class: css_class
+  end
+
+  ##
+  # Just like time_element, but relative to now.
+  #
+  def relative_time_element(time)
+    time_element(time, 'js-relative-time')
   end
 
   def page_title(title)
