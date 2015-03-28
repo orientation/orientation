@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get :stale
       get :rotten
       get :archived
+      get :popular
     end
     member do
       put :toggle_subscription

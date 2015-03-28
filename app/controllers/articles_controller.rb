@@ -53,6 +53,11 @@ class ArticlesController < ApplicationController
     render :index
   end
 
+  def popular
+    @articles = fetch_articles(Article.popular)
+    render :index
+  end
+
   def toggle_archived
     !@article.archived? ? @article.archive! : @article.unarchive!
 
