@@ -39,7 +39,6 @@ class Article < ActiveRecord::Base
   scope :popular, -> { order("endorsements_count DESC, subscriptions_count DESC, visits DESC") }
   scope :rotten, -> { where("rotted_at IS NOT NULL") }
   scope :stale, -> do
-    where(rotted_at: nil).
       where("updated_at < ?", STALENESS_LIMIT.ago.beginning_of_day)
   end
 
@@ -55,7 +54,7 @@ class Article < ActiveRecord::Base
     if query.present?
       where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')
     else
-      order(updated_at: :desc)
+      recent
     end
   end
 
