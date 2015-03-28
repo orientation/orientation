@@ -24,18 +24,26 @@
   , options
 
   settings.$element.each ->
-    key = settings.keyCodes[ $(@).data( settings.dataAttribute ) ]
+    element     = $(@)
+    key         = String( element.data( settings.dataAttribute ) )
+    keyCode     = settings.keyCodes[ key.toLowerCase() ]
+    isInteger   = not isNaN( parseInt( key, 10 ) )
+    isUpperCase = key is key.toUpperCase()
 
     $( document ).on 'keyup', ( event ) =>
-      $element = $(@)
-      tag      = event.target.tagName.toLowerCase()
+      element = $(@)
+      tag     = event.target.tagName.toLowerCase()
 
       unless tag is 'input' or tag is 'textarea'
-        if event.which is key
-          $element.trigger( 'focus' ).trigger( 'click' )
+        if event.which is keyCode
 
-          if $element.prop( 'tagName' ).toLowerCase() is 'a'
-            window.location = $element.attr( 'href' )
+          if ( isUpperCase and event.shiftKey )\
+          or ( not isUpperCase and not event.shiftKey )\
+          or isInteger
+            element.trigger( 'focus' ).trigger( 'click' )
+
+            if element.prop( 'tagName' ).toLowerCase() is 'a'
+              window.location = element.attr( 'href' )
 
 # -------------------------------------
 #   Usage
