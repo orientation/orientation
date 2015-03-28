@@ -30,7 +30,9 @@ Rails.application.routes.draw do
 
   resources :guides, only: [:show, :index]
   resources :subscriptions, only: :index
+  resources :endorsements, only: :index
 
+  # this has to be the last route because we're catching slugs at the root path
   resources :articles, path: "", only: :show
 
   root "guides#index"
