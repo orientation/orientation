@@ -49,6 +49,10 @@ class Article < ActiveRecord::Base
     self.increment_counter(:visits, article_instance.id)
   end
 
+  def count_visit
+    self.class.count_visit(self)
+  end
+
   def self.text_search(query)
     if query.present?
       where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')

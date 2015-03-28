@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    Article.count_visit(@article)
+    @article.count_visit
     respond_with @article
   end
 
@@ -35,19 +35,19 @@ class ArticlesController < ApplicationController
   end
 
   def fresh
-    @articles = fetch_articles(Article.fresh)
+    @articles = fetch_articles(Article.current.fresh)
     @page_title = "Fresh Articles"
     render :index
   end
 
   def stale
-    @articles = fetch_articles(Article.stale)
+    @articles = fetch_articles(Article.current.stale)
     @page_title = "Stale Articles"
     render :index
   end
 
   def rotten
-    @articles = fetch_articles(Article.rotten)
+    @articles = fetch_articles(Article.current.rotten)
     @page_title = "Rotten Articles"
     render :index
   end
@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
   end
 
   def popular
-    @articles = fetch_articles(Article.popular)
+    @articles = fetch_articles(Article.current.popular)
     @page_title = "Popular Articles"
     render :index
   end
@@ -132,8 +132,9 @@ class ArticlesController < ApplicationController
   end
 
   def fetch_articles(scope = nil)
-    scope ||= Article.current
-    ArticleDecorator.decorate_collection(scope.includes(:tags).text_search(params[:search]))
+    scope ||= Article.current.recent
+    query = Article.includes(:tags).text_search(params[:search]).merge(scope)
+    ArticleDecorator.decorate_collection(query)
   end
 
   def find_article_by_params

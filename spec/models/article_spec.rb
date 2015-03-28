@@ -30,6 +30,16 @@ describe Article do
     end
   end
 
+  describe "#count_visit" do
+    let(:article) { create(:article) }
+
+    subject(:count_visit) { article.count_visit }
+
+    it "increments the visits" do
+      expect { count_visit }.to change { article.reload.visits }.by(1)
+    end
+  end
+
   describe '#author?(user)' do
     let!(:article) { create(:article) }
     let(:user) { nil }
