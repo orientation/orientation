@@ -15,3 +15,8 @@
 
       %ul.list.list--xs.js-search-results
         = render @articles
+
+    .split.mtm.mbm.fr
+      .split-cell
+        = link_to "Article Subscriptions", subscriptions_path, class: "btn btn--b mls"
+        = link_to "Article Endorsements", endorsements_path, class: "btn btn--b mls"
