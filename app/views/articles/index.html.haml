@@ -6,7 +6,7 @@
           = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
             = search_field_tag :search, params[:search],
               class: 'form-input js-search-input',
-              placeholder: 'Search articles by keyword',
+              placeholder: "Search #{@articles.count} articles by keyword",
               autofocus: true
         .split-cell.mls.prs
           = render partial: "filter_link", locals: { name: "fresh", definition: Article::FRESHNESS }
