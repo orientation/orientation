@@ -8,10 +8,14 @@
               class: 'form-input js-search-input',
               placeholder: 'Search articles by keyword',
               autofocus: true
-        .split-cell.mlxs
-          = link_to "Fresh", fresh_articles_path, class: "btn #{action_name == 'fresh' ? 'btn--b' : ''}"
-          = link_to "Stale", stale_articles_path, class: "btn #{action_name == 'stale' ? 'btn--b' : ''}"
-          = link_to "Rotten", rotten_articles_path, class: "btn #{action_name == 'rotten' ? 'btn--b' : ''}"
+        .split-cell.mls.prs
+          = render partial: "filter_link", locals: { name: "fresh", definition: Article::FRESHNESS }
+          = render partial: "filter_link", locals: { name: "stale", definition: Article::STALENESS }
+          = render partial: "filter_link", locals: { name: "rotten", definition: Article::ROTTENNESS }
+
+        .split-cell.pls.bdrl
+          = render partial: "filter_link", locals: { name: "popular", definition: Article::POPULARITY }
+          = render partial: "filter_link", locals: { name: "archived", definition: Article::ARCHIVAL }
 
       %ul.list.list--xs.js-search-results
         = render @articles

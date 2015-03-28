@@ -61,6 +61,10 @@ module ApplicationHelper
     content_for(:page_title, raw(title))
   end
 
+  def current_action?(name, css)
+    action_name == name ? css : ''
+  end
+
   private
 
   def markdown_options

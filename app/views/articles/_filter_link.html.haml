@@ -1,0 +1,4 @@
+- css_classes = current_action?(name, "btn--b signal--#{name}")
+- url = send("#{name}_articles_path")
+
+= link_to "#{name.titleize}", url, title: "#{definition}", class: "btn #{css_classes}", data: { toggle: 'tooltip', placement: 'top' }
