@@ -66,7 +66,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.mandrill_mailer.default_url_options =
   config.action_mailer.default_url_options =
-  { host: ENV["ORIENTATION_DOMAIN"] }
+  { host: ENV.fetch("ORIENTATION_DOMAIN") }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

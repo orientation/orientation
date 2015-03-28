@@ -42,6 +42,6 @@ class Speakerphone
   end
 
   def url_for(slug)
-    Rails.application.routes.url_helpers.article_url(slug, host: ENV["ORIENTATION_DOMAIN"])
+    Rails.application.routes.url_helpers.article_url(slug, host: ENV.fetch("ORIENTATION_DOMAIN"))
   end
 end
