@@ -4,7 +4,7 @@
 if defined? Unicorn
   # Using the WEB_CONCURRENCY environment variable if set or defaulting to 3
   #
-  worker_processes Integer(ENV["WEB_CONCURRENCY"] || ENV["ORIENTATION_DYNO_COUNT"])
+  worker_processes Integer(ENV.fetch("WEB_CONCURRENCY", "3"))
   timeout 15
   preload_app true
 
