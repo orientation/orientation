@@ -2,6 +2,6 @@ module Dateable
   extend ActiveSupport::Concern
 
   included do
-    scope :recent, -> { order(created_at: :desc) }
+    scope :recent, -> { order(updated_at: :desc) }
   end
 end
