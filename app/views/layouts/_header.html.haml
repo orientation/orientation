@@ -1,0 +1,58 @@
+%header.header
+  .cell
+    .header-row
+      %nav.split
+        .split-cell
+
+          %ul.list.list--inline.list--inline--f.list--inline--flex
+            %li.list-item
+              = link_to root_url, class: 'header-btn', data: { shortcut: 1 } do
+                = image_tag( ENV['ORIENTATION_LOGO'], height: 40, width: 40, class: 'vam' )
+            %li.list-item
+              = link_to articles_url, class: 'header-btn', data: { shortcut: 2 } do
+                %span.tss Articles
+            %li.list-item
+              = link_to tags_url, class: 'header-btn', data: { shortcut: 3 } do
+                %span.tss Tags
+            %li.list-item.dn.di--s
+              = link_to authors_url, class: 'header-btn', data: { shortcut: 4 } do
+                %span.tss Authors
+            %li.list-item.dn--s
+              .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
+                = link_to '#', class: 'header-btn js-dropdown-btn' do
+                  %span.tss More
+                %ul.dropdown-menu.js-dropdown-menu
+                  %li.dropdown-item
+                    = link_to authors_url, class: 'dropdown-item-link' do
+                      %span.tss Authors
+                  %li.dropdown-item
+                    = link_to new_article_url, class: 'dropdown-item-link' do
+                      %span.tss New Article
+                  %li.dropdown-item
+                    = link_to current_user.link, class: 'dropdown-item-link' do
+                      %span.tss My Profile
+                  %li.dropdown-item
+                    = link_to logout_path, class: 'dropdown-item-link' do
+                      %span.tss Log Out
+
+        .split-cell.dn.db--s
+
+          - if current_user
+            = link_to 'New Article', new_article_url, class: 'btn btn--a form-btn mrs',
+              data: { shortcut: 'n' }
+
+            .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
+              .header-btn.js-dropdown-btn
+                = image_tag current_user.image, height: 40, width: 40, class: 'thumb dib vam'
+                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs' }
+              %ul.dropdown-menu
+                %li.dropdown-item
+                  = link_to current_user.link, class: 'dropdown-item-link',
+                    data: { shortcut: 'p' } do
+                    %span.tss My Profile
+                %li.dropdown-item
+                  = link_to logout_path, class: 'dropdown-item-link' do
+                    %span.tss Log Out
+
+          - else
+            = link_to 'Log In', login_path
