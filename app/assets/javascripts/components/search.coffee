@@ -32,7 +32,7 @@
     clearTimeout( timeout ) if timeout
 
     timeout = delay =>
-      $(@).closest( settings.element ).find( settings.$form ).trigger( 'submit' )
+      $(@).closest( settings.$element ).find( settings.$form ).trigger( 'submit' )
       settings.callback( settings ) if settings.callback?
     , settings.inputDelay
 
