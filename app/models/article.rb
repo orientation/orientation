@@ -25,8 +25,8 @@ class Article < ActiveRecord::Base
   FRESHNESS = "Created within the last #{distance_of_time_in_words(FRESHNESS_LIMIT)}."
   STALENESS = "Updated over #{distance_of_time_in_words(STALENESS_LIMIT)} ago."
   ROTTENNESS = "Deemed in need of an update."
-  POPULARITY = "Endorsed or subscribed to by more people."
-  ARCHIVAL = "Deemed outdated & are ignored in searches."
+  POPULARITY = "Endorsed, subscribed, & visited."
+  ARCHIVAL = "Outdated & ignored in searches."
 
   scope :archived, -> { where("archived_at IS NOT NULL") }
   scope :current, -> { where(archived_at: nil).order("rotted_at DESC") }
