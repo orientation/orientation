@@ -31,12 +31,9 @@ class Article < ActiveRecord::Base
   scope :guide, -> { where(guide: true) }
   scope :ordered_current, -> { current.order(updated_at: :desc).limit(20) }
   scope :ordered_fresh, -> { fresh.order(updated_at: :desc).limit(20) }
+  scope :popular, -> { order("endorsements_count DESC, subscriptions_count DESC") }
   scope :rotten, -> { where("rotted_at IS NOT NULL") }
   scope :stale, -> { where("updated_at < ?", STALENESS_LIMIT.ago.beginning_of_day) }
-
-  def self.popular
-    includes(:subscribers).sort_by{ |a| a.subscribers.count }.reverse.take(5)
-  end
 
   def self.text_search(query)
     if query.present?
