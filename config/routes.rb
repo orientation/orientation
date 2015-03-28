@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
 
   resources :guides, only: [:show, :index]
+  resources :subscriptions, only: :index
 
   resources :articles, path: "", only: :show
 

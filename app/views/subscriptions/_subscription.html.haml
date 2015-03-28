@@ -1,0 +1,6 @@
+%li.list-item
+  %span.dib.mrxs
+    = relative_time_element(subscription.created_at)
+    %strong= subscription.user
+    subscribed to
+    = link_to subscription.article.title, subscription.article
