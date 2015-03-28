@@ -6,6 +6,11 @@ class Speakerphone
   end
 
   def shout
+    if $slack.nil?
+      Rails.logger.info { "ENV['SLACK_WEBHOOK_URL'] not configured, Speakerphone disabled." }
+      return false
+    end
+
     if @state == :created
       notify("New article", color: "good")
     elsif @state == :updated
