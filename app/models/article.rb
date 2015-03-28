@@ -38,7 +38,7 @@ class Article < ActiveRecord::Base
   scope :guide, -> { where(guide: true) }
   scope :ordered_current, -> { current.order(updated_at: :desc).limit(20) }
   scope :ordered_fresh, -> { fresh.order(updated_at: :desc).limit(20) }
-  scope :popular, -> { order("endorsements_count DESC, subscriptions_count DESC") }
+  scope :popular, -> { order("endorsements_count DESC, subscriptions_count DESC, visits DESC") }
   scope :rotten, -> { where("rotted_at IS NOT NULL") }
   scope :stale, -> do
     where(rotted_at: nil).

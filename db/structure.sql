@@ -140,7 +140,8 @@ CREATE TABLE articles (
     tags_count integer DEFAULT 0 NOT NULL,
     guide boolean DEFAULT false,
     subscriptions_count integer DEFAULT 0,
-    endorsements_count integer DEFAULT 0
+    endorsements_count integer DEFAULT 0,
+    visits integer DEFAULT 0 NOT NULL
 );
 
 
@@ -498,4 +499,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150129150300');
 INSERT INTO schema_migrations (version) VALUES ('20150328040718');
 
 INSERT INTO schema_migrations (version) VALUES ('20150328040918');
+
+INSERT INTO schema_migrations (version) VALUES ('20150328074815');
 

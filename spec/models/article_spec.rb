@@ -83,15 +83,34 @@ describe Article do
   end
 
   context '.popular' do
-    let(:articles) do
-      5.times { create(:article) }
-      Article.all
-    end
-    let(:first_article) { articles.first }
-    let!(:subscriber) { create(:article_subscription, article: first_article ) }
+    before { 5.times { create(:article) } }
 
-    it "returns the 5 most subscribed to article first" do
-      expect(Article.popular.first).to eq(first_article)
+    subject(:most_popular_article) { Article.popular.first }
+
+    context "with a subscribed to article" do
+      let!(:article) { create(:article_subscription).article }
+
+      it "returns the article with a subscription first" do
+        expect(most_popular_article).to eq(article)
+      end
+    end
+
+    context "with an endorsed article" do
+      let!(:article) { create(:article_endorsement).article }
+
+      it "returns the article with an endorsement first" do
+        expect(most_popular_article).to eq(article)
+      end
+    end
+
+    context "with a visited article" do
+      let!(:article) { create(:article) }
+
+      before { article.increment!(:visits) }
+
+      it "returns the article with a visit first" do
+        expect(most_popular_article).to eq(article)
+      end
     end
   end
 
