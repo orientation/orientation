@@ -126,6 +126,7 @@ describe Article do
   context ".stale" do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
+    let!(:rotten_article) { create(:article, :rotten) }
 
     subject(:stale_articles) { Article.stale }
 
@@ -135,6 +136,10 @@ describe Article do
 
     it "does not include fresh articles" do
       expect(stale_articles).not_to include(fresh_article)
+    end
+
+    it "does not include rotten articles" do
+      expect(stale_articles).not_to include(rotten_article)
     end
   end
 

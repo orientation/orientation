@@ -40,7 +40,10 @@ class Article < ActiveRecord::Base
   scope :ordered_fresh, -> { fresh.order(updated_at: :desc).limit(20) }
   scope :popular, -> { order("endorsements_count DESC, subscriptions_count DESC") }
   scope :rotten, -> { where("rotted_at IS NOT NULL") }
-  scope :stale, -> { where("updated_at < ?", STALENESS_LIMIT.ago.beginning_of_day) }
+  scope :stale, -> do
+    where(rotted_at: nil).
+      where("updated_at < ?", STALENESS_LIMIT.ago.beginning_of_day)
+  end
 
   def self.text_search(query)
     if query.present?
