@@ -1,7 +1,7 @@
-<% new_article_link = link_to("Create one!", new_article_path(title: params[:search])) %>
+<% new_article_link = link_to("create one", new_article_path(title: params[:search])) %>
 
 ( function() {
-  var fallback = "No articles found. <%= escape_javascript(new_article_link) %></a>";
+  var fallback = "We didn't find an article whose title or content matches. Why not <%= escape_javascript(new_article_link) %></a>?";
   var articleMarkup = '<%= escape_javascript( render( @articles ) ) %>';
 
 
