@@ -72,7 +72,7 @@
     - if flash[:notice]
       .bulletin= flash[:notice]
 
-    = yield
+    %main= yield
 
     = javascript_include_tag 'vendor'
     = javascript_include_tag 'application'
