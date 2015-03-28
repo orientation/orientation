@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :articles, -> { uniq }, before_add: :validates_article
+  has_and_belongs_to_many :articles, -> { uniq }, counter_cache: :tags_count, before_add: :validates_article
 
   after_create :increment_articles_counter
   before_destroy :decrement_articles_counter
