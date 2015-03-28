@@ -13,7 +13,6 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = fetch_articles
-    @guides = ArticleDecorator.decorate_collection(Article.guide)
   end
 
   def show
