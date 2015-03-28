@@ -7,7 +7,7 @@
           = search_field_tag :search, params[:search],
             class: 'form-input js-articleSearch-input',
             placeholder: 'Search articles by keyword',
-            autofocus: true
+            data: { shortcut: 's' }
 
       %ul.list.list--xs.js-articleSearch-results.dn.mbm
         = render @articles

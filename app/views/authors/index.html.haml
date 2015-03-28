@@ -12,7 +12,7 @@
               = search_field_tag :search, params[:search],
                 class: 'js-search-input form-input',
                 placeholder: 'Search authors by name or shtick',
-                autofocus: true
+                data: { shortcut: 's' }
 
       .g.mbm.js-search-results
         = render partial: 'authors/author', collection: @authors
