@@ -4,9 +4,9 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   has_and_belongs_to_many :tags, before_add: :validates_tag
-  has_many :subscriptions, class_name: "ArticleSubscription"
+  has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
-  has_many :endorsements, class_name: "ArticleEndorsement"
+  has_many :endorsements, class_name: "ArticleEndorsement", counter_cache: true
   has_many :endorsers, through: :endorsements, class_name: "User", source: :user
 
   attr_reader :tag_tokens
