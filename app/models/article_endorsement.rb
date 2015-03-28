@@ -1,4 +1,6 @@
 class ArticleEndorsement < ActiveRecord::Base
+  include Dateable
+
   belongs_to :article
   belongs_to :user
 
