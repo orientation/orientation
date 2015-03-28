@@ -31,6 +31,7 @@ gem 'fog'
 gem 'responders','~> 2.0'
 gem 'skylight'
 gem 'bugsnag'
+gem 'slack-notifier'
 
 group :development do
   gem 'better_errors'
