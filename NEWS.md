@@ -3,6 +3,12 @@ Interesting new features added to this project will be documented here reverse c
 This is [not a change log](CHANGELOG.md).
 
 ## March 28th, 2015
+### Slack notifications
+
+![screenshot](https://s3.amazonaws.com/f.cl.ly/items/0d100X1I310m1z1i0S0h/Screen%20Shot%202015-03-28%20at%202.46.08%20PM.png)
+
+In a mad dash of excitement, I've added Slack notifications (via a webhook configurable using the `SLACK_WEBHOOK_URL` you can find in [`.env.example`](.env.example)). This is clearly an experimental and untested feature but I really wanted to play with it, so there you go.
+
 ### Article state pages
 ![screenshot](https://cloud.githubusercontent.com/assets/65950/6880178/c12d0ad6-d524-11e4-8c5b-91a2d1121e0f.png)
 
