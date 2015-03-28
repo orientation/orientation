@@ -269,7 +269,8 @@ CREATE TABLE users (
     image character varying(255),
     avatar character varying(255),
     active boolean DEFAULT true,
-    shtick text
+    shtick text,
+    articles_count integer DEFAULT 0 NOT NULL
 );
 
 
