@@ -138,7 +138,9 @@ CREATE TABLE articles (
     archived_at timestamp without time zone,
     rotted_at timestamp without time zone,
     tags_count integer DEFAULT 0 NOT NULL,
-    guide boolean DEFAULT false
+    guide boolean DEFAULT false,
+    subscriptions_count integer DEFAULT 0,
+    endorsements_count integer DEFAULT 0
 );
 
 
@@ -267,8 +269,7 @@ CREATE TABLE users (
     image character varying(255),
     avatar character varying(255),
     active boolean DEFAULT true,
-    shtick text,
-    articles_count integer DEFAULT 0 NOT NULL
+    shtick text
 );
 
 
@@ -492,4 +493,8 @@ INSERT INTO schema_migrations (version) VALUES ('20141111222212');
 INSERT INTO schema_migrations (version) VALUES ('20150117041549');
 
 INSERT INTO schema_migrations (version) VALUES ('20150129150300');
+
+INSERT INTO schema_migrations (version) VALUES ('20150328040718');
+
+INSERT INTO schema_migrations (version) VALUES ('20150328040918');
 
