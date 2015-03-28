@@ -28,7 +28,7 @@ class Article < ActiveRecord::Base
   POPULARITY = "Endorsed, subscribed, & visited."
   ARCHIVAL = "Outdated & ignored in searches."
 
-  scope :archived, -> { where("archived_at IS NOT NULL") }
+  scope :archived, -> { where.not(archived_at: nil) }
   scope :current, -> { where(archived_at: nil).order("rotted_at DESC") }
   scope :fresh, -> do
     where("updated_at >= ?", FRESHNESS_LIMIT.ago.beginning_of_day).
