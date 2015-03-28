@@ -1,3 +1,5 @@
+require "ostruct"
+
 class Article < ActiveRecord::Base
   include Dateable
   extend ActionView::Helpers::DateHelper
@@ -14,8 +16,10 @@ class Article < ActiveRecord::Base
 
   before_validation :generate_slug
   after_save :update_subscribers
+  after_save :notify_slack
   after_create :increment_tags_counter
   before_destroy :decrement_tags_counter
+  after_destroy :notify_slack
 
   validates :slug, uniqueness: true, presence: true
 
@@ -174,6 +178,10 @@ class Article < ActiveRecord::Base
     title
   end
 
+  def to_speakerphone
+    OpenStruct.new(author: author.name, title: title, slug: slug)
+  end
+
   def to_param
     slug
   end
@@ -211,6 +219,24 @@ class Article < ActiveRecord::Base
   def decrement_tags_counter
     self.tags.each do |tag|
       tag.decrement!(:articles_count)
+    end
+  end
+
+  def notify_slack
+    Speakerphone.new(self, state).shout
+  end
+
+  def created?
+    created_at == updated_at
+  end
+
+  def state
+    if created?
+      :created
+    elsif destroyed?
+      :destroyed
+    else
+      :updated
     end
   end
 end
