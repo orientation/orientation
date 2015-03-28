@@ -35,26 +35,31 @@ class ArticlesController < ApplicationController
 
   def fresh
     @articles = fetch_articles(Article.fresh)
+    @page_title = "Fresh Articles"
     render :index
   end
 
   def stale
     @articles = fetch_articles(Article.stale)
+    @page_title = "Stale Articles"
     render :index
   end
 
   def rotten
     @articles = fetch_articles(Article.rotten)
+    @page_title = "Rotten Articles"
     render :index
   end
 
   def archived
     @articles = fetch_articles(Article.archived)
+    @page_title = "Archived Articles"
     render :index
   end
 
   def popular
     @articles = fetch_articles(Article.popular)
+    @page_title = "Popular Articles"
     render :index
   end
 
