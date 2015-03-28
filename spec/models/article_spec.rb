@@ -19,6 +19,19 @@ describe Article do
   end
 
   context '#author?(user)' do
+  describe ".count_visit(article)" do
+    let(:article) { create(:article, :stale) }
+
+    subject(:count_visit) { described_class.count_visit(article) }
+
+    it "increments the visits column" do
+      expect { count_visit }.to change { article.reload.visits }.by(1)
+    end
+
+    it "doesn't change the updated_at timestamp" do
+      expect { count_visit }.not_to change { article.reload.updated_at }
+    end
+  end
     let!(:article) { create(:article) }
     let(:user) { nil }
 

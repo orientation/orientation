@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article.increment!(:visits)
+    Article.count_visit(@article)
     respond_with @article
   end
 

@@ -45,6 +45,10 @@ class Article < ActiveRecord::Base
       where("updated_at < ?", STALENESS_LIMIT.ago.beginning_of_day)
   end
 
+  def self.count_visit(article_instance)
+    self.increment_counter(:visits, article_instance.id)
+  end
+
   def self.text_search(query)
     if query.present?
       where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')
