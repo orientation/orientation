@@ -23,6 +23,7 @@ class Article < ActiveRecord::Base
 
   scope :archived, -> { where("archived_at IS NOT NULL") }
   scope :current, -> { where(archived_at: nil).order("rotted_at DESC") }
+  scope :guide, -> { where(guide: true) }
   scope :ordered_current, -> { current.order(updated_at: :desc).limit(20) }
   scope :ordered_fresh, -> { fresh.order(updated_at: :desc).limit(20) }
   scope :rotten, -> { where("rotted_at IS NOT NULL") }
@@ -34,12 +35,8 @@ class Article < ActiveRecord::Base
       where(rotted_at: nil)
   end
 
-  def self.guide
-    where(guide: true)
-  end
-
   def self.popular
-    includes(:subscribers).sort_by{|a| a.subscribers.count }.reverse.take(5)
+    includes(:subscribers).sort_by{ |a| a.subscribers.count }.reverse.take(5)
   end
 
   def self.text_search(query)
