@@ -12,7 +12,6 @@ jQuery ($) ->
   Orientation.autoSubmit()
   Orientation.dropdown()
   Orientation.headingLink()
-  Orientation.editor()
   Orientation.search()
 
   Orientation.search
@@ -32,6 +31,7 @@ jQuery ($) ->
 
   # ----- Modules ----- #
 
+  Orientation.editor.init()
   Orientation.selectText.init()
   Orientation.tableBank.init()
 

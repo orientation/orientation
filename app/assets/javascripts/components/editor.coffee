@@ -16,41 +16,87 @@
 #
 # *************************************
 
-@Orientation.editor = ( options ) ->
-  settings = $.extend
-    $element     : $( '.js-editor' )
-    $open        : $( '.js-editor-open' )
-    $close       : $( '.js-editor-close' )
-    $overlay     : $( '.js-editor-overlay' )
-    $textarea    : $( '.js-editor-textarea' )
-    closeQuery   : '.js-editor-close'
-    activeClass  : 'is-active'
-    editingClass : 'is-editing'
-  , options
+@Orientation.editor = do ->
 
-  $.fn.redraw = ->
-    $(@).each ->
-      redraw = this.offsetHeight
+  # -------------------------------------
+  #   Private Variables
+  # -------------------------------------
 
-  settings.$open.on 'click', ( event ) ->
-    event.preventDefault()
+  _settings = {}
 
-    settings.$textarea
-      .addClass( settings.editingClass )
-      .parent( settings.$overlay )
-      .addClass( settings.activeClass )
+  # -------------------------------------
+  #   Initialize
+  # -------------------------------------
 
-    settings.$textarea.trigger( 'focus' )
+  init = ( options ) ->
+    _settings = $.extend
+      $element     : $( '.js-editor' )
+      $open        : $( '.js-editor-open' )
+      $close       : $( '.js-editor-close' )
+      $overlay     : $( '.js-editor-overlay' )
+      $textarea    : $( '.js-editor-textarea' )
+      closeQuery   : '.js-editor-close'
+      activeClass  : 'is-active'
+      editingClass : 'is-editing'
+    , options
 
-  $( document ).on 'click', settings.closeQuery, ( event ) ->
-    event.preventDefault()
+    $.fn.redraw = ->
+      $(@).each ->
+        redraw = @offsetHeight
 
-    settings.$overlay.removeClass( settings.activeClass )
-    settings.$textarea.removeClass( settings.editingClass ).trigger( 'focus' )
+    _setEventHandlers()
+
+  # -------------------------------------
+  #   Exit Fullscreen
+  # -------------------------------------
+
+  _exitFullscreen = ->
+    if _settings.$textarea.hasClass( _settings.editingClass )
+      _settings.$overlay.removeClass( _settings.activeClass )
+      _settings.$textarea.removeClass( _settings.editingClass )
+
+      setTimeout ->
+        _settings.$textarea.trigger( 'focus' )
+      , 50
+
+  # -------------------------------------
+  #   Set Event Handlers
+  # -------------------------------------
+
+  _setEventHandlers = ->
+    $( document ).on 'keyup', ( event ) ->
+      if event.which == 27 and $( ':focus' ).is( _settings.$textarea )
+        event.preventDefault()
+
+        _settings.$textarea.trigger( 'blur' )
+
+    _settings.$open.on 'click', ( event ) ->
+      event.preventDefault()
+
+      _settings.$textarea
+        .addClass( _settings.editingClass )
+        .parent( _settings.$overlay )
+        .addClass( _settings.activeClass )
+
+      _settings.$textarea.trigger( 'focus' )
+
+    $( document ).on 'click', _settings.closeQuery, ( event ) ->
+      event.preventDefault()
+
+      _exitFullscreen()
+
+    _settings.$textarea.on 'blur', ( event ) ->
+      _exitFullscreen()
+
+  # -------------------------------------
+  #   Public Methods
+  # -------------------------------------
+
+  init : init
 
 # -------------------------------------
 #   Usage
 # -------------------------------------
 #
-# Orientation.editor()
+# Orientation.init()
 #
