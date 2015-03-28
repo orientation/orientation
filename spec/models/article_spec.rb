@@ -126,9 +126,7 @@ describe Article do
     end
 
     context "with a visited article" do
-      let!(:article) { create(:article) }
-
-      before { article.increment!(:visits) }
+      let!(:article) { create(:article, :popular) }
 
       it "returns the article with a visit first" do
         expect(most_popular_article).to eq(article)

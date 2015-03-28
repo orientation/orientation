@@ -27,5 +27,11 @@ FactoryGirl.define do
     trait :guide do
       guide true
     end
+
+    trait :popular do
+      after(:create) do |article|
+        article.count_visit
+      end
+    end
   end
 end
