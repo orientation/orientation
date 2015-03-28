@@ -1,14 +1,19 @@
-!!!
+!!! 5
 %html{ lang: 'en' }
   %head
+
     %meta{ charset: 'utf-8' }
-    %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }
+    %meta{ content: 'IE=edge,chrome=1', 'http-equiv' => 'X-UA-Compatible' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+
     %title= content_for(:page_title) || @page_title || 'Orientation'
-    = stylesheet_link_tag    'application', media: 'all'
-    = favicon_link_tag ENV["ORIENTATION_FAVICON"]
+
+    = stylesheet_link_tag 'application'
+    = favicon_link_tag ENV['ORIENTATION_FAVICON']
     = csrf_meta_tags
 
   %body{ class: body_class }
+
     %header.header
       .cell
         .header-row
