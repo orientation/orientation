@@ -13,6 +13,7 @@ jQuery ($) ->
   Orientation.dropdown()
   Orientation.headingLink()
   Orientation.search()
+  Orientation.shortcut()
 
   Orientation.search
     $element : $( '.js-articleSearch' )
