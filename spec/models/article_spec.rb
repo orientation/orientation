@@ -1,12 +1,10 @@
 require "spec_helper"
 
 describe Article do
-  context "after_save" do
+  describe "#after_save" do
     let(:article) { create(:article) }
     let(:user) { create(:user) }
-    let!(:article_subscription) {
-      create(:article_subscription, article: article, user: user)
-    }
+    let!(:article_subscription) { create(:article_subscription, article: article, user: user) }
 
     before { article.subscriptions.reload }
 
@@ -18,7 +16,6 @@ describe Article do
     end
   end
 
-  context '#author?(user)' do
   describe ".count_visit(article)" do
     let(:article) { create(:article, :stale) }
 
@@ -32,6 +29,8 @@ describe Article do
       expect { count_visit }.not_to change { article.reload.updated_at }
     end
   end
+
+  describe '#author?(user)' do
     let!(:article) { create(:article) }
     let(:user) { nil }
 
@@ -54,7 +53,7 @@ describe Article do
     end
   end
 
-  context '#guide?' do
+  describe '#guide?' do
     let(:article) { create(:article) }
 
     context 'when the article is not set as a guide' do
@@ -80,7 +79,7 @@ describe Article do
     end
   end
 
-  context '.guide' do
+  describe '.guide' do
     let!(:guide_article) { create(:article, :guide) }
     let!(:article) { create(:article) }
 
@@ -95,7 +94,7 @@ describe Article do
     end
   end
 
-  context '.popular' do
+  describe '.popular' do
     before { 5.times { create(:article) } }
 
     subject(:most_popular_article) { Article.popular.first }
@@ -127,7 +126,7 @@ describe Article do
     end
   end
 
-  context ".fresh" do
+  describe ".fresh" do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
 
@@ -142,7 +141,7 @@ describe Article do
     end
   end
 
-  context "#fresh?" do
+  describe "#fresh?" do
     let(:fresh_article) { create(:article) }
     let(:stale_article) { create(:article, :stale) }
 
@@ -155,7 +154,7 @@ describe Article do
     end
   end
 
-  context ".stale" do
+  describe ".stale" do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
     let!(:rotten_article) { create(:article, :rotten) }
@@ -175,7 +174,7 @@ describe Article do
     end
   end
 
-  context "#stale?" do
+  describe "#stale?" do
     let(:fresh_article) { create(:article) }
     let(:stale_article) { create(:article, :stale) }
 
@@ -188,7 +187,7 @@ describe Article do
     end
   end
 
-  context ".text_search" do
+  describe ".text_search" do
     let!(:article) { create :article, title: "Pumpernickel Stew", content: "Yum!"}
 
     it "does partial title matching" do
@@ -212,74 +211,45 @@ describe Article do
     end
   end
 
-  context ".ordered_current" do
+  describe ".recent" do
     let!(:recent_article) { create :article }
     let!(:more_recent_article) { create :article }
-    let!(:archived_article) { create :article, :archived }
+
+    subject(:recent) { Article.recent }
 
     it "returns the more recent article first" do
-      expect(Article.ordered_current.first).to eq more_recent_article
-    end
-
-    it "does not include archived articles" do
-      expect(Article.ordered_current).to_not include(archived_article)
-    end
-
-    context 'with a recently created rotten article' do
-      before { recent_article.rot! }
-
-      it "doesn't return the rotten article first" do
-        expect(Article.ordered_current.first).to_not eq recent_article
-      end
-
-      it "returns the rotten article last" do
-        expect(Article.ordered_current.last).to eq recent_article
-      end
-    end
-
-    context 'with a recently updated rotten article' do
-      before { recent_article.rot!; recent_article.touch }
-
-      it "doesn't return the rotten article first" do
-        expect(Article.ordered_current.first).to_not eq recent_article
-      end
-
-      it "returns the rotten article last" do
-        expect(Article.ordered_current.last).to eq recent_article
-      end
-    end
-  end
-
-  context ".ordered_fresh" do
-    let!(:recent_article) { create :article }
-    let!(:more_recent_article) { create :article }
-    let!(:archived_article) { create :article, :archived }
-    let!(:rotten_article) { create :article, :rotten }
-
-    subject(:ordered_fresh) { Article.ordered_fresh }
-
-    it "returns the more recent article first" do
-      expect(ordered_fresh.first).to eq more_recent_article
-    end
-
-    it "does not include archived articles" do
-      expect(ordered_fresh).to_not include(archived_article)
-    end
-
-    it "does not include rotten articles" do
-      expect(ordered_fresh).to_not include(archived_article)
+      expect(recent.first).to eq more_recent_article
     end
 
     context "with an updated article" do
       before { recent_article.touch }
 
       it "returns the updated article first" do
-        expect(ordered_fresh.first).to eq recent_article
+        expect(recent.first).to eq recent_article
       end
     end
   end
 
-  context "#archive!" do
+  describe ".current" do
+    let!(:recent_article) { create :article }
+    let!(:more_recent_article) { create :article }
+
+    subject(:recent) { Article.recent }
+
+    it "returns the more recent article first" do
+      expect(recent.first).to eq more_recent_article
+    end
+
+    context "with an updated article" do
+      before { recent_article.touch }
+
+      it "returns the updated article first" do
+        expect(recent.first).to eq recent_article
+      end
+    end
+  end
+
+  describe "#archive!" do
     let!(:article) { create :article }
 
     subject(:archive_article) { article.archive! }
@@ -289,7 +259,7 @@ describe Article do
     end
   end
 
-  context "#fresh?" do
+  describe "#fresh?" do
     subject(:fresh?) { article.fresh? }
 
     context 'with a fresh article' do
@@ -317,7 +287,7 @@ describe Article do
     end
   end
 
-  context "#refresh!" do
+  describe "#refresh!" do
     subject(:refresh!) { article.refresh! }
 
     context 'with a fresh article' do
@@ -345,7 +315,7 @@ describe Article do
     end
   end
 
-  context "#rot!" do
+  describe "#rot!" do
     subject(:rot!) { article.rot! }
 
     context 'with a fresh article' do
@@ -373,7 +343,7 @@ describe Article do
     end
   end
 
-  context "#rotten?" do
+  describe "#rotten?" do
     let(:fresh_article) { create(:article, :fresh) }
     let(:stale_article) { create(:article, :stale) }
     let(:rotten_article) { create(:article, :rotten) }
@@ -391,7 +361,7 @@ describe Article do
     end
   end
 
-  context "#stale?" do
+  describe "#stale?" do
     let(:fresh_article) { create(:article, :fresh) }
     let(:stale_article) { create(:article, :stale) }
 
@@ -404,7 +374,7 @@ describe Article do
     end
   end
 
-  context "#unarchive!" do
+  describe "#unarchive!" do
     let!(:article) { create :article }
 
     subject(:unarchive_article) { article.unarchive! }
@@ -416,9 +386,8 @@ describe Article do
     end
   end
 
-  context 'tags_count' do
+  describe 'tags_count' do
     let!(:article) { create(:article) }
-    let!(:article_tag_count) { article.tags_count }
 
     context 'when a tag is added' do
       subject(:add_tag) { create(:tag, articles: [article]) }
@@ -437,6 +406,49 @@ describe Article do
         expect { remove_tag }.to change { article.reload.tags_count }.by(-1)
       end
     end
+  end
 
+  describe "subscriptions_count" do
+    let!(:article) { create(:article) }
+
+    context 'when a subscription is added' do
+      subject(:add_subscription) { create(:article_subscription, article: article) }
+
+      it "increases" do
+        expect { add_subscription }.to change { article.subscriptions_count }.by(1)
+      end
+    end
+
+    context 'when a subscription is removed' do
+      let!(:subscription) { create(:article_subscription, article: article) }
+
+      subject(:remove_subscription) { article.subscriptions.reload.first.destroy }
+
+      it "decreases" do
+        expect { remove_subscription }.to change { article.reload.subscriptions_count }.by(-1)
+      end
+    end
+  end
+
+  describe "endorsements_count" do
+    let!(:article) { create(:article) }
+
+    context 'when a endorsement is added' do
+      subject(:add_endorsement) { create(:article_endorsement, article: article) }
+
+      it "increases" do
+        expect { add_endorsement }.to change { article.endorsements_count }.by(1)
+      end
+    end
+
+    context 'when a endorsement is removed' do
+      let!(:endorsement) { create(:article_endorsement, article: article) }
+
+      subject(:remove_endorsement) { article.endorsements.reload.first.destroy }
+
+      it "decreases" do
+        expect { remove_endorsement }.to change { article.reload.endorsements_count }.by(-1)
+      end
+    end
   end
 end
