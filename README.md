@@ -36,7 +36,8 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 
 ### Software
 - Ruby 2.2.0
-- PostgreSQL 9.1
+- PostgreSQL 9.1 (with fuzzystrmatch and pg_trgm extensions)
+- imagemagick (brew install imagemagick)
 - Python 2.7 (for Pygments)
 - Node.js (for Bower)
 - Bower
