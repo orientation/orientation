@@ -2,6 +2,15 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## March 29th, 2015
+### Fuzzy search is back
+
+![screenshot](https://s3.amazonaws.com/f.cl.ly/items/0Q2C021J1E3C1P3r2k2U/Screen%20Shot%202015-03-29%20at%202.40.59%20PM.png)
+
+For now it's only on titles since there seems to be something wrong on the full-text indexing of the article content column, but it's better than what we used to have for sure.
+
+If we ever enable full-text fuzzy search on article content again, we'll try to have search results return a preview of the line of content that matched the search keywords otherwise it's going to be very difficult for users to tell which search result is going to answer their question because they'll only see the title — which may not contain any of the search keywords they entered.
+
 ## March 28th, 2015
 ### Slack notifications
 
