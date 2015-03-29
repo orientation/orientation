@@ -132,7 +132,7 @@ class ArticlesController < ApplicationController
 
   def fetch_articles(scope = nil)
     scope ||= Article.current
-    query = Article.includes(:tags).text_search(params[:search]).merge(scope)
+    query = Article.includes(:tags).text_search(params[:search], scope)
     ArticleDecorator.decorate_collection(query)
   end
 

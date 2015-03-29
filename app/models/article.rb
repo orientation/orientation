@@ -54,11 +54,17 @@ class Article < ActiveRecord::Base
     self.class.count_visit(self)
   end
 
-  def self.text_search(query)
+  def self.searchable_language
+    'english'
+  end
+
+  def self.text_search(query, scope = nil)
+    scope ||= current
+
     if query.present?
-      where("title ILIKE :q OR content ILIKE :q", q: "%#{query}%").order('title ASC')
+      scope.fuzzy_search(title: query)
     else
-      recent
+      scope
     end
   end
 
