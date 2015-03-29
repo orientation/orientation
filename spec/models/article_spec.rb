@@ -267,6 +267,19 @@ describe Article do
     end
   end
 
+  describe '#archived?' do
+    subject { described_class.new }
+
+    context 'when archived_at is not set' do
+      specify { expect(subject.archived?).to be false }
+    end
+
+    context 'when archived_at is set' do
+      before { subject.archived_at = Time.current }
+      specify { expect(subject.archived?).to be true }
+    end
+  end
+
   describe "#fresh?" do
     subject(:fresh?) { article.fresh? }
 

@@ -77,7 +77,7 @@ class Article < ActiveRecord::Base
   end
 
   def archived?
-    !self.archived_at.nil?
+    archived_at.present?
   end
 
   def different_editor?
