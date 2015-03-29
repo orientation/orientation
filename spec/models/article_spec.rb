@@ -364,21 +364,16 @@ describe Article do
     end
   end
 
-  describe "#rotten?" do
-    let(:fresh_article) { create(:article, :fresh) }
-    let(:stale_article) { create(:article, :stale) }
-    let(:rotten_article) { create(:article, :rotten) }
+  describe '#rotten?' do
+    subject { described_class.new }
 
-    it "returns false for a fresh article" do
-      expect(fresh_article.rotten?).to be_falsey
+    context 'when rotted_at is not set' do
+      specify { expect(subject.rotten?).to be false }
     end
 
-    it "returns false for a stale article" do
-      expect(stale_article.rotten?).to be_falsey
-    end
-
-    it "returns true for a rotten article" do
-      expect(rotten_article.rotten?).to be_truthy
+    context 'when rotted_at is set' do
+      before { subject.rotted_at = Time.current }
+      specify { expect(subject.rotten?).to be true }
     end
   end
 

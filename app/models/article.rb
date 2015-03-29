@@ -105,7 +105,7 @@ class Article < ActiveRecord::Base
   # an article is rotten when it has been manually marked as rotten and
   # the rotted_at timestamp has been set (it defaults to nil)
   def rotten?
-    self.rotted_at != nil
+    rotted_at.present?
   end
 
   def refresh!
