@@ -1,16 +1,7 @@
 %section.row
   .cell.well.well--l
 
-    .js-articleSearch
-      .form.form--inline
-        = form_tag articles_path, method: :get, remote: true, class: 'js-articleSearch-form' do
-          = search_field_tag :search, params[:search],
-            class: 'form-input js-articleSearch-input',
-            placeholder: "Search #{@articles.count} articles by keyword",
-            data: { shortcut: 's' }
-
-      %ul.list.list--xs.js-articleSearch-results.dn.mbm
-        = render @articles
+    = render partial: "articles/search"
 
     .js-guideList
       = render 'guides/guides', guides: @guides

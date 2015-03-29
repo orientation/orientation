@@ -4,31 +4,14 @@
   var fallback = "We didn't find an article whose title or content matches. Why not <%= escape_javascript(new_article_link) %></a>?";
   var articleMarkup = '<%= escape_javascript( render( @articles ) ) %>';
 
+  $( '.js-search-results' ).html( articleMarkup );
 
-  // the js-articleSearch is only present on the guides#index view
-  if ( $( '.js-articleSearch' ).length ) {
-
-    // there are matching results
-    if ( articleMarkup ) {
-      $( '.js-articleSearch-results' ).html( articleMarkup );
-
-    // there are no matching results
-    } else {
-      $( '.js-articleSearch-results' ).html( fallback );
-    }
-
-  // this branch adds results to the articles#index view
-  } else {
-
+  // there are matching results
+  if ( articleMarkup ) {
     $( '.js-search-results' ).html( articleMarkup );
 
-    // there are matching results
-    if ( articleMarkup ) {
-      $( '.js-search-results' ).html( articleMarkup );
-
-    // there are no matching results
-    } else {
-      $( '.js-search-results' ).html( fallback );
-    }
+  // there are no matching results
+  } else {
+    $( '.js-search-results' ).html( fallback );
   }
 } )();

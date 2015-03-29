@@ -1,0 +1,22 @@
+- form_path = request.path == ("/") ? articles_path : request.path
+
+.js-search.mbm
+  .split
+    .split-cell.form.form--inline
+      = form_tag form_path, method: :get, remote: true, class: 'js-search-form' do
+        = search_field_tag :search, params[:search],
+          class: 'form-input js-search-input',
+          placeholder: "Search #{ @articles.count } articles by keyword",
+          data: { shortcut: 's' }
+
+    .split-cell.mls.prs
+      = render partial: 'articles/filter_link', locals: { name: 'fresh', definition: Article::FRESHNESS }
+      = render partial: 'articles/filter_link', locals: { name: 'stale', definition: Article::STALENESS }
+      = render partial: 'articles/filter_link', locals: { name: 'rotten', definition: Article::ROTTENNESS }
+
+    .split-cell.pls.bdrl
+      = render partial: 'articles/filter_link', locals: { name: 'popular', definition: Article::POPULARITY }
+      = render partial: 'articles/filter_link', locals: { name: 'archived', definition: Article::ARCHIVAL }
+
+  %ul.list.list--xs.js-search-results
+    = render @articles
