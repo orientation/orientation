@@ -196,15 +196,16 @@ describe Article do
   end
 
   describe "#stale?" do
-    let(:fresh_article) { create(:article) }
-    let(:stale_article) { create(:article, :stale) }
+    subject { described_class.new }
 
-    it "is true for stale articles" do
-      expect(stale_article.stale?).to be_truthy
+    context 'when time since updated exceeds the STALENESS_LIMIT' do
+      before { subject.updated_at = (described_class::STALENESS_LIMIT + 1.minute).ago }
+      specify { expect(subject.stale?).to be true }
     end
 
-    it "is false for fresh articles" do
-      expect(fresh_article.stale?).to be_falsey
+    context 'when time since updated is within the STALENESS_LIMIT' do
+      before { subject.updated_at = (described_class::STALENESS_LIMIT - 1.minute).ago }
+      specify { expect(subject.stale?).to be false }
     end
   end
 

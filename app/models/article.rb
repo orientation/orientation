@@ -97,7 +97,7 @@ class Article < ActiveRecord::Base
   # an article is stale when it has been created over 4 months ago
   # and has never been updated since
   def stale?
-    self.updated_at < STALENESS_LIMIT.ago
+    updated_at < STALENESS_LIMIT.ago
   end
 
   # an article is rotten when it has been manually marked as rotten and
