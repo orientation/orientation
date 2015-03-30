@@ -294,34 +294,6 @@ describe Article do
     end
   end
 
-  describe "#fresh?" do
-    subject(:fresh?) { article.fresh? }
-
-    context 'with a fresh article' do
-      let(:article) { create(:article, :fresh) }
-
-      it "returns true" do
-        expect(fresh?).to be_truthy
-      end
-    end
-
-    context 'with a stale article' do
-      let(:article) { create(:article, :stale) }
-
-      it "returns false" do
-        expect(fresh?).to be_falsey
-      end
-    end
-
-    context 'with a rotten article' do
-      let(:article) { create(:article, :rotten) }
-
-      it "returns false" do
-        expect(fresh?).to be_falsey
-      end
-    end
-  end
-
   describe "#refresh!" do
     subject(:refresh!) { article.refresh! }
 
