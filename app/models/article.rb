@@ -91,9 +91,7 @@ class Article < ActiveRecord::Base
   # an article is fresh when it has been created or updated 7 days ago
   # or more recently
   def fresh?
-    self.updated_at >= FRESHNESS_LIMIT.ago &&
-    self.archived_at == nil &&
-    self.rotted_at == nil
+    !archived? && !rotten? && updated_at >= FRESHNESS_LIMIT.ago
   end
 
   # an article is stale when it has been created over 4 months ago

@@ -149,16 +149,29 @@ describe Article do
     end
   end
 
-  describe "#fresh?" do
-    let(:fresh_article) { create(:article) }
-    let(:stale_article) { create(:article, :stale) }
+  describe '#fresh?' do
+    subject { described_class.new }
 
-    it "is true for fresh articles" do
-      expect(fresh_article.fresh?).to be_truthy
+    context 'when it is archived' do
+      before { subject.archived_at = Time.current }
+      specify { expect(subject.fresh?).to be false }
     end
 
-    it "is false for stale articles" do
-      expect(stale_article.fresh?).to be_falsey
+    context 'when it is rotten' do
+      before { subject.rotted_at = Time.current }
+      specify { expect(subject.fresh?).to be false }
+    end
+
+    context 'when it is neither archived nor rotten' do
+      context 'and when time since updated exceeds the FRESHNESS_LIMIT' do
+        before { subject.updated_at = (described_class::FRESHNESS_LIMIT + 1.minute).ago }
+        specify { expect(subject.fresh?).to be false }
+      end
+
+      context 'and when time since updated is within the FRESHNESS_LIMIT' do
+        before { subject.updated_at = (described_class::FRESHNESS_LIMIT - 1.minute).ago }
+        specify { expect(subject.fresh?).to be true }
+      end
     end
   end
 
