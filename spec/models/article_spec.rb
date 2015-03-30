@@ -154,23 +154,23 @@ describe Article do
 
     context 'when it is archived' do
       before { subject.archived_at = Time.current }
-      specify { expect(subject.fresh?).to be false }
+      it { should_not be_fresh }
     end
 
     context 'when it is rotten' do
       before { subject.rotted_at = Time.current }
-      specify { expect(subject.fresh?).to be false }
+      it { should_not be_fresh }
     end
 
     context 'when it is neither archived nor rotten' do
       context 'and when time since updated exceeds the FRESHNESS_LIMIT' do
         before { subject.updated_at = (described_class::FRESHNESS_LIMIT + 1.minute).ago }
-        specify { expect(subject.fresh?).to be false }
+        it { should_not be_fresh }
       end
 
       context 'and when time since updated is within the FRESHNESS_LIMIT' do
         before { subject.updated_at = (described_class::FRESHNESS_LIMIT - 1.minute).ago }
-        specify { expect(subject.fresh?).to be true }
+        it { should be_fresh }
       end
     end
   end
@@ -200,12 +200,12 @@ describe Article do
 
     context 'when time since updated exceeds the STALENESS_LIMIT' do
       before { subject.updated_at = (described_class::STALENESS_LIMIT + 1.minute).ago }
-      specify { expect(subject.stale?).to be true }
+      it { should be_stale }
     end
 
     context 'when time since updated is within the STALENESS_LIMIT' do
       before { subject.updated_at = (described_class::STALENESS_LIMIT - 1.minute).ago }
-      specify { expect(subject.stale?).to be false }
+      it { should_not be_stale }
     end
   end
 
@@ -382,12 +382,12 @@ describe Article do
     subject { described_class.new }
 
     context 'when rotted_at is not set' do
-      specify { expect(subject.rotten?).to be false }
+      it { should_not be_rotten }
     end
 
     context 'when rotted_at is set' do
       before { subject.rotted_at = Time.current }
-      specify { expect(subject.rotten?).to be true }
+      it { should be_rotten }
     end
   end
 
