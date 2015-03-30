@@ -88,20 +88,14 @@ class Article < ActiveRecord::Base
     self.editor.present?
   end
 
-  # an article is fresh when it has been created or updated 7 days ago
-  # or more recently
   def fresh?
     !archived? && !rotten? && updated_at >= FRESHNESS_LIMIT.ago
   end
 
-  # an article is stale when it has been created over 4 months ago
-  # and has never been updated since
   def stale?
     updated_at < STALENESS_LIMIT.ago
   end
 
-  # an article is rotten when it has been manually marked as rotten and
-  # the rotted_at timestamp has been set (it defaults to nil)
   def rotten?
     rotted_at.present?
   end
