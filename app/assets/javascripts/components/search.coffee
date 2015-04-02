@@ -5,23 +5,27 @@
 #
 # *************************************
 #
-# @param element    { jQuery object }
-# @param $form      { jQuery object }
-# @param $input     { jQuery object }
-# @param $results   { jQuery object }
-# @param inputDelay { integer }
-# @param callback   { function }
+# @param $element    { jQuery object }
+# @param $alternate  { jQuery object }
+# @param $form       { jQuery object }
+# @param $input      { jQuery object }
+# @param $results    { jQuery object }
+# @param hiddenClass { string }
+# @param inputDelay  { integer }
+# @param onSubmit    { function }
 #
 # *************************************
 
 @Orientation.search = ( options ) ->
   settings = $.extend
     $element    : $( '.js-search' )
-    $form      : $( '.js-search-form' )
-    $input     : $( '.js-search-input' )
-    $results   : $( '.js-search-results' )
-    inputDelay : 200
-    callback   : null
+    $alternate  : $( '.js-search-alternate' )
+    $form       : $( '.js-search-form' )
+    $input      : $( '.js-search-input' )
+    $results    : $( '.js-search-results' )
+    hiddenClass : 'is-hidden'
+    inputDelay  : 200
+    onSubmit    : null
   , options
 
   timeout = null
@@ -33,7 +37,15 @@
 
     timeout = delay =>
       $(@).closest( settings.$element ).find( settings.$form ).trigger( 'submit' )
-      settings.callback( settings ) if settings.callback?
+      settings.onSubmit( settings ) if settings.onSubmit?
+
+      if settings.$input.val()
+        settings.$alternate.addClass( settings.hiddenClass )
+        settings.$results.removeClass( settings.hiddenClass )
+      else
+        settings.$alternate.removeClass( settings.hiddenClass )
+        settings.$results.addClass( settings.hiddenClass )
+
     , settings.inputDelay
 
 # -------------------------------------

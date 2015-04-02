@@ -1,8 +1,11 @@
-- form_path = request.path == ("/") ? articles_path : request.path
+- alternateContent ||= false
+- hideResults      ||= false
 
-.js-search.mbm
-  .split
-    .split-cell.form.form--inline
+- form_path = request.path == ('/') ? articles_path : request.path
+
+.js-search
+  .split.mbm
+    .split-cell.form.form--inline.mbf
       = form_tag form_path, method: :get, remote: true, class: 'js-search-form' do
         = search_field_tag :search, params[:search],
           class: 'form-input js-search-input',
@@ -18,5 +21,9 @@
       = render partial: 'articles/filter_link', locals: { name: 'popular', definition: Article::POPULARITY }
       = render partial: 'articles/filter_link', locals: { name: 'archived', definition: Article::ARCHIVAL }
 
-  %ul.list.list--xs.js-search-results
+  %ul.list.list--xs.js-search-results{ class: ( 'dn' if hideResults ) }
     = render @articles
+
+  - if alternateContent
+    .js-search-alternate
+      = yield

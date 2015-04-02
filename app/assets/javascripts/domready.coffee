@@ -12,23 +12,10 @@ jQuery ($) ->
   Orientation.autoSubmit()
   Orientation.dropdown()
   Orientation.headingLink()
-  Orientation.search()
   Orientation.shortcut()
 
   Orientation.search
-    $element : $( '.js-articleSearch' )
-    $form    : $( '.js-articleSearch-form' )
-    $input   : $( '.js-articleSearch-input' )
-    $results : $( '.js-articleSearch-results' )
-    callback : ( settings ) ->
-      guidesElement = $( '.js-guideList' )
-
-      if settings.$input.val()
-        guidesElement.addClass( 'dn' )
-        settings.$results.removeClass( 'dn' )
-      else
-        guidesElement.removeClass( 'dn' )
-        settings.$results.addClass( 'dn' )
+    hiddenClass : 'dn'
 
   # ----- Modules ----- #
 

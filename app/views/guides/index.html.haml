@@ -1,7 +1,5 @@
 %section.row
   .cell.well.well--l
 
-    = render partial: "articles/search"
-
-    .js-guideList
+    = render layout: 'articles/search', locals: { alternateContent: true, hideResults: true } do
       = render 'guides/guides', guides: @guides
