@@ -4,6 +4,7 @@
 [![Test Coverage][codeclimate-coverage-image]][codeclimate]
 [![Code Climate][codeclimate-image]][codeclimate]
 [![Dependency Status][gemnasium-image]][gemnasium]
+[![Heroku Button][heroku-image]][heroku]
 
 ## What is Orientation?
 
@@ -103,6 +104,8 @@ this out](doc/OAUTH.md).
 [codeclimate]: https://codeclimate.com/github/olivierlacan/orientation
 [codeclimate-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/gpa.svg
 [codeclimate-coverage-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/coverage.svg
+[heroku]: https://heroku.com/deploy
+[heroku-image]: https://www.herokucdn.com/deploy/button.svg
 
 [orientation-logo]: https://github.com/olivierlacan/orientation/blob/master/public/orientation_logo.png
 [orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png
