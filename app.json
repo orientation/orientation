@@ -10,7 +10,6 @@
   "addons": [
     "scheduler:standard",
     "heroku-postgresql:dev",
-    "bugsnag:tauron",
     "logentries:tryit"
   ],
   "env": {
