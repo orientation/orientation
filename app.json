@@ -10,8 +10,7 @@
     "scheduler:standard",
     "heroku-postgresql:dev",
     "bugsnag:tauron",
-    "logentries:tryit",
-    "pgbackups:auto-month"
+    "logentries:tryit"
   ],
   "env": {
     "GOOGLE_SECRET": "REDACTED",
