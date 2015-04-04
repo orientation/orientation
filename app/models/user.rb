@@ -5,13 +5,10 @@ class User < ActiveRecord::Base
   has_many :subscribed_articles, through: :subscriptions, source: :article
   has_many :endorsements, class_name: "ArticleEndorsement"
   has_many :endorsed_articles, through: :endorsements, source: :article
-
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
   validates :email, presence: true
   validate :whitelisted_email, if: -> { self.class.email_whitelist? }
-
-  mount_uploader :avatar, AvatarUploader
 
   def self.author
     joins(:articles).group('users.id').having('count(articles.id) > 0')
@@ -29,23 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_from_omniauth(auth)
-    if user = where(auth.slice("provider", "uid")).first
-      # Only update the user's image if they don't already have one.
-      # This means an OAuth profile image can never override an existing Orientation one.
-      update_image(user, auth) if user.image.nil?
-      user = destroy_duplicate_user(user)
-    else
-      # if we can find a user with a matching name, let's avoid creating
-      # a duplicate record for that user and instead update the old user
-      # record with the new auth info (uid) and email (@codeschool.com)
-      if old_user = User.find_by(name: auth["info"]["name"])
-        user = update_old_envylabs_user(old_user, auth)
-      else
-        user = create_from_omniauth(auth)
-      end
-    end
-
-    return user
+    find_by(auth.slice("provider","uid")) or create_from_omniauth(auth)
   end
 
   def self.create_from_omniauth(auth)
@@ -89,41 +70,6 @@ class User < ActiveRecord::Base
   end
 
   private
-
-  def self.update_image(user, auth)
-    user.image = auth["info"]["image"]
-    user.save
-  end
-
-  def self.update_old_envylabs_user(old_user, auth)
-    old_user.email = auth["info"]["email"]
-    old_user.uid = auth["uid"]
-
-    old_user.save!
-
-    old_user
-  end
-
-  def self.destroy_duplicate_user(new_user)
-    if User.where(name: new_user.name).length <= 1
-      return new_user
-    else
-      old_user = User.where(name: new_user.name).where("email ILIKE ?", "%envylabs.com").first
-
-      if old_user
-        old_user.email = new_user.email
-        old_user.uid = new_user.uid
-        old_user.save!
-
-        new_user.destroy
-
-        old_user
-      else
-        return new_user
-      end
-    end
-  end
-
   def self.email_whitelist?
     !!ENV['ORIENTATION_EMAIL_WHITELIST']
   end

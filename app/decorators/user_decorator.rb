@@ -14,8 +14,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def image
-    source.avatar.thumb.url or
-    source.try :image
+    source.try(:image) or asset_path("default_avatar.jpg")
   end
 
   def image_link(size = 40)
