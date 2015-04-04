@@ -35,7 +35,7 @@ class Article < ActiveRecord::Base
   scope :archived, -> { where.not(archived_at: nil) }
   scope :current, -> { where(archived_at: nil).order("rotted_at DESC") }
   scope :fresh, -> do
-    where("updated_at >= ?", FRESHNESS_LIMIT.ago.beginning_of_day).
+    where("updated_at >= ?", FRESHNESS_LIMIT.ago).
       where(archived_at: nil).
       where(rotted_at: nil)
   end
@@ -43,7 +43,7 @@ class Article < ActiveRecord::Base
   scope :popular, -> { order("endorsements_count DESC, subscriptions_count DESC, visits DESC") }
   scope :rotten, -> { where("rotted_at IS NOT NULL") }
   scope :stale, -> do
-      where("updated_at < ?", STALENESS_LIMIT.ago.beginning_of_day)
+    where("updated_at < ?", STALENESS_LIMIT.ago)
   end
 
   def self.count_visit(article_instance)
@@ -77,7 +77,7 @@ class Article < ActiveRecord::Base
   end
 
   def archived?
-    !self.archived_at.nil?
+    archived_at.present?
   end
 
   def different_editor?
@@ -88,24 +88,16 @@ class Article < ActiveRecord::Base
     self.editor.present?
   end
 
-  # an article is fresh when it has been created or updated 7 days ago
-  # or more recently
   def fresh?
-    self.updated_at >= FRESHNESS_LIMIT.ago.beginning_of_day &&
-    self.archived_at == nil &&
-    self.rotted_at == nil
+    !archived? && !rotten? && updated_at >= FRESHNESS_LIMIT.ago
   end
 
-  # an article is stale when it has been created over 4 months ago
-  # and has never been updated since
   def stale?
-    self.updated_at < STALENESS_LIMIT.ago.beginning_of_day
+    updated_at < STALENESS_LIMIT.ago
   end
 
-  # an article is rotten when it has been manually marked as rotten and
-  # the rotted_at timestamp has been set (it defaults to nil)
   def rotten?
-    self.rotted_at != nil
+    rotted_at.present?
   end
 
   def refresh!
