@@ -4,7 +4,6 @@
 [![Test Coverage][codeclimate-coverage-image]][codeclimate]
 [![Code Climate][codeclimate-image]][codeclimate]
 [![Dependency Status][gemnasium-image]][gemnasium]
-[![Heroku Button][heroku-image]][heroku]
 
 ## What is Orientation?
 
@@ -54,6 +53,14 @@ there.
 
 ## Installation
 
+### Heroku
+If you want to quickly test out your own Orientation installation, you can use
+the Heroku button:
+
+[![Heroku Button][heroku-image]][heroku]
+
+
+### Manual Setup
 Almost one step: `rake orientation:install`
 
 Make sure to check the [installation task](lib/tasks/orientation.rake) if
