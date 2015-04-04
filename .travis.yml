@@ -6,7 +6,11 @@ env:
   global:
     SPEC_OPTS=--color
 bundler_args: --deployment --without development
-cache: bundler
+cache:
+  - bundler
+  - directories:
+    - bower_components
+    - node_modules
 before_install:
   - gem install bundler
   - bundle --version
