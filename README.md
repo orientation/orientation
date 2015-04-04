@@ -104,8 +104,8 @@ hard.
 If you're curious what the OmniAuth hash from Google OAuth 2 looks like [check
 this out](doc/OAUTH.md).
 
-[ci]: https://travis-ci.org/olivierlacan/orientation
-[ci-image]: https://travis-ci.org/olivierlacan/orientation.svg?branch=master
+[ci]: https://travis-ci.org/orientation/orientation
+[ci-image]: https://travis-ci.org/orientation/orientation.svg?branch=master
 [gemnasium]: https://gemnasium.com/olivierlacan/orientation
 [gemnasium-image]: https://gemnasium.com/olivierlacan/orientation.svg
 [codeclimate]: https://codeclimate.com/github/olivierlacan/orientation
