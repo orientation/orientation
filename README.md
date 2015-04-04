@@ -80,6 +80,11 @@ on Heroku you'll need to set those environment variables manually. I recommend
 [dotenv-heroku](https://github.com/sideshowcoder/dotenv-heroku) to do this easily
 using you local (git-ignored) `.env` file as a canonical source.
 
+### Google OAuth 2 setup
+- Go to the [Google Developers Console](https://console.developers.google.com/project) and create a new project
+- Once you've created the project, go to `APIs` and add the `Contacts API` and the `Google+ API` (you won't need a Google+ account to sign in, this is just an annoying Google quirk).
+- Then go to `Credentials` and `Create a new Client ID`. You'll need the app's production URL to complete this step so if you're using the Heroku button, do that first. You can use your production URL for the `JavaScript Origins` setting, but make sure to use `http://yourdomain.com/auth/google_oauth2/callback` for in the `Redirect URIs` setting. This will allow Google to redirect your users to Orientation when they're done allowing it to grab their information.
+
 ## Development
 
 ### Styling
