@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ArticleMailer do
-  let(:user) { create(:user, email: 'aimee@codeschool.com') }
+  let(:user) { create(:user, email: 'aimee@hanso.dk') }
 
   context ".notify_author_of_staleness" do
     let(:articles) do
