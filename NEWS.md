@@ -2,6 +2,14 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## April 4th, 2015
+### No more dependency on Amazon S3 and CarrierWave/Fog
+Installing Orientation from scratch turned out to be a pain (even fore me) because S3's access policies are a huge pain and I couldn't even figure out how to make a properly segregated Orientation demo account on AWS without pulling hair.
+
+Even without an avatar uploader, we still grab the avatar URL from Google OAuth if the person has one, so it seemed unjustifiable to depend on such a painful to setup service for a featuer that is trivial at best.
+
+One thing that we'll have to address is default images for people who don't have one, but that shouldn't be too hard.
+
 ## March 29th, 2015
 ### Fuzzy search is back
 

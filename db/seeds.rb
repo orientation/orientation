@@ -9,7 +9,7 @@
 User.create(
   name: "Alvar Hanso",
   email: "alvar@hanso.dk",
-  avatar: File.open('public/alvar.jpg'),
+  avatar: ActionController::Base.helpers.asset_path("default_avatar.jpg"),
   shtick: "I stare at stuff inside buildings"
 )
 
