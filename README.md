@@ -37,7 +37,6 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 ### Software
 - Ruby 2.2.0
 - PostgreSQL 9.1 (with fuzzystrmatch and pg_trgm extensions)
-- imagemagick (brew install imagemagick)
 - Python 2.7 (for Pygments)
 - Node.js (for Bower)
 - Bower
@@ -47,7 +46,6 @@ which means there should not be any issues when deploying or running Orientation
 there.
 
 ### Services
-- AWS S3 bucket for image uploads
 - Mandrill account for transactional emails
 - Google account for authentication (for now)
 
@@ -70,8 +68,7 @@ Once you're done, pay close attention to the `.env` file that will appear at the
 root. It's copied from [`.env.example`](.env.example) and contains all the
 environment variables needed to configure Orientation.
 
-Since setting up S3 is a bit tedious, avatar uploads use local file storage in development.
-Likewise, OAuth is disabled in development and you will be signed in as whichever
+OAuth is disabled in development and you will be signed in as whichever
 user is returned from `User.first`.
 
 ## Deployment
