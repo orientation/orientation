@@ -47,7 +47,7 @@ there.
 
 ### Services
 - Mandrill account for transactional emails
-- Google account for authentication (for now)
+- Google API project with access to the "Contacts API" and "Google+ API" for OAuth authentication of users.
 
 ## Installation
 
