@@ -46,7 +46,7 @@ Rails.application.configure do
 
   config.after_initialize do
     MandrillMailer.configure do |config|
-      config.api_key = "Ym4WU9JVhCeq429SH11_XA"
+      config.api_key = "this-is-not-a-real-api-key"
     end
   end
 
