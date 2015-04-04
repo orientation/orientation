@@ -3,8 +3,8 @@ require 'spec_helper'
 describe User do
   context ".find_or_create_from_omniauth" do
     before do
-      @old_user = { 'provider' => 'google_oauth2', 'uid' => '12345', 'info' => { 'name' => 'peter', 'email' => 'peter@codeschool.com' } }.with_indifferent_access
-      @new_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'testuser@codeschool.com' } }.with_indifferent_access
+      @old_user = { 'provider' => 'google_oauth2', 'uid' => '12345', 'info' => { 'name' => 'peter', 'email' => 'peter@hanso.dk' } }.with_indifferent_access
+      @new_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'testuser@hanso.dk' } }.with_indifferent_access
       @other_user = { 'provider' => 'google_oauth2', 'uid' => '54321', 'info' => { 'name' => 'testuser', 'email' => 'other@example.com' } }.with_indifferent_access
     end
 
