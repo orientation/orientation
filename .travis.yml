@@ -4,7 +4,7 @@ rvm:
 sudo: false
 env:
   global:
-    SPEC_OPTS=--backtrace --color
+    SPEC_OPTS=--color
 bundler_args: --deployment --without development
 cache: bundler
 before_install:
