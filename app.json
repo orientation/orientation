@@ -17,7 +17,7 @@
     "ORIENTATION_LOGO": "https://raw.githubusercontent.com/olivierlacan/orientation/master/app/assets/images/logo.svg",
     "ORIENTATION_FAVICON": "https://raw.githubusercontent.com/olivierlacan/orientation/master/app/assets/images/favicon.png",
     "ORIENTATION_EMAIL_WHITELIST": "REDACTED",
-    "ORIENTATION_DOMAIN": "REDACTED"
+    "ORIENTATION_DOMAIN": "REDACTED",
     "GOOGLE_SECRET": "REDACTED",
     "GOOGLE_KEY": "REDACTED",
     "MANDRILL_USERNAME": "REDACTED",
