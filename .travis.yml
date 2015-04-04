@@ -14,6 +14,8 @@ before_script:
   - cp config/database.ci.yml config/database.yml
   - cp .env.example .env
   - psql -c 'create database orientation_test;' -U postgres
+  - npm install -g bower
+  - bower install
   - bundle exec rake db:migrate
 script:
   - bundle exec rspec spec/
