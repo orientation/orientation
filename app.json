@@ -13,8 +13,8 @@
     "logentries:tryit"
   ],
   "env": {
-    "ORIENTATION_LOGO": "https://raw.githubusercontent.com/olivierlacan/orientation/master/app/assets/images/default_logo.svg",
-    "ORIENTATION_FAVICON": "https://raw.githubusercontent.com/olivierlacan/orientation/master/app/assets/images/default_favicon.png",
+    "ORIENTATION_LOGO": "/assets/default_logo.svg",
+    "ORIENTATION_FAVICON": "/assets/default_favicon.png",
     "ORIENTATION_EMAIL_WHITELIST": "REDACTED",
     "ORIENTATION_DOMAIN": "REDACTED",
     "GOOGLE_SECRET": "REDACTED",
