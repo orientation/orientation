@@ -21,10 +21,6 @@ class UserDecorator < ApplicationDecorator
     link_to image_tag(image, class: 'thumb dib', height: size, width: size), author_path(source)
   end
 
-  def large_image
-    source.avatar.large.url
-  end
-
   def link
     author_path(source)
   end
