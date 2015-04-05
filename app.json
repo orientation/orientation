@@ -15,7 +15,6 @@
   "env": {
     "ORIENTATION_LOGO": "/assets/default_logo.svg",
     "ORIENTATION_FAVICON": "/assets/default_favicon.png",
-    "ORIENTATION_EMAIL_WHITELIST": "REDACTED",
     "ORIENTATION_DOMAIN": "REDACTED",
     "GOOGLE_SECRET": "REDACTED",
     "GOOGLE_KEY": "REDACTED",
@@ -23,8 +22,6 @@
     "MANDRILL_PASSWORD": "REDACTED",
     "MANDRILL_API_KEY": "REDACTED",
     "MANDRILL_DOMAIN": "heroku.com",
-    "SKYLIGHT_AUTHENTICATION": "REDACTED",
-    "SLACK_WEBHOOK_URL": "REDACTED",
     "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git"
   }
 }
