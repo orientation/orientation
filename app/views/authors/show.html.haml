@@ -11,16 +11,6 @@
             - unless @author.active
               %span.db.tss (Inactive)
 
-          - # TODO(Olivier): Remove hard-coded ID for moderation
-          - if Rails.env.development? or current_user.id == 1
-            .form
-              = simple_form_for :user, url: author_path( @author ), method: :patch do | f |
-
-                %fieldset.form-field
-                  = f.label :avatar do
-                    %span.btn.btn--b Choose photo
-                    = f.file_field :avatar, required: false, class: 'dn js-autoSubmit'
-
           - if current_user == @author
             .form
               = simple_form_for @author.source, url: author_path( @author ), method: :patch do | f |

@@ -14,10 +14,4 @@
           = f.label :email, class: 'form-label label'
           = f.email_field :email, placeholder: 'Email', class:'form-input'
 
-        %fieldset.form-field.mbl
-          = f.label :avatar do
-            %label.form-label.label Avatar
-            %span.btn.btn--b Choose file
-            = f.file_field :avatar, class: 'dn'
-
         = f.submit 'Create Author', class: 'btn btn--a form-btn'
