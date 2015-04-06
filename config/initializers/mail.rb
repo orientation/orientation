@@ -7,7 +7,7 @@ if !Rails.env.test?
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
     :user_name => ENV.fetch("MANDRILL_USERNAME"),
-    :password  => ENV.fetch("MANDRILL_PASSWORD"),
+    :password  => ENV.fetch("MANDRILL_API_KEY"),
     :domain    => ENV.fetch("MANDRILL_DOMAIN")
   }
   ActionMailer::Base.delivery_method = :smtp
