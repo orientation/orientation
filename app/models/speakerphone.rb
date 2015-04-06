@@ -34,7 +34,7 @@ class Speakerphone
     @audience.ping title,
     icon_emoji: ":book:",
     attachments: [{
-      author_name: article.author,
+      author_name: article.editor || article.author,
       title: article.title,
       title_link: url_for(article.slug),
       color: color
