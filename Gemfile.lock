@@ -52,7 +52,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bugsnag (2.8.1)
+    bugsnag (2.8.4)
       multi_json (~> 1.0)
     builder (3.2.2)
     bullet (4.14.0)
