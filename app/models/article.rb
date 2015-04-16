@@ -3,6 +3,17 @@ require "ostruct"
 class Article < ActiveRecord::Base
   include Dateable
   extend ActionView::Helpers::DateHelper
+  extend FriendlyId
+
+  friendly_id :title, use: [:slugged, :history]
+
+  def should_generate_new_friendly_id?
+    !has_friendly_id_slug? or title_changed?
+  end
+
+  def has_friendly_id_slug?
+    slugs.where(slug: friendly_id).exists?
+  end
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
@@ -14,14 +25,11 @@ class Article < ActiveRecord::Base
 
   attr_reader :tag_tokens
 
-  before_validation :generate_slug
   after_save :update_subscribers
   after_save :notify_slack
   after_create :increment_tags_counter
   before_destroy :decrement_tags_counter
   after_destroy :notify_slack
-
-  validates :slug, uniqueness: true, presence: true
 
   FRESHNESS_LIMIT = 7.days
   STALENESS_LIMIT = 6.months
@@ -189,14 +197,6 @@ class Article < ActiveRecord::Base
   end
 
   private
-
-  def generate_slug
-    if self.slug.present? && self.slug == title.parameterize
-      self.slug
-    else
-      self.slug = title.parameterize
-    end
-  end
 
   def update_subscribers
     subscriptions.each do |subscription|
