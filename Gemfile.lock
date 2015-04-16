@@ -117,6 +117,8 @@ GEM
       json (~> 1.4)
       listen (>= 1.0, < 3.0)
       thor (~> 0.14)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -337,6 +339,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.2.1)
   faker
   fontcustom
+  friendly_id
   haml-rails
   mandrill_mailer
   omniauth

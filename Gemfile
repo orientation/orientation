@@ -29,6 +29,7 @@ gem 'responders','~> 2.0'
 gem 'skylight'
 gem 'bugsnag'
 gem 'slack-notifier'
+gem 'friendly_id'
 
 group :development do
   gem 'better_errors'

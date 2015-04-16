@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article.count_visit
-    respond_with @article
+    respond_with_article_or_redirect
   end
 
   def new
@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to article_path(@article)
+      respond_with_article_or_redirect
     else
       render :new
     end
@@ -71,23 +71,23 @@ class ArticlesController < ApplicationController
     !@article.archived? ? @article.archive! : @article.unarchive!
 
     flash[:notice] = "Successfully #{@article.archived? ? "archived" : "unarchived"} this article."
-    respond_with @article
+    respond_with_article_or_redirect
   end
 
   def mark_fresh
     if @article.refresh!
-      respond_with(@article)
+      respond_with_article_or_redirect
     end
   end
 
   def report_rot
     @article.rot!
     flash[:notice] = "Successfully reported this article as rotten."
-    respond_with @article
+    respond_with_article_or_redirect
   end
 
   def update
-    redirect_to article_path(@article) if @article.update_attributes(article_params)
+    respond_with_article_or_redirect if @article.update_attributes(article_params)
   end
 
   def destroy
@@ -103,7 +103,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "You will no longer receive email notifications when this article is updated."
     end
 
-    respond_with @article
+    respond_with_article_or_redirect
   end
 
   def toggle_endorsement
@@ -115,7 +115,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Giving it, and taking it right back. Ruthless, aren't we?"
     end
 
-    respond_with @article
+    respond_with_article_or_redirect
   end
 
   def subscriptions
@@ -141,7 +141,18 @@ class ArticlesController < ApplicationController
   end
 
   def find_article_by_params
-    @article ||= (Article.find_by_slug(params[:id]) or Article.find(params[:id]))
+    @article ||= Article.friendly.find(params[:id])
   end
   helper_method :article
+
+  def respond_with_article_or_redirect
+    # If an old id or a numeric id was used to find the record, then
+    # the request path will not match the post_path, and we should do
+    # a 301 redirect that uses the current friendly id.
+    if request.path != article_path(@article)
+      return redirect_to @article, status: :moved_permanently
+    else
+      return respond_with @article
+    end
+  end
 end
