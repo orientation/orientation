@@ -1,0 +1,25 @@
+---
+- hosts: omnibox
+  user: root
+
+  vars_files:
+    - "{{tape_dir}}/vars/defaults.yml"
+    - tape_vars.yml
+
+  roles:
+    - general
+    - deployer_user
+    - monit_install
+    - postgres
+    - nginx
+    - backend_install_essentials
+    - backend_checkout
+    - unicorn_install
+    - backend_config
+    - database_load
+    - unicorn_activate
+    - frontend_deploy
+    # - delayed_job
+    # - sidekiq
+    # - redis
+    - monit_activate # Run Last

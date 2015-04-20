@@ -293,6 +293,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    taperole (1.1.4)
     textacular (3.2.2)
       activerecord (>= 3.0, < 5.0)
     thor (0.19.1)
@@ -362,6 +363,7 @@ DEPENDENCIES
   skylight
   slack-notifier
   spring
+  taperole
   textacular
   uglifier
   unicorn

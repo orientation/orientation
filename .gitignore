@@ -35,3 +35,4 @@ coverage/
 # Node modules
 /node_modules
 vendor/ruby
+.tape

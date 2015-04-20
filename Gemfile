@@ -30,8 +30,10 @@ gem 'skylight'
 gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
+gem 'dotenv-rails'
 
 group :development do
+  gem 'taperole'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'powder'
@@ -41,7 +43,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.2.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'faker'

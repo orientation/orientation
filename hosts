@@ -1,0 +1,7 @@
+# Base Example
+[omnibox]
+45.55.185.119 be_app_env=production be_app_branch=master
+
+# Vagrant Example
+# [omnibox]
+# localhost:2222 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
