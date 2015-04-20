@@ -9,6 +9,7 @@
 
   roles:
     - backend_checkout
+    - bower_install_assets
     - backend_config
     - database_load
     - unicorn_activate

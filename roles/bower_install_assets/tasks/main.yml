@@ -1,0 +1,3 @@
+- name: Install Assets
+  command: bash -lc "cd {{be_app_path}} && bower install"
+  tags: [be_deploy]

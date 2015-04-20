@@ -15,6 +15,7 @@
     - backend_install_essentials
     - backend_checkout
     - unicorn_install
+    - bower_install
     - backend_config
     - database_load
     - unicorn_activate
