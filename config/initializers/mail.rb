@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-if !Rails.env.test?
+if Rails.env.production?
   require 'yaml'
 
   ActionMailer::Base.smtp_settings = {
