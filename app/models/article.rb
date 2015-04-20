@@ -22,6 +22,7 @@ class Article < ActiveRecord::Base
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
   has_many :endorsements, class_name: "ArticleEndorsement", counter_cache: true, dependent: :destroy
   has_many :endorsers, through: :endorsements, class_name: "User", source: :user
+  validates :title, presence: true, uniqueness: true, allow_nil: true
 
   attr_reader :tag_tokens
 
