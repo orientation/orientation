@@ -58,6 +58,10 @@ class Article < ActiveRecord::Base
     self.increment_counter(:visits, article_instance.id)
   end
 
+  def content
+    super || ''
+  end
+
   def count_visit
     self.class.count_visit(self)
   end
