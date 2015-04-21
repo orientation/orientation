@@ -15,6 +15,31 @@
 # @param editingClass { string }
 #
 # *************************************
+#= require inline-attachment/src/inline-attach.js
+#= require inline-attachment/src/jquery.inline-attach.js
+
+options = {
+  uploadUrl: '/image',
+  uploadFieldName: 'image',
+  downloadFieldName: 'image',
+  allowedTypes: [
+      'image/jpeg',
+      'image/png',
+      'image/jpg',
+      'image/gif'
+  ],
+  progressText: '![Uploading file...]()',
+  urlText: "![file]({filename})",
+  errorText: "Error uploading file",
+  uploadMethod: 'POST',
+  extraHeaders: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  #   'Content-Type': 'multipart/form-data'
+  }
+}
+
+$("#article_content").inlineattach(options)
+
 
 @Orientation.editor = do ->
 
