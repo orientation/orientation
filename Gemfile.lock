@@ -217,6 +217,7 @@ GEM
     formatador (0.2.5)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    gemoji (2.1.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -446,6 +447,7 @@ DEPENDENCIES
   fog
   fontcustom
   friendly_id
+  gemoji
   haml-rails
   mandrill_mailer
   omniauth

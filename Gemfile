@@ -33,6 +33,7 @@ gem 'friendly_id'
 gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'fog'
+gem 'gemoji'
 
 group :development do
   gem 'taperole'
