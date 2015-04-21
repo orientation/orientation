@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get "/404", :to => "errors#not_found"
+
   get 'auth/:provider/callback', to: 'sessions#create', as: :oauth_callback
   get 'auth/failure', to: redirect('/')
   get 'login', to: 'sessions#new', as: :login
