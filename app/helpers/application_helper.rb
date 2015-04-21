@@ -38,7 +38,7 @@ module ApplicationHelper
       else
         match
       end
-    end.html_safe if content.present?
+    end.html_safe
   end
 
   def markdown(text)
