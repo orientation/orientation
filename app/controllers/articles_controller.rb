@@ -145,6 +145,7 @@ class ArticlesController < ApplicationController
     begin
       @article ||= Article.friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound
+      @slug = params[:id]
       render 'errors/not_found'
     end
   end
