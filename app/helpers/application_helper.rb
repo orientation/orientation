@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   def emojify(content)
-    h(content).to_str.gsub(/:([\w+-]+):/) do |match|
+    content.gsub(/:([\w+-]+):/) do |match|
       if emoji = Emoji.find_by_alias($1)
         %(<img alt="#$1" src="/images/emoji/#{emoji.image_filename}" style="vertical-align:middle" width="20" height="20" />)
       else
@@ -43,8 +43,8 @@ module ApplicationHelper
 
   def markdown(text)
     renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: false)
-    text = Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
-    emojify(text)
+    text = emojify(text)
+    Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
   end
 
   def table_of_contents(text)
