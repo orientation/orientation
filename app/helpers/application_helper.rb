@@ -43,8 +43,8 @@ module ApplicationHelper
 
   def markdown(text)
     renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: false)
-    text = emojify(text)
-    Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
+    text = Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
+    emojify(text)
   end
 
   def table_of_contents(text)
