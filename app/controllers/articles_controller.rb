@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new(title: params[:title]).decorate
+    @article.slug = params[:slug] if params[:slug]
   end
 
   def create
@@ -127,7 +128,7 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(
       :created_at, :updated_at, :title, :content, :tag_tokens,
-      :author_id, :editor_id, :archived_at, :guide)
+      :author_id, :editor_id, :archived_at, :guide, :slug)
   end
 
   def decorate_article
@@ -141,7 +142,11 @@ class ArticlesController < ApplicationController
   end
 
   def find_article_by_params
-    @article ||= Article.friendly.find(params[:id])
+    begin
+      @article ||= Article.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render 'errors/not_found'
+    end
   end
   helper_method :article
 

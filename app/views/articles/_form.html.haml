@@ -5,6 +5,7 @@
 
     .form
       = simple_form_for @article do | f |
+        =f.hidden_field :slug, value: params[:slug]
 
         .form-field
           = f.input_field :title, placeholder: 'Enter an Article Title',

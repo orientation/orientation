@@ -7,6 +7,10 @@ class Article < ActiveRecord::Base
 
   friendly_id :title, use: [:slugged, :history]
 
+  def normalize_friendly_id(string)
+    (slug)? slug : super
+  end
+
   def should_generate_new_friendly_id?
     !has_friendly_id_slug? or title_changed?
   end
