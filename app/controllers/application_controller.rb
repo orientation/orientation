@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :authenticate_user!
 
+  def upload_image
+    uploader = ImageUploader.new
+    uploader.store!(params[:image])
+    render json: { image: uploader.url, filename: uploader.file.filename}
+  end
+
   private
 
   def current_user

@@ -36,3 +36,4 @@ coverage/
 /node_modules
 vendor/ruby
 .tape
+config/secrets.yml

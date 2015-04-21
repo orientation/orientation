@@ -127,12 +127,12 @@ ALTER SEQUENCE article_subscriptions_id_seq OWNED BY article_subscriptions.id;
 
 CREATE TABLE articles (
     id integer NOT NULL,
-    title character varying(255),
+    title character varying,
     content text,
     author_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    slug character varying(255),
+    slug character varying,
     editor_id integer,
     last_notified_author_at timestamp without time zone,
     archived_at timestamp without time zone,
@@ -187,8 +187,8 @@ CREATE TABLE delayed_jobs (
     run_at timestamp without time zone,
     locked_at timestamp without time zone,
     failed_at timestamp without time zone,
-    locked_by character varying(255),
-    queue character varying(255),
+    locked_by character varying,
+    queue character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -251,7 +251,7 @@ ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 --
 
 CREATE TABLE schema_migrations (
-    version character varying(255) NOT NULL
+    version character varying NOT NULL
 );
 
 
@@ -261,10 +261,10 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE tags (
     id integer NOT NULL,
-    name character varying(255),
+    name character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    slug character varying(255),
+    slug character varying,
     articles_count integer DEFAULT 0 NOT NULL
 );
 
@@ -294,17 +294,16 @@ ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
-    provider character varying(255),
-    uid character varying(255),
-    name character varying(255),
-    email character varying(255),
+    provider character varying,
+    uid character varying,
+    name character varying,
+    email character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    image character varying(255),
-    avatar character varying(255),
+    image character varying,
+    avatar character varying,
     active boolean DEFAULT true,
-    shtick text,
-    articles_count integer DEFAULT 0 NOT NULL
+    shtick text
 );
 
 
@@ -561,8 +560,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140522210252');
 INSERT INTO schema_migrations (version) VALUES ('20140602153320');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606204236');
-
-INSERT INTO schema_migrations (version) VALUES ('20140607045935');
 
 INSERT INTO schema_migrations (version) VALUES ('20140923231243');
 
