@@ -16,8 +16,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article.count_visit
-    respond_with_article_or_redirect
+    respond_with_article_or_redirect_or_new
+    @article.count_visit if @article.present?
   end
 
   def new
@@ -141,14 +141,23 @@ class ArticlesController < ApplicationController
   end
 
   def find_article_by_params
-    @article ||= Article.friendly.find(params[:id])
+    @article ||= Article.friendly.where(slug: params[:id]).first
   end
   helper_method :article
+
+  def respond_with_article_or_redirect_or_new
+    if @article.present?
+      respond_with_article_or_redirect
+    else
+      redirect_to new_article_path(title: params[:id].titleize)
+    end
+  end
 
   def respond_with_article_or_redirect
     # If an old id or a numeric id was used to find the record, then
     # the request path will not match the post_path, and we should do
     # a 301 redirect that uses the current friendly id.
+
     if request.path != article_path(@article)
       return redirect_to @article, status: :moved_permanently
     else
