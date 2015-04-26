@@ -38,7 +38,8 @@ options = {
   }
 }
 
-$("#article_content").inlineattach(options)
+if $('#image_upload').data('value') == 'true'
+  $("#article_content").inlineattach(options)
 
 
 @Orientation.editor = do ->

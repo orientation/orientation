@@ -1,7 +1,8 @@
 CarrierWave.configure do |config|
-  if Rails.env.production?
-    config.storage  = :fog
+  if ENV.fetch('S3_BUCKET').present?
+    IMAGE_UPLOAD = true
 
+    config.storage  = :fog
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: ENV.fetch('S3_KEY'),
@@ -9,30 +10,7 @@ CarrierWave.configure do |config|
       region:                'us-east-1'
     }
     config.fog_directory = ENV.fetch('S3_BUCKET')
-  elsif Rails.env.test?
-    Fog.mock!
-    config.storage = :fog
-
-    connection = Fog::Storage.new(
-      aws_access_key_id: 'xx',
-      aws_secret_access_key: 'yy',
-      provider: 'AWS',
-      region: 'us-east-1'
-    )
-
-    connection.directories.create(key: 'test')
-
-    config.fog_credentials = {
-      provider: 'AWS',
-      aws_access_key_id: 'xx',
-      aws_secret_access_key: 'yy',
-      region: 'us-east-1'
-    }
-
-    config.fog_directory = 'test'
-    config.enable_processing = false
-
   else
-    config.storage = :file
+    IMAGE_UPLOAD = false
   end
 end
