@@ -1,19 +1,15 @@
 language: ruby
 rvm:
+  - 2.0.0-p598
+  - 2.1.0
   - 2.2.0
 sudo: false
-env:
-  global:
-    SPEC_OPTS=--color
 bundler_args: --deployment --without development
 cache:
   - bundler
   - directories:
     - bower_components
     - node_modules
-before_install:
-  - gem install bundler
-  - bundle --version
 before_script:
   - cp config/database.ci.yml config/database.yml
   - cp .env.example .env
