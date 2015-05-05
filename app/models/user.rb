@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 
   def self.find_and_update_from_omniauth(auth)
     find_by(auth.slice("provider","uid")).tap do |user|
-      user.update_attribute(:image, auth["info"]["image"])
+      user && user.update_attribute(:image, auth["info"]["image"])
     end
   end
 
