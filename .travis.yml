@@ -1,8 +1,17 @@
 language: ruby
 rvm:
-  - 2.0.0-p598
-  - 2.1.0
-  - 2.2.0
+  - 2.0.0
+  - 2.1.6
+  - 2.2.2
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - rvm: 2.0.0
+      env: ISOLATED=true
+    - rvm: 2.1.6
+      env: ISOLATED=true
+
 sudo: false
 bundler_args: --deployment --without development
 cache:
