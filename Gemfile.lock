@@ -363,7 +363,6 @@ DEPENDENCIES
   slack-notifier
   spring
   textacular
-  thor
   uglifier
   unicorn
   web-console (~> 2.0)
