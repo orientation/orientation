@@ -21,7 +21,7 @@
     "MANDRILL_USERNAME": "REDACTED",
     "MANDRILL_PASSWORD": "REDACTED",
     "MANDRILL_API_KEY": "REDACTED",
-    "MANDRILL_DOMAIN": "heroku.com",
+    "MANDRILL_DOMAIN": "heroku.com"
   },
   "buildpacks" : [
     {
