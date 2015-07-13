@@ -12,12 +12,7 @@ class Article < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    false
-  end
-
-  def slug=(value)
-    return if self.id
-    super(value)
+    !has_friendly_id_slug? or title_changed?
   end
 
   def has_friendly_id_slug?

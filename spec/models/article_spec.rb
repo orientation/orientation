@@ -14,13 +14,7 @@ describe Article do
       expect_any_instance_of(ArticleSubscription).to receive(:send_update)
       save_article
     end
-    it 'will not override a slug' do
-      old_slug = article.slug
-      article.update_attributes(slug: '')
-      expect(article.reload.slug).to eq old_slug
-    end
   end
-
 
   describe ".count_visit(article)" do
     let(:article) { create(:article, :stale) }
