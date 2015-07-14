@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :article
+  belongs_to :team
   has_many :articles, foreign_key: "author_id"
   has_many :subscriptions, class_name: "ArticleSubscription"
   has_many :subscribed_articles, through: :subscriptions, source: :article

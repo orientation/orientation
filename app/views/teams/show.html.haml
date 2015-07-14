@@ -1,0 +1,67 @@
+%section.row
+  .cell.well.well--l
+    .g
+      .g-b.g-b--m--1of3
+
+        .card.card--b.tac.mbs.has-card-section
+          %h1.tsl
+            = @team.name
+
+          - if current_user == @team
+            .form
+              = simple_form_for @team.source, url: author_path( @team ), method: :patch do | f |
+
+                %fieldset.form-field
+                  - if @team == current_user
+                    = f.text_area :shtick, required: false, placeholder: 'What do you do?',
+                     class: 'form-input form-input--textarea'
+                  - else
+                    = f.text_area :shtick, required: false, placeholder: 'What do they do?',
+                     class: 'form-input form-input--textarea'
+
+                = f.submit 'Update', class: 'btn btn--b'
+          - else
+            %p.mbxs= @team.shtick
+
+          .card-section.card-section--row
+            %h2.mbs Contributions
+            %p.mbxs.tss Created #{ pluralize( @team.articles.count, 'article' ) }
+            %p.mbf.tss Edited #{ pluralize( @team.edits.count, 'article' ) }
+
+        .tac.mbm
+          = link_to 'Toggle Status', author_toggle_status_path( @team ), method: :put
+
+      .g-b.g-b--m--2of3
+
+        %h2.mbs Created Articles
+        - if @team.articles.count > 0
+          - # TODO: Apply signal classes unique to Article decorator
+          %ul.list.list--xs.mbl
+            - @team.articles.each do | article |
+              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+                = link_to article.title, article, class: 'article-title'
+        - else
+          - if current_user == @team
+            %p
+              Hey, everyone has to start somewhere.
+              = link_to 'Create an article', new_article_url, class: 'dib'
+          - else
+            %p #{ @team.name } hasn't created any articles yet.
+
+        %h2.mbs Edited Articles
+        - if @team.edits.count > 0
+          %ul.list.list--xs.mbl
+            - @team.edits.each do | article |
+              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+                = link_to article.title, article, class: 'article-title'
+        - else
+          %p #{ @team.name } hasn't edited any articles yet.
+
+        %h2.mbs Article Subscriptions
+        - if @team.subscribed_articles.count > 0
+          %ul.list.list--xs
+            - @team.subscribed_articles.each do | article |
+              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+                = link_to article.title, article, class: 'article-title'
+        - else
+          %p #{ @team.name } isn't subscribed to any articles yet.
