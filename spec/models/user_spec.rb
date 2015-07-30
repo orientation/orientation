@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe User do
   context ".find_or_create_from_omniauth" do
     before do

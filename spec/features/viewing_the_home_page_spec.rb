@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'Viewing the home page' do
   subject(:home_visit) { visit root_path }
 

@@ -1,7 +1,6 @@
-# -*- encoding : utf-8 -*-
 FactoryGirl.define do
   factory :article_subscription do
-    article 
+    article
     user
   end
 end

@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe ArticleSubscription do
 
   context '#send_update' do

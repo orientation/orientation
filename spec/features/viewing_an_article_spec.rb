@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'Viewing an article' do
   let(:article) { create(:article) }
 

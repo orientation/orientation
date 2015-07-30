@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'Viewing an article' do
   def fill(options)
     options.each do |o|

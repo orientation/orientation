@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe ArticleMailer do
   let(:user) { create(:user, email: 'aimee@hanso.dk') }
 
