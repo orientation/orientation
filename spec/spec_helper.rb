@@ -84,11 +84,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
-  OmniAuth.config.test_mode = true
-  omniauth_hash = { 'uid' => '777777', 'name' => 'mockuser' }
-
-  OmniAuth.config.add_mock(:google_oauth2, omniauth_hash)
-
   # make it unnecessary to prefix factories with FactoryGirl
   # instead call create, build, or build_stubbed directly
   config.include FactoryGirl::Syntax::Methods
