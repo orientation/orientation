@@ -28,6 +28,7 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
@@ -62,4 +63,6 @@ RSpec.configure do |config|
   omniauth_hash = { 'uid' => '777777', 'name' => 'mockuser' }
 
   OmniAuth.config.add_mock(:google_oauth2, omniauth_hash)
+
+  config.infer_spec_type_from_file_location!
 end

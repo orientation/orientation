@@ -1,4 +1,6 @@
-describe Article do
+require "rails_helper"
+
+RSpec.describe Article do
   describe "#after_save" do
     let(:article) { create(:article) }
     let(:user) { create(:user) }
@@ -208,7 +210,8 @@ describe Article do
   end
 
   describe ".text_search" do
-    100.times { create :article }
+    before { 100.times { create :article } }
+
     let!(:article) { create :article, title: "Pumpernickel Stew", content: "Yum!"}
 
     it "does partial title matching" do

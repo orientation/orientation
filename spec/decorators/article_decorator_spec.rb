@@ -1,2 +1,2 @@
-describe ArticleDecorator do
+RSpec.describe ArticleDecorator do
 end

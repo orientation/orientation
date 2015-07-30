@@ -1,4 +1,6 @@
-describe ArticleSubscription do
+require "rails_helper"
+
+RSpec.describe ArticleSubscription do
 
   context '#send_update' do
     let(:article_subscription) { create(:article_subscription) }

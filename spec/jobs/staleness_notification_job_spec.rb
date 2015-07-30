@@ -1,4 +1,6 @@
-describe StalenessNotificationJob do
+require "rails_helper"
+
+RSpec.describe StalenessNotificationJob do
   # NOTE: commented out because now RSpec exists with 1 on skipped specs
   # through a before(:all).
   #

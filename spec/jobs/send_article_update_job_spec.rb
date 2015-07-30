@@ -1,4 +1,6 @@
-describe SendArticleUpdateJob do
+require "rails_helper"
+
+RSpec.describe SendArticleUpdateJob do
   let!(:article) { create(:article) }
   let!(:user) { create(:user) }
 

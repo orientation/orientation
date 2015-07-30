@@ -1,4 +1,6 @@
-describe 'Viewing the home page' do
+require "rails_helper"
+
+RSpec.describe 'Viewing the home page' do
   subject(:home_visit) { visit root_path }
 
   context "when there are no guide articles" do
