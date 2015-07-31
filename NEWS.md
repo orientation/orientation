@@ -4,6 +4,9 @@ This is [not a change log](CHANGELOG.md).
 
 ## July 31st, 2015
 ### Search Finally Works!
+
+![Pumpernickel Stew!](https://s3.amazonaws.com/f.cl.ly/items/0I0N34230b1T3A383h2L/Screen%20Shot%202015-07-31%20at%201.10.37%20AM.png)
+
 After upgrading RSpec I finally decided to take a much needed second look in order to figure out why search was behaving so poorly (it basically did not work at all). I realized I was wholly misusing the wonderful textactular 
 gem that allows us to do full-text searching without anything fancy like Solr or Elastic Search.
 
