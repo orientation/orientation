@@ -16,7 +16,7 @@ RSpec.describe User do
     end
 
     it "creates the user" do
-      expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.from(1).to(2)
+      expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.by(1)
     end
 
     context "when email_whitelist? returns false" do
