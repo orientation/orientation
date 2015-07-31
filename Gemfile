@@ -53,6 +53,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
   gem 'climate_control'
