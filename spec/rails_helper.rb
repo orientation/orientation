@@ -77,4 +77,8 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  # make it unnecessary to prefix factories with FactoryGirl
+  # instead call create, build, or build_stubbed directly
+  config.include FactoryGirl::Syntax::Methods
 end
