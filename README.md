@@ -81,6 +81,32 @@ on Heroku you'll need to set those environment variables manually. I recommend
 [dotenv-heroku](https://github.com/sideshowcoder/dotenv-heroku) to do this easily
 using you local (git-ignored) `.env` file as a canonical source.
 
+### Multiple Buildpacks
+
+Multiple buildpack support used to be unofficial and relied on [a custom buildpack created
+by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer 
+the case since Heroku has rolled out official support for multiple buildpacks.
+
+Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button, 
+which would take care of this for you) you will need to add two buildpacks since the app relies 
+on NodeJS for Bower package installation.
+
+Note that for some reason you need to be the owner of the app on Heroku in order to be able to do this:
+
+```shell
+heroku buildpacks:add --index 1 https://github.com/heroku/heroku-buildpack-ruby -a yourappname
+heroku buildpacks:add --index 2 https://github.com/heroku/heroku-buildpack-nodejs -a yourappname
+```
+
+When you run the following command, your output should be similar:
+
+```shell
+$ heroku buildpacks -a yourappname
+=== yourappname Buildpack URLs
+1. https://github.com/heroku/heroku-buildpack-nodejs
+2. https://github.com/heroku/heroku-buildpack-ruby
+```
+
 ### Google OAuth 2 setup
 - Go to the [Google Developers Console](https://console.developers.google.com/project) and create a new project
 - Once you've created the project, go to `APIs` and add the `Contacts API` and the `Google+ API` (you won't need a Google+ account to sign in, this is just an annoying Google quirk).
