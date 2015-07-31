@@ -215,7 +215,7 @@ RSpec.describe Article do
     let!(:article) { create :article, title: "Pumpernickel Stew", content: "Yum!"}
 
     it "does partial title matching" do
-      result = Article.text_search "Pumpernick"
+      result = Article.text_search "Pumper"
       expect(result.first).to eq(article)
     end
 
