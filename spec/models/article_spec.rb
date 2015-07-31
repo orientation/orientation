@@ -225,13 +225,11 @@ RSpec.describe Article do
     end
 
     it "does partial content matching" do
-      skip("text_search only does fuzzy matching on title for now")
       result = Article.text_search "yum"
       expect(result).to include(article)
     end
 
     it "does full content matching" do
-      skip("text_search only does fuzzy matching on title for now")
       result = Article.text_search article.content
       expect(result).to include(article)
     end
