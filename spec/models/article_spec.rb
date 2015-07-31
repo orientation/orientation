@@ -216,12 +216,12 @@ RSpec.describe Article do
 
     it "does partial title matching" do
       result = Article.text_search "Pumpernick"
-      expect(result.first).to include(article)
+      expect(result.first).to eq(article)
     end
 
     it "does full title matching" do
       result = Article.text_search article.title
-      expect(result.first).to include(article)
+      expect(result.first).to eq(article)
     end
 
     it "does partial content matching" do
