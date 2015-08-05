@@ -58,6 +58,8 @@ the Heroku button:
 
 [![Heroku Button][heroku-image]][heroku]
 
+### Docker
+See [Docker installation instructions](DOCKER.md).
 
 ### Manual Setup
 Almost one step: `rake orientation:install`
