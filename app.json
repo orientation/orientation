@@ -10,7 +10,7 @@
   "addons": [
     "scheduler:standard",
     "heroku-postgresql:hobby-dev",
-    "logentries:tryit"
+    "logentries:le_tryit"
   ],
   "env": {
     "ORIENTATION_LOGO": "/assets/default_logo.svg",
