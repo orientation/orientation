@@ -9,4 +9,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     image_size: 160,
     hd: ENV["ORIENTATION_EMAIL_WHITELIST"] || ""
   }
+
+  provider :github, ENV["GITHUB_CLIENT_ID"], ENV["GITHUB_SECRET"],
+    scope: "user:email"
+
+  provider :gitlab, ENV["GITLAB_KEY"], ENV["GITLAB_SECRET"],
+    scope: "user:email"
 end
