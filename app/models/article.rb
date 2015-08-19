@@ -70,6 +70,7 @@ class Article < ActiveRecord::Base
     scope ||= current
 
     if query.present?
+      scope.joins(:tags).where('tags.name LIKE ?', query.downcase) +
       scope.fuzzy_search({ title: query, content: query }, false)
     else
       scope

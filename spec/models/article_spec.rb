@@ -209,32 +209,6 @@ RSpec.describe Article do
     end
   end
 
-  describe ".text_search" do
-    before { 100.times { create :article } }
-
-    let!(:article) { create :article, title: "Pumpernickel Stew", content: "Yum!"}
-
-    it "does partial title matching" do
-      result = Article.text_search "Pumper"
-      expect(result.first).to eq(article)
-    end
-
-    it "does full title matching" do
-      result = Article.text_search article.title
-      expect(result.first).to eq(article)
-    end
-
-    it "does partial content matching" do
-      result = Article.text_search "yum"
-      expect(result).to include(article)
-    end
-
-    it "does full content matching" do
-      result = Article.text_search article.content
-      expect(result).to include(article)
-    end
-  end
-
   describe ".recent" do
     let!(:recent_article) { create :article }
     let!(:more_recent_article) { create :article }
