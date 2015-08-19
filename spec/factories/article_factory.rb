@@ -3,7 +3,7 @@ FactoryGirl.define do
     author factory: :user
     title { Faker::Lorem.sentence }
     slug { title.parameterize }
-    content { Faker::Lorem.paragraphs(1).first }
+    content { Faker::Hacker.say_something_smart }
 
     trait :stale do
       created_at 7.months.ago
