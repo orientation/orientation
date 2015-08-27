@@ -127,12 +127,20 @@ ALTER SEQUENCE article_subscriptions_id_seq OWNED BY article_subscriptions.id;
 
 CREATE TABLE articles (
     id integer NOT NULL,
+<<<<<<< HEAD
     title character varying(255),
+=======
+    title character varying,
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
     content text,
     author_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+<<<<<<< HEAD
     slug character varying(255),
+=======
+    slug character varying,
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
     editor_id integer,
     last_notified_author_at timestamp without time zone,
     archived_at timestamp without time zone,
@@ -175,6 +183,48 @@ CREATE TABLE articles_tags (
 
 
 --
+<<<<<<< HEAD
+=======
+-- Name: attachinary_files; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE attachinary_files (
+    id integer NOT NULL,
+    attachinariable_id integer,
+    attachinariable_type character varying,
+    scope character varying,
+    public_id character varying,
+    version character varying,
+    width integer,
+    height integer,
+    format character varying,
+    resource_type character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: attachinary_files_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE attachinary_files_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: attachinary_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE attachinary_files_id_seq OWNED BY attachinary_files.id;
+
+
+--
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 -- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -187,8 +237,13 @@ CREATE TABLE delayed_jobs (
     run_at timestamp without time zone,
     locked_at timestamp without time zone,
     failed_at timestamp without time zone,
+<<<<<<< HEAD
     locked_by character varying(255),
     queue character varying(255),
+=======
+    locked_by character varying,
+    queue character varying,
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -251,7 +306,11 @@ ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 --
 
 CREATE TABLE schema_migrations (
+<<<<<<< HEAD
     version character varying(255) NOT NULL
+=======
+    version character varying NOT NULL
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 );
 
 
@@ -261,10 +320,17 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE tags (
     id integer NOT NULL,
+<<<<<<< HEAD
     name character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     slug character varying(255),
+=======
+    name character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    slug character varying,
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
     articles_count integer DEFAULT 0 NOT NULL
 );
 
@@ -294,6 +360,7 @@ ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
+<<<<<<< HEAD
     provider character varying(255),
     uid character varying(255),
     name character varying(255),
@@ -305,6 +372,18 @@ CREATE TABLE users (
     active boolean DEFAULT true,
     shtick text,
     articles_count integer DEFAULT 0 NOT NULL
+=======
+    provider character varying,
+    uid character varying,
+    name character varying,
+    email character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    image character varying,
+    avatar character varying,
+    active boolean DEFAULT true,
+    shtick text
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 );
 
 
@@ -352,6 +431,16 @@ ALTER TABLE ONLY articles ALTER COLUMN id SET DEFAULT nextval('articles_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+<<<<<<< HEAD
+=======
+ALTER TABLE ONLY attachinary_files ALTER COLUMN id SET DEFAULT nextval('attachinary_files_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
 
 
@@ -401,6 +490,17 @@ ALTER TABLE ONLY articles
 
 
 --
+<<<<<<< HEAD
+=======
+-- Name: attachinary_files_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY attachinary_files
+    ADD CONSTRAINT attachinary_files_pkey PRIMARY KEY (id);
+
+
+--
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 -- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -447,6 +547,16 @@ CREATE INDEX articles_title ON articles USING gin (to_tsvector('english'::regcon
 
 
 --
+<<<<<<< HEAD
+=======
+-- Name: by_scoped_parent; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX by_scoped_parent ON attachinary_files USING btree (attachinariable_type, attachinariable_id, scope);
+
+
+--
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 -- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -562,8 +672,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140602153320');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606204236');
 
+<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20140607045935');
 
+=======
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 INSERT INTO schema_migrations (version) VALUES ('20140923231243');
 
 INSERT INTO schema_migrations (version) VALUES ('20141111222212');
@@ -580,3 +693,10 @@ INSERT INTO schema_migrations (version) VALUES ('20150328074815');
 
 INSERT INTO schema_migrations (version) VALUES ('20150416104151');
 
+<<<<<<< HEAD
+=======
+INSERT INTO schema_migrations (version) VALUES ('20150826032113');
+
+INSERT INTO schema_migrations (version) VALUES ('20150826204841');
+
+>>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
