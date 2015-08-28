@@ -51,12 +51,3 @@
 
     .card.card--b.has-card-section
       = render "markdown_guide"
-
-    %br
-    .card.card--b
-      - @article.images.each do |image|
-        %p
-          = cl_image_tag(image.path)
-          = text_field_tag nil, "![](#{image.fullpath})", { size: 32 }
-
-
