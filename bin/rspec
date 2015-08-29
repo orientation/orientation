@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 
 if !Process.respond_to?(:fork) || Gem::Specification.find_all_by_name("spring").empty?
-  APP_PATH = File.expand_path('../../config/application',  __FILE__)
-  require_relative '../config/boot'
-  require 'rails/commands'
+  exec "bundle", "exec", "rspec", *ARGV
 else
-  ARGV.unshift "rails"
+  ARGV.unshift "rspec"
   load Gem.bin_path("spring", "spring")
 end

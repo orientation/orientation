@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_from_omniauth(auth)
-    find_by(auth.slice("provider","uid")) or create_from_omniauth(auth)
+    find_and_update_from_omniauth(auth) or create_from_omniauth(auth)
   end
 
   def self.create_from_omniauth(auth)
@@ -36,6 +36,12 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
       user.image = auth["info"]["image"]
+    end
+  end
+
+  def self.find_and_update_from_omniauth(auth)
+    find_by(auth.slice("provider","uid")).tap do |user|
+      user && user.update_attribute(:image, auth["info"]["image"])
     end
   end
 

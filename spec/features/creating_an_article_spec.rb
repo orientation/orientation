@@ -1,6 +1,6 @@
-require 'spec_helper'
+require "rails_helper"
 
-describe 'Viewing an article' do
+RSpec.describe 'Creating an article' do
   def fill(options)
     options.each do |o|
       fill_in o.first, with: o.second

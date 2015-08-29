@@ -2,6 +2,28 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## July 31st, 2015
+### Search Finally Works!
+
+![Pumpernickel Stew!](https://s3.amazonaws.com/f.cl.ly/items/0I0N34230b1T3A383h2L/Screen%20Shot%202015-07-31%20at%201.10.37%20AM.png)
+
+After upgrading RSpec I finally decided to take a much needed second look in order to figure out why search was behaving so poorly (it basically did not work at all). I realized I was wholly misusing the wonderful textactular
+gem that allows us to do full-text searching without anything fancy like Solr or Elastic Search.
+
+And guess, what? It works. Search will now fuzzy (partial-match) search on article titles and their **entire content**. This is a very big deal because Orientation was predicated on the promise of instant search to reduce
+the cognitive load of having to browse for something you don't understand.
+
+Now're finally back in the land where if you have the word "Pumpernickel" anywhere within any article, a simple
+search for `pumper` will bring up all the articles that contain any word which contains that — for example `pumpernickel`.
+
+Additionally, I've fixed an issue where the articles listed on filtered articles pages (fresh, stale, popular)
+did not reappear after the search form was re-submitted with no query or if the currently typed query
+was removed. This makes the filtered article pages much more friendly they now behave once again like a
+proper "filtered search" page.
+
+I'm so very sorry to anyone who invested time in Orientation since it was open-sourced. This is a bug I had meant
+to fix for literal years and for reasons I can't explain away, had never managed to.
+
 ## April 4th, 2015
 ### No more dependency on Amazon S3 and CarrierWave/Fog
 Installing Orientation from scratch turned out to be a pain (even fore me) because S3's access policies are a huge pain and I couldn't even figure out how to make a properly segregated Orientation demo account on AWS without pulling hair.

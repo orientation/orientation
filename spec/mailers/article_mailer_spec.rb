@@ -1,6 +1,6 @@
-require 'spec_helper'
+require "rails_helper"
 
-describe ArticleMailer do
+RSpec.describe ArticleMailer do
   let(:user) { create(:user, email: 'aimee@hanso.dk') }
 
   context ".notify_author_of_staleness" do

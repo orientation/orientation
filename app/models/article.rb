@@ -41,7 +41,7 @@ class Article < ActiveRecord::Base
   ARCHIVAL = "Outdated & ignored in searches."
 
   scope :archived, -> { where.not(archived_at: nil) }
-  scope :current, -> { where(archived_at: nil).order("rotted_at DESC") }
+  scope :current, -> { where(archived_at: nil).order(rotted_at: :desc).order(updated_at: :desc).order(created_at: :desc) }
   scope :fresh, -> do
     where("updated_at >= ?", FRESHNESS_LIMIT.ago).
       where(archived_at: nil).
@@ -70,7 +70,7 @@ class Article < ActiveRecord::Base
     scope ||= current
 
     if query.present?
-      scope.fuzzy_search(title: query)
+      scope.fuzzy_search({ title: query, content: query }, false)
     else
       scope
     end

@@ -9,8 +9,8 @@
   ],
   "addons": [
     "scheduler:standard",
-    "heroku-postgresql:dev",
-    "logentries:tryit"
+    "heroku-postgresql:hobby-dev",
+    "logentries:le_tryit"
   ],
   "env": {
     "ORIENTATION_LOGO": "/assets/default_logo.svg",
@@ -21,7 +21,14 @@
     "MANDRILL_USERNAME": "REDACTED",
     "MANDRILL_PASSWORD": "REDACTED",
     "MANDRILL_API_KEY": "REDACTED",
-    "MANDRILL_DOMAIN": "heroku.com",
-    "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git"
-  }
+    "MANDRILL_DOMAIN": "heroku.com"
+  },
+  "buildpacks" : [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-ruby"
+    }
+  ]
 }

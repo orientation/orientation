@@ -10,6 +10,8 @@
 #
 # Returns true or error message on failure
 RSpec::Matchers.define(:create_delayed_job_with) do |expected_job_symbol|
+  supports_block_expectations
+
   match do |actual_block|
     actual_block.call
     Delayed::Job.any? {|job| job.handler =~ /#{expected_job_symbol.to_s}/}
