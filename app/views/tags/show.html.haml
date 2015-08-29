@@ -3,7 +3,7 @@
 
     %h1.mbs= @tag
 
-    - unless @tag.articles.empty?
+    - if @tag.articles.any?
       %ul.list.list--xs
         - @tag.articles.each do |article|
           - # TODO: Add Article fresh/stale/rotten signals
