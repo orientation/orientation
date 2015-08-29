@@ -2,6 +2,19 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## August 29th, 2015
+### Reduced queries on tags & article associations thanks to @fusion2004
+
+This is a fix I should have worked on much earlier as tags and articles always generated a heap of N+1 queries for 
+no good reason when we fetched article or tag counts. I highly recommend merging in master into your forks at fe85cf0135c2ce02600034405de3ae167fc35373 or later to benefit from this significant reduction in queries on guide and article index pages.
+
+### Uglifier security update
+This is less exciting but worth mentioning, Mark Oleson also contributed a useful little PR to update the Uglifier version which had been vulnerable for a little while. Another great reason to merge master into your forks and deploy to production quickly.
+
+### No more trouble when using the Heroku button
+
+I took way to long to react on this but Michael Friis contributed [a nifty patch](https://github.com/orientation/orientation/pull/155) to fix recurring issues when the Heroku button because our app.json manifest was too tightly coupled to specific Heroku add-on plans. 
+
 ## July 31st, 2015
 ### Search Finally Works!
 

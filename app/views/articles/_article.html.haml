@@ -1,7 +1,7 @@
-%li.card.list-item.article.has-signal{ class: ('has-article-footer' unless article.tags.empty? )}
+%li.card.list-item.article.has-signal{ class: ('has-article-footer' if article.tags.any? )}
   = article.signal
   = link_to article.title, article, class: 'article-title'
-  - unless article.tags.empty?
+  - if article.tags.any?
     .article-footer
       %ul.list.list--inline.list--inline--xs
         - article.tags.each do |t|
