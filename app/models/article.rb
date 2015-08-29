@@ -17,7 +17,8 @@ class Article < ActiveRecord::Base
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
-  has_and_belongs_to_many :tags, counter_cache: :tags_count, before_add: :validates_tag
+  has_many :articles_tags, dependent: :destroy
+  has_many :tags, through: :articles_tags, counter_cache: :tags_count
   has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
   has_many :endorsements, class_name: "ArticleEndorsement", counter_cache: true, dependent: :destroy
@@ -27,8 +28,6 @@ class Article < ActiveRecord::Base
 
   after_save :update_subscribers
   after_save :notify_slack
-  after_create :increment_tags_counter
-  before_destroy :decrement_tags_counter
   after_destroy :notify_slack
 
   FRESHNESS_LIMIT = 7.days
@@ -201,22 +200,6 @@ class Article < ActiveRecord::Base
   def update_subscribers
     subscriptions.each do |subscription|
       subscription.send_update
-    end
-  end
-
-  def validates_tag(tag)
-    self.tags.include?(tag)
-  end
-
-  def increment_tags_counter
-    self.tags.each do |tag|
-      tag.increment!(:articles_count)
-    end
-  end
-
-  def decrement_tags_counter
-    self.tags.each do |tag|
-      tag.decrement!(:articles_count)
     end
   end
 
