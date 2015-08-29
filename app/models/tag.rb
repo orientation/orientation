@@ -27,9 +27,8 @@ class Tag < ActiveRecord::Base
   end
 
   def self.reset_articles_count
-    self.all.each do |tag|
-      article_count = tag.articles.count
-      tag.update_attribute(:articles_count, article_count)
+    pluck(:id).each do |tag_id|
+      reset_counters(tag_id, :articles)
     end
   end
 
