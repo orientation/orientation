@@ -8,9 +8,9 @@
     "knowledge base"
   ],
   "addons": [
-    "scheduler:standard",
-    "heroku-postgresql:hobby-dev",
-    "logentries:le_tryit"
+    "scheduler",
+    "heroku-postgresql",
+    "logentries"
   ],
   "env": {
     "ORIENTATION_LOGO": "/assets/default_logo.svg",
