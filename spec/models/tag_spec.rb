@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
-describe Tag do
+RSpec.describe Tag do
 end

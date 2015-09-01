@@ -1,6 +1,6 @@
-require 'spec_helper'
+require "rails_helper"
 
-describe User do
+RSpec.describe User do
   context ".find_or_create_from_omniauth" do
     before do
       @old_user = { 'provider' => 'google_oauth2', 'uid' => '12345', 'info' => { 'name' => 'peter', 'email' => 'peter@hanso.dk' } }.with_indifferent_access
@@ -16,7 +16,7 @@ describe User do
     end
 
     it "creates the user" do
-      expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.from(1).to(2)
+      expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.by(1)
     end
 
     context "when email_whitelist? returns false" do

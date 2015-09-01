@@ -1,5 +1,6 @@
-# -*- encoding : utf-8 -*-
 RSpec::Matchers.define(:enqueue_delayed_job) do |object, method, *args|
+  supports_block_expectations
+
   match do |block|
     args = nil if args.empty?
     @job_count_before = Delayed::Job.count

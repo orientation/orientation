@@ -1,10 +1,9 @@
-# -*- encoding : utf-8 -*-
 FactoryGirl.define do
   factory :article do
     author factory: :user
     title { Faker::Lorem.sentence }
     slug { title.parameterize }
-    content { Faker::Lorem.paragraphs(1).first }
+    content { Faker::Hacker.say_something_smart }
 
     trait :stale do
       created_at 7.months.ago

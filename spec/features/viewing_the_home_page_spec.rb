@@ -1,9 +1,11 @@
-require 'spec_helper'
+require "rails_helper"
 
-describe 'Viewing the home page' do
+RSpec.describe 'Viewing the home page' do
   subject(:home_visit) { visit root_path }
 
   context "when there are no guide articles" do
+    before { Article.guide.destroy_all }
+
     it "redirects to the article index" do
       expect { home_visit }.to change { current_path }.to(articles_path)
     end

@@ -1,0 +1,82 @@
+%h2.tac.mbs Markdown
+
+.card-section.pbs.pts
+  .form.mbf
+    .js-accordion
+      .split.js-accordion-btn
+        .split-cell
+          %span.form-label.label Headings
+        .split-cell
+          = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
+      .js-accordion-content
+        %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '## This is an h2' }
+        %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '### This is an h3' }
+        %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '#### This is an h4' }
+        %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '##### This is an h5' }
+        %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '###### This is an h6' }
+
+.card-section.pbs.pts
+  .form.mbf
+    .js-accordion
+      .split.js-accordion-btn
+        .split-cell
+          %span.form-label.label Links
+        .split-cell
+          = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
+      .js-accordion-content
+        %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '[This is a link](http://example.com)' }
+
+.card-section.pbs.pts
+  .form.mbf
+    .js-accordion
+      .split.js-accordion-btn
+        .split-cell
+          %span.form-label.label Lists
+        .split-cell
+          = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
+      .js-accordion-content
+        %textarea.form-input.form-textarea.form-textarea--pre.mbs.js-selectText{ readonly: true, rows: 3 }
+          \- This is the first item in an unordered list
+          \- This is the second item in an unordered list
+          \- This is the third item in an unordered list
+        %textarea.form-input.form-textarea.form-textarea--pre.mbf.js-selectText{ readonly: true, rows: 3 }
+          \1. This is the first item in an ordered list
+          \2. This is the second item in an ordered list
+          \3. This is the third item in an ordered list
+
+.card-section.pbs.pts
+  .form.mbf
+    .js-accordion
+      .split.js-accordion-btn
+        .split-cell
+          %span.form-label.label Code
+        .split-cell
+          = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
+      .js-accordion-content
+        %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '`This is inline code`' }
+        %textarea.form-input.form-textarea.form-textarea--pre.js-selectText{ readonly: true, rows: 3 }
+          \```
+          This is a code block
+          \```
+
+.card-section.pbs.pts
+  .form.mbf
+    .js-accordion
+      .split.js-accordion-btn
+        .split-cell
+          %span.form-label.label Strong
+        .split-cell
+          = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
+      .js-accordion-content
+        %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '**This text is strong**' }
+
+.card-section.pbs.pts
+  .form.mbf
+    .js-accordion
+      .split.js-accordion-btn
+        .split-cell
+          %span.form-label.label Emphasis
+        .split-cell
+          = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
+      .js-accordion-content
+        %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '_This text is emphasized_' }

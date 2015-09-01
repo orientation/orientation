@@ -1,6 +1,6 @@
-require "spec_helper"
+require "rails_helper"
 
-describe Article do
+RSpec.describe Article do
   describe "#after_save" do
     let(:article) { create(:article) }
     let(:user) { create(:user) }
@@ -206,32 +206,6 @@ describe Article do
     context 'when time since updated is within the STALENESS_LIMIT' do
       before { subject.updated_at = (described_class::STALENESS_LIMIT - 1.minute).ago }
       it { should_not be_stale }
-    end
-  end
-
-  describe ".text_search" do
-    let!(:article) { create :article, title: "Pumpernickel Stew", content: "Yum!"}
-
-    it "does partial title matching" do
-      result = Article.text_search "Pumpernick"
-      expect(result).to include(article)
-    end
-
-    it "does full title matching" do
-      result = Article.text_search article.title
-      expect(result).to include(article)
-    end
-
-    it "does partial content matching" do
-      skip("text_search only does fuzzy matching on title for now")
-      result = Article.text_search "yum"
-      expect(result).to include(article)
-    end
-
-    it "does full content matching" do
-      skip("text_search only does fuzzy matching on title for now")
-      result = Article.text_search article.content
-      expect(result).to include(article)
     end
   end
 
