@@ -2,6 +2,11 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## September 1st, 2015
+### Emoji Support! :+1:
+
+Thanks to Brandon Mathis it's now possible to use GitHub-style emojis in Orientation articles. 
+
 ## August 29th, 2015
 ### Reduced queries on tags & article associations thanks to @fusion2004
 
