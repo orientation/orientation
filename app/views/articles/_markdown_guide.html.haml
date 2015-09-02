@@ -80,3 +80,15 @@
           = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
       .js-accordion-content
         %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '_This text is emphasized_' }
+
+.card-section.pbs.pts
+  .form.mbf
+    .js-accordion
+      .split.js-accordion-btn
+        .split-cell
+          %span.form-label.label Images
+        .split-cell
+          = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
+      .js-accordion-content
+        %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '![](http://example.com/img.jpg)' }
+
