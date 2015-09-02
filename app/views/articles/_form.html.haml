@@ -21,6 +21,12 @@
 
             = f.input_field :content, rows: 12, class: 'form-input form-textarea js-editor-textarea'
 
+         .form-field
+           = f.label :author do
+             %span.form-label.label Author
+             - user_id = @article.new_record? ? current_user.id : @article.author_id
+             = f.input_field :author_id, collection: User.active.order(:name), include_blank: false, selected: user_id
+
         .form-field
           = f.label :tag_tokens do
             %span.form-label.label Tags
