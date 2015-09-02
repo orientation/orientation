@@ -31,9 +31,9 @@ RSpec.describe Article do
 
       before { article.tags << tag }
 
-      it "matches first based on the tag name" do
+      it "doesn't match based on tag name" do
         result = Article.text_search tag.name
-        expect(result.first).to eq(article)
+        expect(result.first).to be nil
       end
 
       context "when some articles include the tag name in their title" do
