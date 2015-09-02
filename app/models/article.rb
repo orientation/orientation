@@ -70,7 +70,7 @@ class Article < ActiveRecord::Base
     scope ||= current
 
     if query.present?
-      scope.fuzzy_search({ title: query, content: query }, false)
+      scope.basic_search({ title: query, content: query }, false)
     else
       scope
     end
