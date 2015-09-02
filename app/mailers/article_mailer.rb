@@ -9,13 +9,13 @@
 class ArticleMailer < MandrillMailer::TemplateMailer
   include ActionView::Helpers::UrlHelper
 
-  default from: 'orientation@codeschool.com'
+  default from: ENV['DEFAULT_FROM_EMAIL'] || 'orientation@codeschool.com'
 
   def notify_author_of_staleness(articles)
     author = articles.last.author
     mandrill_mail template: 'stale-article-alert',
                   subject: 'Some of your Orientation articles might be stale',
-                  from_name: 'Orientation',
+                  from_name: ENV['DEFAULT_FROM_NAME'] || 'Orientation',
                   to: { email: author.email, name: author.name },
                   vars: {
                     'CONTENT' => format_email_content(articles)
@@ -25,7 +25,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def send_updates_for(article, user)
     mandrill_mail template: 'article-subscription-update',
                   subject: "#{article.title} was just updated",
-                  from_name: 'Orientation',
+                  from_name: ENV['DEFAULT_FROM_NAME'] || 'Orientation',
                   to: { email: user.email, name: user.name },
                   vars: {
                     'ARTICLE_TITLE' => article.title,
@@ -36,7 +36,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def send_rotten_notification_for(article, contributors)
     mandrill_mail template: 'article-rotten-update',
                   subject: 'Article Rotten Update',
-                  from_name: 'Orientation',
+                  from_name: ENV['DEFAULT_FROM_NAME'] || 'Orientation',
                   to: contributors,
                   vars: {
                     'ARTICLE_TITLE' => article.title,
@@ -47,7 +47,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def send_endorsement_notification_for(article, contributors, endorser)
     mandrill_mail template: 'article-endorsement-notification',
                   subject: "#{endorser.name} found #{article.title} useful!",
-                  from_name: 'Orientation',
+                  from_name: ENV['DEFAULT_FROM_NAME'] || 'Orientation',
                   to: contributors,
                   vars: {
                     'ENDORSER_NAME' => endorser.name,
