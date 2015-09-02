@@ -33,7 +33,39 @@
 #   Inbox
 # -------------------------------------
 
+# -------------------------------------
+#   Cloudinary Uploads
+# -------------------------------------
+
+#= require jquery.ui.widget
+#= require jquery.iframe-transport
+#= require jquery.fileupload
+#= require cloudinary/jquery.cloudinary
+#= require attachinary
+
 jQuery ($) ->
+
+  $('.attachinary-input').attachinary(
+    template: """
+      <ul>
+        <% for(var i=0; i<files.length; i++){ %>
+          <li>
+            <% if(files[i].resource_type == "raw") { %>
+              <div class="raw-file"></div>
+            <% } else { %>
+              <img
+                src="<%= $.cloudinary.url(files[i].public_id, { "version": files[i].version, "format": 'jpg', "crop": 'fill', "width": 100, "height": 100 }) %>"
+                alt="" width="100" height="100" />
+                <input type="text" id="" value="![](<%= $.cloudinary.url(files[i].public_id, { "version": files[i].version, "format": 'jpg'}) %>)" size="50">
+            <% } %>
+            <a href="<%= $.cloudinary.url(files[i].public_id, { "version": files[i].version, "format": 'jpg'}) %>" target="_blank">Preview</a>
+            or
+            <a href="#" data-remove="<%= files[i].public_id %>">Remove</a>
+          </li>
+        <% } %>
+      </ul>
+    """
+  )
 
   # ----- Localize Datetimes ----- #
 
