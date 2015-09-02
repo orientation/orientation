@@ -58,7 +58,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: article_endorsements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: article_endorsements; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE article_endorsements (
@@ -90,7 +90,7 @@ ALTER SEQUENCE article_endorsements_id_seq OWNED BY article_endorsements.id;
 
 
 --
--- Name: article_subscriptions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: article_subscriptions; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE article_subscriptions (
@@ -122,25 +122,17 @@ ALTER SEQUENCE article_subscriptions_id_seq OWNED BY article_subscriptions.id;
 
 
 --
--- Name: articles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: articles; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE articles (
     id integer NOT NULL,
-<<<<<<< HEAD
     title character varying(255),
-=======
-    title character varying,
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
     content text,
     author_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-<<<<<<< HEAD
     slug character varying(255),
-=======
-    slug character varying,
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
     editor_id integer,
     last_notified_author_at timestamp without time zone,
     archived_at timestamp without time zone,
@@ -173,7 +165,7 @@ ALTER SEQUENCE articles_id_seq OWNED BY articles.id;
 
 
 --
--- Name: articles_tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: articles_tags; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE articles_tags (
@@ -183,9 +175,7 @@ CREATE TABLE articles_tags (
 
 
 --
-<<<<<<< HEAD
-=======
--- Name: attachinary_files; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: attachinary_files; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE attachinary_files (
@@ -224,8 +214,7 @@ ALTER SEQUENCE attachinary_files_id_seq OWNED BY attachinary_files.id;
 
 
 --
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
--- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE delayed_jobs (
@@ -237,13 +226,8 @@ CREATE TABLE delayed_jobs (
     run_at timestamp without time zone,
     locked_at timestamp without time zone,
     failed_at timestamp without time zone,
-<<<<<<< HEAD
     locked_by character varying(255),
     queue character varying(255),
-=======
-    locked_by character varying,
-    queue character varying,
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -269,7 +253,7 @@ ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
 
 
 --
--- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE friendly_id_slugs (
@@ -302,35 +286,24 @@ ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE schema_migrations (
-<<<<<<< HEAD
     version character varying(255) NOT NULL
-=======
-    version character varying NOT NULL
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 );
 
 
 --
--- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE tags (
     id integer NOT NULL,
-<<<<<<< HEAD
     name character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     slug character varying(255),
-=======
-    name character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    slug character varying,
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
     articles_count integer DEFAULT 0 NOT NULL
 );
 
@@ -355,12 +328,11 @@ ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE users (
     id integer NOT NULL,
-<<<<<<< HEAD
     provider character varying(255),
     uid character varying(255),
     name character varying(255),
@@ -372,18 +344,6 @@ CREATE TABLE users (
     active boolean DEFAULT true,
     shtick text,
     articles_count integer DEFAULT 0 NOT NULL
-=======
-    provider character varying,
-    uid character varying,
-    name character varying,
-    email character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    image character varying,
-    avatar character varying,
-    active boolean DEFAULT true,
-    shtick text
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 );
 
 
@@ -431,8 +391,6 @@ ALTER TABLE ONLY articles ALTER COLUMN id SET DEFAULT nextval('articles_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-<<<<<<< HEAD
-=======
 ALTER TABLE ONLY attachinary_files ALTER COLUMN id SET DEFAULT nextval('attachinary_files_id_seq'::regclass);
 
 
@@ -440,7 +398,6 @@ ALTER TABLE ONLY attachinary_files ALTER COLUMN id SET DEFAULT nextval('attachin
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
 
 
@@ -466,7 +423,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: article_endorsements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: article_endorsements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY article_endorsements
@@ -474,7 +431,7 @@ ALTER TABLE ONLY article_endorsements
 
 
 --
--- Name: article_subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: article_subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY article_subscriptions
@@ -482,7 +439,7 @@ ALTER TABLE ONLY article_subscriptions
 
 
 --
--- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY articles
@@ -490,18 +447,15 @@ ALTER TABLE ONLY articles
 
 
 --
-<<<<<<< HEAD
-=======
--- Name: attachinary_files_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: attachinary_files_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY attachinary_files
     ADD CONSTRAINT attachinary_files_pkey PRIMARY KEY (id);
 
 
---
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
--- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+
+-- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY delayed_jobs
@@ -509,7 +463,7 @@ ALTER TABLE ONLY delayed_jobs
 
 
 --
--- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY friendly_id_slugs
@@ -517,7 +471,7 @@ ALTER TABLE ONLY friendly_id_slugs
 
 
 --
--- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY tags
@@ -525,7 +479,7 @@ ALTER TABLE ONLY tags
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY users
@@ -533,94 +487,91 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: articles_content; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: articles_content; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX articles_content ON articles USING gin (to_tsvector('english'::regconfig, content));
 
 
 --
--- Name: articles_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: articles_title; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX articles_title ON articles USING gin (to_tsvector('english'::regconfig, (title)::text));
 
 
 --
-<<<<<<< HEAD
-=======
--- Name: by_scoped_parent; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: by_scoped_parent; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX by_scoped_parent ON attachinary_files USING btree (attachinariable_type, attachinariable_id, scope);
 
 
 --
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
--- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
 
 
 --
--- Name: index_articles_on_archived_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_articles_on_archived_at; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_articles_on_archived_at ON articles USING btree (archived_at);
 
 
 --
--- Name: index_articles_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_articles_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_articles_on_slug ON articles USING btree (slug);
 
 
 --
--- Name: index_articles_tags_on_article_id_and_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_articles_tags_on_article_id_and_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_articles_tags_on_article_id_and_tag_id ON articles_tags USING btree (article_id, tag_id);
 
 
 --
--- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON friendly_id_slugs USING btree (slug, sluggable_type);
 
 
 --
--- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope ON friendly_id_slugs USING btree (slug, sluggable_type, scope);
 
 
 --
--- Name: index_friendly_id_slugs_on_sluggable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_friendly_id_slugs_on_sluggable_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_friendly_id_slugs_on_sluggable_id ON friendly_id_slugs USING btree (sluggable_id);
 
 
 --
--- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_friendly_id_slugs_on_sluggable_type ON friendly_id_slugs USING btree (sluggable_type);
 
 
 --
--- Name: index_tags_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_tags_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_tags_on_slug ON tags USING btree (slug);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
@@ -672,11 +623,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140602153320');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606204236');
 
-<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20140607045935');
 
-=======
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
 INSERT INTO schema_migrations (version) VALUES ('20140923231243');
 
 INSERT INTO schema_migrations (version) VALUES ('20141111222212');
@@ -693,10 +641,4 @@ INSERT INTO schema_migrations (version) VALUES ('20150328074815');
 
 INSERT INTO schema_migrations (version) VALUES ('20150416104151');
 
-<<<<<<< HEAD
-=======
-INSERT INTO schema_migrations (version) VALUES ('20150826032113');
-
 INSERT INTO schema_migrations (version) VALUES ('20150826204841');
-
->>>>>>> e353cc1... Image uploads with Cloudinary and Attachinary.
