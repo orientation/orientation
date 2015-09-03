@@ -34,7 +34,10 @@ class Article < ActiveRecord::Base
   ARCHIVAL = "Outdated & ignored in searches."
 
   scope :archived, -> { where.not(archived_at: nil) }
-  scope :current, -> { where(archived_at: nil).order(rotted_at: :desc).order(updated_at: :desc).order(created_at: :desc) }
+  scope :current, -> do
+    where(archived_at: nil)
+      .order(rotted_at: :desc, updated_at: :desc, created_at: :desc)
+  end
   scope :fresh, -> do
     where("updated_at >= ?", FRESHNESS_LIMIT.ago).
       where(archived_at: nil).
