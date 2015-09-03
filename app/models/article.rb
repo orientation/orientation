@@ -82,7 +82,7 @@ class Article < ActiveRecord::Base
   end
 
   def archive!
-    update_attribute(:archived_at, Time.now.in_time_zone)
+    update_attribute(:archived_at, Time.current)
   end
 
   def archived?
@@ -115,7 +115,7 @@ class Article < ActiveRecord::Base
   end
 
   def rot!
-    update_attribute(:rotted_at, Time.now.in_time_zone)
+    update_attribute(:rotted_at, Time.current)
     Delayed::Job.enqueue(SendArticleRottenJob.new(self.id, contributors))
   end
 
