@@ -49,9 +49,10 @@
               data: { shortcut: 'e' }
           %li.list-item
             - toggle_archived_label = !@article.archived? ? 'Archive' : 'Unarchive'
-            = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', method: :put
+            = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', data: { method: :put, confirm: "Are you sure?" }
+
           %li.list-item
-            = link_to 'Delete', @article, class: 'btn btn--b', method: :delete
+            = link_to 'Delete', @article, class: 'btn btn--b', data: { method: :delete, confirm: "Are you sure?" }
 
       %aside.g-b.g-b--m--1of3
 
