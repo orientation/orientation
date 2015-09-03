@@ -1,4 +1,4 @@
-- if !@article.valid?
+- if !@article.valid? && !@article.new_record?
   %p.bulletin.bulletin--warning
     There's already an article with this title.
 
