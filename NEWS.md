@@ -2,6 +2,13 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## September 3rd, 2015
+### Restrict Google Apps sign in to `ORIENTATION_EMAIL_WHITELIST` domain
+
+Thanks to Bruno Miranda, it's now possible to display only the authorized Google Apps domain set in the `ORIENTATION_EMAIL_WHITELIST` environment variable in the Google sign in page.
+
+This way instead of listing all the Google accounts a user has, only the one authorized to sign into Orientation will be displayed. This should reduce confusion among first-time users of Orientation and prevent failed sign in attempts.
+
 ## September 1st, 2015
 ### Emoji Support! :+1:
 
