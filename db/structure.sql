@@ -127,12 +127,12 @@ ALTER SEQUENCE article_subscriptions_id_seq OWNED BY article_subscriptions.id;
 
 CREATE TABLE articles (
     id integer NOT NULL,
-    title character varying(255),
+    title character varying,
     content text,
     author_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    slug character varying(255),
+    slug character varying,
     editor_id integer,
     last_notified_author_at timestamp without time zone,
     archived_at timestamp without time zone,
@@ -170,11 +170,32 @@ ALTER SEQUENCE articles_id_seq OWNED BY articles.id;
 
 CREATE TABLE articles_tags (
     article_id integer,
-    tag_id integer
+    tag_id integer,
+    id integer NOT NULL
 );
 
 
--- Name: attachinary_files; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+-- Name: articles_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE articles_tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: articles_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE articles_tags_id_seq OWNED BY articles_tags.id;
+
+
+--
+-- Name: attachinary_files; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE attachinary_files (
@@ -213,7 +234,7 @@ ALTER SEQUENCE attachinary_files_id_seq OWNED BY attachinary_files.id;
 
 
 --
--- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace:
+-- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE delayed_jobs (
@@ -225,8 +246,8 @@ CREATE TABLE delayed_jobs (
     run_at timestamp without time zone,
     locked_at timestamp without time zone,
     failed_at timestamp without time zone,
-    locked_by character varying(255),
-    queue character varying(255),
+    locked_by character varying,
+    queue character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -289,7 +310,7 @@ ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 --
 
 CREATE TABLE schema_migrations (
-    version character varying(255) NOT NULL
+    version character varying NOT NULL
 );
 
 
@@ -299,10 +320,10 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE tags (
     id integer NOT NULL,
-    name character varying(255),
+    name character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    slug character varying(255),
+    slug character varying,
     articles_count integer DEFAULT 0 NOT NULL
 );
 
@@ -332,17 +353,16 @@ ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
-    provider character varying(255),
-    uid character varying(255),
-    name character varying(255),
-    email character varying(255),
+    provider character varying,
+    uid character varying,
+    name character varying,
+    email character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    image character varying(255),
-    avatar character varying(255),
+    image character varying,
+    avatar character varying,
     active boolean DEFAULT true,
-    shtick text,
-    articles_count integer DEFAULT 0 NOT NULL
+    shtick text
 );
 
 
@@ -390,6 +410,12 @@ ALTER TABLE ONLY articles ALTER COLUMN id SET DEFAULT nextval('articles_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY articles_tags ALTER COLUMN id SET DEFAULT nextval('articles_tags_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
 
 ALTER TABLE ONLY attachinary_files ALTER COLUMN id SET DEFAULT nextval('attachinary_files_id_seq'::regclass);
 
@@ -397,7 +423,6 @@ ALTER TABLE ONLY attachinary_files ALTER COLUMN id SET DEFAULT nextval('attachin
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
-
 
 ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
 
@@ -448,6 +473,22 @@ ALTER TABLE ONLY articles
 
 
 --
+-- Name: articles_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY articles_tags
+    ADD CONSTRAINT articles_tags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: attachinary_files_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY attachinary_files
+    ADD CONSTRAINT attachinary_files_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -479,15 +520,8 @@ ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
--- Name: attachinary_files_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
-
-ALTER TABLE ONLY attachinary_files
-    ADD CONSTRAINT attachinary_files_pkey PRIMARY KEY (id);
-
-
---
--- Name: articles_content; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: articles_content; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX articles_content ON articles USING gin (to_tsvector('english'::regconfig, content));
@@ -498,6 +532,13 @@ CREATE INDEX articles_content ON articles USING gin (to_tsvector('english'::regc
 --
 
 CREATE INDEX articles_title ON articles USING gin (to_tsvector('english'::regconfig, (title)::text));
+
+
+--
+-- Name: by_scoped_parent; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX by_scoped_parent ON attachinary_files USING btree (attachinariable_type, attachinariable_id, scope);
 
 
 --
@@ -571,14 +612,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
--- Name: by_scoped_parent; Type: INDEX; Schema: public; Owner: -; Tablespace:
---
-
-CREATE INDEX by_scoped_parent ON attachinary_files USING btree (attachinariable_type, attachinariable_id, scope);
-
-
-
---
 -- PostgreSQL database dump complete
 --
 
@@ -624,8 +657,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140602153320');
 
 INSERT INTO schema_migrations (version) VALUES ('20140606204236');
 
-INSERT INTO schema_migrations (version) VALUES ('20140607045935');
-
 INSERT INTO schema_migrations (version) VALUES ('20140923231243');
 
 INSERT INTO schema_migrations (version) VALUES ('20141111222212');
@@ -642,4 +673,7 @@ INSERT INTO schema_migrations (version) VALUES ('20150328074815');
 
 INSERT INTO schema_migrations (version) VALUES ('20150416104151');
 
-INSERT INTO schema_migrations (version) VALUES ('20150826204841');
+INSERT INTO schema_migrations (version) VALUES ('20150829203748');
+
+INSERT INTO schema_migrations (version) VALUES ('20150901204841');
+

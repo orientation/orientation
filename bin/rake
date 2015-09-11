@@ -1,8 +1,4 @@
 #!/usr/bin/env ruby
-
-if !Process.respond_to?(:fork) || Gem::Specification.find_all_by_name("spring").empty?
-  exec "bundle", "exec", "rake", *ARGV
-else
-  ARGV.unshift "rake"
-  load Gem.bin_path("spring", "spring")
-end
+require_relative '../config/boot'
+require 'rake'
+Rake.application.run
