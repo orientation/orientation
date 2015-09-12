@@ -7,6 +7,8 @@ class Article < ActiveRecord::Base
 
   friendly_id :title, use: [:slugged, :history]
 
+  has_attachments :images, maximum: 20, accept: [:jpg, :png, :gif]
+
   def should_generate_new_friendly_id?
     !has_friendly_id_slug? or title_changed?
   end
@@ -71,7 +73,7 @@ class Article < ActiveRecord::Base
     scope ||= current
 
     if query.present?
-      scope.fuzzy_search({ title: query, content: query }, false)
+      scope.basic_search({ title: query, content: query }, false)
     else
       scope
     end

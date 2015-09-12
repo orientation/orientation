@@ -195,6 +195,45 @@ ALTER SEQUENCE articles_tags_id_seq OWNED BY articles_tags.id;
 
 
 --
+-- Name: attachinary_files; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE attachinary_files (
+    id integer NOT NULL,
+    attachinariable_id integer,
+    attachinariable_type character varying,
+    scope character varying,
+    public_id character varying,
+    version character varying,
+    width integer,
+    height integer,
+    format character varying,
+    resource_type character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: attachinary_files_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE attachinary_files_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: attachinary_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE attachinary_files_id_seq OWNED BY attachinary_files.id;
+
+
+--
 -- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -378,6 +417,13 @@ ALTER TABLE ONLY articles_tags ALTER COLUMN id SET DEFAULT nextval('articles_tag
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY attachinary_files ALTER COLUMN id SET DEFAULT nextval('attachinary_files_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
 
 
@@ -435,6 +481,14 @@ ALTER TABLE ONLY articles_tags
 
 
 --
+-- Name: attachinary_files_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY attachinary_files
+    ADD CONSTRAINT attachinary_files_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -478,6 +532,13 @@ CREATE INDEX articles_content ON articles USING gin (to_tsvector('english'::regc
 --
 
 CREATE INDEX articles_title ON articles USING gin (to_tsvector('english'::regconfig, (title)::text));
+
+
+--
+-- Name: by_scoped_parent; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX by_scoped_parent ON attachinary_files USING btree (attachinariable_type, attachinariable_id, scope);
 
 
 --
@@ -613,4 +674,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150328074815');
 INSERT INTO schema_migrations (version) VALUES ('20150416104151');
 
 INSERT INTO schema_migrations (version) VALUES ('20150829203748');
+
+INSERT INTO schema_migrations (version) VALUES ('20150901204841');
 

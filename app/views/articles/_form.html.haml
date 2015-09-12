@@ -19,7 +19,7 @@
             = link_to '#', class: 'form-field-toggle form-field-toggle--close js-editor-close' do
               = render partial: 'shared/icon', locals: { icon: 'unfullscreen', title: 'Close Editor' }
 
-            = f.input_field :content, rows: 12, class: 'form-input form-textarea js-editor-textarea'
+            = f.input_field :content, rows: 15, class: 'form-input form-textarea js-editor-textarea'
 
         .form-field
           = f.label :author do
@@ -31,6 +31,11 @@
           = f.label :tag_tokens do
             %span.form-label.label Tags
             = f.input_field :tag_tokens, data: { load: @tags }
+
+        .form-field
+          = f.label :images do
+            %span.form-label.label Images
+            = f.input :images, as: :attachinary
 
         .card.card--b
 
