@@ -6,6 +6,19 @@
 [![Dependency Status][gemnasium-image]][gemnasium]
 ![Ruby Version][ruby-version-image]
 
+## Continued Development of this Fork
+
+It's important to never merge code added to this repos into master directly.
+If you need the code to be deployed to production before the PR is accepted in the
+upstream, please merge your PR into pseudo-master branch and deploy that to Heroru.
+
+Current master is to be updated only with upstream's (orientation/orientation) master.
+
+### Deploying to Heroku
+
+`git push heroku master:psuedo-master --force`
+
+
 ## What is Orientation?
 
 Documentation is hard. People forget to write it, and they are asked the
@@ -86,11 +99,11 @@ using you local (git-ignored) `.env` file as a canonical source.
 ### Multiple Buildpacks
 
 Multiple buildpack support used to be unofficial and relied on [a custom buildpack created
-by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer 
+by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer
 the case since Heroku has rolled out official support for multiple buildpacks.
 
-Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button, 
-which would take care of this for you) you will need to add two buildpacks since the app relies 
+Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button,
+which would take care of this for you) you will need to add two buildpacks since the app relies
 on NodeJS for Bower package installation.
 
 Note that for some reason you need to be the owner of the app on Heroku in order to be able to do this:
@@ -117,7 +130,7 @@ $ heroku buildpacks -a yourappname
 
 ### Transactional Emails with Mandrill
 
-If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names 
+If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names
 that match the ones listed in our [Mandrill documentation](doc/MANDRILL.md).
 
 ## Development
