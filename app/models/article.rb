@@ -133,7 +133,7 @@ class Article < ActiveRecord::Base
   end
 
   def contributors
-    User.where(id: [self.author_id, self.editor_id]).uniq.map do |user|
+    User.where(id: [self.author_id, self.editor_id]).uniq.select(:name, :email).map do |user|
       { name: user.name, email: user.email }
     end
   end
