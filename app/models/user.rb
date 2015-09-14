@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   def self.prolific
     joins(articles: :author).
       select('users.*, count(articles.id) as articles_count').
-      group('users.id').
+      group(:id).
       order('articles_count DESC')
   end
 
