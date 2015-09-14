@@ -59,13 +59,6 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-  OmniAuth.config.test_mode = true
-  omniauth_hash = { 'uid' => '777777', 'name' => 'mockuser' }
-
-  OmniAuth.config.add_mock(:google_oauth2, omniauth_hash)
-
-  config.infer_spec_type_from_file_location!
-
   # database cleaner configuration
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
