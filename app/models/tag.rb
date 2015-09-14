@@ -23,7 +23,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.by_article_count
-    all.sort_by { |tag| tag.articles.size }.reverse
+    order(articles_count: :desc)
   end
 
   def self.reset_articles_count
@@ -31,5 +31,4 @@ class Tag < ActiveRecord::Base
       reset_counters(tag_id, :articles)
     end
   end
-
 end
