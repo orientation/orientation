@@ -46,18 +46,18 @@ module ApplicationHelper
       text
     end
 
-    def paragraph(text)
+    def preprocess(full_document)
       # matches [[Article Title]] or [[article-title]] relative
       # links, see https://regex101.com/r/aR5bS0/1
       pattern = /\[{2}(.*?)\]{2}/
 
-      if text.match(pattern)
-        text.gsub!(pattern) do
+      if full_document.match(pattern)
+        full_document.gsub!(pattern) do
           text = Regexp.last_match[1]
-          link(article_link(text.parameterize), nil, text)
+          "[#{text}](#{article_link(text.parameterize)})"
         end
       else
-        text
+        full_document
       end
     end
 

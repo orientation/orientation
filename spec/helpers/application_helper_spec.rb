@@ -16,6 +16,11 @@ RSpec.describe ApplicationHelper do
       expect(markdown(article.content)).to include("<a href='/articles/link'  class='article-not-found'>link</a>")
     end
 
+    it "converts the implicit markdown slug link (to an invalid article) in a list item to HTML" do
+      article.update!(content: "- [[link]]")
+      expect(markdown(article.content)).to include("<a href='/articles/link'  class='article-not-found'>link</a>")
+    end
+
     it "converts the implicit markdown slug link (to a valid article) to HTML" do
       article.update!(title: "link", content: "[[link]]")
       expect(markdown(article.content)).to include("<a href='/articles/link'>link</a>")
