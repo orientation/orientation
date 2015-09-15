@@ -37,6 +37,21 @@ module ApplicationHelper
       text
     end
 
+    def paragraph(text)
+      # matches [[Article Title]] or [[article-title]] relative
+      # links, see https://regex101.com/r/aR5bS0/1
+      pattern = /\[{2}(.*?)\]{2}/
+
+      if text.match(pattern)
+        text.gsub!(pattern) do
+          text = Regexp.last_match[1]
+          link(article_link(text.parameterize), nil, text)
+        end
+      else
+        text
+      end
+    end
+
     private
 
     def article_status(link)
@@ -45,6 +60,10 @@ module ApplicationHelper
       else
         'article-not-found'
       end
+    end
+
+    def article_link(article_title)
+      Rails.application.routes.url_helpers.article_url(article_title, only_path: true)
     end
 
     def internal_link?(link)
