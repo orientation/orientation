@@ -32,6 +32,7 @@ gem 'gemoji'
 gem 'dotenv-rails'
 gem 'cloudinary'
 gem 'attachinary'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'better_errors'
