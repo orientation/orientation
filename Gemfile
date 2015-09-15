@@ -30,6 +30,7 @@ gem 'slack-notifier'
 gem 'friendly_id'
 gem 'gemoji'
 gem 'dotenv-rails'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'better_errors'
