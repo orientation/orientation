@@ -23,11 +23,48 @@ module ApplicationHelper
       end
     end
 
+    def link(link, title, content)
+      class_attribute = "class='#{article_status(link)}'" if internal_link?(link)
+      title_attribute = "title='#{title}'" if title
+
+      "<a href='#{link}' #{title_attribute} #{class_attribute}>#{content}</a>"
+    end
+
     def normal_text(text)
       text.gsub!("[ ]", "<input type='checkbox'>") if text.match(/^\[{1}\s\]{1}/)
       text.gsub!("[x]", "<input type='checkbox' checked>") if text.match(/^\[{1}(x|X)\]{1}/)
 
       text
+    end
+
+    private
+
+    def article_status(link)
+      if valid_article?(link)
+        'article-found'
+      else
+        'article-not-found'
+      end
+    end
+
+    def internal_link?(link)
+      url = URI.parse(link)
+
+      if url.absolute?
+        root = Rails.application.routes.url_helpers.root_url(host: ENV.fetch("ORIENTATION_DOMAIN"))
+        link.include?(root)
+      else
+        true
+      end
+    end
+
+    def valid_article?(link)
+      link = URI.parse(link).path if !internal_link?(link)
+      slug = link.split('/').last
+
+      Article.friendly.find(slug)
+    rescue ActiveRecord::RecordNotFound
+      false
     end
   end
 
