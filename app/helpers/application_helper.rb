@@ -52,8 +52,8 @@ module ApplicationHelper
       pattern = /\[{2}(.*?)\]{2}/
 
       if full_document.match(pattern)
-        full_document.gsub!(pattern) do
-          text = Regexp.last_match[1]
+        full_document.gsub!(pattern) do |match|
+          text = match.delete("[[]]")
           "[#{text}](#{article_link(text.parameterize)})"
         end
       else
