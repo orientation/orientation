@@ -23,11 +23,72 @@ module ApplicationHelper
       end
     end
 
+    def link(link, title, content)
+      if internal_link?(link) && !valid_article?(link)
+        class_attribute = "class='#{article_status(link)}'"
+      end
+      title_attribute = "title='#{title}'" if title
+
+      if class_attribute || title_attribute
+        "<a href='#{link}' #{title_attribute} #{class_attribute}>#{content}</a>"
+      else
+        # Redcarpet doesn't allow calls to super in overidden
+        # render methods due to C shenanigans:
+        # https://github.com/vmg/redcarpet/issues/51#issuecomment-1922079
+        "<a href='#{link}'>#{content}</a>"
+      end
+    end
+
     def normal_text(text)
       text.gsub!("[ ]", "<input type='checkbox'>") if text.match(/^\[{1}\s\]{1}/)
       text.gsub!("[x]", "<input type='checkbox' checked>") if text.match(/^\[{1}(x|X)\]{1}/)
 
       text
+    end
+
+    def paragraph(text)
+      # matches [[Article Title]] or [[article-title]] relative
+      # links, see https://regex101.com/r/aR5bS0/1
+      pattern = /\[{2}(.*?)\]{2}/
+
+      if text.match(pattern)
+        text.gsub!(pattern) do
+          text = Regexp.last_match[1]
+          link(article_link(text.parameterize), nil, text)
+        end
+      else
+        text
+      end
+    end
+
+    private
+
+    def article_status(link)
+      'article-not-found' if !valid_article?(link)
+    end
+
+    def article_link(article_title)
+      Rails.application.routes.url_helpers.article_url(article_title, only_path: true)
+    end
+
+    def internal_link?(link)
+      url = URI.parse(link)
+
+      if url.absolute?
+        root = Rails.application.routes.url_helpers.root_url(host: ENV.fetch("ORIENTATION_DOMAIN"))
+        link.include?(root)
+      else
+        true
+      end
+    end
+
+    def valid_article?(link)
+      link = URI.parse(link).path if !internal_link?(link)
+      slug = link.split('/').last
+
+      Article.friendly.find(slug)
+    rescue ActiveRecord::RecordNotFound
+      false
     end
   end
 
