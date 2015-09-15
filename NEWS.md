@@ -2,6 +2,28 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## September 15th, 2015
+### Relative Markdown links
+
+This is a feature I'm really happy to introduce because it really should have been
+here since the beginning.
+
+It's now possible to link to any article using either the article title or its URL
+slug. Say you have an article titled "Onboarding", you can write the following
+Markdown and the proper link will automatically be expanded once the article you're
+editing is saved.
+
+![Before Smart Links](https://s3.amazonaws.com/f.cl.ly/items/020Q0V1n1L3t2r3y1K2N/Screen%20Shot%202015-09-15%20at%206.07.41%20AM.png)
+
+![After Smart Links](https://s3.amazonaws.com/f.cl.ly/items/1r3n2V2y231i0i1l3010/Screen%20Shot%202015-09-15%20at%206.07.21%20AM.png)
+
+### Color-coded article existence check
+
+Now when you link to an article title, slug or URL that doesn't exist on Orientation
+you will see the color of the link change to red to indicate that an article is missing.
+
+![Color for incorrect link](https://s3.amazonaws.com/f.cl.ly/items/0T1m433Z1l201C3r290O/Screen%20Shot%202015-09-15%20at%206.56.17%20AM.png)
+
 ## September 3rd, 2015
 ### Restrict Google Apps sign in to `ORIENTATION_EMAIL_WHITELIST` domain
 
@@ -12,12 +34,12 @@ This way instead of listing all the Google accounts a user has, only the one aut
 ## September 1st, 2015
 ### Emoji Support! :+1:
 
-Thanks to Brandon Mathis it's now possible to use GitHub-style emojis in Orientation articles. 
+Thanks to Brandon Mathis it's now possible to use GitHub-style emojis in Orientation articles.
 
 ## August 29th, 2015
 ### Reduced queries on tags & article associations thanks to @fusion2004
 
-This is a fix I should have worked on much earlier as tags and articles always generated a heap of N+1 queries for 
+This is a fix I should have worked on much earlier as tags and articles always generated a heap of N+1 queries for
 no good reason when we fetched article or tag counts. I highly recommend merging in master into your forks at fe85cf0135c2ce02600034405de3ae167fc35373 or later to benefit from this significant reduction in queries on guide and article index pages.
 
 ### Uglifier security update
@@ -25,7 +47,7 @@ This is less exciting but worth mentioning, Mark Oleson also contributed a usefu
 
 ### No more trouble when using the Heroku button
 
-I took way to long to react on this but Michael Friis contributed [a nifty patch](https://github.com/orientation/orientation/pull/155) to fix recurring issues when the Heroku button because our app.json manifest was too tightly coupled to specific Heroku add-on plans. 
+I took way to long to react on this but Michael Friis contributed [a nifty patch](https://github.com/orientation/orientation/pull/155) to fix recurring issues when the Heroku button because our app.json manifest was too tightly coupled to specific Heroku add-on plans.
 
 ## July 31st, 2015
 ### Search Finally Works!
