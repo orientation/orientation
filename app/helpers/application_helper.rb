@@ -24,10 +24,19 @@ module ApplicationHelper
     end
 
     def link(link, title, content)
-      class_attribute = "class='#{article_status(link)}'" if internal_link?(link)
+      if internal_link?(link) && !valid_article?(link)
+        class_attribute = "class='#{article_status(link)}'"
+      end
       title_attribute = "title='#{title}'" if title
 
-      "<a href='#{link}' #{title_attribute} #{class_attribute}>#{content}</a>"
+      if class_attribute || title_attribute
+        "<a href='#{link}' #{title_attribute} #{class_attribute}>#{content}</a>"
+      else
+        # Redcarpet doesn't allow calls to super in overidden
+        # render methods due to C shenanigans:
+        # https://github.com/vmg/redcarpet/issues/51#issuecomment-1922079
+        "<a href='#{link}'>#{content}</a>"
+      end
     end
 
     def normal_text(text)
@@ -55,11 +64,7 @@ module ApplicationHelper
     private
 
     def article_status(link)
-      if valid_article?(link)
-        'article-found'
-      else
-        'article-not-found'
-      end
+      'article-not-found' if !valid_article?(link)
     end
 
     def article_link(article_title)
