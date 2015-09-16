@@ -2,6 +2,19 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## September 16th, 2015
+### New article form on 404 Not Found pages
+
+This one has also been on the wishlist for a while. It's very common while building a Guide to 
+create links to articles that don't exist yet. That was made much easier yesterday with relative 
+Markdown links (`[[Title]]` expands to `[Title](/articles/title)`) and color-coded article existence 
+checking (links to non-existent articles show up in red). 
+
+Today this flow gets even better since you can now click those red links to non-existent articles 
+and Orientation will present you with a new article form containing the URL slug converted in a title.
+
+![example of the new 404 article handling](https://s3.amazonaws.com/f.cl.ly/items/0t1q1H0i2c1g2z3o3q1s/Screen%20Shot%202015-09-16%20at%203.27.40%20PM.png)
+
 ## September 15th, 2015
 ### Advanced Search vs. Fuzzy Search
 
