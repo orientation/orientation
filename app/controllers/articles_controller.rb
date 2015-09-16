@@ -1,5 +1,10 @@
 class ArticlesController < ApplicationController
-  before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
+  before_filter :find_article_by_params, only: [
+    :show,
+    :edit,
+    :update,
+    :destroy
+  ]
   before_filter :decorate_article, only: [
     :show,
     :edit,
@@ -141,7 +146,11 @@ class ArticlesController < ApplicationController
   end
 
   def find_article_by_params
-    @article ||= Article.friendly.where(slug: params[:id]).first
+    @article ||= begin
+      Article.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      Article.friendly.none
+    end
   end
   helper_method :article
 
@@ -149,6 +158,7 @@ class ArticlesController < ApplicationController
     if @article.present?
       respond_with_article_or_redirect
     else
+      flash[:notice] = "Since this article doesn't exist, it would be super nice if you wrote it. :-)"
       redirect_to new_article_path(title: params[:id].titleize)
     end
   end
