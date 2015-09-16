@@ -3,6 +3,17 @@ Interesting new features added to this project will be documented here reverse c
 This is [not a change log](CHANGELOG.md).
 
 ## September 15th, 2015
+### Advanced Search vs. Fuzzy Search
+
+After a few weeks trying to make fuzzy search (on title and content) work, it's now clear that this approach 
+won't work, so we switched back to [advanced_search](https://github.com/textacular/textacular#usage) on the 
+article title field only. This makes for a more intuitive search flow since it's far more common to search 
+for something based on the article title (although tags should be added to that soon).
+
+The sad part is that if the title doesn't contain the term you're looking for, now you're out of luck with 
+search. I hope for now that the Guides feature makes up for that but I haven't given up hope on finding an 
+even better way to make basic/advanced search cohabitate better with content-focused fuzzy search (full-text).
+
 ### Relative Markdown links
 
 This is a feature I'm really happy to introduce because it really should have been
