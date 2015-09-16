@@ -2,34 +2,63 @@ require "rails_helper"
 
 RSpec.describe Article do
   describe ".text_search" do
-    before { 100.times { create :article } }
+    before(:all) do
+      100.times { create :article }
+      @article1 = create(:article, title: "Pumpernickel Stew is not so great", content: "Yum")
+      @article2 = create(:article, title: "There is no cheese but French cheese", content: "Truth")
+    end
 
-    let!(:article) { create :article, title: "Pumpernickel Stew", content: "Yum!"}
+    let!(:article) { }
 
-    it "does partial title matching" do
-      result = Article.text_search "Pumper"
-      expect(result.first).to eq(article)
+    it "does partial title matching on the first word in the title" do
+      result = Article.text_search "Pumpernickel"
+      expect(result.first).to eq(@article1)
+    end
+
+    it "does partial title matching on the last word in the title" do
+      result = Article.text_search "great"
+      expect(result.first).to eq(@article1)
+    end
+
+    it "does partial title matching on non-contiguous words in the title" do
+      result = Article.text_search "not great"
+      expect(result.first).to eq(@article1)
     end
 
     it "does full title matching" do
-      result = Article.text_search article.title
-      expect(result.first).to eq(article)
+      result = Article.text_search @article1.title
+      expect(result.first).to eq(@article1)
     end
 
-    it "does partial content matching" do
+    it "does match with with proper boolean AND operators" do
+      result = Article.text_search "not & pumpernickel"
+      expect(result.first).to eq(@article1)
+    end
+
+    it "doesn't match with with improper boolean AND operators" do
+      result = Article.text_search "tough & pumpernickel"
+      expect(result.first).to_not eq(@article1)
+    end
+
+    it "does match with with improper boolean AND operators" do
+      result = Article.text_search "tough & pumpernickel"
+      expect(result.first).to_not eq(@article1)
+    end
+
+    it "doesn't do partial content matching" do
       result = Article.text_search "yum"
-      expect(result).to include(article)
+      expect(result).to_not include(@article1)
     end
 
-    it "does full content matching" do
-      result = Article.text_search article.content
-      expect(result).to include(article)
+    it "doesn't do full content matching" do
+      result = Article.text_search @article1.content
+      expect(result).to_not include(@article1)
     end
 
     context "when searching for tagged articles" do
       let(:tag) { create(:tag, name: 'security') }
 
-      before { article.tags << tag }
+      before { @article1.tags << tag }
 
       it "doesn't match based on tag name" do
         result = Article.text_search tag.name
