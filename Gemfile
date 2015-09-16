@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.0'
-
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -19,7 +17,7 @@ gem 'delayed_job_active_record'
 gem 'haml-rails'
 gem 'simple_form', '~> 3.1.0'
 gem 'pygments.rb'
-gem 'redcarpet', github: 'vmg/redcarpet', branch: 'master'
+gem 'redcarpet', '~> 3.3.2'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'draper'
@@ -30,6 +28,7 @@ gem 'skylight'
 gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
+gem 'gemoji'
 gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'fog'
@@ -45,7 +44,8 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.2.0'
-  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'spring-commands-rspec'
+  gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-byebug'
@@ -56,6 +56,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
   gem 'climate_control'

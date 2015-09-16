@@ -32,6 +32,9 @@
   delay   = ( callback, milliseconds ) ->
     setTimeout( callback, milliseconds )
 
+  hideSearch = ->
+    settings.$results.hasClass( 'hide-results' )
+
   settings.$input.on 'input', ->
     clearTimeout( timeout ) if timeout
 
@@ -44,7 +47,7 @@
         settings.$results.removeClass( settings.hiddenClass )
       else
         settings.$alternate.removeClass( settings.hiddenClass )
-        settings.$results.addClass( settings.hiddenClass )
+        settings.$results.addClass( settings.hiddenClass ) if hideSearch()
 
     , settings.inputDelay
 

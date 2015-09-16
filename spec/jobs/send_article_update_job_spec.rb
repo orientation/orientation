@@ -1,7 +1,6 @@
-# -*- encoding : utf-8 -*-
-require 'spec_helper' 
+require "rails_helper"
 
-describe SendArticleUpdateJob do
+RSpec.describe SendArticleUpdateJob do
   let!(:article) { create(:article) }
   let!(:user) { create(:user) }
 
@@ -10,7 +9,7 @@ describe SendArticleUpdateJob do
 
   it "sends an ArticleMailer" do
     mailer = double("ArticleMailer", deliver: true)
-    
+
     expect(ArticleMailer).to receive(:send_updates_for).and_return(mailer)
     perform_job
   end

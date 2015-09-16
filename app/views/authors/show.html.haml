@@ -45,7 +45,7 @@
           - # TODO: Apply signal classes unique to Article decorator
           %ul.list.list--xs.mbl
             - @author.articles.each do | article |
-              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+              %li.card.list-item.article{ class: ( 'has-article-footer' if article.tags.any? ) }
                 = link_to article.title, article, class: 'article-title'
         - else
           - if current_user == @author
@@ -59,7 +59,7 @@
         - if @author.edits.count > 0
           %ul.list.list--xs.mbl
             - @author.edits.each do | article |
-              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+              %li.card.list-item.article{ class: ( 'has-article-footer' if article.tags.any? ) }
                 = link_to article.title, article, class: 'article-title'
         - else
           %p #{ @author.first_name } hasn't edited any articles yet.
@@ -68,7 +68,7 @@
         - if @author.subscribed_articles.count > 0
           %ul.list.list--xs
             - @author.subscribed_articles.each do | article |
-              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+              %li.card.list-item.article{ class: ( 'has-article-footer' if article.tags.any? ) }
                 = link_to article.title, article, class: 'article-title'
         - else
           %p #{ @author.first_name } isn't subscribed to any articles yet.

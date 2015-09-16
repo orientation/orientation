@@ -1,19 +1,24 @@
 language: ruby
 rvm:
-  - 2.2.0
+  - 2.0.0
+  - 2.1.6
+  - 2.2.2
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - rvm: 2.0.0
+      env: ISOLATED=true
+    - rvm: 2.1.6
+      env: ISOLATED=true
+
 sudo: false
-env:
-  global:
-    SPEC_OPTS=--color
 bundler_args: --deployment --without development
 cache:
   - bundler
   - directories:
     - bower_components
     - node_modules
-before_install:
-  - gem install bundler
-  - bundle --version
 before_script:
   - cp config/database.ci.yml config/database.yml
   - cp .env.example .env

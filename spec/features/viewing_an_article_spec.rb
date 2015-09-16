@@ -1,6 +1,6 @@
-require 'spec_helper'
+require "rails_helper"
 
-describe 'Viewing an article' do
+RSpec.describe 'Viewing an article' do
   let(:article) { create(:article) }
 
   subject(:article_visit) { visit article_path(article) }

@@ -9,7 +9,7 @@
       = form_tag form_path, method: :get, remote: true, class: 'js-search-form' do
         = search_field_tag :search, params[:search],
           class: 'form-input js-search-input',
-          placeholder: "Search #{ @articles.count } articles by keyword",
+          placeholder: "Search #{ @articles.count } articles by title",
           data: { shortcut: 's' }
 
     .split-cell.mls.prs
@@ -21,7 +21,7 @@
       = render partial: 'articles/filter_link', locals: { name: 'popular', definition: Article::POPULARITY }
       = render partial: 'articles/filter_link', locals: { name: 'archived', definition: Article::ARCHIVAL }
 
-  %ul.list.list--xs.js-search-results{ class: ( 'dn' if hideResults ) }
+  %ul.list.list--xs.js-search-results{ class: ( 'hide-results dn' if hideResults) }
     = render @articles
 
   - if alternateContent

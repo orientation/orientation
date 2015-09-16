@@ -2,6 +2,86 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## September 15th, 2015
+### Advanced Search vs. Fuzzy Search
+
+After a few weeks trying to make fuzzy search (on title and content) work, it's now clear that this approach 
+won't work, so we switched back to [advanced_search](https://github.com/textacular/textacular#usage) on the 
+article title field only. This makes for a more intuitive search flow since it's far more common to search 
+for something based on the article title (although tags should be added to that soon).
+
+The sad part is that if the title doesn't contain the term you're looking for, now you're out of luck with 
+search. I hope for now that the Guides feature makes up for that but I haven't given up hope on finding an 
+even better way to make basic/advanced search cohabitate better with content-focused fuzzy search (full-text).
+
+### Relative Markdown links
+
+This is a feature I'm really happy to introduce because it really should have been
+here since the beginning.
+
+It's now possible to link to any article using either the article title or its URL
+slug. Say you have an article titled "Onboarding", you can write the following
+Markdown and the proper link will automatically be expanded once the article you're
+editing is saved.
+
+![Before Smart Links](https://s3.amazonaws.com/f.cl.ly/items/020Q0V1n1L3t2r3y1K2N/Screen%20Shot%202015-09-15%20at%206.07.41%20AM.png)
+
+![After Smart Links](https://s3.amazonaws.com/f.cl.ly/items/1r3n2V2y231i0i1l3010/Screen%20Shot%202015-09-15%20at%206.07.21%20AM.png)
+
+### Color-coded article existence check
+
+Now when you link to an article title, slug or URL that doesn't exist on Orientation
+you will see the color of the link change to red to indicate that an article is missing.
+
+![Color for incorrect link](https://s3.amazonaws.com/f.cl.ly/items/0T1m433Z1l201C3r290O/Screen%20Shot%202015-09-15%20at%206.56.17%20AM.png)
+
+## September 3rd, 2015
+### Restrict Google Apps sign in to `ORIENTATION_EMAIL_WHITELIST` domain
+
+Thanks to Bruno Miranda, it's now possible to display only the authorized Google Apps domain set in the `ORIENTATION_EMAIL_WHITELIST` environment variable in the Google sign in page.
+
+This way instead of listing all the Google accounts a user has, only the one authorized to sign into Orientation will be displayed. This should reduce confusion among first-time users of Orientation and prevent failed sign in attempts.
+
+## September 1st, 2015
+### Emoji Support! :+1:
+
+Thanks to Brandon Mathis it's now possible to use GitHub-style emojis in Orientation articles.
+
+## August 29th, 2015
+### Reduced queries on tags & article associations thanks to @fusion2004
+
+This is a fix I should have worked on much earlier as tags and articles always generated a heap of N+1 queries for
+no good reason when we fetched article or tag counts. I highly recommend merging in master into your forks at fe85cf0135c2ce02600034405de3ae167fc35373 or later to benefit from this significant reduction in queries on guide and article index pages.
+
+### Uglifier security update
+This is less exciting but worth mentioning, Mark Oleson also contributed a useful little PR to update the Uglifier version which had been vulnerable for a little while. Another great reason to merge master into your forks and deploy to production quickly.
+
+### No more trouble when using the Heroku button
+
+I took way to long to react on this but Michael Friis contributed [a nifty patch](https://github.com/orientation/orientation/pull/155) to fix recurring issues when the Heroku button because our app.json manifest was too tightly coupled to specific Heroku add-on plans.
+
+## July 31st, 2015
+### Search Finally Works!
+
+![Pumpernickel Stew!](https://s3.amazonaws.com/f.cl.ly/items/0I0N34230b1T3A383h2L/Screen%20Shot%202015-07-31%20at%201.10.37%20AM.png)
+
+After upgrading RSpec I finally decided to take a much needed second look in order to figure out why search was behaving so poorly (it basically did not work at all). I realized I was wholly misusing the wonderful textactular
+gem that allows us to do full-text searching without anything fancy like Solr or Elastic Search.
+
+And guess, what? It works. Search will now fuzzy (partial-match) search on article titles and their **entire content**. This is a very big deal because Orientation was predicated on the promise of instant search to reduce
+the cognitive load of having to browse for something you don't understand.
+
+Now're finally back in the land where if you have the word "Pumpernickel" anywhere within any article, a simple
+search for `pumper` will bring up all the articles that contain any word which contains that — for example `pumpernickel`.
+
+Additionally, I've fixed an issue where the articles listed on filtered articles pages (fresh, stale, popular)
+did not reappear after the search form was re-submitted with no query or if the currently typed query
+was removed. This makes the filtered article pages much more friendly they now behave once again like a
+proper "filtered search" page.
+
+I'm so very sorry to anyone who invested time in Orientation since it was open-sourced. This is a bug I had meant
+to fix for literal years and for reasons I can't explain away, had never managed to.
+
 ## April 4th, 2015
 ### No more dependency on Amazon S3 and CarrierWave/Fog
 Installing Orientation from scratch turned out to be a pain (even fore me) because S3's access policies are a huge pain and I couldn't even figure out how to make a properly segregated Orientation demo account on AWS without pulling hair.

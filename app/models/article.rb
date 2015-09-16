@@ -17,7 +17,8 @@ class Article < ActiveRecord::Base
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
-  has_and_belongs_to_many :tags, counter_cache: :tags_count, before_add: :validates_tag
+  has_many :articles_tags, dependent: :destroy
+  has_many :tags, through: :articles_tags, counter_cache: :tags_count
   has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
   has_many :endorsements, class_name: "ArticleEndorsement", counter_cache: true, dependent: :destroy
@@ -25,10 +26,10 @@ class Article < ActiveRecord::Base
 
   attr_reader :tag_tokens
 
+  validates :title, presence: true
+
   after_save :update_subscribers
   after_save :notify_slack
-  after_create :increment_tags_counter
-  before_destroy :decrement_tags_counter
   after_destroy :notify_slack
 
   FRESHNESS_LIMIT = 7.days
@@ -41,7 +42,7 @@ class Article < ActiveRecord::Base
   ARCHIVAL = "Outdated & ignored in searches."
 
   scope :archived, -> { where.not(archived_at: nil) }
-  scope :current, -> { where(archived_at: nil).order("rotted_at DESC") }
+  scope :current, -> { where(archived_at: nil).order(rotted_at: :desc).order(updated_at: :desc).order(created_at: :desc) }
   scope :fresh, -> do
     where("updated_at >= ?", FRESHNESS_LIMIT.ago).
       where(archived_at: nil).
@@ -70,7 +71,7 @@ class Article < ActiveRecord::Base
     scope ||= current
 
     if query.present?
-      scope.fuzzy_search(title: query)
+      scope.advanced_search(title: query)
     else
       scope
     end
@@ -81,7 +82,7 @@ class Article < ActiveRecord::Base
   end
 
   def archive!
-    update_attribute(:archived_at, Time.now.in_time_zone)
+    update_attribute(:archived_at, Time.current)
   end
 
   def archived?
@@ -114,7 +115,7 @@ class Article < ActiveRecord::Base
   end
 
   def rot!
-    update_attribute(:rotted_at, Time.now.in_time_zone)
+    update_attribute(:rotted_at, Time.current)
     Delayed::Job.enqueue(SendArticleRottenJob.new(self.id, contributors))
   end
 
@@ -132,9 +133,8 @@ class Article < ActiveRecord::Base
   end
 
   def self.reset_tags_count
-    self.all.each do |article|
-      tag_count = article.tags.count
-      article.update_attribute(:tags_count, tag_count)
+    pluck(:id).each do |article_id|
+      reset_counters(article_id, :tags)
     end
   end
 
@@ -201,22 +201,6 @@ class Article < ActiveRecord::Base
   def update_subscribers
     subscriptions.each do |subscription|
       subscription.send_update
-    end
-  end
-
-  def validates_tag(tag)
-    self.tags.include?(tag)
-  end
-
-  def increment_tags_counter
-    self.tags.each do |tag|
-      tag.increment!(:articles_count)
-    end
-  end
-
-  def decrement_tags_counter
-    self.tags.each do |tag|
-      tag.decrement!(:articles_count)
     end
   end
 
