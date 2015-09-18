@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/cmckni3/omniauth-gitlab
+  revision: 0e1cfa12c3509c6ceb5a5168326e994e929d1552
+  branch: patch-1
+  specs:
+    omniauth-gitlab (1.0.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -174,9 +183,6 @@ GEM
     omniauth-github (1.1.1)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
-    omniauth-gitlab (1.0.0)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
     omniauth-google-oauth2 (0.2.6)
       omniauth (> 1.0)
       omniauth-oauth2 (~> 1.1)
@@ -350,7 +356,7 @@ DEPENDENCIES
   mandrill_mailer
   omniauth
   omniauth-github
-  omniauth-gitlab
+  omniauth-gitlab!
   omniauth-google-oauth2
   pg
   powder

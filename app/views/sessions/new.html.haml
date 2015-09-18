@@ -1,0 +1,15 @@
+%section.row
+  .cell.well.well--l
+    = link_to 'Sign in with: ' do
+      - if ENV['GOOGLE_KEY'].present? && ENV['GOOGLE_SECRET'].present?
+        .btn.btn--b.btn--oauth-provider.btn--google
+          %span= image_tag 'g-logo.png'
+          Google
+      - if ENV['GITHUB_CLIENT_ID'].present? && ENV['GITHUB_SECRET'].present?
+        .btn.btn--b.btn--oauth-provider.btn--github
+          %span= image_tag 'github-logo.png'
+          GitHub
+      - if ENV['GITLAB_KEY'].present? && ENV['GITLAB_SECRET'].present?
+        .btn.btn--b.btn--oauth-provider.btn--gitlab
+          %span= image_tag 'gitlab-logo.png'
+          GitLab
