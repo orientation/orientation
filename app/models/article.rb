@@ -8,11 +8,7 @@ class Article < ActiveRecord::Base
   friendly_id :title, use: [:slugged, :history]
 
   def should_generate_new_friendly_id?
-    persisted? && (missing_friendly_id_slug? || title_changed?)
-  end
-
-  def missing_friendly_id_slug?
-    !has_friendly_id_slug?
+    !has_friendly_id_slug? or title_changed?
   end
 
   def has_friendly_id_slug?
