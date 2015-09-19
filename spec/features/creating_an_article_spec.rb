@@ -1,22 +1,18 @@
 require "rails_helper"
 
 RSpec.describe 'Creating an article' do
-  def fill(options)
-    options.each do |o|
-      fill_in o.first, with: o.second
+  before { visit new_article_path }
+
+  subject(:create) { click_button "Create Article" }
+
+  context "with valid parameters" do
+    before do
+      fill_in "article_title", with: "Test"
+      fill_in "article_content", with: "This is a test"
     end
-  end
 
-  before do
-    visit new_article_path
-    fill(
-      "article_title" => "Test",
-      "article_content" => "This is a test"
-    )
-    click_button "Create Article"
-  end
-
-  it "" do
-    expect(current_path).to_not eq(new_article_path)
+    it "doesn't redirect to the new article page" do
+      expect { create }.to change { current_path }.from(new_article_path)
+    end
   end
 end
