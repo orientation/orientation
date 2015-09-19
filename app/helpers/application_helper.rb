@@ -19,7 +19,7 @@ module ApplicationHelper
 
       sha = Digest::SHA1.hexdigest(code)
       Rails.cache.fetch ["code", safe_language, sha].join('-') do
-        Pygments.highlight(code, lexer: safe_language)
+        Pygments.highlight(code, lexer: safe_language, options: { linespans: 'highlight' })
       end
     end
 
