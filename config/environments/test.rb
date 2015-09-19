@@ -14,7 +14,7 @@ Rails.application.configure do
 
   # Configure static file server for tests with Cache-Control for performance.
   config.serve_static_files   = true
-  config.static_cache_control = "public, max-age=3600"
+  config.static_cache_control = 'public, max-age=3600'
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -30,21 +30,23 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  config.mandrill_mailer.default_url_options = { :host => 'www.example.com' }
-  config.action_mailer.default_url_options = { :host => 'www.example.com' }
-  config.action_controller.default_url_options = { :host => 'www.example.com' }
+
+  config.mandrill_mailer.default_url_options =
+  config.action_mailer.default_url_options =
+  config.action_controller.default_url_options =
+  { :host => 'www.example.com' }
 
   ActionMailer::Base.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
-    :user_name => "olivier@codeschool.com",
-    :password  => "123-asdf",
-    :domain    => 'heroku.com'
+    :user_name => ENV.fetch("MANDRILL_USERNAME"),
+    :password  => ENV.fetch("MANDRILL_API_KEY"),
+    :domain    => ENV.fetch("MANDRILL_DOMAIN")
   }
 
   config.after_initialize do
     MandrillMailer.configure do |config|
-      config.api_key = "Ym4WU9JVhCeq429SH11_XA"
+      config.api_key = "this-is-not-a-real-api-key"
     end
   end
 
@@ -53,4 +55,7 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Raises error for missing translations
+  config.action_view.raise_on_missing_translations = true
 end

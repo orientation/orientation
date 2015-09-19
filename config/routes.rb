@@ -8,23 +8,33 @@ Rails.application.routes.draw do
   resources :tags
 
   resources :authors, only: [:index, :show, :new, :create, :update] do
-    put :toggle_status, to: 'authors#toggle_status', as: 'toggle_status'
+    put :toggle_status, to: "authors#toggle_status", as: "toggle_status"
   end
 
   resources :articles do
-    get :archived, on: :collection
-    put :toggle_subscription, on: :member
-    put :toggle_endorsement, on: :member
-    put :report_rot, on: :member
-    put :mark_fresh, on: :member
-    put :toggle_archived, on: :member
-    get :subscriptions, on: :member
-    get :versions, on: :member
+    collection do
+      get :fresh
+      get :stale
+      get :rotten
+      get :archived
+      get :popular
+    end
+    member do
+      put :toggle_subscription
+      put :toggle_endorsement
+      put :report_rot
+      put :mark_fresh
+      put :toggle_archived
+      get :subscriptions
+    end
     resources :versions, controller: 'versions'
   end
 
   resources :guides, only: [:show, :index]
+  resources :subscriptions, only: :index
+  resources :endorsements, only: :index
 
+  # this has to be the last route because we're catching slugs at the root path
   resources :articles, path: "", only: :show
 
   resources :versions, only: :show

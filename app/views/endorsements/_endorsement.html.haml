@@ -1,0 +1,6 @@
+%li.list-item
+  %span.dib.mrxs
+    = relative_time_element(endorsement.created_at)
+    %strong= endorsement.user
+    endorsed
+    = link_to endorsement.article.title, endorsement.article

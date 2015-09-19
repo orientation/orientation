@@ -1,12 +1,10 @@
-require "spec_helper"
+require "rails_helper"
 
-describe Article do
-  context "after_save" do
+RSpec.describe Article do
+  describe "#after_save" do
     let(:article) { create(:article) }
     let(:user) { create(:user) }
-    let!(:article_subscription) {
-      create(:article_subscription, article: article, user: user)
-    }
+    let!(:article_subscription) { create(:article_subscription, article: article, user: user) }
 
     before { article.subscriptions.reload }
 
@@ -18,7 +16,31 @@ describe Article do
     end
   end
 
-  context '#author?(user)' do
+  describe ".count_visit(article)" do
+    let(:article) { create(:article, :stale) }
+
+    subject(:count_visit) { described_class.count_visit(article) }
+
+    it "increments the visits column" do
+      expect { count_visit }.to change { article.reload.visits }.by(1)
+    end
+
+    it "doesn't change the updated_at timestamp" do
+      expect { count_visit }.not_to change { article.reload.updated_at }
+    end
+  end
+
+  describe "#count_visit" do
+    let(:article) { create(:article) }
+
+    subject(:count_visit) { article.count_visit }
+
+    it "increments the visits" do
+      expect { count_visit }.to change { article.reload.visits }.by(1)
+    end
+  end
+
+  describe '#author?(user)' do
     let!(:article) { create(:article) }
     let(:user) { nil }
 
@@ -41,7 +63,7 @@ describe Article do
     end
   end
 
-  context '#guide?' do
+  describe '#guide?' do
     let(:article) { create(:article) }
 
     context 'when the article is not set as a guide' do
@@ -67,7 +89,7 @@ describe Article do
     end
   end
 
-  context '.guide' do
+  describe '.guide' do
     let!(:guide_article) { create(:article, :guide) }
     let!(:article) { create(:article) }
 
@@ -82,20 +104,37 @@ describe Article do
     end
   end
 
-  context '.popular' do
-    let(:articles) do
-      5.times { create(:article) }
-      Article.all
-    end
-    let(:first_article) { articles.first }
-    let!(:subscriber) { create(:article_subscription, article: first_article ) }
+  describe '.popular' do
+    before { 5.times { create(:article) } }
 
-    it "returns the 5 most subscribed to article first" do
-      expect(Article.popular.first).to eq(first_article)
+    subject(:most_popular_article) { Article.popular.first }
+
+    context "with a subscribed to article" do
+      let!(:article) { create(:article_subscription).article }
+
+      it "returns the article with a subscription first" do
+        expect(most_popular_article).to eq(article)
+      end
+    end
+
+    context "with an endorsed article" do
+      let!(:article) { create(:article_endorsement).article }
+
+      it "returns the article with an endorsement first" do
+        expect(most_popular_article).to eq(article)
+      end
+    end
+
+    context "with a visited article" do
+      let!(:article) { create(:article, :popular) }
+
+      it "returns the article with a visit first" do
+        expect(most_popular_article).to eq(article)
+      end
     end
   end
 
-  context ".fresh" do
+  describe ".fresh" do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
 
@@ -110,22 +149,36 @@ describe Article do
     end
   end
 
-  context "#fresh?" do
-    let(:fresh_article) { create(:article) }
-    let(:stale_article) { create(:article, :stale) }
+  describe '#fresh?' do
+    subject { described_class.new }
 
-    it "is true for fresh articles" do
-      expect(fresh_article.fresh?).to be_truthy
+    context 'when it is archived' do
+      before { subject.archived_at = Time.current }
+      it { should_not be_fresh }
     end
 
-    it "is false for stale articles" do
-      expect(stale_article.fresh?).to be_falsey
+    context 'when it is rotten' do
+      before { subject.rotted_at = Time.current }
+      it { should_not be_fresh }
+    end
+
+    context 'when it is neither archived nor rotten' do
+      context 'and when time since updated exceeds the FRESHNESS_LIMIT' do
+        before { subject.updated_at = (described_class::FRESHNESS_LIMIT + 1.minute).ago }
+        it { should_not be_fresh }
+      end
+
+      context 'and when time since updated is within the FRESHNESS_LIMIT' do
+        before { subject.updated_at = (described_class::FRESHNESS_LIMIT - 1.minute).ago }
+        it { should be_fresh }
+      end
     end
   end
 
-  context ".stale" do
+  describe ".stale" do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
+    let!(:rotten_article) { create(:article, :rotten) }
 
     subject(:stale_articles) { Article.stale }
 
@@ -136,113 +189,65 @@ describe Article do
     it "does not include fresh articles" do
       expect(stale_articles).not_to include(fresh_article)
     end
-  end
-
-  context "#stale?" do
-    let(:fresh_article) { create(:article) }
-    let(:stale_article) { create(:article, :stale) }
-
-    it "is true for stale articles" do
-      expect(stale_article.stale?).to be_truthy
-    end
-
-    it "is false for fresh articles" do
-      expect(fresh_article.stale?).to be_falsey
-    end
-  end
-
-  context ".text_search" do
-    let!(:article) { create :article, title: "Pumpernickel Stew", content: "Yum!"}
-
-    it "does partial title matching" do
-      result = Article.text_search "Stew"
-      expect(result).to include(article)
-    end
-
-    it "does full title matching" do
-      result = Article.text_search article.title
-      expect(result).to include(article)
-    end
-
-    it "does partial content matching" do
-      result = Article.text_search "yum"
-      expect(result).to include(article)
-    end
-
-    it "does full content matching" do
-      result = Article.text_search article.content
-      expect(result).to include(article)
-    end
-  end
-
-  context ".ordered_current" do
-    let!(:recent_article) { create :article }
-    let!(:more_recent_article) { create :article }
-    let!(:archived_article) { create :article, :archived }
-
-    it "returns the more recent article first" do
-      expect(Article.ordered_current.first).to eq more_recent_article
-    end
-
-    it "does not include archived articles" do
-      expect(Article.ordered_current).to_not include(archived_article)
-    end
-
-    context 'with a recently created rotten article' do
-      before { recent_article.rot! }
-
-      it "doesn't return the rotten article first" do
-        expect(Article.ordered_current.first).to_not eq recent_article
-      end
-
-      it "returns the rotten article last" do
-        expect(Article.ordered_current.last).to eq recent_article
-      end
-    end
-
-    context 'with a recently updated rotten article' do
-      before { recent_article.rot!; recent_article.touch }
-
-      it "doesn't return the rotten article first" do
-        expect(Article.ordered_current.first).to_not eq recent_article
-      end
-
-      it "returns the rotten article last" do
-        expect(Article.ordered_current.last).to eq recent_article
-      end
-    end
-  end
-
-  context ".ordered_fresh" do
-    let!(:recent_article) { create :article }
-    let!(:more_recent_article) { create :article }
-    let!(:archived_article) { create :article, :archived }
-    let!(:rotten_article) { create :article, :rotten }
-
-    subject(:ordered_fresh) { Article.ordered_fresh }
-
-    it "returns the more recent article first" do
-      expect(ordered_fresh.first).to eq more_recent_article
-    end
-
-    it "does not include archived articles" do
-      expect(ordered_fresh).to_not include(archived_article)
-    end
 
     it "does not include rotten articles" do
-      expect(ordered_fresh).to_not include(archived_article)
+      expect(stale_articles).not_to include(rotten_article)
+    end
+  end
+
+  describe "#stale?" do
+    subject { described_class.new }
+
+    context 'when time since updated exceeds the STALENESS_LIMIT' do
+      before { subject.updated_at = (described_class::STALENESS_LIMIT + 1.minute).ago }
+      it { should be_stale }
+    end
+
+    context 'when time since updated is within the STALENESS_LIMIT' do
+      before { subject.updated_at = (described_class::STALENESS_LIMIT - 1.minute).ago }
+      it { should_not be_stale }
+    end
+  end
+
+  describe ".recent" do
+    let!(:recent_article) { create :article }
+    let!(:more_recent_article) { create :article }
+
+    subject(:recent) { Article.recent }
+
+    it "returns the more recent article first" do
+      expect(recent.first).to eq more_recent_article
     end
 
     context "with an updated article" do
       before { recent_article.touch }
 
       it "returns the updated article first" do
-        expect(ordered_fresh.first).to eq recent_article
+        expect(recent.first).to eq recent_article
       end
     end
   end
 
-  context "#archive!" do
+  describe ".current" do
+    let!(:recent_article) { create :article }
+    let!(:more_recent_article) { create :article }
+
+    subject(:recent) { Article.recent }
+
+    it "returns the more recent article first" do
+      expect(recent.first).to eq more_recent_article
+    end
+
+    context "with an updated article" do
+      before { recent_article.touch }
+
+      it "returns the updated article first" do
+        expect(recent.first).to eq recent_article
+      end
+    end
+  end
+
+  describe "#archive!" do
     let!(:article) { create :article }
 
     subject(:archive_article) { article.archive! }
@@ -252,35 +257,20 @@ describe Article do
     end
   end
 
-  context "#fresh?" do
-    subject(:fresh?) { article.fresh? }
+  describe '#archived?' do
+    subject { described_class.new }
 
-    context 'with a fresh article' do
-      let(:article) { create(:article, :fresh) }
-
-      it "returns true" do
-        expect(fresh?).to be_truthy
-      end
+    context 'when archived_at is not set' do
+      specify { expect(subject.archived?).to be false }
     end
 
-    context 'with a stale article' do
-      let(:article) { create(:article, :stale) }
-
-      it "returns false" do
-        expect(fresh?).to be_falsey
-      end
-    end
-
-    context 'with a rotten article' do
-      let(:article) { create(:article, :rotten) }
-
-      it "returns false" do
-        expect(fresh?).to be_falsey
-      end
+    context 'when archived_at is set' do
+      before { subject.archived_at = Time.current }
+      specify { expect(subject.archived?).to be true }
     end
   end
 
-  context "#refresh!" do
+  describe "#refresh!" do
     subject(:refresh!) { article.refresh! }
 
     context 'with a fresh article' do
@@ -308,7 +298,7 @@ describe Article do
     end
   end
 
-  context "#rot!" do
+  describe "#rot!" do
     subject(:rot!) { article.rot! }
 
     context 'with a fresh article' do
@@ -336,25 +326,20 @@ describe Article do
     end
   end
 
-  context "#rotten?" do
-    let(:fresh_article) { create(:article, :fresh) }
-    let(:stale_article) { create(:article, :stale) }
-    let(:rotten_article) { create(:article, :rotten) }
+  describe '#rotten?' do
+    subject { described_class.new }
 
-    it "returns false for a fresh article" do
-      expect(fresh_article.rotten?).to be_falsey
+    context 'when rotted_at is not set' do
+      it { should_not be_rotten }
     end
 
-    it "returns false for a stale article" do
-      expect(stale_article.rotten?).to be_falsey
-    end
-
-    it "returns true for a rotten article" do
-      expect(rotten_article.rotten?).to be_truthy
+    context 'when rotted_at is set' do
+      before { subject.rotted_at = Time.current }
+      it { should be_rotten }
     end
   end
 
-  context "#stale?" do
+  describe "#stale?" do
     let(:fresh_article) { create(:article, :fresh) }
     let(:stale_article) { create(:article, :stale) }
 
@@ -367,7 +352,7 @@ describe Article do
     end
   end
 
-  context "#unarchive!" do
+  describe "#unarchive!" do
     let!(:article) { create :article }
 
     subject(:unarchive_article) { article.unarchive! }
@@ -379,9 +364,8 @@ describe Article do
     end
   end
 
-  context 'tags_count' do
+  describe 'tags_count' do
     let!(:article) { create(:article) }
-    let!(:article_tag_count) { article.tags_count }
 
     context 'when a tag is added' do
       subject(:add_tag) { create(:tag, articles: [article]) }
@@ -400,6 +384,49 @@ describe Article do
         expect { remove_tag }.to change { article.reload.tags_count }.by(-1)
       end
     end
+  end
 
+  describe "subscriptions_count" do
+    let!(:article) { create(:article) }
+
+    context 'when a subscription is added' do
+      subject(:add_subscription) { create(:article_subscription, article: article) }
+
+      it "increases" do
+        expect { add_subscription }.to change { article.subscriptions_count }.by(1)
+      end
+    end
+
+    context 'when a subscription is removed' do
+      let!(:subscription) { create(:article_subscription, article: article) }
+
+      subject(:remove_subscription) { article.subscriptions.reload.first.destroy }
+
+      it "decreases" do
+        expect { remove_subscription }.to change { article.reload.subscriptions_count }.by(-1)
+      end
+    end
+  end
+
+  describe "endorsements_count" do
+    let!(:article) { create(:article) }
+
+    context 'when a endorsement is added' do
+      subject(:add_endorsement) { create(:article_endorsement, article: article) }
+
+      it "increases" do
+        expect { add_endorsement }.to change { article.endorsements_count }.by(1)
+      end
+    end
+
+    context 'when a endorsement is removed' do
+      let!(:endorsement) { create(:article_endorsement, article: article) }
+
+      subject(:remove_endorsement) { article.endorsements.reload.first.destroy }
+
+      it "decreases" do
+        expect { remove_endorsement }.to change { article.reload.endorsements_count }.by(-1)
+      end
+    end
   end
 end

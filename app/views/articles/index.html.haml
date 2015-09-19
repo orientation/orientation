@@ -1,21 +1,8 @@
-%main.row
+%section.row
   .cell.well.well--l
 
-    - if user_signed_in?
+    = render partial: 'articles/search'
 
-      .js-search
-
-        .form.form--inline
-          = form_tag articles_path, method: :get, remote: true, class: 'js-search-form' do
-            = search_field_tag :search, params[:search],
-              class: 'form-input js-search-input',
-              placeholder: 'Search articles by keyword',
-              autofocus: true
-
-        %ul.list.list--xs.js-search-results
-          = render @articles
-
-    - else
-
-      %h1
-        = link_to 'Please Log in to Continue', login_path
+    .mtm.tar
+      = link_to 'Article Subscriptions', subscriptions_path, class: 'btn btn--b mrs'
+      = link_to 'Article Endorsements', endorsements_path, class: 'btn btn--b'

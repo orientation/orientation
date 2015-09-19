@@ -1,9 +1,8 @@
-# -*- encoding : utf-8 -*-
-require 'spec_helper'
+require "rails_helper"
 
-describe StalenessNotificationJob do
-  # NOTE: commented out because now RSpec exists with 1 on pending specs
-  # which is super annoying.
+RSpec.describe StalenessNotificationJob do
+  # NOTE: commented out because now RSpec exists with 1 on skipped specs
+  # through a before(:all).
   #
   # before(:all) { skip "Staleness notification jobs have been disabled for now." }
 

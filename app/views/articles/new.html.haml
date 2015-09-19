@@ -1,3 +1,8 @@
-%main.row
+- if !@article.valid? && !@article.new_record?
+  %p.bulletin.bulletin--warning
+    There's already an article with this title.
+
+%section.row
   .cell.well.well--l
-    = render partial: 'form', locals: { label_text: 'Create a New Article'  }
+
+    = render partial: 'form', locals: { label_text: 'Create a New Article' }

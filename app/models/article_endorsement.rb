@@ -1,5 +1,7 @@
 class ArticleEndorsement < ActiveRecord::Base
-  belongs_to :article
+  include Dateable
+
+  belongs_to :article, counter_cache: :endorsements_count
   belongs_to :user
 
   after_create :send_endorsement

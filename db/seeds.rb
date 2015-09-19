@@ -8,8 +8,8 @@
 
 User.create(
   name: "Alvar Hanso",
-  email: "alvar@codeschool.com",
-  avatar: File.open('public/alvar.jpg'),
+  email: "alvar@hanso.dk",
+  image: ActionController::Base.helpers.asset_path("default_avatar.jpg"),
   shtick: "I stare at stuff inside buildings"
 )
 

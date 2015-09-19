@@ -1,0 +1,9 @@
+= page_title 'Article Endorsements'
+
+%section.row
+  .cell.well.well--l
+
+    %h1 Recent Article Endorsements
+
+    %ul.list.list--xs
+      = render partial: "endorsement", collection: @endorsements.decorate

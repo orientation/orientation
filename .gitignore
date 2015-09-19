@@ -7,6 +7,9 @@
 # Ignore bundler config
 /.bundle
 
+# Ignore developer chosen ruby management
+.ruby-gemset
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -20,9 +23,6 @@
 
 # ignore coveralls/simplecov
 coverage/
-
-# ignore /bin
-/bin
 
 /.env
 

@@ -1,5 +1,7 @@
 class ArticleSubscription < ActiveRecord::Base
-  belongs_to :article
+  include Dateable
+
+  belongs_to :article, counter_cache: :subscriptions_count
   belongs_to :user
 
   def send_update

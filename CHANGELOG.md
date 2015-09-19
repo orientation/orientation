@@ -1,6 +1,5 @@
 This project has no CHANGELOG, for the following reasons:
 
-- It's a huge app
 - It evolves quickly
 - Its boundaries are not clearly defined
 - The feature list is still in flux

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       # OmniAuth automatically saves the HTTP_REFERER when you begin the auth process
       redirect_to  request.env['omniauth.origin'] || root_url
     else
-      flash[:error] = "You need a codeschool.com or envylabs.com account to sign in."
+      flash[:error] = "You need a #{ENV.fetch('ORIENTATION_DOMAIN')} account to sign in."
       redirect_to root_url
     end
   end

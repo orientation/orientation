@@ -16,9 +16,11 @@ class ApplicationController < ActionController::Base
       user = nil
 
       # In the development environment, your current_user will be the
-      # first User in the database. Easy enough ;-)
-      if Rails.env.development?
-        user = User.first or raise "Missing User Error: run `User.create(email: 'test@example.com')` in the console."
+      # first User in the database or a dummy one created below.
+      if !Rails.env.production?
+        user = User.first_or_create(email: "alvar@hanso.dk", name: "Alvar Hanso")
+        session[:user_id] = user.id
+        flash[:notice] = "Signed in!"
       else
         user = User.find(session[:user_id]) if session[:user_id].present?
       end

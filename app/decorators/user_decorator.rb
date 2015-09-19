@@ -14,16 +14,11 @@ class UserDecorator < ApplicationDecorator
   end
 
   def image
-    source.avatar.thumb.url or
-    source.try :image
+    source.try(:image) or asset_path("default_avatar.jpg")
   end
 
   def image_link(size = 40)
     link_to image_tag(image, class: 'thumb dib', height: size, width: size), author_path(source)
-  end
-
-  def large_image
-    source.avatar.large.url
   end
 
   def link

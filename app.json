@@ -1,0 +1,34 @@
+{
+  "name": "Orientation",
+  "description": "Your best weapon in the fight against knowledge rot.",
+  "logo": "https://raw.githubusercontent.com/orientation/orientation/master/app/assets/images/orientation_eye.png",
+  "keywords": [
+    "documentation",
+    "team",
+    "knowledge base"
+  ],
+  "addons": [
+    "scheduler",
+    "heroku-postgresql",
+    "logentries"
+  ],
+  "env": {
+    "ORIENTATION_LOGO": "/assets/default_logo.svg",
+    "ORIENTATION_FAVICON": "/assets/default_favicon.png",
+    "ORIENTATION_DOMAIN": "REDACTED",
+    "GOOGLE_SECRET": "REDACTED",
+    "GOOGLE_KEY": "REDACTED",
+    "MANDRILL_USERNAME": "REDACTED",
+    "MANDRILL_PASSWORD": "REDACTED",
+    "MANDRILL_API_KEY": "REDACTED",
+    "MANDRILL_DOMAIN": "heroku.com"
+  },
+  "buildpacks" : [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-ruby"
+    }
+  ]
+}

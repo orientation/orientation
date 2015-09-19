@@ -22,6 +22,12 @@
             = f.input_field :content, rows: 12, class: 'form-input form-textarea js-editor-textarea'
 
         .form-field
+          = f.label :author do
+            %span.form-label.label Author
+            - user_id = @article.new_record? ? current_user.id : @article.author_id
+            = f.input_field :author_id, collection: User.active.order(:name), include_blank: false, selected: user_id
+
+        .form-field
           = f.label :tag_tokens do
             %span.form-label.label Tags
             = f.input_field :tag_tokens, data: { load: @tags }
@@ -33,7 +39,10 @@
               = f.input_field :guide, class: 'form-input form-input--checkbox'
               %span.form-label.label Make This a Guide
 
-            %p.mbf.tcs.tsi.tss A "Guide" is a collection of related articles under a particular topic.
+            %p.mbf.tcs.tsi.tss
+              Guides are displayed on the home page. They can group related articles for a subject or team.
+              You can use a "Support" guide to neatly arrange support-related
+              articles into a coherent guide linking to other articles.
 
         - if @article.author.blank?
           .form-field
@@ -47,85 +56,4 @@
   .g-b.g-b--m--1of3
 
     .card.card--b.has-card-section
-      %h2.tac.mbs Markdown
-
-      .card-section.pbs.pts
-        .form.mbf
-          .js-accordion
-            .split.js-accordion-btn
-              .split-cell
-                %span.form-label.label Headings
-              .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
-            .js-accordion-content
-              %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '## This is an h2' }
-              %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '### This is an h3' }
-              %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '#### This is an h4' }
-              %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '##### This is an h5' }
-              %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '###### This is an h6' }
-
-      .card-section.pbs.pts
-        .form.mbf
-          .js-accordion
-            .split.js-accordion-btn
-              .split-cell
-                %span.form-label.label Links
-              .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
-            .js-accordion-content
-              %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '[This is a link](http://example.com)' }
-
-      .card-section.pbs.pts
-        .form.mbf
-          .js-accordion
-            .split.js-accordion-btn
-              .split-cell
-                %span.form-label.label Lists
-              .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
-            .js-accordion-content
-              %textarea.form-input.form-textarea.form-textarea--pre.mbs.js-selectText{ readonly: true, rows: 3 }
-                \- This is the first item in an unordered list
-                \- This is the second item in an unordered list
-                \- This is the third item in an unordered list
-              %textarea.form-input.form-textarea.form-textarea--pre.mbf.js-selectText{ readonly: true, rows: 3 }
-                \1. This is the first item in an ordered list
-                \2. This is the second item in an ordered list
-                \3. This is the third item in an ordered list
-
-      .card-section.pbs.pts
-        .form.mbf
-          .js-accordion
-            .split.js-accordion-btn
-              .split-cell
-                %span.form-label.label Code
-              .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
-            .js-accordion-content
-              %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '`This is inline code`' }
-              %textarea.form-input.form-textarea.form-textarea--pre.js-selectText{ readonly: true, rows: 3 }
-                \```
-                This is a code block
-                \```
-
-      .card-section.pbs.pts
-        .form.mbf
-          .js-accordion
-            .split.js-accordion-btn
-              .split-cell
-                %span.form-label.label Strong
-              .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
-            .js-accordion-content
-              %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '**This text is strong**' }
-
-      .card-section.pbs.pts
-        .form.mbf
-          .js-accordion
-            .split.js-accordion-btn
-              .split-cell
-                %span.form-label.label Emphasis
-              .split-cell
-                = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
-            .js-accordion-content
-              %input.form-input.mbf.js-selectText{ type: 'text', readonly: true, value: '_This text is emphasized_' }
+      = render "markdown_guide"

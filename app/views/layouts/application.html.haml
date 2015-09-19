@@ -1,73 +1,27 @@
-!!!
+!!! 5
 %html{ lang: 'en' }
   %head
+
     %meta{ charset: 'utf-8' }
-    %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }
-    %title= content_for(:page_title) || 'Orientation'
-    = stylesheet_link_tag    'application', media: 'all'
-    = favicon_link_tag ENV["ORIENTATION_FAVICON"]
+    %meta{ content: 'IE=edge,chrome=1', 'http-equiv' => 'X-UA-Compatible' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+
+    %title= content_for(:page_title) || @page_title || 'Orientation'
+
+    = stylesheet_link_tag 'application'
+    = favicon_link_tag ENV['ORIENTATION_FAVICON']
     = csrf_meta_tags
 
   %body{ class: body_class }
-    %header.header
-      .cell
-        .header-row
 
-          %nav.split
-            .split-cell
-              %ul.list.list--inline.list--inline--f.list--inline--flex
-                %li.list-item
-                  = link_to root_url, class: 'header-btn' do
-                    = image_tag( ENV['ORIENTATION_LOGO'], height: 40, width: 40, class: 'vam' )
-                %li.list-item
-                  = link_to articles_url, class: 'header-btn' do
-                    %span.tss Articles
-                %li.list-item
-                  = link_to tags_url, class: 'header-btn' do
-                    %span.tss Tags
-                %li.list-item.dn.di--s
-                  = link_to authors_url, class: 'header-btn' do
-                    %span.tss Authors
-                %li.list-item.dn--s
-                  .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
-                    = link_to '#', class: 'header-btn js-dropdown-btn' do
-                      %span.tss More
-                    %ul.dropdown-menu.js-dropdown-menu
-                      %li.dropdown-item
-                        = link_to authors_url, class: 'dropdown-item-link' do
-                          %span.tss Authors
-                      %li.dropdown-item
-                        = link_to new_article_url, class: 'dropdown-item-link' do
-                          %span.tss New Article
-                      %li.dropdown-item
-                        = link_to current_user.link, class: 'dropdown-item-link' do
-                          %span.tss My Profile
-                      %li.dropdown-item
-                        = link_to logout_path, class: 'dropdown-item-link' do
-                          %span.tss Log Out
-            .split-cell.dn.db--s
-              - if current_user
-                = link_to 'New Article', new_article_url, class: 'btn btn--a form-btn mrs'
-                .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
-                  .header-btn.js-dropdown-btn
-                    = image_tag current_user.image, height: 40, width: 40, class: 'thumb dib vam'
-                    = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs' }
-                  %ul.dropdown-menu
-                    %li.dropdown-item
-                      = link_to current_user.link, class: 'dropdown-item-link' do
-                        %span.tss My Profile
-                    %li.dropdown-item
-                      = link_to logout_path, class: 'dropdown-item-link' do
-                        %span.tss Log Out
-              - else
-                = link_to 'Log In', login_path
+    = render 'layouts/header'
 
     - if flash[:error]
       .bulletin.bulletin--warning= flash[:error]
     - if flash[:notice]
       .bulletin= flash[:notice]
 
-    = yield
+    %main= yield
 
     = javascript_include_tag 'vendor'
     = javascript_include_tag 'application'

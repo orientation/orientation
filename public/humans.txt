@@ -1,0 +1,21 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Olivier Lacan -- @olivierlacan
+    Drew Barontini -- @drewbarontini
+    John D. Jameson -- @johndjameson
+
+# THANKS
+
+    The good folks at Envy & Code School for being test subjects for years.
+
+# TECHNOLOGY COLOPHON
+
+    Ruby, Rails, PostgreSQL
+    Haml, Sass, CoffeeScript
+    MVCSS, Bootstrap, jQuery, moment.js
+    Redcarpet, Simple Form, OmniAuth, Textacular
+
+    Source: https://github.com/olivierlacan/orientation

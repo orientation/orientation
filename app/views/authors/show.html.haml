@@ -1,27 +1,15 @@
-%main.row
+%section.row
   .cell.well.well--l
-
     .g
-
       .g-b.g-b--m--1of3
 
         .card.card--b.tac.mbs.has-card-section
-          = image_tag @author.large_image, class: 'mbm ra', width: 160, height: 160
+          = image_tag @author.image, class: 'mbm ra', width: 160, height: 160
 
           %h1.tsl
             = @author.name
             - unless @author.active
               %span.db.tss (Inactive)
-
-          - # TODO(Olivier): Remove hard-coded ID for moderation
-          - if Rails.env.development? or current_user.id == 1
-            .form
-              = simple_form_for :user, url: author_path( @author ), method: :patch do | f |
-
-                %fieldset.form-field
-                  = f.label :avatar do
-                    %span.btn.btn--b Choose photo
-                    = f.file_field :avatar, required: false, class: 'dn js-autoSubmit'
 
           - if current_user == @author
             .form
@@ -57,7 +45,7 @@
           - # TODO: Apply signal classes unique to Article decorator
           %ul.list.list--xs.mbl
             - @author.articles.each do | article |
-              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+              %li.card.list-item.article{ class: ( 'has-article-footer' if article.tags.any? ) }
                 = link_to article.title, article, class: 'article-title'
         - else
           - if current_user == @author
@@ -71,7 +59,7 @@
         - if @author.edits.count > 0
           %ul.list.list--xs.mbl
             - @author.edits.each do | article |
-              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+              %li.card.list-item.article{ class: ( 'has-article-footer' if article.tags.any? ) }
                 = link_to article.title, article, class: 'article-title'
         - else
           %p #{ @author.first_name } hasn't edited any articles yet.
@@ -80,7 +68,7 @@
         - if @author.subscribed_articles.count > 0
           %ul.list.list--xs
             - @author.subscribed_articles.each do | article |
-              %li.card.list-item.article{ class: ( 'has-article-footer' unless article.tags.empty? ) }
+              %li.card.list-item.article{ class: ( 'has-article-footer' if article.tags.any? ) }
                 = link_to article.title, article, class: 'article-title'
         - else
           %p #{ @author.first_name } isn't subscribed to any articles yet.

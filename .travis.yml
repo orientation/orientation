@@ -1,18 +1,30 @@
 language: ruby
 rvm:
-  - 2.2.0
+  - 2.0.0
+  - 2.1.6
+  - 2.2.2
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - rvm: 2.0.0
+      env: ISOLATED=true
+    - rvm: 2.1.6
+      env: ISOLATED=true
+
 sudo: false
-env:
-  global:
-    SPEC_OPTS=--backtrace --color
 bundler_args: --deployment --without development
-cache: bundler
-before_install:
-  - gem install bundler
-  - bundle --version
+cache:
+  - bundler
+  - directories:
+    - bower_components
+    - node_modules
 before_script:
   - cp config/database.ci.yml config/database.yml
+  - cp .env.example .env
   - psql -c 'create database orientation_test;' -U postgres
+  - npm install -g bower
+  - bower install
   - bundle exec rake db:migrate
 script:
   - bundle exec rspec spec/

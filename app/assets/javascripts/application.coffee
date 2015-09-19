@@ -46,7 +46,19 @@ jQuery ($) ->
       new_time = moment(old_time).format('MMMM D, YYYY')
       $(date).html(new_time)
 
-  localize_datetimes()
+
+  # ----- Relativize Datetimes ----- #
+
+  relativize_datetimes = ->
+    dates = $( '.js-relative-time' )
+
+    for date in dates
+      old_time = $(date).attr('datetime')
+      # NOTE: Affects date display in Article show page
+      new_time = moment(old_time).fromNow()
+      $(date).html(new_time)
+
+  relativize_datetimes()
 
   # ----- Table of Contents ----- #
 
