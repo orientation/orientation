@@ -30,6 +30,8 @@ gem 'slack-notifier'
 gem 'friendly_id'
 gem 'gemoji'
 gem 'dotenv-rails'
+gem 'paper_trail', '~> 3.0.6'
+gem 'diffy'
 
 group :development do
   gem 'better_errors'

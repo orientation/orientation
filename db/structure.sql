@@ -127,12 +127,12 @@ ALTER SEQUENCE article_subscriptions_id_seq OWNED BY article_subscriptions.id;
 
 CREATE TABLE articles (
     id integer NOT NULL,
-    title character varying,
+    title character varying(255),
     content text,
     author_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    slug character varying,
+    slug character varying(255),
     editor_id integer,
     last_notified_author_at timestamp without time zone,
     archived_at timestamp without time zone,
@@ -207,8 +207,8 @@ CREATE TABLE delayed_jobs (
     run_at timestamp without time zone,
     locked_at timestamp without time zone,
     failed_at timestamp without time zone,
-    locked_by character varying,
-    queue character varying,
+    locked_by character varying(255),
+    queue character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -271,7 +271,7 @@ ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 --
 
 CREATE TABLE schema_migrations (
-    version character varying NOT NULL
+    version character varying(255) NOT NULL
 );
 
 
@@ -281,10 +281,10 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE tags (
     id integer NOT NULL,
-    name character varying,
+    name character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    slug character varying,
+    slug character varying(255),
     articles_count integer DEFAULT 0 NOT NULL
 );
 
@@ -309,21 +309,55 @@ ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 
 --
+-- Name: teams; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE teams (
+    id integer NOT NULL,
+    name character varying,
+    shtick character varying,
+    slug character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: teams_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE teams_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE teams_id_seq OWNED BY teams.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE users (
     id integer NOT NULL,
-    provider character varying,
-    uid character varying,
-    name character varying,
-    email character varying,
+    provider character varying(255),
+    uid character varying(255),
+    name character varying(255),
+    email character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    image character varying,
-    avatar character varying,
+    image character varying(255),
+    avatar character varying(255),
     active boolean DEFAULT true,
-    shtick text
+    shtick text,
+    team_id integer
 );
 
 
@@ -344,6 +378,41 @@ CREATE SEQUENCE users_id_seq
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: versions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE versions (
+    id integer NOT NULL,
+    item_type character varying(255) NOT NULL,
+    item_id integer NOT NULL,
+    event character varying(255) NOT NULL,
+    whodunnit character varying(255),
+    object text,
+    object_changes text,
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE versions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
 
 
 --
@@ -399,7 +468,21 @@ ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclas
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY teams ALTER COLUMN id SET DEFAULT nextval('teams_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq'::regclass);
 
 
 --
@@ -459,11 +542,27 @@ ALTER TABLE ONLY tags
 
 
 --
+-- Name: teams_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY teams
+    ADD CONSTRAINT teams_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY versions
+    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
 
 
 --
@@ -544,6 +643,13 @@ CREATE UNIQUE INDEX index_tags_on_slug ON tags USING btree (slug);
 
 
 --
+-- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_versions_on_item_type_and_item_id ON versions USING btree (item_type, item_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -598,6 +704,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140606204236');
 
 INSERT INTO schema_migrations (version) VALUES ('20140923231243');
 
+INSERT INTO schema_migrations (version) VALUES ('20141020032733');
+
 INSERT INTO schema_migrations (version) VALUES ('20141111222212');
 
 INSERT INTO schema_migrations (version) VALUES ('20150117041549');
@@ -611,6 +719,10 @@ INSERT INTO schema_migrations (version) VALUES ('20150328040918');
 INSERT INTO schema_migrations (version) VALUES ('20150328074815');
 
 INSERT INTO schema_migrations (version) VALUES ('20150416104151');
+
+INSERT INTO schema_migrations (version) VALUES ('20150714075016');
+
+INSERT INTO schema_migrations (version) VALUES ('20150714075047');
 
 INSERT INTO schema_migrations (version) VALUES ('20150829203748');
 

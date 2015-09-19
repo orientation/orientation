@@ -42,6 +42,7 @@ $fountain: #4dadc1
 
 // Green
 
+$turquoise: #9dd3ad
 $york: #72c297
 
 // Red
@@ -115,6 +116,14 @@ $label--invert-color: $c-text-invert
 $label--link--invert-color: $c-text-invert
 $label--link--invert--state-color: darken($label--link--invert-color, 10%)
 
+// Link
+
+$link-color: $c-highlight
+$link-color-hover: lighten($link-color, 20%)
+
+$link--muted-color: lighten($chicago, 10%)
+$link--muted-color-hover: darken($chicago, 15%)
+
 // Signal
 
 $signal-background: darken($c-background-invert, 10%)
@@ -135,6 +144,18 @@ $switch-btn--success-color: lighten($c-success, 10%)
 $switch-btn--success--state-background: $c-success
 
 // ----- Vendor ----- //
+
+// Diffy
+
+$diff-delete-background: lighten($coral, 20%)
+$diff-delete-color: darken($coral, 30%)
+$diff-delete-block-background: $coral
+$diff-delete-block-color: darken($coral, 50%)
+
+$diff-insert-background: lighten($turquoise, 15%)
+$diff-insert-color: darken($turquoise, 40%)
+$diff-insert-block-background: $turquoise
+$diff-insert-block-color: darken($turquoise, 50%)
 
 // Highlight
 

@@ -5,6 +5,8 @@ class Article < ActiveRecord::Base
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
 
+  has_paper_trail
+
   friendly_id :title, use: [:slugged, :history]
 
   def should_generate_new_friendly_id?
@@ -55,16 +57,20 @@ class Article < ActiveRecord::Base
     where("updated_at < ?", STALENESS_LIMIT.ago)
   end
 
+  # --- Class Methods --- #
+
   def self.count_visit(article_instance)
     self.increment_counter(:visits, article_instance.id)
   end
 
-  def count_visit
-    self.class.count_visit(self)
-  end
-
   def self.searchable_language
     'english'
+  end
+
+  def self.reset_tags_count
+    pluck(:id).each do |article_id|
+      reset_counters(article_id, :tags)
+    end
   end
 
   def self.text_search(query, scope = nil)
@@ -76,6 +82,8 @@ class Article < ActiveRecord::Base
       scope
     end
   end
+
+  # --- Boolean(ish) Methods --- #
 
   def author?(user)
     self.author == user
@@ -101,6 +109,12 @@ class Article < ActiveRecord::Base
     !archived? && !rotten? && updated_at >= FRESHNESS_LIMIT.ago
   end
 
+  def has_old_versions?
+    self.old_versions.any?
+  end
+
+  # an article is stale when it has been created over 4 months ago
+  # and has never been updated since
   def stale?
     updated_at < STALENESS_LIMIT.ago
   end
@@ -132,32 +146,24 @@ class Article < ActiveRecord::Base
     self.never_notified_author? or !self.recently_notified_author?
   end
 
-  def self.reset_tags_count
-    pluck(:id).each do |article_id|
-      reset_counters(article_id, :tags)
-    end
+  # --- Instance Methods --- #
+
+  def count_visit
+    self.class.count_visit(self)
+  end
+
+  def diff(old_version, new_version)
+    Differ.diff_by_line(new_version.content, old_version.content).to_s
+  end
+
+  def old_versions
+    self.versions.where.not(object: nil)
   end
 
   def contributors
     User.where(id: [self.author_id, self.editor_id]).uniq.map do |user|
       { name: user.name, email: user.email }
     end
-  end
-
-  # @user - the user to subscribe to this article
-  # Returns the subscription if successfully created
-  # Raises otherwise
-  def subscribe(user)
-    self.subscriptions.find_or_create_by!(user: user)
-  end
-
-  # @user - the user to unsubscribed from this article
-  # Returns true if the unsubscription was successful
-  # Returns false if there was no subscription in the first place
-  def unsubscribe(user)
-    subscription = self.subscriptions.find_by(user: user)
-    return false if subscription.nil?
-    return true if subscription.destroy
   end
 
   # @user - the user to have endorse this article
@@ -167,13 +173,11 @@ class Article < ActiveRecord::Base
     self.endorsements.find_or_create_by!(user: user)
   end
 
-  # @user - the user to have unendorse this article
-  # Returns true if the unendorsement was successful
-  # Returns false if there was no endorsement in the first place
-  def unendorse_by(user)
-    endorsement = self.endorsements.find_by(user: user)
-    return false if endorsement.nil?
-    return true if endorsement.destroy
+  # @user - the user to subscribe to this article
+  # Returns the subscription if successfully created
+  # Raises otherwise
+  def subscribe(user)
+    self.subscriptions.find_or_create_by!(user: user)
   end
 
   def tag_tokens=(tokens)
@@ -196,20 +200,38 @@ class Article < ActiveRecord::Base
     update_attribute(:archived_at, nil)
   end
 
+  # @user - the user to have unendorse this article
+  # Returns true if the unendorsement was successful
+  # Returns false if there was no endorsement in the first place
+  def unendorse_by(user)
+    endorsement = self.endorsements.find_by(user: user)
+    return false if endorsement.nil?
+    return true if endorsement.destroy
+  end
+
+  # @user - the user to unsubscribed from this article
+  # Returns true if the unsubscription was successful
+  # Returns false if there was no subscription in the first place
+  def unsubscribe(user)
+    subscription = self.subscriptions.find_by(user: user)
+    return false if subscription.nil?
+    return true if subscription.destroy
+  end
+
   private
 
-  def update_subscribers
-    subscriptions.each do |subscription|
-      subscription.send_update
-    end
+  def created?
+    created_at == updated_at
   end
 
   def notify_slack
     Speakerphone.new(self, state).shout
   end
 
-  def created?
-    created_at == updated_at
+  def update_subscribers
+    subscriptions.each do |subscription|
+      subscription.send_update
+    end
   end
 
   def state

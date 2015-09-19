@@ -1,0 +1,21 @@
+.row
+  .cell.well.well--l
+
+    = link_to '← View Current Version', article, class: 'dib mbm'
+
+    %h1.tsl.ts--s--xl.ts--m--xxl= article.title
+    %p These are all the different recorded versions of this article.
+
+    .g
+
+      .g-b.g-b--m--1of3.mbm
+        .card.card--b
+          %ul.list.list--divided
+            - # TODO(Versions): Make this visible on both articles/versions and versions/show
+            - if versions
+              = render partial: 'version', collection: versions.reverse
+
+      .g-b.g-b--m--2of3
+        .card
+          != diff
+          - # TODO(Versions): Render most recent diff here on articles/versions

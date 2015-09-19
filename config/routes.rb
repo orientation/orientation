@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       put :toggle_archived
       get :subscriptions
     end
+    resources :versions, controller: 'versions'
   end
 
   resources :guides, only: [:show, :index]
@@ -35,6 +36,8 @@ Rails.application.routes.draw do
 
   # this has to be the last route because we're catching slugs at the root path
   resources :articles, path: "", only: :show
+
+  resources :versions, only: :show
 
   root "guides#index"
 end
