@@ -21,13 +21,12 @@
 - Manually flag articles as "fresh" to signal that they are now up-to-date
 - Endorse useful or well-written articles (notifies contributors for good feels)
 - Tag articles for broader categorization and to improve search
+- Article URL slug history to prevent 404s when titles change 
 
 ### Planned
 
 - Improved search with full-text fuzzy search on title/content/tags and with weighing of endorsed and most visited articles
 - [Article versioning](https://github.com/olivierlacan/orientation/pull/67)
-- URL slug (permalink) versioning to prevent breaking external references
-
 
 ## Home
 
