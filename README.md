@@ -158,6 +158,10 @@ this out](doc/OAUTH.md).
 [orientation-logo]: https://github.com/olivierlacan/orientation/blob/master/public/orientation_logo.png
 [orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png
 
+## Contributions
+
+We welcome those with open arms but we kindly ask that you [read our contribution guidelines](CONTRIBUTING.md) before submitting pull requests. :heart:
+
 ## License
 
 Orientation is MIT licensed. See [LICENSE](LICENSE) for details.
