@@ -5,15 +5,7 @@ class Article < ActiveRecord::Base
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
 
-  friendly_id :title, use: [:slugged, :history]
-
-  def should_generate_new_friendly_id?
-    !has_friendly_id_slug? or title_changed?
-  end
-
-  def has_friendly_id_slug?
-    slugs.where(slug: friendly_id).exists?
-  end
+  friendly_id :title
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"

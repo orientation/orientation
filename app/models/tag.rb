@@ -1,11 +1,19 @@
 class Tag < ActiveRecord::Base
+  extend FriendlyId
+
   has_many :articles_tags, dependent: :destroy
   has_many :articles, through: :articles_tags, counter_cache: :articles_count
 
   validates :name, uniqueness: { case_sensitive: false }
 
+  friendly_id :name
+
   def to_s
     name
+  end
+
+  def to_param
+    slug
   end
 
   def self.tokens(query)
