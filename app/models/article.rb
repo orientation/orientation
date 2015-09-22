@@ -9,13 +9,14 @@ class Article < ActiveRecord::Base
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
+  belongs_to :rot_reporter, class_name: "User"
+  
   has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
   has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
   has_many :endorsements, class_name: "ArticleEndorsement", counter_cache: true, dependent: :destroy
   has_many :endorsers, through: :endorsements, class_name: "User", source: :user
-  has_one :rot_reporter, class_name: "User", foreign_key: "rot_reporter_id"
 
   attr_reader :tag_tokens
 
