@@ -17,7 +17,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.tokens(query)
-    tags = where(arel_table[:name].matches("%#{query}%"))
+    tags = where(%Q["tags"."name" ILIKE ?], "%#{query}%")
     if tags.empty?
       [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
     else

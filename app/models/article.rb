@@ -39,14 +39,14 @@ class Article < ActiveRecord::Base
       .order(rotted_at: :desc, updated_at: :desc, created_at: :desc)
   end
   scope :fresh, -> do
-    where(arel_table[:updated_at].gteq(FRESHNESS_LIMIT.ago))
+    where(%Q["articles"."updated_at" >= ?], FRESHNESS_LIMIT.ago)
       .where(archived_at: nil, rotted_at: nil)
   end
   scope :guide, -> { where(guide: true) }
   scope :popular, -> { order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc) }
   scope :rotten, -> { where.not(rotted_at: nil) }
   scope :stale, -> do
-    where(arel_table[:updated_at].lt(STALENESS_LIMIT.ago))
+    where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago)
   end
 
   def self.count_visit(article_instance)
