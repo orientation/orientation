@@ -2,6 +2,14 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## September 21st, 2015
+### Contribution guidelines and code of conduct
+
+It took me way too long to add these to the project but I'm glad they're finally there. Please take a look at them if you plan to contribute to Orientation at any point:
+
+- [Contribution Guidelines](https://github.com/orientation/orientation/blob/master/CONTRIBUTING.md)
+- [Code of Conduct](https://github.com/orientation/orientation/blob/master/CODE_OF_CONDUCT.md)
+
 ## September 16th, 2015
 ### New article form on 404 Not Found pages
 
