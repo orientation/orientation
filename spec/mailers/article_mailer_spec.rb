@@ -41,14 +41,15 @@ RSpec.describe ArticleMailer do
         { name: user.name, email: user.email }
       end
     end
+    let(:reporter) { create(:user) }
 
-    let(:mailer) { described_class.send_rotten_notification_for(article, contributors) }
+    let(:mailer) { described_class.send_rotten_notification_for(article, contributors, reporter) }
 
     subject { mailer }
 
     it { is_expected.to send_email_to(email: contributors.first[:email]) }
     it { is_expected.to use_template('article-rotten-update') }
-    it { is_expected.to have_subject('Article Rotten Update') }
+    it { is_expected.to have_subject("#{reporter.name} marked #{article.title} as rotten") }
     it { is_expected.to be_from(email: 'orientation@codeschool.com') }
   end
 

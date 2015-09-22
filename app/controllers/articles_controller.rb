@@ -86,7 +86,7 @@ class ArticlesController < ApplicationController
   end
 
   def report_rot
-    @article.rot!
+    @article.rot!(current_user.id)
     flash[:notice] = "Successfully reported this article as rotten."
     respond_with_article_or_redirect
   end

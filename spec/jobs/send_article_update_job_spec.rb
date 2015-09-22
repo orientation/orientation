@@ -9,6 +9,6 @@ RSpec.describe SendArticleUpdateJob do
     expect(ArticleMailer).to receive(:send_updates_for)
       .with(article, user).and_return(mailer)
 
-    described_class.perform_now(article, user)
+    described_class.perform_now(article.id, user.id)
   end
 end
