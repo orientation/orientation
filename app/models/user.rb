@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 
     articles = self.articles.stale.select(&:ready_to_notify_author_of_staleness?)
     article_ids = articles.map(&:id)
-    Delayed::Job.enqueue(StalenessNotificationJob.new(article_ids)) unless article_ids.empty?
+    StalenessNotificationJob.perform_later(article_ids) unless article_ids.empty?
   end
 
   # TODO: improve this query

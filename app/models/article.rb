@@ -110,7 +110,7 @@ class Article < ActiveRecord::Base
 
   def rot!
     update_attribute(:rotted_at, Time.current)
-    Delayed::Job.enqueue(SendArticleRottenJob.new(self.id, contributors))
+    SendArticleRottenJob.perform_later(id, contributors)
   end
 
   def never_notified_author?

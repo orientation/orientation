@@ -14,9 +14,10 @@ RSpec.describe ArticleSubscription do
 
   context "#updated_queued?" do
     let!(:article_subscription) { create(:article_subscription) }
+    subject(:saving) { article_subscription.article.save! }
 
     it "returns true when the article is saved" do
-      expect { article_subscription.article.save! }.to change { article_subscription.reload.update_queued? }.to(true)
+      expect { saving }.to change{ article_subscription.reload.update_queued? }.to(true)
     end
   end
 
