@@ -61,14 +61,12 @@ class User < ActiveRecord::Base
     StalenessNotificationJob.perform_later(article_ids) unless article_ids.empty?
   end
 
-  # TODO: improve this query
   def subscribed_to?(article)
-    subscriptions.where(article_id: article.id, user_id: self.id).count > 0
+    subscriptions.where(article_id: article.id, user_id: id).any?
   end
 
-  # TODO: improve this query
   def endorsing?(article)
-    endorsements.where(article_id: article.id, user_id: self.id).count > 0
+    endorsements.where(article_id: article.id, user_id: id).any?
   end
 
   def to_s
