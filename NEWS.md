@@ -5,6 +5,8 @@ This is [not a change log](CHANGELOG.md).
 ## September 22nd, 2015
 ### Rot reporter logging and more human emails
 
+![Rotten Banner displaying the name of the rot reporter and the date at which it was marked as rotten](https://s3.amazonaws.com/f.cl.ly/items/103F280238162B1N3r0H/Screen%20Shot%202015-09-22%20at%206.59.51%20PM.png)
+
 Whenever someone reported an article as rotten, there used to be no way to know who that person was. Now rot reporter is logged and when the contributors to the article are notified, they are told who reported the rot. Here's why:
 
 - it makes things more human, it's not just a game of whack-a-mole to find articles and mark them as rotten
