@@ -15,6 +15,7 @@ class Article < ActiveRecord::Base
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
   has_many :endorsements, class_name: "ArticleEndorsement", counter_cache: true, dependent: :destroy
   has_many :endorsers, through: :endorsements, class_name: "User", source: :user
+  has_one :rot_reporter, class_name: "User", foreign_key: "rot_reporter_id"
 
   attr_reader :tag_tokens
 
@@ -106,9 +107,9 @@ class Article < ActiveRecord::Base
     touch(:updated_at)
   end
 
-  def rot!
-    update_attribute(:rotted_at, Time.current)
-    Delayed::Job.enqueue(SendArticleRottenJob.new(self.id, contributors))
+  def rot!(user_id)
+    update(rotted_at: Time.current, rotted_by: user_id)
+    Delayed::Job.enqueue(SendArticleRottenJob.new(self.id, user_id))
   end
 
   def never_notified_author?

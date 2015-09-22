@@ -142,6 +142,7 @@ CREATE TABLE articles (
     subscriptions_count integer DEFAULT 0,
     endorsements_count integer DEFAULT 0,
     visits integer DEFAULT 0 NOT NULL
+    rot_reporter_id integer
 );
 
 
@@ -613,4 +614,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150328074815');
 INSERT INTO schema_migrations (version) VALUES ('20150416104151');
 
 INSERT INTO schema_migrations (version) VALUES ('20150829203748');
+
+INSERT INTO schema_migrations (version) VALUES ('20150922194413');
 
