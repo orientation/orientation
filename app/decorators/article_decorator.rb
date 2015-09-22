@@ -52,7 +52,9 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def rot_reporter
-    link_to AuthorDecorator.new(source.rot_reporter), author_url(source.author)
+    if source.rot_reporter
+      link_to AuthorDecorator.new(source.rot_reporter), author_url(source.author)
+    end
   end
 
   def rotted_at
