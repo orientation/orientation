@@ -1,5 +1,7 @@
-class StalenessNotificationJob < Struct.new(:article_ids)
-  def perform
+class StalenessNotificationJob < ActiveJob::Base
+  queue_as :default
+
+  def perform(article_ids)
     # Disable until preferences can be implemented.
     #
     # articles = Article.find(article_ids)
