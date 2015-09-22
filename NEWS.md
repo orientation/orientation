@@ -2,6 +2,17 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## September 22nd, 2015
+### Rot reporter logging and more human emails
+
+Whenever someone reported an article as rotten, there used to be no way to know who that person was. Now rot reporter is logged and when the contributors to the article are notified, they are told who reported the rot. Here's why:
+
+- it makes things more human, it's not just a game of whack-a-mole to find articles and mark them as rotten
+- it allows for conversations to happen between the reporter and the article contributors
+- if notifications are turned off it allows a reader or contributor of the article to reach out to the rot reporter in order to refresh the article
+
+This update requires a manual update to your Mandrill templates for [`Article Endorsement Notification`](https://github.com/orientation/orientation/blob/master/doc/MANDRILL.md#article-rotten-update) and `Article Rotten Update`](https://github.com/orientation/orientation/blob/master/doc/MANDRILL.md#article-rotten-update)
+
 ## September 21st, 2015
 ### Contribution guidelines and code of conduct
 
