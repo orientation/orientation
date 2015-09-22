@@ -9,7 +9,9 @@ class GenerateSlugsForExistingTags < ActiveRecord::Migration
 
   def change
     MigrationTag.find_each do |t|
-      t.save!
+      # not using save! here because this could raise if the tag name matches
+      # a reserved word. See config/initializers/friendly_id.rb for details.
+      t.save
     end
   end
 end
