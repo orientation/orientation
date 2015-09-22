@@ -34,17 +34,19 @@ class Article < ActiveRecord::Base
   ARCHIVAL = "Outdated & ignored in searches."
 
   scope :archived, -> { where.not(archived_at: nil) }
-  scope :current, -> { where(archived_at: nil).order(rotted_at: :desc).order(updated_at: :desc).order(created_at: :desc) }
+  scope :current, -> do
+    where(archived_at: nil)
+      .order(rotted_at: :desc, updated_at: :desc, created_at: :desc)
+  end
   scope :fresh, -> do
-    where("updated_at >= ?", FRESHNESS_LIMIT.ago).
-      where(archived_at: nil).
-      where(rotted_at: nil)
+    where(%Q["articles"."updated_at" >= ?], FRESHNESS_LIMIT.ago)
+      .where(archived_at: nil, rotted_at: nil)
   end
   scope :guide, -> { where(guide: true) }
-  scope :popular, -> { order("endorsements_count DESC, subscriptions_count DESC, visits DESC") }
-  scope :rotten, -> { where("rotted_at IS NOT NULL") }
+  scope :popular, -> { order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc) }
+  scope :rotten, -> { where.not(rotted_at: nil) }
   scope :stale, -> do
-    where("updated_at < ?", STALENESS_LIMIT.ago)
+    where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago)
   end
 
   def self.count_visit(article_instance)
@@ -131,7 +133,7 @@ class Article < ActiveRecord::Base
   end
 
   def contributors
-    User.where(id: [self.author_id, self.editor_id]).uniq.map do |user|
+    User.where(id: [self.author_id, self.editor_id]).uniq.select(:name, :email).map do |user|
       { name: user.name, email: user.email }
     end
   end
