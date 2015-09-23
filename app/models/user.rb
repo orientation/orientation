@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :endorsed_articles, through: :endorsements, source: :article
   has_many :edits, class_name: "Article", foreign_key: "editor_id"
 
+  store_accessor :preferences,
+    :private_email
+
   validates :email, presence: true
   validate :whitelisted_email, if: -> { self.class.email_whitelist? }
 
@@ -67,6 +70,10 @@ class User < ActiveRecord::Base
 
   def endorsing?(article)
     endorsements.where(article_id: article.id, user_id: id).any?
+  end
+
+  def email_status
+    private_email ? "Public" : "Private"
   end
 
   def to_s
