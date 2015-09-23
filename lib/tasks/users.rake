@@ -4,3 +4,9 @@ task notify_of_staleness: :environment do
     author.notify_about_stale_articles
   end
 end
+
+task make_all_emails_private: :environment do
+  User.find_each do |u|
+    u.update(private_email: true)
+  end
+end
