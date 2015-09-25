@@ -1,6 +1,6 @@
 class GuidesController < ApplicationController
   def index
-    @guides = ArticleDecorator.decorate_collection(Article.guide)
+    @guides = ArticleDecorator.decorate_collection(Article.guide.order('created_at asc'))
     @articles = ArticleDecorator.decorate_collection(Article.current)
     redirect_to(articles_path) if @guides.empty?
   end
