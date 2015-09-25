@@ -29,6 +29,8 @@ class Article < ActiveRecord::Base
 
   attr_reader :tag_tokens
 
+  validates_presence_of :title
+
   after_save :update_subscribers
   after_save :notify_slack
   after_create :increment_tags_counter
