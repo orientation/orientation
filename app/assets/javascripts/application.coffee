@@ -69,3 +69,7 @@ jQuery ($) ->
   tocElement.children( 'ul' ).children( 'li' ).addClass( 'tsm' )
   tocElement.find( 'ul' ).find( 'ul' ).addClass( 'mlm mts' )
   tocElement.find( 'li' ).addClass( 'list-item' )
+
+  #------- enforce widths ---------#
+  $('.g iframe').width(650)
+  $('.g iframe').height(700)
