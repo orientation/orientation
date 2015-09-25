@@ -5,8 +5,7 @@ be_app_repo: git@github.com:smashingboxes/orientation.git
 
 # HTML/JS App Configs
 # Uncomment if you want to deploy a JS/HTML App
-# fe_app_repo:
-# fe_app_branch: master
+# fe_app_local_path: /path/to/built/js/app/
 
 dev_key_files:
   - dev_keys/brandon.pub

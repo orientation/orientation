@@ -36,7 +36,7 @@ gem 'gemoji'
 gem 'airbrake'
 
 group :development do
-  gem 'taperole', '1.2.2'
+  gem 'taperole', '~> 1.2'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'powder'

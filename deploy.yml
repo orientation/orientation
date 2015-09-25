@@ -1,6 +1,10 @@
 ---
 - hosts: omnibox
 
+  tags:
+    - be_deploy
+    - fe_deploy
+
   vars_files:
     - "{{tape_dir}}/vars/defaults.yml"
     - tape_vars.yml
@@ -9,9 +13,8 @@
 
   roles:
     - backend_checkout
-    - bower_install_assets
     - backend_config
     - database_load
     - unicorn_activate
-    - frontend_deploy
+    # - frontend_deploy
     # - delayed_job

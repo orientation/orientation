@@ -13,9 +13,9 @@
     - postgres
     - nginx
     - backend_install_essentials
+    - frontend_install_essentials
     - backend_checkout
     - unicorn_install
-    - bower_install
     - backend_config
     - database_load
     - unicorn_activate
