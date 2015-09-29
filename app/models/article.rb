@@ -145,6 +145,10 @@ class Article < ActiveRecord::Base
     self.subscriptions.find_or_create_by!(user: user)
   end
 
+  def subscribe_author(author)
+    subscriptions.create(user: author)
+  end
+
   # @user - the user to unsubscribed from this article
   # Returns true if the unsubscription was successful
   # Returns false if there was no subscription in the first place
