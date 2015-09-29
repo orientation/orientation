@@ -40,6 +40,29 @@ RSpec.describe Article do
     end
   end
 
+  describe "#subscribers_to_update" do
+    let(:author) { create(:user) }
+    let(:editor) { create(:user) }
+    let(:article) { create(:article, author: author, editor: editor) }
+    let!(:author_sub) do
+      create(:article_subscription, article: article, user: author)
+    end
+    let!(:editor_sub) do
+      create(:article_subscription, article: article, user: editor)
+    end
+
+    subject { article.reload.subscribers_to_update }
+
+    it "does not include the editor's subscription" do
+      expect(subject).to_not include(editor_sub)
+    end
+
+    it 'returns other subscriptions' do
+      expect(subject).to include(author_sub)
+    end
+
+  end
+
   describe '#author?(user)' do
     let!(:article) { create(:article) }
     let(:user) { nil }

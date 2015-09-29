@@ -192,10 +192,14 @@ class Article < ActiveRecord::Base
     update_attribute(:archived_at, nil)
   end
 
+  def subscribers_to_update
+    subscriptions.reject { |s| s.user == editor }
+  end
+
   private
 
   def update_subscribers
-    subscriptions.each do |subscription|
+    subscribers_to_update.each do |subscription|
       subscription.send_update
     end
   end
