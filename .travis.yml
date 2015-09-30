@@ -22,6 +22,7 @@ cache:
     - node_modules
 before_script:
   - psql --version
+  - psql -c 'SELECT version();' -U postgres
   - cp config/database.ci.yml config/database.yml
   - cp .env.example .env
   - psql -c 'create database orientation_test;' -U postgres
