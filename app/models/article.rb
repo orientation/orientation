@@ -203,10 +203,10 @@ class Article < ActiveRecord::Base
   end
 
   def state
-    if created?
-      :created
-    elsif destroyed?
+    if destroyed?
       :destroyed
+    elsif created?
+      :created
     elsif archived_at?
       :archived
     elsif rotted_at?
