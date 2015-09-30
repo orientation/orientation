@@ -1,5 +1,3 @@
-require "ostruct"
-
 class Article < ActiveRecord::Base
   include Dateable
   extend ActionView::Helpers::DateHelper
@@ -180,10 +178,6 @@ class Article < ActiveRecord::Base
     title
   end
 
-  def to_speakerphone
-    OpenStruct.new(author: author.name, title: title, slug: slug)
-  end
-
   def to_param
     slug
   end
@@ -213,6 +207,10 @@ class Article < ActiveRecord::Base
       :created
     elsif destroyed?
       :destroyed
+    elsif archived_at?
+      :archived
+    elsif rotted_at?
+      :rotten
     else
       :updated
     end
