@@ -3,7 +3,8 @@ rvm:
   - 2.0.0
   - 2.1.6
   - 2.2.2
-
+addons:
+  postgresql: "9.3"
 matrix:
   fast_finish: true
   allow_failures:
