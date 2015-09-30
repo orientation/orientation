@@ -145,7 +145,7 @@ class Article < ActiveRecord::Base
     self.subscriptions.find_or_create_by!(user: user)
   end
 
-  def subscribe_author(author)
+  def subscribe_author
     subscriptions.create(user: author)
   end
 

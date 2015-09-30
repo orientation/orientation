@@ -12,12 +12,12 @@ RSpec.describe Article do
   end
 
   describe "#subscribe_author" do
-    let(:user) { create(:user) }
-    let(:article) { create(:article, author: user) }
+    let(:author) { create(:user) }
+    let(:article) { create(:article, author: author) }
 
     it 'creates a subscription that belongs to the author' do
-      article.subscribe_author(user)
-      expect(article.subscriptions.last.user_id).to eq(user.id)
+      article.subscribe_author
+      expect(article.subscriptions.last.user_id).to eq(author.id)
     end
   end
 

@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      @article.subscribe_author(current_user)
+      @article.subscribe_author
       respond_with_article_or_redirect
     else
       render :new
