@@ -1,6 +1,16 @@
 require "rails_helper"
 
 RSpec.describe Article do
+  describe "#after_destroy" do
+    let(:article) { create(:article) }
+    let(:speakerphone) { double(:speakerphone, shout: 'foo') }
+
+    it 'notifies slack that it has been destroyed' do
+      expect(Speakerphone).to receive(:new).with(article, :destroyed).and_return(speakerphone)
+      article.destroy
+    end
+  end
+
   describe "#after_save" do
     let(:article) { create(:article) }
     let(:user) { create(:user) }
