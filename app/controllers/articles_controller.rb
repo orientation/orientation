@@ -117,7 +117,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Thanks for taking the time to make someone feel good about their work."
     else
       @article.unendorse_by(current_user)
-      flash[:notice] = "Giving it then taking it right back. Ruthless, aren't we?"
+      flash[:notice] = "Giving it, then taking it right back. Ruthless, aren't we?"
     end
 
     respond_with_article_or_redirect
