@@ -3,7 +3,7 @@
 - if @article.archived?
   %p.bulletin.bulletin--warning This article has been archived. Please don't trust the information displayed here.
 - if @article.rotten?
-  %p.bulletin.bulletin--warning This article was report as rotten #{@article.rot_reporter} on #{@article.rotted_at}. The information is partially or completely out-of-date.
+  %p.bulletin.bulletin--warning This article was reported as rotten #{@article.rot_reporter} on #{@article.rotted_at}. The information is partially or completely out-of-date.
 - if @article.stale?
   %p.bulletin.bulletin--notice.tct This article has gone stale. It hasn't been updated in a while so the information may be slightly out-of-date.
 
