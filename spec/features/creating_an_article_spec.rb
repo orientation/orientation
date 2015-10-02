@@ -10,7 +10,7 @@ RSpec.describe "Creating an article" do
       click_button "Create Article"
     end
 
-    it "does not redirect to the new article page" do
+    it "doesn't redirect to the new article page" do
       expect(current_path).to_not eq(new_article_path)
       expect(page).to have_content "Article was successfully created."
     end
