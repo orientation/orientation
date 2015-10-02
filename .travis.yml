@@ -1,7 +1,7 @@
 language: ruby
 rvm:
   - 2.1.6
-  - 2.2.2
+  - 2.2.3
 
 matrix:
   fast_finish: true
