@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
       if !Rails.env.production?
         user = User.first_or_create(email: "alvar@hanso.dk", name: "Alvar Hanso")
         session[:user_id] = user.id
-        flash[:notice] = "Signed in!"
       else
         user = User.find(session[:user_id]) if session[:user_id].present?
       end

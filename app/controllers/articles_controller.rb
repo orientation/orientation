@@ -31,12 +31,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    if @article.save
-      @article.subscribe_author
-      respond_with_article_or_redirect
-    else
-      render :new
-    end
+    @article.subscribe_author if @article.save
+    respond_with @article
   end
 
   def edit
@@ -93,7 +89,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    respond_with_article_or_redirect if @article.update_attributes(article_params)
+    respond_with @article if @article.update_attributes(article_params)
   end
 
   def destroy
