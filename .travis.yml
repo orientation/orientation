@@ -3,8 +3,6 @@ rvm:
   - 2.0.0
   - 2.1.6
   - 2.2.2
-addons:
-  postgresql: "9.3"
 matrix:
   fast_finish: true
   allow_failures:
@@ -12,7 +10,10 @@ matrix:
       env: ISOLATED=true
     - rvm: 2.1.6
       env: ISOLATED=true
-
+addons:
+  postgresql: "9.3"
+  code_climate:
+    repo_token: 75408d377a0b3c1ab512bf3fb634617bccf2a1065f8c513e352139427ec8e1fb
 sudo: false
 bundler_args: --deployment --without development
 cache:
@@ -36,6 +37,3 @@ branches:
     - master
 notifications:
   email: false
-addons:
-  code_climate:
-    repo_token: 75408d377a0b3c1ab512bf3fb634617bccf2a1065f8c513e352139427ec8e1fb
