@@ -16,16 +16,4 @@ RSpec.describe "Updating an article" do
       expect(page).to have_content 'Article was successfully updated.'
     end
   end
-
-  context "with invalid parameters" do
-    before do
-      fill_in "article_title", with: "Test"
-      fill_in "article_content", with: ""
-      click_button "Update Article"
-    end
-
-    it "renders the edit article page" do
-      expect(page).to have_content("Edit An Article")
-    end
-  end
 end
