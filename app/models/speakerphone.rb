@@ -1,44 +1,61 @@
 class Speakerphone
-  def initialize(article, state, audience = $slack)
+  attr_reader :audience, :state, :article
+
+  def initialize(article, state, audience = SLACK_CONFIG)
     @audience = audience
     @article = article
     @state = state
   end
 
+  def should_shout?
+    !audience.nil?
+  end
+
+  def issue_warning
+    Rails.logger.info do
+      "ENV['SLACK_WEBHOOK_URL'] not configured, Speakerphone disabled."
+    end
+  end
+
   def shout
-    if $slack.nil?
-      Rails.logger.info { "ENV['SLACK_WEBHOOK_URL'] not configured, Speakerphone disabled." }
+    unless should_shout?
+      issue_warning
       return false
     end
 
-    if @state == :created
-      notify("New article", color: "good")
-    elsif @state == :updated
-      if @article.archived_at
-        notify("Article archived", color: "#b1b3b4")
-      elsif @article.rotted_at
-        notify("Article rotten", color: "danger")
-      else
-        notify("Article updated", color: "warning")
-      end
-    elsif @state == :destroyed
-      notify("Article destroyed", color: "danger")
+    ping_audience(notifications)
+  end
+
+  delegate :author, :title, :slug, to: :article
+  def speakerphone
+    @speakerphone ||= begin
+      { author: author.name, title: title, slug: slug }.with_indifferent_access
     end
+  end
+
+  def ping_audience(title: , color: "good")
+    audience.ping title,
+    icon_emoji: ":book:",
+    attachments: [{
+      author_name: speakerphone[:editor] || speakerphone[:author],
+      title:       speakerphone[:title],
+      title_link:  url_for(slug),
+      color: color
+    }]
   end
 
   private
 
-  def notify(title, color: "good")
-    article = @article.to_speakerphone
+  def notifications
+    notifications = {
+      created:   { title: 'New article', color: 'good' },
+      archived:  { title: 'Article archived', color: '#b1b3b4' },
+      rotten:    { title: 'Article rotten', color: 'danger' },
+      updated:   { title: 'Article updated', color: 'warning' },
+      destroyed: { title: 'Article destroyed', color: 'danger' }
+    }
 
-    @audience.ping title,
-    icon_emoji: ":book:",
-    attachments: [{
-      author_name: article.editor || article.author,
-      title: article.title,
-      title_link: url_for(article.slug),
-      color: color
-    }]
+    notifications[state]
   end
 
   def url_for(slug)
