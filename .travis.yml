@@ -19,6 +19,7 @@ cache:
     - bower_components
     - node_modules
 before_script:
+  - ruby --version
   - cp config/database.ci.yml config/database.yml
   - cp .env.example .env
   - psql -c 'create database orientation_test;' -U postgres
