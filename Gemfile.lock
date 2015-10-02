@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/olivierlacan/mandrill_mailer.git
+  revision: ca8441d4756f72bcb09cc402a76c6d4a853dfda2
+  specs:
+    mandrill_mailer (0.5.1)
+      actionpack
+      activesupport
+      mandrill-api (~> 1.0.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -95,7 +104,7 @@ GEM
       activesupport (>= 3.0)
       request_store (~> 1.0)
     erubis (2.7.0)
-    excon (0.44.4)
+    excon (0.45.4)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -146,14 +155,10 @@ GEM
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mandrill_mailer (0.5.1)
-      actionpack
-      activesupport
-      mandrill-api (~> 1.0.9)
     method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.8.1)
     multi_json (1.11.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -337,7 +342,7 @@ DEPENDENCIES
   friendly_id
   gemoji
   haml-rails
-  mandrill_mailer
+  mandrill_mailer!
   omniauth
   omniauth-google-oauth2
   pg
