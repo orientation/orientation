@@ -8,8 +8,7 @@ matrix:
   allow_failures:
     - rvm: 2.1.6
       env: 
-        - ISOLATED=true
-        - CUSTOM_RUBY_VERSION=2.1.6
+        - ISOLATED=true CUSTOM_RUBY_VERSION=2.1.6
 
 sudo: false
 bundler_args: --deployment --without development
