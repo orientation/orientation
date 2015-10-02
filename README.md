@@ -153,7 +153,7 @@ this out](doc/OAUTH.md).
 [codeclimate-coverage-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/coverage.svg
 [heroku]: https://heroku.com/deploy
 [heroku-image]: https://www.herokucdn.com/deploy/button.svg
-[ruby-version-image]: https://img.shields.io/badge/ruby-2.2.2-brightgreen.svg
+[ruby-version-image]: https://img.shields.io/badge/ruby-2.2.3-brightgreen.svg
 
 [orientation-logo]: https://github.com/olivierlacan/orientation/blob/master/public/orientation_logo.png
 [orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png
