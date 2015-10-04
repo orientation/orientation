@@ -27,8 +27,9 @@
           - else
             %p.mbxs= @author.shtick
 
-          - unless @author == current_user
-            %p= mail_to @author.email
+          %p= @author.email
+          - if @author == current_user
+            = @author.toggle_email_privacy
 
           .card-section.card-section--row
             %h2.mbs Contributions
