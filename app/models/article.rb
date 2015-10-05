@@ -19,8 +19,7 @@ class Article < ActiveRecord::Base
   attr_reader :tag_tokens
 
   validates :title, presence: true
-  validates :content, presence: true
-
+  
   after_save :update_subscribers
   after_save :notify_slack
   after_destroy :notify_slack
