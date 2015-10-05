@@ -36,13 +36,14 @@ RSpec.describe "Creating an article" do
 
     context "with a reserved keyword" do
       before do
-        fill_in "article_title", with: "New"
+        fill_in "article_title", with: "new"
         fill_in "article_content", with: "Here is some content"
         click_button "Create Article"
       end
 
       it "renders the new article page" do
         expect(page).to have_content("Create a New Article")
+        expect(page).to have_content("new is a reserved word.")
       end
     end
   end

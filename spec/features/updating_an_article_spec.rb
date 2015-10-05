@@ -16,4 +16,31 @@ RSpec.describe "Updating an article" do
       expect(page).to have_content 'Article was successfully updated.'
     end
   end
+
+  context "with invalid parameters" do
+    context "with no content" do
+      before do
+        fill_in "article_title", with: "Test"
+        fill_in "article_content", with: ""
+        click_button "Update Article"
+      end
+
+      it "renders the edit article page" do
+        expect(page).to have_content("Edit an Article")
+      end
+    end
+
+    context "with a reserved keyword" do
+      before do
+        fill_in "article_title", with: "javascripts"
+        fill_in "article_content", with: "Here is some content"
+        click_button "Update Article"
+      end
+
+      it "renders the new article page" do
+        expect(page).to have_content("Edit an Article")
+        expect(page).to have_content("javascripts is a reserved word.")
+      end
+    end
+  end
 end
