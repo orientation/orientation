@@ -1,6 +1,6 @@
 # Base Example
 [omnibox]
-45.55.185.119 be_app_env=production be_app_branch=master
+45.55.165.31 be_app_env=production be_app_branch=master
 
 # Vagrant Example
 # [omnibox]
