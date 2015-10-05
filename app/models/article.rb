@@ -183,10 +183,6 @@ class Article < ActiveRecord::Base
     title
   end
 
-  def to_param
-    slug
-  end
-
   def unarchive!
     update_attribute(:archived_at, nil)
   end
