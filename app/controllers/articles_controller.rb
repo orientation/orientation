@@ -140,7 +140,7 @@ class ArticlesController < ApplicationController
     if article.errors.messages.key?(:friendly_id)
       "#{article.title} is a reserved word."
     else
-      "Article could not be #{params[:action]}ed."
+      "Article could not be #{params[:action]}d."
     end
   end
 
