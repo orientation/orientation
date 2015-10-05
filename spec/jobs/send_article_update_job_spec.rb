@@ -1,16 +1,14 @@
 require "rails_helper"
 
 RSpec.describe SendArticleUpdateJob do
-  let!(:article) { create(:article) }
-  let!(:user) { create(:user) }
-
-  let(:job) { described_class.new(article.id, user.id) }
-  subject(:perform_job) { job.perform }
-
   it "sends an ArticleMailer" do
-    mailer = double("ArticleMailer", deliver: true)
+    article = create(:article)
+    user    = create(:user)
+    mailer  = double("ArticleMailer", deliver: true)
 
-    expect(ArticleMailer).to receive(:send_updates_for).and_return(mailer)
-    perform_job
+    expect(ArticleMailer).to receive(:send_updates_for)
+      .with(article, user).and_return(mailer)
+
+    described_class.perform_now(article.id, user.id)
   end
 end

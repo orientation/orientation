@@ -44,5 +44,7 @@ module Orientation
       g.view_specs false
       g.helper_specs false
     end
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end

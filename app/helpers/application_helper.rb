@@ -3,34 +3,6 @@ module ApplicationHelper
     %|#{controller.controller_name} #{controller.controller_name}-#{controller.action_name} #{@body_class}|
   end
 
-  class HTMLwithPygments < Redcarpet::Render::HTML
-    def header(title, level)
-      permalink = title.gsub(/\W+/, '-').downcase
-      %(
-          <a id='#{permalink}' class='heading js-headingLink' href='##{permalink}'>
-            <input class='heading-link js-headingLink-link' value='##{permalink}' readonly>
-            <h#{level} class='heading-text js-headingLink-heading'>#{title}</h#{level}>
-          </a>
-      )
-    end
-
-    def block_code(code, language)
-      safe_language = Pygments::Lexer.find_by_alias(language) ? language : nil
-
-      sha = Digest::SHA1.hexdigest(code)
-      Rails.cache.fetch ["code", safe_language, sha].join('-') do
-        Pygments.highlight(code, lexer: safe_language)
-      end
-    end
-
-    def normal_text(text)
-      text.gsub!("[ ]", "<input type='checkbox'>") if text.match(/^\[{1}\s\]{1}/)
-      text.gsub!("[x]", "<input type='checkbox' checked>") if text.match(/^\[{1}(x|X)\]{1}/)
-
-      text
-    end
-  end
-
   def emojify(content)
     content.gsub(/:([\w+-]+):/) do |match|
       if emoji = Emoji.find_by_alias($1)
@@ -42,7 +14,7 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: false)
+    renderer = HtmlWithPygments.new(hard_wrap: true, filter_html: false)
     text = emojify(text)
     Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
   end

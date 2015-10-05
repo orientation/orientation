@@ -7,6 +7,6 @@ class ArticleEndorsement < ActiveRecord::Base
   after_create :send_endorsement
 
   def send_endorsement
-    Delayed::Job.enqueue(SendArticleEndorsementJob.new(self.id))
+    SendArticleEndorsementJob.perform_later(id)
   end
 end

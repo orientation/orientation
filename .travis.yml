@@ -1,16 +1,13 @@
 language: ruby
 rvm:
-  - 2.0.0
   - 2.1.6
-  - 2.2.2
+  - 2.2.3
 
 matrix:
   fast_finish: true
   allow_failures:
-    - rvm: 2.0.0
-      env: ISOLATED=true
-    - rvm: 2.1.6
-      env: ISOLATED=true
+    - env: CUSTOM_RUBY_VERSION=2.1.6 ISOLATED=true
+      rvm: 2.1.6
 
 sudo: false
 bundler_args: --deployment --without development
@@ -20,6 +17,7 @@ cache:
     - bower_components
     - node_modules
 before_script:
+  - ruby --version
   - cp config/database.ci.yml config/database.yml
   - cp .env.example .env
   - psql -c 'create database orientation_test;' -U postgres
@@ -34,5 +32,6 @@ branches:
 notifications:
   email: false
 addons:
+  postgresql: "9.3"
   code_climate:
     repo_token: 75408d377a0b3c1ab512bf3fb634617bccf2a1065f8c513e352139427ec8e1fb

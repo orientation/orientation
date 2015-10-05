@@ -9,7 +9,7 @@
       = form_tag form_path, method: :get, remote: true, class: 'js-search-form' do
         = search_field_tag :search, params[:search],
           class: 'form-input js-search-input',
-          placeholder: "Search #{ @articles.count } articles by keyword",
+          placeholder: "Search #{ @articles.count } articles by title",
           data: { shortcut: 's' }
 
     .split-cell.mls.prs

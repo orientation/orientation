@@ -44,6 +44,19 @@ class AuthorsController < ApplicationController
     redirect_to author_path(@author)
   end
 
+  def toggle_email_privacy
+    @author = User.find(params[:author_id])
+
+    if current_user == @author
+      @author.update(private_email: !@author.private_email)
+      flash[:notice] = "Your email is now #{@author.email_status}."
+    else
+      flash[:notice] = "You can't change another user's email privacy settings."
+    end
+
+    redirect_to author_path(@author)
+  end
+
   private
 
   def author_params

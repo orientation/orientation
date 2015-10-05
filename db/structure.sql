@@ -141,7 +141,8 @@ CREATE TABLE articles (
     guide boolean DEFAULT false,
     subscriptions_count integer DEFAULT 0,
     endorsements_count integer DEFAULT 0,
-    visits integer DEFAULT 0 NOT NULL
+    visits integer DEFAULT 0 NOT NULL,
+    rot_reporter_id integer
 );
 
 
@@ -362,7 +363,8 @@ CREATE TABLE users (
     image character varying,
     avatar character varying,
     active boolean DEFAULT true,
-    shtick text
+    shtick text,
+    preferences json
 );
 
 
@@ -675,5 +677,13 @@ INSERT INTO schema_migrations (version) VALUES ('20150416104151');
 
 INSERT INTO schema_migrations (version) VALUES ('20150829203748');
 
+<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20150901204841');
+=======
+INSERT INTO schema_migrations (version) VALUES ('20150921154734');
+
+INSERT INTO schema_migrations (version) VALUES ('20150922194413');
+
+INSERT INTO schema_migrations (version) VALUES ('20150922233803');
+>>>>>>> master
 

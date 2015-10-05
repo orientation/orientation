@@ -1,5 +1,10 @@
 class ArticlesController < ApplicationController
-  before_filter :find_article_by_params, only: [:show, :edit, :update, :destroy]
+  before_filter :find_article_by_params, only: [
+    :show,
+    :edit,
+    :update,
+    :destroy
+  ]
   before_filter :decorate_article, only: [
     :show,
     :edit,
@@ -16,8 +21,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article.count_visit
-    respond_with_article_or_redirect
+    respond_with_article_or_redirect_or_new
+    @article.count_visit if @article.present?
   end
 
   def new
@@ -27,6 +32,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
+      @article.subscribe_author
       respond_with_article_or_redirect
     else
       render :new
@@ -81,7 +87,7 @@ class ArticlesController < ApplicationController
   end
 
   def report_rot
-    @article.rot!
+    @article.rot!(current_user.id)
     flash[:notice] = "Successfully reported this article as rotten."
     respond_with_article_or_redirect
   end
@@ -112,7 +118,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Thanks for taking the time to make someone feel good about their work."
     else
       @article.unendorse_by(current_user)
-      flash[:notice] = "Giving it, and taking it right back. Ruthless, aren't we?"
+      flash[:notice] = "Giving it, then taking it right back. Ruthless, aren't we?"
     end
 
     respond_with_article_or_redirect
@@ -141,14 +147,28 @@ class ArticlesController < ApplicationController
   end
 
   def find_article_by_params
-    @article ||= Article.friendly.find(params[:id])
+    @article ||= begin
+      Article.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      Article.friendly.none
+    end
   end
   helper_method :article
+
+  def respond_with_article_or_redirect_or_new
+    if @article.present?
+      respond_with_article_or_redirect
+    else
+      flash[:notice] = "Since this article doesn't exist, it would be super nice if you wrote it. :-)"
+      redirect_to new_article_path(title: params[:id].titleize)
+    end
+  end
 
   def respond_with_article_or_redirect
     # If an old id or a numeric id was used to find the record, then
     # the request path will not match the post_path, and we should do
     # a 301 redirect that uses the current friendly id.
+
     if request.path != article_path(@article)
       return redirect_to @article, status: :moved_permanently
     else

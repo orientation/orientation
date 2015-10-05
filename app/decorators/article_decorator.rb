@@ -51,6 +51,16 @@ class ArticleDecorator < ApplicationDecorator
     content_tag(:span, "rotten", class: "state rotten") if source.rotten?
   end
 
+  def rot_reporter
+    if source.rot_reporter
+      link_to AuthorDecorator.new(source.rot_reporter), author_url(source.author)
+    end
+  end
+
+  def rotted_at
+    source.rotted_at.to_date.to_s(:long_ordinal)
+  end
+
   def signal
     state = 'fresh' if source.fresh?
     state = 'stale' if source.stale?

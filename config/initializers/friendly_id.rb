@@ -1,3 +1,17 @@
+module FriendlyIdOverride
+  def should_generate_new_friendly_id?
+    slug_column_empty? || slug_base_changed?
+  end
+
+  def slug_column_empty?
+    public_send("#{friendly_id_config.slug_column}").blank?
+  end
+
+  def slug_base_changed?
+    public_send("#{friendly_id_config.base}_changed?")
+  end
+end
+
 # FriendlyId Global Configuration
 #
 # Use this to set up shared configuration options for your entire application.
@@ -10,6 +24,8 @@
 # http://norman.github.io/friendly_id/file.Guide.html
 
 FriendlyId.defaults do |config|
+  config.use :history
+
   # ## Reserved Words
   #
   # Some words could conflict with Rails's routes when used as slugs, or are
@@ -45,7 +61,9 @@ FriendlyId.defaults do |config|
   # Most applications will use the :slugged module everywhere. If you wish
   # to do so, uncomment the following line.
   #
-  # config.use :slugged
+
+  config.use :slugged
+
   #
   # By default, FriendlyId's :slugged addon expects the slug column to be named
   # 'slug', but you can change it if you wish.
@@ -74,6 +92,9 @@ FriendlyId.defaults do |config|
   #     slug.blank? || <your_column_name_here>_changed?
   #   end
   # }
+
+  config.use(FriendlyIdOverride)
+
   #
   # FriendlyId uses Rails's `parameterize` method to generate slugs, but for
   # languages that don't use the Roman alphabet, that's not usually sufficient.

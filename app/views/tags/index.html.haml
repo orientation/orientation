@@ -4,13 +4,13 @@
     - #TODO(Olivier): Display tags sorted alphabetically in sections
     %h1 Tags
 
-    - unless @ordered_tags.empty?
+    - if @ordered_tags.any?
       %ul.columns.columns--s--2.columns--m--4.list
         - @ordered_tags[0..@ordered_tags.length/2].each do |tag|
           %li.list-item.mbxs
             = link_to tag, tag, class: 'label label--link'
-            %span.tss= tag.articles.count
-        - @ordered_tags[@ordered_tags.length/2..@ordered_tags.length].each do |tag|
+            %span.tss= tag.articles_count
+        - @ordered_tags[((@ordered_tags.length/2) + 1)..@ordered_tags.length].each do |tag|
           %li.list-item.mbxs
             = link_to tag, tag, class: 'label label--link'
-            %span.tss= tag.articles.count
+            %span.tss= tag.articles_count
