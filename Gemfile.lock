@@ -384,8 +384,6 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.9.0)
     simplecov-html (0.9.0)
-    skylight (0.6.0)
-      activesupport (>= 3.0.0)
     slack-notifier (1.1.0)
     slop (3.6.0)
     spring (1.0.0)
@@ -468,7 +466,6 @@ DEPENDENCIES
   rspec-rails (~> 3.2.0)
   sass-rails (~> 5.0)
   simple_form (~> 3.1.0)
-  skylight
   slack-notifier
   spring
   taperole (~> 1.2)
