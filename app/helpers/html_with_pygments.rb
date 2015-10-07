@@ -67,7 +67,8 @@ class HtmlWithPygments < Redcarpet::Render::HTML
   end
 
   def internal_link?(link)
-    url = URI.parse(link)
+    url = safe_url_parser(link)
+    return false if url.blank?
 
     if url.absolute?
       root = Rails.application.routes.url_helpers.root_url(host: ENV.fetch("ORIENTATION_DOMAIN"))
@@ -78,11 +79,21 @@ class HtmlWithPygments < Redcarpet::Render::HTML
   end
 
   def valid_article?(link)
-    link = URI.parse(link).path if !internal_link?(link)
+    link = safe_url_parser.path unless internal_link?(link)
+    return false if link.nil?
+
     slug = link.split('/').last
 
     Article.friendly.find(slug)
   rescue ActiveRecord::RecordNotFound
     false
+  end
+
+  def safe_url_parser(link)
+    url = begin
+      URI.parse(link)
+    rescue URI::InvalidURIError
+      nil
+    end
   end
 end
