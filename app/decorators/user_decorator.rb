@@ -10,7 +10,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def first_name
-    source.name.split(" ").first
+    source.name.split(" ").first if source.name.present?
   end
 
   def image
