@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   belongs_to :rot_reporter, class_name: "User"
-  
+
   has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
   has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
@@ -19,7 +19,7 @@ class Article < ActiveRecord::Base
   attr_reader :tag_tokens
 
   validates :title, presence: true
-
+  
   after_save :update_subscribers
   after_save :notify_slack
   after_destroy :notify_slack
@@ -180,10 +180,6 @@ class Article < ActiveRecord::Base
 
   def to_s
     title
-  end
-
-  def to_param
-    slug
   end
 
   def unarchive!

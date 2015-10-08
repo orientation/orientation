@@ -2,6 +2,13 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## October 4th, 2015
+### Email privacy
+
+I noticed a few weeks ago that private emails from people trying out try.orientation.io were being displayed. That was problematic because people testing out the site didn't agree to have their email shared. So I added a new option that can be triggered with `user.update(private_email: true)`. It's stored inside of a native Postgres JSON column called `preferences` to which we'll eventually add more user-specific settings (without need for new columns).
+
+There's also a `rake make_all_emails_private` which can run this command for all existing users. I will not be making private emails a default for now but will likely add a new Orientation configuration option to have email privacy be a default or not so that public-facing Orientation installations don't leak private email information from people authenticating with their private Gmail accounts.
+
 ## September 22nd, 2015
 ### Rot reporter logging and more human emails
 
