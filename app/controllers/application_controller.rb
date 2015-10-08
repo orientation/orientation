@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def oauth_callback?
-    request.path == oauth_callback_path("google_oauth2")
+    request.path == oauth_callback_path(ENV['OAUTH_PROVIDER_NAME'])
   end
 
   def warn_about_email_whitelist
