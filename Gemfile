@@ -46,7 +46,6 @@ gem 'redcarpet', '~> 3.3.4'
 
 # OAuth integration
 gem 'omniauth'
-gem 'omniauth-google-oauth2'
 
 # Full-text search with PostgreSQL
 gem 'pg_search'
