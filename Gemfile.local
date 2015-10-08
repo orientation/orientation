@@ -1,0 +1,2 @@
+# replace google with your oauth gem here
+gem 'omniauth-google-oauth2'
