@@ -90,10 +90,8 @@ class HtmlWithPygments < Redcarpet::Render::HTML
   end
 
   def safe_url_parser(link)
-    url = begin
-      URI.parse(link)
-    rescue URI::InvalidURIError
-      nil
-    end
+    URI.parse(link)
+  rescue URI::InvalidURIError
+    nil
   end
 end
