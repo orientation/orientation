@@ -19,7 +19,7 @@ class Article < ActiveRecord::Base
   attr_reader :tag_tokens
 
   validates :title, presence: true
-  
+
   after_save :update_subscribers
   after_save :notify_slack
   after_destroy :notify_slack
@@ -138,9 +138,6 @@ class Article < ActiveRecord::Base
     end
   end
 
-  # @user - the user to subscribe to this article
-  # Returns the subscription if successfully created
-  # Raises otherwise
   def subscribe(user)
     self.subscriptions.find_or_create_by!(user: user)
   end
@@ -149,25 +146,16 @@ class Article < ActiveRecord::Base
     subscriptions.create(user: author)
   end
 
-  # @user - the user to unsubscribed from this article
-  # Returns true if the unsubscription was successful
-  # Returns false if there was no subscription in the first place
   def unsubscribe(user)
     subscription = self.subscriptions.find_by(user: user)
     return false if subscription.nil?
     return true if subscription.destroy
   end
 
-  # @user - the user to have endorse this article
-  # Returns the endorsement if successfully created
-  # Raises otherwise
   def endorse_by(user)
     self.endorsements.find_or_create_by!(user: user)
   end
 
-  # @user - the user to have unendorse this article
-  # Returns true if the unendorsement was successful
-  # Returns false if there was no endorsement in the first place
   def unendorse_by(user)
     endorsement = self.endorsements.find_by(user: user)
     return false if endorsement.nil?
