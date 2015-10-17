@@ -142,10 +142,6 @@ class Article < ActiveRecord::Base
     self.subscriptions.find_or_create_by!(user: user)
   end
 
-  def subscribe_author
-    subscriptions.create(user: author)
-  end
-
   def unsubscribe(user)
     subscription = self.subscriptions.find_by(user: user)
     return false if subscription.nil?
