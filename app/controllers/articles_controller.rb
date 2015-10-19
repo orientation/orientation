@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      @article.subscribe_author
+      @article.subscribe(@article.author)
       flash[:notice] = "Article was successfully created."
     else
       flash[:error] = error_message(@article)
