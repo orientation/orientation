@@ -16,6 +16,8 @@
     "ORIENTATION_LOGO": "/assets/default_logo.svg",
     "ORIENTATION_FAVICON": "/assets/default_favicon.png",
     "ORIENTATION_DOMAIN": "REDACTED",
+    "GOOGLE_SECRET": "REDACTED",
+    "GOOGLE_KEY": "REDACTED",
     "OAUTH_PROVIDER_NAME": "REDACTED",
     "OAUTH_PROVIDER_SECRET": "REDACTED",
     "OAUTH_PROVIDER_KEY": "REDACTED",
