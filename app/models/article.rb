@@ -136,20 +136,32 @@ class Article < ActiveRecord::Base
     end
   end
 
+  # @user - the user to subscribe to this article
+  # Returns the subscription if successfully created
+  # Raises otherwise
   def subscribe(user)
     self.subscriptions.find_or_create_by!(user: user)
   end
 
+  # @user - the user to unsubscribe from this article
+  # Returns true if the unsubscription was successful
+  # Returns false if there was no subscription in the first place
   def unsubscribe(user)
     subscription = self.subscriptions.find_by(user: user)
     return false if subscription.nil?
     return true if subscription.destroy
   end
 
+  # @user - the user to have endorse this article
+  # Returns the endorsement if successfully created
+  # Raises otherwise
   def endorse_by(user)
     self.endorsements.find_or_create_by!(user: user)
   end
 
+  # @user - the user to have unendorse this article
+  # Returns true if the unendorsement was successful
+  # Returns false if there was no endorsement in the first place
   def unendorse_by(user)
     endorsement = self.endorsements.find_by(user: user)
     return false if endorsement.nil?
