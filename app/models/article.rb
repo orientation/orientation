@@ -42,12 +42,10 @@ class Article < ActiveRecord::Base
     where(%Q["articles"."updated_at" >= ?], FRESHNESS_LIMIT.ago)
       .where(archived_at: nil, rotted_at: nil)
   end
-  scope :guide, -> { where(guide: true) }
+  scope :guide,   -> { where(guide: true) }
   scope :popular, -> { order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc) }
-  scope :rotten, -> { where.not(rotted_at: nil) }
-  scope :stale, -> do
-    where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago)
-  end
+  scope :rotten,  -> { where.not(rotted_at: nil) }
+  scope :stale,   -> { where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago) }
 
   def self.count_visit(article_instance)
     self.increment_counter(:visits, article_instance.id)
