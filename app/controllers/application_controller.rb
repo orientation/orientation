@@ -38,12 +38,9 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
 
   def authenticate_user!
-    if current_user
-      true
-    else
-      session["return_to"] ||= request.url
-      redirect_to login_path unless login_redirect? or oauth_callback?
-    end
+    return true if current_user
+    session["return_to"] ||= request.url
+    redirect_to login_path unless login_redirect? or oauth_callback?
   end
   helper_method :authenticate_user!
 
