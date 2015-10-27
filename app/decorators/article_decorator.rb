@@ -2,17 +2,15 @@ class ArticleDecorator < ApplicationDecorator
   delegate_all
 
   def authors
-    output = "#{author.link_tag} #{created_at_tag} "
+    output = [author.link_tag, created_at_tag]
 
     if editor && updated_at_tag
-      if editor.id != source.author_id
-        output << "and updated by #{editor_email_tag} on #{updated_at_tag}"
-      else
-        output << "and updated on #{updated_at_tag}"
-      end
+      output << "and updated"
+      output << "by #{editor_email_tag}" if editor.id != source.author_id
+      output << "on #{updated_at_tag}"
     end
 
-    output.html_safe
+    output.join(" ").html_safe
   end
 
   def title
