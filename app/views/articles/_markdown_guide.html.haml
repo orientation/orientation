@@ -64,6 +64,20 @@
     .js-accordion
       .split.js-accordion-btn
         .split-cell
+          %span.form-label.label Tables
+        .split-cell
+          = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
+      .js-accordion-content
+        %textarea.form-input.form-textarea.form-textarea--pre.mbs.js-selectText{ readonly: true, rows: 3 }
+          |one|two|
+          |---|---|
+          |1|2|
+
+.card-section.pbs.pts
+  .form.mbf
+    .js-accordion
+      .split.js-accordion-btn
+        .split-cell
           %span.form-label.label Strong
         .split-cell
           = render partial: 'shared/icon', locals: { icon: 'caretDown', middle: true, klass: 'tcs tsxs' }
