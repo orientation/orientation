@@ -57,11 +57,10 @@
       %aside.g-b.g-b--m--1of3
 
         .switch.mbl
-          = link_to 'Fresh', mark_fresh_article_url( @article ), data: { method: :put, confirm: "Marking an article as Fresh means the information in the article is up-to-date and accurate. The author will be notified. Click OK to mark this article as Fresh" },
+          = link_to 'Fresh', mark_fresh_article_url( @article ), method: :put,
             class: "btn switch-btn switch-btn--success #{ 'is-active' if @article.fresh? }"
-          = link_to 'Rotten', report_rot_article_url( @article ), data: { method: :put, confirm: "Marking an article as Rotten means the information in the article is outdated and inaccurate. The author will be notified. Click OK to mark this article as Rotten" },
+          = link_to 'Rotten', report_rot_article_url( @article ), method: :put,
             class: "btn switch-btn switch-btn--error #{ 'is-active' if @article.rotten? }"
-
 
         - toc = table_of_contents( @article.content || '' )
         - unless toc.empty?
