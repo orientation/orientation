@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
       if !Rails.env.production?
         user = User.first_or_create(email: "alvar@hanso.dk", name: "Alvar Hanso")
         session[:user_id] = user.id
-        flash[:notice] = "Signed in!"
       else
         user = User.find(session[:user_id]) if session[:user_id].present?
       end
@@ -39,14 +38,15 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
 
   def authenticate_user!
-    if current_user
-      true
-    else
-      session["return_to"] ||= request.url
-      redirect_to login_path unless login_redirect? or oauth_callback?
-    end
+    return true if current_user
+    session["return_to"] ||= request.url
+    redirect_to login_path unless redirect_loop?
   end
   helper_method :authenticate_user!
+  
+  def redirect_loop?
+    login_redirect? || oauth_callback?
+  end
 
   def login_redirect?
     request.path == login_path
