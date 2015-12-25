@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.0'
 
-gem 'rails', '4.2.4'
+gem 'rails', '5.0.0.beta1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -17,7 +17,7 @@ gem 'autoprefixer-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'haml-rails'
-gem 'simple_form', '~> 3.1.0'
+gem 'simple_form', '~> 3.2.0'
 gem 'pygments.rb'
 gem 'redcarpet', '~> 3.3.2'
 gem 'omniauth'
@@ -42,7 +42,13 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.2.0'
+  # ============= begin hack to make rspec play nice with Rails 5 =============== #
+  gem 'rspec-rails', github: "rspec/rspec-rails", branch: "rails-5-support-patches"
+  gem 'rspec-support', github: "rspec/rspec-support"
+  gem 'rspec-expectations', github: "rspec/rspec-expectations"
+  gem 'rspec-mocks', github: "rspec/rspec-mocks"
+  gem 'rspec-core', github: "rspec/rspec-core"
+  # ================================ end hack =================================== #
   gem 'spring-commands-rspec'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker'
