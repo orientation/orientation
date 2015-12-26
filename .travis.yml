@@ -1,14 +1,16 @@
 language: ruby
-rvm:
-  - 2.1.6
-  - 2.2.3
-  - 2.3.0
-
 matrix:
+  include:
+    - rvm: 2.3.0
+    - rvm: 2.2.3
+      env: CUSTOM_RUBY_VERSION=2.2.3 ISOLATED=true
+    - rvm: 2.1.6
+      env: CUSTOM_RUBY_VERSION=2.1.6 ISOLATED=true
+
   fast_finish: true
   allow_failures:
-    - env: CUSTOM_RUBY_VERSION=2.1.6 ISOLATED=true
-      rvm: 2.1.6
+    - 2.2.3
+    - 2.1.6
 
 sudo: false
 bundler_args: --deployment --without development
