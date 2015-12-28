@@ -21,7 +21,6 @@ gem 'simple_form', '~> 3.1.0'
 gem 'pygments.rb'
 gem 'redcarpet', '~> 3.3.2'
 gem 'omniauth'
-gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'textacular'
 gem 'mandrill_mailer'
@@ -67,4 +66,9 @@ group :production do
   gem 'rails_12factor'
   gem 'rack-timeout'
   gem 'unicorn'
+end
+
+local_gemfile = File.join(File.dirname(__FILE__), "Gemfile.local")
+if File.exists?(local_gemfile)
+  eval_gemfile local_gemfile
 end

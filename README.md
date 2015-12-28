@@ -23,18 +23,17 @@ internal question someone might have about our organization:
 
 ![Orientation's Homepage][orientation-homepage]
 
-Here's [how Orientation works](doc/FEATURES.md), you can even 
-[try it out](http://orientation-demo.herokuapp.com) with your little 
-fingers. One restriction is that you'll need a Google Apps account 
-in order to sign in.
+Here's [how Orientation works](doc/FEATURES.md), you can even
+[try it out](http://orientation-demo.herokuapp.com) with your little
+fingers.
 
 ### Authentication
 
 I originally tried to make Orientation as easy to onboard to as possible for
 people in our team. While a huge majority of us had GitHub accounts, not everyone
 did. Nor was it realistic to expect non-developers to setup a GitHub account
-just to use a documentation tool. We did — however have — company Google Apps
-accounts, so this is what I used. I want to enable custom OAuth providers soon.
+just to use a documentation tool. By default you can use google as an oauth provider
+but also use the one of your choice.
 
 ## Requirements
 
@@ -89,11 +88,11 @@ using you local (git-ignored) `.env` file as a canonical source.
 ### Multiple Buildpacks
 
 Multiple buildpack support used to be unofficial and relied on [a custom buildpack created
-by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer 
+by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer
 the case since Heroku has rolled out official support for multiple buildpacks.
 
-Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button, 
-which would take care of this for you) you will need to add two buildpacks since the app relies 
+Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button,
+which would take care of this for you) you will need to add two buildpacks since the app relies
 on NodeJS for Bower package installation.
 
 Note that for some reason you need to be the owner of the app on Heroku in order to be able to do this:
@@ -116,11 +115,11 @@ $ heroku buildpacks -a yourappname
 - Go to the [Google Developers Console](https://console.developers.google.com/project) and create a new project
 - Once you've created the project, go to `APIs` and add the `Contacts API` and the `Google+ API` (you won't need a Google+ account to sign in, this is just an annoying Google quirk).
 - Then go to `Credentials` and `Create a new Client ID`. You'll need the app's production URL to complete this step so if you're using the Heroku button, do that first. You can use your production URL for the `JavaScript Origins` setting, but make sure to use `http://yourdomain.com/auth/google_oauth2/callback` for in the `Redirect URIs` setting. It's a good idea to also add the same URL but with the HTTPS protocol to ensure that if you ever force SSL, Google will still accept the redirect.
-- Don't forget to go update the `GOOGLE_KEY` and `GOOGLE_SECRET` environment variables with the credentials Google gave you when you created your Client ID, otherwise the redirection process will fail.
+- Don't forget to go update the `OAUTH_PROVIDER_KEY` and `OAUTH_PROVIDER_SECRET` environment variables with the credentials Google gave you when you created your Client ID, otherwise the redirection process will fail.
 
 ### Transactional Emails with Mandrill
 
-If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names 
+If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names
 that match the ones listed in our [Mandrill documentation](doc/MANDRILL.md).
 
 ## Development
