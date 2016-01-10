@@ -30,5 +30,20 @@ RSpec.describe ApplicationHelper do
       article.update!(title: "This is a title", content: "[[This is a title]]")
       expect(markdown(article.content)).to include("<a href='/articles/this-is-a-title'>This is a title</a>")
     end
+
+    it "converts emoji markdown to HTML" do
+      article.update!(content: "This is a :octocat: emoji")
+      expect(markdown(article.content)).to include("<img alt=\"octocat\" src=\"/images/emoji/octocat.png\" style=\"vertical-align:middle\" width=\"20\" height=\"20\" />")
+    end
+
+    it "does not convert emoji markdown inside fenced code blocks" do
+      article.update!(content: "This should not convert ``` :octocat: ```.")
+      expect(markdown(article.content)).to include(":octocat")
+    end
+
+    it "does not convert emoji markdown inside inline code" do
+      article.update!(content: "This `:octocat:` emoji should not be converted.")
+      expect(markdown(article.content)).to include(":octocat:")
+    end
   end
 end
