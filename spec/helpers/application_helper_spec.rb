@@ -42,8 +42,13 @@ RSpec.describe ApplicationHelper do
     end
 
     it "does not convert emoji markdown inside inline code" do
-      article.update!(content: "This `:octocat:` emoji should not be converted.")
-      expect(markdown(article.content)).to include(":octocat:")
+      article.update!(content: "This `ocf:heartbeat:ip` emoji should not be converted.")
+      expect(markdown(article.content)).to include(":heartbeat:")
+    end
+
+    it "converts emoji markdown but does not convert emoji markdown in both fenced and inline" do
+      article.update!(content: "This ocf:heartbeat:ip should convert, however, this `ocf:heartbeat:ip` emoji should not be converted and neither should this ```ocf:hearthbeat:ip```")
+      expect(markdown(article.content)).to include("<p>This ocf<img alt="heartbeat" src="/images/emoji/unicode/1f493.png" style="vertical-align:middle" width="20" height="20" />ip should convert, however, this <code>ocf:heartbeat:ip</code> emoji should not be converted and neither should this <code>ocf:hearthbeat:ip</code></p>")
     end
   end
 end
