@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   belongs_to :rot_reporter, class_name: "User"
-  
+
   has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
   has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
@@ -42,12 +42,10 @@ class Article < ActiveRecord::Base
     where(%Q["articles"."updated_at" >= ?], FRESHNESS_LIMIT.ago)
       .where(archived_at: nil, rotted_at: nil)
   end
-  scope :guide, -> { where(guide: true) }
+  scope :guide,   -> { where(guide: true) }
   scope :popular, -> { order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc) }
-  scope :rotten, -> { where.not(rotted_at: nil) }
-  scope :stale, -> do
-    where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago)
-  end
+  scope :rotten,  -> { where.not(rotted_at: nil) }
+  scope :stale,   -> { where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago) }
 
   def self.count_visit(article_instance)
     self.increment_counter(:visits, article_instance.id)
@@ -145,11 +143,7 @@ class Article < ActiveRecord::Base
     self.subscriptions.find_or_create_by!(user: user)
   end
 
-  def subscribe_author
-    subscriptions.create(user: author)
-  end
-
-  # @user - the user to unsubscribed from this article
+  # @user - the user to unsubscribe from this article
   # Returns true if the unsubscription was successful
   # Returns false if there was no subscription in the first place
   def unsubscribe(user)
@@ -180,10 +174,6 @@ class Article < ActiveRecord::Base
 
   def to_s
     title
-  end
-
-  def to_param
-    slug
   end
 
   def unarchive!
