@@ -7,6 +7,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     image_aspect_ratio: "square",
     # we're displaying at 80 pixels, this is for high density ("Retina") displays
     image_size: 160,
-    hd: ENV["ORIENTATION_EMAIL_WHITELIST"] || ""
+    hd: ENV.fetch("ORIENTATION_EMAIL_WHITELIST")
   }
 end
