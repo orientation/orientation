@@ -30,7 +30,6 @@ gem 'skylight'
 gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
-gem 'gemoji'
 gem 'dotenv-rails'
 
 group :development do

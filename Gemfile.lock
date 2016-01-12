@@ -114,7 +114,6 @@ GEM
       thor (~> 0.14)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
-    gemoji (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -338,7 +337,6 @@ DEPENDENCIES
   faker
   fontcustom
   friendly_id
-  gemoji
   haml-rails
   launchy
   mandrill_mailer
