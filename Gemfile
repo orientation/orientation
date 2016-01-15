@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.2.3'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.0'
 
 gem 'rails', '4.2.4'
 
@@ -30,7 +30,6 @@ gem 'skylight'
 gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
-gem 'gemoji'
 gem 'dotenv-rails'
 
 group :development do

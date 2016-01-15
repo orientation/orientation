@@ -3,19 +3,8 @@ module ApplicationHelper
     %|#{controller.controller_name} #{controller.controller_name}-#{controller.action_name} #{@body_class}|
   end
 
-  def emojify(content)
-    content.gsub(/:([\w+-]+):/) do |match|
-      if emoji = Emoji.find_by_alias($1)
-        %(<img alt="#$1" src="/images/emoji/#{emoji.image_filename}" style="vertical-align:middle" width="20" height="20" />)
-      else
-        match
-      end
-    end.html_safe
-  end
-
   def markdown(text)
     renderer = HtmlWithPygments.new(hard_wrap: true, filter_html: false)
-    text = emojify(text)
     Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
   end
 
