@@ -1,19 +1,21 @@
-# Contribution Guidelines
+### Contribution Guidelines
 
-## Code of Conduct 
-Please read our [code of conduct](CODE_OF_CONDUCT.md) before contributing. 
-If you don't agree with it, please don't contribute.
+1. Create a local branch, make your changes and get them tested and code-reviewed.
+2. Checkout the `pseudo-master` and make sure you have pulled the latest
+3. Merge your local branch in pseudo-master.
+4. Push your changes to pseudo-master
+5. Deploy pseudo-master to QA `git push heroku-qa pseudo-master:master`
+6. To deploy to production replace `heroku-qa` with `heroku`
 
-## `master` is production
-Our demo site try.orientation.io is deployed when the latested build is green,
-therefore anything merged into master should be production-ready as much as possible.
+------------------
 
-## New Features
-Orientation's [existing and planned features](doc/FEATURES.md) are documented. Please 
-don't submit pull requests for unplanned features before opening up an [issue](https://github.com/orientation/orientation/issues/new)
-to discuss it with the maintainers. We want to keep this project small and focused.
+Ensure your local .git/config contains the following
 
-## Specify and Test
-Orientation is used by real humans. When it breaks, it wastes their time and causes them 
-to lose trust in this software, so please add specs to any new code you contribute. If 
-you find untested code and contribute tests for it, you will receive heaps of virtual hugs.
+```
+[remote "heroku-qa"]
+  url = https://git.heroku.com/dox-orientation-qa.git
+  fetch = +refs/heads/*:refs/remotes/heroku/*
+[remote "heroku"]
+  url = https://git.heroku.com/dox-orientation.git
+  fetch = +refs/heads/*:refs/remotes/heroku/*
+```
