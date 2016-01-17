@@ -22,6 +22,7 @@ gem 'pygments.rb'
 gem 'redcarpet', '~> 3.3.2'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper'
 gem 'textacular'
 gem 'mandrill_mailer'
@@ -42,13 +43,12 @@ group :development do
 end
 
 group :development, :test do
-  # ============= begin hack to make rspec play nice with Rails 5 =============== #
-  gem 'rspec-rails', github: "rspec/rspec-rails", branch: "rails-5-support-patches"
-  gem 'rspec-support', github: "rspec/rspec-support"
-  gem 'rspec-expectations', github: "rspec/rspec-expectations"
-  gem 'rspec-mocks', github: "rspec/rspec-mocks"
-  gem 'rspec-core', github: "rspec/rspec-core"
-  # ================================ end hack =================================== #
+  # gem 'rspec-rails'
+  gem "rspec-rails", git: "https://github.com/rspec/rspec-rails.git", branch: "master"
+  gem "rspec-core", git: "https://github.com/rspec/rspec-core.git", branch: "master"
+  gem "rspec-support", git: "https://github.com/rspec/rspec-support.git", branch: "master"
+  gem "rspec-expectations", git: "https://github.com/rspec/rspec-expectations.git", branch: "master"
+  gem "rspec-mocks", git: "https://github.com/rspec/rspec-mocks.git", branch: "master"
   gem 'spring-commands-rspec'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker'
