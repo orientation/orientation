@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/audionerd/draper.git
+  revision: e816e0e5876b76c648c0928f1c3f2aa2c7a3d1f2
+  branch: rails5
+  specs:
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
+
+GIT
   remote: git://github.com/rails/activemodel-serializers-xml.git
   revision: 1f72d9507c91b1cda10d1d20eac2b74dd6d9d4b9
   specs:
@@ -168,11 +179,6 @@ GEM
     dotenv-rails (2.1.0)
       dotenv (= 2.1.0)
       railties (>= 4.0, < 5.1)
-    draper (2.1.0)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0)
     em-hiredis (0.3.0)
       eventmachine (~> 1.0)
       hiredis (~> 0.5.0)
@@ -406,7 +412,7 @@ DEPENDENCIES
   delayed_job
   delayed_job_active_record
   dotenv-rails
-  draper
+  draper!
   factory_girl_rails (~> 4.5.0)
   faker
   fontcustom
