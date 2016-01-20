@@ -1,4 +1,6 @@
 language: ruby
+env:
+  - ORIENTATION_EMAIL_WHITELIST=""
 matrix:
   include:
     - rvm: 2.3.0
