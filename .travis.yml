@@ -1,7 +1,7 @@
 language: ruby
 env:
   global:
-    - ORIENTATION_EMAIL_WHITELIST=""
+    - ORIENTATION_EMAIL_WHITELIST=hanso.dk
 matrix:
   include:
     - rvm: 2.3.0
