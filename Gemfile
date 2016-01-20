@@ -62,7 +62,7 @@ group :test do
   gem 'climate_control'
 end
 
-group :production do
+group :production, :staging do
   gem 'rails_12factor'
   gem 'rack-timeout'
   gem 'unicorn'
