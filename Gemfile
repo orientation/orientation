@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.0'
 
-gem 'rails', '5.0.0.beta1'
+gem 'rails', github: "rails/rails"
+# Use Puma as the app server
+gem 'puma'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -56,7 +58,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-remote'
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
   gem 'spring'
 end
 
