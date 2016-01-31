@@ -8,32 +8,33 @@
             %li.list-item
               = link_to root_url, class: 'header-btn', data: { shortcut: 1 } do
                 = image_tag( ENV['ORIENTATION_LOGO'], height: 40, width: 40, class: 'vam' )
-            %li.list-item
-              = link_to articles_url, class: 'header-btn', data: { shortcut: 2 } do
-                %span.tss Articles
-            %li.list-item
-              = link_to tags_url, class: 'header-btn', data: { shortcut: 3 } do
-                %span.tss Tags
-            %li.list-item.dn.di--s
-              = link_to authors_url, class: 'header-btn', data: { shortcut: 4 } do
-                %span.tss Authors
-            %li.list-item.dn--s
-              .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
-                = link_to '#', class: 'header-btn js-dropdown-btn' do
-                  %span.tss More
-                %ul.dropdown-menu.js-dropdown-menu
-                  %li.dropdown-item
-                    = link_to authors_url, class: 'dropdown-item-link' do
-                      %span.tss Authors
-                  %li.dropdown-item
-                    = link_to new_article_url, class: 'dropdown-item-link' do
-                      %span.tss New Article
-                  %li.dropdown-item
-                    = link_to current_user.link, class: 'dropdown-item-link' do
-                      %span.tss My Profile
-                  %li.dropdown-item
-                    = link_to logout_path, class: 'dropdown-item-link' do
-                      %span.tss Log Out
+            - if current_user
+              %li.list-item
+                = link_to articles_url, class: 'header-btn', data: { shortcut: 2 } do
+                  %span.tss Articles
+              %li.list-item
+                = link_to tags_url, class: 'header-btn', data: { shortcut: 3 } do
+                  %span.tss Tags
+              %li.list-item.dn.di--s
+                = link_to authors_url, class: 'header-btn', data: { shortcut: 4 } do
+                  %span.tss Authors
+              %li.list-item.dn--s
+                .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
+                  = link_to '#', class: 'header-btn js-dropdown-btn' do
+                    %span.tss More
+                  %ul.dropdown-menu.js-dropdown-menu
+                    %li.dropdown-item
+                      = link_to authors_url, class: 'dropdown-item-link' do
+                        %span.tss Authors
+                    %li.dropdown-item
+                      = link_to new_article_url, class: 'dropdown-item-link' do
+                        %span.tss New Article
+                    %li.dropdown-item
+                      = link_to current_user.link, class: 'dropdown-item-link' do
+                        %span.tss My Profile
+                    %li.dropdown-item
+                      = link_to logout_path, class: 'dropdown-item-link' do
+                        %span.tss Log Out
 
         .split-cell.dn.db--s
 

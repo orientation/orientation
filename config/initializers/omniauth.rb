@@ -19,4 +19,15 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       end
     end
   }
+
+  provider :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_SECRET'],
+           scope: 'user:email',
+           client_options: {
+             site: ENV['GITHUB_URL']
+           }
+
+  provider :gitlab, ENV['GITLAB_APPLICATION_ID'], ENV['GITLAB_SECRET'],
+           client_options: {
+             site: ENV['GITLAB_URL']
+           }
 end

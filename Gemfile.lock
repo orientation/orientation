@@ -124,7 +124,7 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
-    hashie (3.4.0)
+    hashie (3.4.2)
     hitimes (1.2.2)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
@@ -133,7 +133,7 @@ GEM
       ruby_parser (~> 3.5)
     i18n (0.7.0)
     json (1.8.3)
-    jwt (1.4.1)
+    jwt (1.5.1)
     kgio (2.9.2)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -156,7 +156,7 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.8.0)
-    multi_json (1.11.1)
+    multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nokogiri (1.6.6.2)
@@ -170,12 +170,16 @@ GEM
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
+    omniauth-github (1.1.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-gitlab (1.0.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-google-oauth2 (0.2.6)
       omniauth (> 1.0)
       omniauth-oauth2 (~> 1.1)
-    omniauth-oauth2 (1.2.0)
-      faraday (>= 0.8, < 0.10)
-      multi_json (~> 1.3)
+    omniauth-oauth2 (1.3.1)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.18.1)
@@ -341,6 +345,8 @@ DEPENDENCIES
   launchy
   mandrill_mailer
   omniauth
+  omniauth-github
+  omniauth-gitlab
   omniauth-google-oauth2
   pg
   powder
