@@ -32,9 +32,9 @@ module ApplicationHelper
   end
 
   def emojify(content)
-    content.gsub(/:([\w+-]+):/) do |match|
+    content.gsub(/[^`|\n]:([\w+-]+):[^`]/) do |match|
       if emoji = Emoji.find_by_alias($1)
-        %(<img alt="#$1" src="/images/emoji/#{emoji.image_filename}" style="vertical-align:middle" width="20" height="20" />)
+        %( <img alt="#$1" src="/images/emoji/#{emoji.image_filename}" style="vertical-align:middle" width="20" height="20" /> )
       else
         match
       end
