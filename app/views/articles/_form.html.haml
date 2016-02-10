@@ -19,7 +19,8 @@
             = link_to '#', class: 'form-field-toggle form-field-toggle--close js-editor-close' do
               = render partial: 'shared/icon', locals: { icon: 'unfullscreen', title: 'Close Editor' }
 
-            = f.input_field :content, rows: 15, class: 'form-input form-textarea js-editor-textarea'
+            = f.input_field :content, rows: 15, class: 'form-input form-textarea js-editor-textarea',
+              placeholder: "See guide to creating Awesome Wiki Articles on the right ----------------->"
 
         .form-field
           = f.label :author do
@@ -29,7 +30,8 @@
 
         .form-field
           = f.label :tag_tokens do
-            %span.form-label.label Tags
+            %span.form-label.label
+              = "Tags (pick generally applicable tags, see #{link_to 'Tags', tags_url} page for ideas)".html_safe
             = f.input_field :tag_tokens, data: { load: @tags }
 
         .form-field
@@ -59,7 +61,7 @@
         = f.button :submit, class: 'btn btn--a btn--l'
 
   .g-b.g-b--m--1of3
-
+    %br
     .card.card--b.has-card-section
       %h2.tac.mbs Article README
       %h4.tac.mbs
