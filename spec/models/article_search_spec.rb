@@ -45,14 +45,14 @@ RSpec.describe Article do
       expect(result.first).to_not eq(@article1)
     end
 
-    it "doesn't do partial content matching" do
+    it "does do partial content matching" do
       result = Article.text_search "yum"
-      expect(result).to_not include(@article1)
+      expect(result).to include(@article1)
     end
 
-    it "doesn't do full content matching" do
+    it "does do full content matching" do
       result = Article.text_search @article1.content
-      expect(result).to_not include(@article1)
+      expect(result).to include(@article1)
     end
 
     context "when searching for tagged articles" do
