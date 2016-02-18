@@ -53,4 +53,23 @@ RSpec.describe ArticleDecorator do
       end
     end
   end
+
+  describe '.matched_content_snippet' do
+    let(:article) do
+      build(:article,
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod")
+    end
+
+    subject { described_class.new(article, context: context_param ).matched_content_snippet }
+
+    context 'when search_param is passed in' do
+      let(:context_param) { { search_params: 'consectetu' } }
+      it { is_expected.to eq('<p class="matching-text tcs mbf tsi tss fl">Lorem ipsum dolor sit amet, <strong>consectetu</strong>r adipiscing elit, sed do eiusmod</p>') }
+    end
+
+    context 'when no search_param is passed in' do
+      let(:context_param) { {} }
+      it { is_expected.to be_nil }
+    end
+  end
 end
