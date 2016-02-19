@@ -47,12 +47,12 @@ class ArticleDecorator < ApplicationDecorator
 
   def matched_content_snippet
     if from_search?
-      snippit = SearchSnippet.new(context[:search_params], source.content)
-      if snippit.match?
+      snippet = SearchSnippet.new(context[:search_params], source.content)
+      if snippet.match?
         content_tag(:p, class: "matching-text tcs mbf tsi tss fl") do
-          concat snippit.pre_matched_text
-          concat content_tag(:strong, snippit.query)
-          concat snippit.post_matched_text
+          concat snippet.pre_matched_text
+          concat content_tag(:strong, snippet.query)
+          concat snippet.post_matched_text
         end
       end
     end

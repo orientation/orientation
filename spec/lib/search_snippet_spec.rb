@@ -3,12 +3,15 @@ require "search_snippet"
 
 RSpec.describe SearchSnippet do
   subject { SearchSnippet.new(query, content) }
-  let(:content) { "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
-            "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, " +
-            "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat " +
-            "duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu " +
-            "fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
-            "culpa qui officia deserunt mollit anim id est laborum." }
+  let(:content) do <<-EOS.squish
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+      duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+      culpa qui officia deserunt mollit anim id est laborum.
+    EOS
+  end
 
   context 'query string matches the first word' do
     let(:query) { 'Lorem' }
