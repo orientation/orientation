@@ -1,12 +1,14 @@
 class SearchSnippet
-  PRE_MATCHED_CHAR_LENGTH = 75
-  POST_MATCHED_CHAR_LENGTH = 75
+  PRE_MATCHED_CHAR_LENGTH = 100
+  POST_MATCHED_CHAR_LENGTH = 100
   OMISSION_INDICATOR = '...'
   attr_accessor :content
 
-  def initialize(input_query, content)
+  def initialize(input_query, content, options = {})
     @input_query = input_query
     @content = content
+    @pre_matched_char_length = options[:pre_matched_char_length] || PRE_MATCHED_CHAR_LENGTH
+    @post_matched_char_length = options[:post_matched_char_length] || POST_MATCHED_CHAR_LENGTH
   end
 
   def pre_matched_text
@@ -54,7 +56,7 @@ class SearchSnippet
   end
 
   def formatted_post_matched_text
-    matched_text = content[matched_index + query.length, POST_MATCHED_CHAR_LENGTH]
+    matched_text = content[matched_index + query.length, @post_matched_char_length]
 
     if close_to_end_of_doc?
       matched_text
@@ -69,16 +71,16 @@ class SearchSnippet
     if close_to_begining_of_doc?
       [0, matched_index]
     else
-      [matched_index - PRE_MATCHED_CHAR_LENGTH, PRE_MATCHED_CHAR_LENGTH]
+      [matched_index - @pre_matched_char_length, @pre_matched_char_length]
     end
   end
 
   def close_to_begining_of_doc?
-    matched_index <= PRE_MATCHED_CHAR_LENGTH
+    matched_index <= @pre_matched_char_length
   end
 
   def close_to_end_of_doc?
-    content.length <= matched_index + POST_MATCHED_CHAR_LENGTH
+    content.length <= matched_index + @post_matched_char_length
   end
 
   def matched_index

@@ -2,7 +2,15 @@ require "rails_helper"
 require "search_snippet"
 
 RSpec.describe SearchSnippet do
-  subject { SearchSnippet.new(query, content) }
+  subject { SearchSnippet.new(query, content, options) }
+
+  let(:options) do
+    {
+      pre_matched_char_length: 75,
+      post_matched_char_length: 75
+    }
+  end
+
   let(:content) do <<-EOS.squish
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -71,4 +79,12 @@ RSpec.describe SearchSnippet do
     specify { expect(subject.post_matched_text).to eq('') }
   end
 
+  context 'no options are passed in' do
+    subject { SearchSnippet.new(query, content) }
+
+    let(:query) { 'aute' }
+
+    specify { expect(subject.pre_matched_text).to eq('...veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis ') }
+    specify { expect(subject.post_matched_text).to eq(' irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur....') }
+  end
 end
