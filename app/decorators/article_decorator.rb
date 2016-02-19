@@ -41,6 +41,23 @@ class ArticleDecorator < ApplicationDecorator
     content_tag(:span, "fresh", class: "state fresh") if source.fresh?
   end
 
+  def any_footer_content?
+    tags.any? || matched_content_snippet.present?
+  end
+
+  def matched_content_snippet
+    if from_search?
+      snippet = SearchSnippet.new(context[:search_params], source.content)
+      if snippet.match?
+        content_tag(:p, class: "matching-text tcs mbf tsi tss fl") do
+          concat snippet.pre_matched_text
+          concat content_tag(:strong, snippet.query)
+          concat snippet.post_matched_text
+        end
+      end
+    end
+  end
+
   def staleness
     content_tag(:span, "stale", class: "state stale") if source.stale?
   end
@@ -71,5 +88,9 @@ class ArticleDecorator < ApplicationDecorator
     else
       content_tag(:div, state, class: 'signal')
     end
+  end
+
+  def from_search?
+    context[:search_params].present?
   end
 end

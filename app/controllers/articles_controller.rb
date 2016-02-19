@@ -157,7 +157,7 @@ class ArticlesController < ApplicationController
   def fetch_articles(scope = nil)
     scope ||= Article.current
     query = Article.includes(:tags).text_search(params[:search], scope)
-    ArticleDecorator.decorate_collection(query)
+    ArticleDecorator.decorate_collection(query, context: { search_params: params[:search] })
   end
 
   def find_article_by_params
