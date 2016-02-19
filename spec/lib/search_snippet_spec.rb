@@ -21,6 +21,13 @@ RSpec.describe SearchSnippet do
     EOS
   end
 
+  context 'query is in incorrect case' do
+    let(:query) { 'AuTe' }
+
+    specify { expect(subject.pre_matched_text).to eq('...exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis ') }
+    specify { expect(subject.post_matched_text).to eq(' irure dolor in reprehenderit in voluptate velit esse cillum dolore eu...') }
+  end
+
   context 'query string matches the first word' do
     let(:query) { 'Lorem' }
 

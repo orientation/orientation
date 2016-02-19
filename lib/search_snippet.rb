@@ -85,7 +85,7 @@ class SearchSnippet
 
   def matched_index
     if @input_query.present?
-      @matched_index ||= content.index(@input_query)
+      @matched_index ||= content.index(/#{@input_query}/i)
     end
   end
 end
