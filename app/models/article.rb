@@ -7,6 +7,9 @@ class Article < ActiveRecord::Base
 
   has_attachments :images, maximum: 20, accept: [:jpg, :png, :gif]
 
+  has_paper_trail on: [:update, :destroy],
+    only: [:title, :content]
+
   def should_generate_new_friendly_id?
     !has_friendly_id_slug? or title_changed?
   end
