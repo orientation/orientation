@@ -23,7 +23,7 @@ RSpec.describe ArticleMailer do
   end
 
   context ".send_updates_for(article, user)" do
-    let(:article) { create(:article, content: 'foo bar bjork baz') }
+    let(:article) { create(:article, title: 'title', content: 'foo bar bjork baz') }
     let(:mailer) { described_class.send_updates_for(article, user) }
 
     subject { mailer }
@@ -36,12 +36,23 @@ RSpec.describe ArticleMailer do
     it { is_expected.to have_merge_data('URL' => article_url(article)) }
     it { is_expected.not_to have_merge_data('CHANGE_SUMMARY_HTML' => '') }
 
-    context 'article updated' do
+    context 'article content updated' do
       before do
         article.update(content: 'foo bar Tim baz')
       end
       it 'contains the most recent change saved' do
-        expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' => ["foo bar bjork baz", "foo bar Tim baz"])
+        expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
+          'foo bar <del class="differ">Tim</del><ins class="differ">bjork</ins> baz')
+      end
+    end
+
+    context 'article title updated' do
+      before do
+        article.update(title: "Tim's title")
+      end
+      it 'contains the most recent change saved' do
+        expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
+          %q{<del class="differ">Tim's </del>title})
       end
     end
 

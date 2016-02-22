@@ -71,7 +71,10 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def format_changes_snippet(article)
     last_version = article.versions.last
     if last_version
-      last_version.changeset['content']
+      changes = last_version.changeset['title'] || last_version.changeset['content'] || []
+      if changes.any?
+        Differ.diff_by_word(*changes).format_as(:html)
+      end
     end
   end
 
