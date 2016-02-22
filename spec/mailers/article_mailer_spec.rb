@@ -32,6 +32,8 @@ RSpec.describe ArticleMailer do
     it { is_expected.to use_template('article-subscription-update') }
     it { is_expected.to have_subject("#{article.title} was just updated") }
     it { is_expected.to be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to have_merge_data('ARTICLE_TITLE' => article.title) }
+    it { is_expected.to have_merge_data('URL' => article_url(article)) }
   end
 
   context ".send_rotten_notification_for(article, contributors)" do
