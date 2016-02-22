@@ -29,7 +29,8 @@ class ArticleMailer < MandrillMailer::TemplateMailer
                   to: { email: user.email, name: user.name },
                   vars: {
                     'ARTICLE_TITLE' => article.title,
-                    'URL' => article_url(article)
+                    'URL' => article_url(article),
+                    'CHANGE_SUMMARY_HTML' => format_changes_snippet(article)
                   }
   end
 
@@ -67,6 +68,12 @@ class ArticleMailer < MandrillMailer::TemplateMailer
     end.join
   end
 
+  def format_changes_snippet(article)
+    last_version = article.versions.last
+    if last_version
+      last_version.changeset['content']
+    end
+  end
 
   test_setup_for :notify_author_of_staleness do |mailer, options|
     articles = [
