@@ -23,7 +23,7 @@ RSpec.describe ArticleMailer do
   end
 
   context ".send_updates_for(article, user)" do
-    let(:article) { create(:article) }
+    let(:article) { create(:article, title: 'title', content: 'foo bar bjork baz') }
     let(:mailer) { described_class.send_updates_for(article, user) }
 
     subject { mailer }
@@ -32,6 +32,43 @@ RSpec.describe ArticleMailer do
     it { is_expected.to use_template('article-subscription-update') }
     it { is_expected.to have_subject("#{article.title} was just updated") }
     it { is_expected.to be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to have_merge_data('ARTICLE_TITLE' => article.title) }
+    it { is_expected.to have_merge_data('URL' => article_url(article)) }
+    it { is_expected.not_to have_merge_data('CHANGE_SUMMARY_HTML' => '') }
+
+    context 'article content updated' do
+      before do
+        article.update(content: 'foo bar Tim baz')
+      end
+
+      it 'contains the most recent change saved' do
+        expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
+          'foo bar <del class="differ">bjork</del><ins class="differ">Tim</ins> baz')
+      end
+
+      context 'updated twice before communicating change' do
+        before do
+          article.update(content: 'foo Tim baz',
+                         change_last_communicated_at: 10.days.ago)
+        end
+
+        it 'contains all changes not communicated' do
+          expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
+            'foo <del class="differ">bar</del><ins class="differ">Tim</ins> <del class="differ">bjork </del>baz')
+        end
+      end
+    end
+
+    context 'article title updated' do
+      before do
+        article.update(title: "Tim's title")
+      end
+      it 'contains the most recent change saved' do
+        expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
+          %q{<ins class="differ">Tim's </ins>title})
+      end
+    end
+
   end
 
   context ".send_rotten_notification_for(article, contributors)" do

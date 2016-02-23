@@ -29,7 +29,8 @@ class ArticleMailer < MandrillMailer::TemplateMailer
                   to: { email: user.email, name: user.name },
                   vars: {
                     'ARTICLE_TITLE' => article.title,
-                    'URL' => article_url(article)
+                    'URL' => article_url(article),
+                    'CHANGE_SUMMARY_HTML' => format_changes_snippet(article)
                   }
   end
 
@@ -67,6 +68,24 @@ class ArticleMailer < MandrillMailer::TemplateMailer
     end.join
   end
 
+  def format_changes_snippet(article)
+    last_version = article.versions
+    last_version = last_version.where(PaperTrail::Version.arel_table[:created_at].gteq(article.change_last_communicated_at))
+      .reorder(created_at: :desc) if article.change_last_communicated_at
+    last_version = last_version.last.try(:reify)
+    if last_version
+      formatted_changes(last_version.title, article.title) +
+        formatted_changes(last_version.content, article.content)
+    end
+  end
+
+  def formatted_changes(last_value, article_value)
+    if last_value != article_value
+      Differ.diff_by_word(article_value, last_value).format_as(:html)
+    else
+      ''
+    end
+  end
 
   test_setup_for :notify_author_of_staleness do |mailer, options|
     articles = [
