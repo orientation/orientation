@@ -69,11 +69,10 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   end
 
   def format_changes_snippet(article)
-    last_version = if article.change_last_communicated_at
-                     article.versions.where('created_at >= ?', article.change_last_communicated_at).first.try(:reify)
-                   else
-                     article.versions.last.try(:reify)
-                   end
+    last_version = article.versions
+    last_version = last_version.where(PaperTrail::Version.arel_table[:created_at].gteq(article.change_last_communicated_at))
+      .reorder(created_at: :desc) if article.change_last_communicated_at
+    last_version = last_version.last.try(:reify)
     if last_version
       formatted_changes(last_version.title, article.title) +
         formatted_changes(last_version.content, article.content)
