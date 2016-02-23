@@ -69,12 +69,22 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   end
 
   def format_changes_snippet(article)
-    last_version = article.versions.last
+    last_version = if article.change_last_communicated_at
+                     article.versions.where('created_at >= ?', article.change_last_communicated_at).first.try(:reify)
+                   else
+                     article.versions.last.try(:reify)
+                   end
     if last_version
-      changes = last_version.changeset['title'] || last_version.changeset['content'] || []
-      if changes.any?
-        Differ.diff_by_word(*changes).format_as(:html)
-      end
+      formatted_changes(last_version.title, article.title) +
+        formatted_changes(last_version.content, article.content)
+    end
+  end
+
+  def formatted_changes(last_value, article_value)
+    if last_value != article_value
+      Differ.diff_by_word(article_value, last_value).format_as(:html)
+    else
+      ''
     end
   end
 
