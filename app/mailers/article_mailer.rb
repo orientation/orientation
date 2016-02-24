@@ -91,7 +91,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
 
   def formatted_changes(last_value, article_value)
     if last_value != article_value
-      Differ.diff_by_word(article_value, last_value).format_as(:html)
+      HTMLDiffTool.diff(last_value, article_value)
     else
       ''
     end
