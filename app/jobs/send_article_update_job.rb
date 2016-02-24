@@ -6,6 +6,6 @@ class SendArticleUpdateJob < ActiveJob::Base
     user    = User.find(user_id)
 
     ArticleMailer.send_updates_for(article, user).deliver
-    article.update_attribute(:change_last_communicated_at, Time.zone.now)
+    article.update_column(:change_last_communicated_at, Time.zone.now)
   end
 end
