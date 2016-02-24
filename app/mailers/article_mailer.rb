@@ -8,6 +8,7 @@
 #
 class ArticleMailer < MandrillMailer::TemplateMailer
   include ActionView::Helpers::UrlHelper
+  include ApplicationHelper
 
   default from: ENV['DEFAULT_FROM_EMAIL'] || 'orientation@codeschool.com'
 
@@ -75,7 +76,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
     last_version = last_version.last.try(:reify)
     if last_version
       formatted_changes(last_version.title, article.title) +
-        formatted_changes(last_version.content, article.content)
+        formatted_changes(markdown(last_version.content), markdown(article.content))
     end
   end
 

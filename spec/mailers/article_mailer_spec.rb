@@ -43,7 +43,7 @@ RSpec.describe ArticleMailer do
 
       it 'contains the most recent change saved' do
         expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
-          'foo bar <del class="differ">bjork</del><ins class="differ">Tim</ins> baz')
+          %Q{<p>foo bar <del class="differ">bjork</del><ins class="differ">Tim</ins> baz</p>\n})
       end
 
       context 'updated twice before communicating change' do
@@ -54,7 +54,7 @@ RSpec.describe ArticleMailer do
 
         it 'contains all changes not communicated' do
           expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
-            'foo <del class="differ">bar</del><ins class="differ">Tim</ins> <del class="differ">bjork </del>baz')
+            %Q{<p>foo <del class="differ">bar</del><ins class="differ">Tim</ins> <del class="differ">bjork </del>baz</p>\n})
         end
       end
     end
