@@ -3,7 +3,7 @@ class AuthorDecorator < UserDecorator
 
   def email
     if object.email && !object.private_email
-      mail_to source.email
+      mail_to object.email
     end
   end
 
