@@ -18,7 +18,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def image_link(size = 40)
-    link_to image_tag(image, class: 'thumb dib', height: size, width: size), author_path(source)
+    link_to image_tag(image, class: 'thumb dib', height: size, width: size), author_path(object)
   end
 
   def link
