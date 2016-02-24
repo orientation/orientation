@@ -34,7 +34,7 @@ RSpec.describe ArticleMailer do
     it { is_expected.to be_from(email: 'orientation@codeschool.com') }
     it { is_expected.to have_merge_data('ARTICLE_TITLE' => article.title) }
     it { is_expected.to have_merge_data('URL' => article_url(article)) }
-    it { is_expected.not_to have_merge_data('CHANGE_SUMMARY_HTML' => '') }
+    it { is_expected.to have_merge_data('CHANGE_SUMMARY_HTML' => 'No changes to title or content.') }
 
     context 'article content updated' do
       before do

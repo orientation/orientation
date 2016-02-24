@@ -31,7 +31,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
                   vars: {
                     'ARTICLE_TITLE' => article.title,
                     'URL' => article_url(article),
-                    'CHANGE_SUMMARY_HTML' => format_changes_snippet(article)
+                    'CHANGE_SUMMARY_HTML' => change_summary_html(article)
                   }
   end
 
@@ -62,6 +62,15 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   end
 
   private
+
+  def change_summary_html(article)
+    changes = format_changes_snippet(article)
+    if changes.present?
+      changes
+    else
+      'No changes to title or content.'
+    end
+  end
 
   def format_email_content(articles)
     articles.map do |article|
