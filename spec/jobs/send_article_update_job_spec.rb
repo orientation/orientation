@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe SendArticleUpdateJob do
-  let(:article) { create(:article) }
+  let!(:article) { create(:article) }
   let(:user) { create(:user) }
   let(:mailer) { double("ArticleMailer", deliver: true) }
 
@@ -14,6 +14,7 @@ RSpec.describe SendArticleUpdateJob do
 
   it "updates the article's change_last_communicated_at timestamp" do
     expect(ArticleMailer).to receive(:send_updates_for).and_return(mailer)
+    expect_any_instance_of(Article).not_to receive(:update_subscribers)
 
     expect(article.change_last_communicated_at).to be_nil
 

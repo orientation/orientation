@@ -34,7 +34,7 @@ RSpec.describe ArticleMailer do
     it { is_expected.to be_from(email: 'orientation@codeschool.com') }
     it { is_expected.to have_merge_data('ARTICLE_TITLE' => article.title) }
     it { is_expected.to have_merge_data('URL' => article_url(article)) }
-    it { is_expected.not_to have_merge_data('CHANGE_SUMMARY_HTML' => '') }
+    it { is_expected.to have_merge_data('CHANGE_SUMMARY_HTML' => 'No changes to title or content.') }
 
     context 'article content updated' do
       before do
@@ -43,7 +43,7 @@ RSpec.describe ArticleMailer do
 
       it 'contains the most recent change saved' do
         expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
-          'foo bar <del class="differ">bjork</del><ins class="differ">Tim</ins> baz')
+          %Q{<p>foo bar <del class="differ">bjork</del><ins class="differ">Tim</ins> baz</p>\n})
       end
 
       context 'updated twice before communicating change' do
@@ -54,7 +54,7 @@ RSpec.describe ArticleMailer do
 
         it 'contains all changes not communicated' do
           expect(subject).to have_merge_data('CHANGE_SUMMARY_HTML' =>
-            'foo <del class="differ">bar</del><ins class="differ">Tim</ins> <del class="differ">bjork </del>baz')
+            %Q{<p>foo <del class="differ">bar</del><ins class="differ">Tim</ins> <del class="differ">bjork </del>baz</p>\n})
         end
       end
     end
