@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
   before_filter :authenticate_user!
 
   private
@@ -17,7 +18,7 @@ class ApplicationController < ActionController::Base
 
       # In the development environment, your current_user will be the
       # first User in the database or a dummy one created below.
-      if (!Rails.env.production? or !Rails.env.staging?)
+      if Rails.env.development?
         user = User.first_or_create(email: "alvar@hanso.dk", name: "Alvar Hanso")
         session[:user_id] = user.id
       else
