@@ -13,7 +13,7 @@
 
           - if current_user == @author
             .form
-              = simple_form_for @author.source, url: author_path( @author ), method: :patch do | f |
+              = simple_form_for @author.object, url: author_path( @author ), method: :patch do | f |
 
                 %fieldset.form-field
                   - if @author == current_user
