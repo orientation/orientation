@@ -37,6 +37,12 @@ branches:
     - master
 notifications:
   email: false
+  slack:
+    on_success: change
+    on_failure: always
+    on_start: never
+    rooms:
+      secure: YBUcQpusC8+1Zoc4l1vcm3eH7IzvFcTayGfjHtLH0Ed9JtSVkwtDqJwQVn6mxS+syCJoYxO18RfHnHNYq32bs/YKPZN+HX/IFOB4lIxXSIACe9gZ497ASCs9eza8NhILZkRpUmEwBlsJVPRYMhyIglU+SO0I6hVBN4d2534FBu8=
 addons:
   postgresql: "9.3"
   code_climate:
