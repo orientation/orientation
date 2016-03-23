@@ -12,7 +12,8 @@ Dir.chdir APP_ROOT do
   system "gem install bundler --conservative"
   system "bundle check || bundle install"
 
-  puts "\n== Installing Bower (JS) dependencies database =="
+  puts "\n== Installing npm & Bower (JS) dependencies database =="
+  system "npm install"
   system "bower install -f"
 
   # puts "\n== Copying sample files =="
