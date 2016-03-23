@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
       # In the development environment, your current_user will be the
       # first User in the database or a dummy one created below.
-      if Rails.env.development?
+      if Rails.env.development? || Rails.env.test?
         user = User.first_or_create(email: "alvar@hanso.dk", name: "Alvar Hanso")
         session[:user_id] = user.id
       else
