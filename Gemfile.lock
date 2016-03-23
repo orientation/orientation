@@ -45,8 +45,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bugsnag (2.8.4)
-      multi_json (~> 1.0)
+    bugsnag (4.0.0)
     builder (3.2.2)
     bullet (4.14.0)
       activesupport (>= 3.0.0)
@@ -158,7 +157,7 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    multi_json (1.11.1)
+    multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nokogiri (1.6.7.2)
@@ -369,5 +368,8 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.12.0.pre.2
+   1.12.0.rc
