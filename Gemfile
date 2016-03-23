@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.0'
 
-gem 'rails', '~> 4.2.5'
+gem 'rails', '~> 4.2.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
