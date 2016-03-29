@@ -1,6 +1,6 @@
 <p>Hey</p>
 
-<p>*|ENDORSER_NAME|* found <a href="*|URL|*" target="_blank">*|ARTICLE_TITLE|*</a> so useful they endorsed it.</p>
+<p><%= @email_vars['ENDORSER_NAME'] %> found <a href="<%= @email_vars['URL'] %>" target="_blank"><%= @email_vars['ARTICLE_TITLE'] %></a> so useful they endorsed it.</p>
 
 <p>That must feel nice.</p>
 

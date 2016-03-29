@@ -1,12 +1,12 @@
 <p>Howdy</p>
 
-<p>You have subscribed to updates from <a href="*|URL|*" target="_blank">*|ARTICLE_TITLE|*</a>.</p>
+<p>You have subscribed to updates from <a href="<%= @email_vars['URL'] %>" target="_blank"><%= @email_vars['ARTICLE_TITLE'] %></a>.</p>
 
-<p>This article was just updated, so you probably want to <a href="*|URL|*" target="_blank">check it out</a>.</p>
+<p>This article was just updated, so you probably want to <a href="<%= @email_vars['URL'] %>" target="_blank">check it out</a>.</p>
 
 <p>Or just look below to see the title or content changes.</p>
 
-<p>*|CHANGE_SUMMARY_HTML|*</p>
+<p><%== @email_vars['CHANGE_SUMMARY_HTML'] %></p>
 
 <p>Thanks for fighting internal knowledge rot,<br/>
 <strong>Cron McMailer.</strong></p>
