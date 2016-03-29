@@ -31,24 +31,24 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  config.mandrill_mailer.default_url_options =
+  # config.mandrill_mailer.default_url_options =
   config.action_mailer.default_url_options =
   config.action_controller.default_url_options =
   { :host => 'www.example.com' }
 
-  ActionMailer::Base.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587,
-    :user_name => ENV.fetch("MANDRILL_USERNAME"),
-    :password  => ENV.fetch("MANDRILL_API_KEY"),
-    :domain    => ENV.fetch("MANDRILL_DOMAIN")
-  }
+  # ActionMailer::Base.smtp_settings = {
+  #   :address   => "smtp.mandrillapp.com",
+  #   :port      => 587,
+  #   :user_name => ENV.fetch("MANDRILL_USERNAME"),
+  #   :password  => ENV.fetch("MANDRILL_API_KEY"),
+  #   :domain    => ENV.fetch("MANDRILL_DOMAIN")
+  # }
 
-  config.after_initialize do
-    MandrillMailer.configure do |config|
-      config.api_key = "this-is-not-a-real-api-key"
-    end
-  end
+  # config.after_initialize do
+  #   MandrillMailer.configure do |config|
+  #     config.api_key = "this-is-not-a-real-api-key"
+  #   end
+  # end
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
