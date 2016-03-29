@@ -6,7 +6,7 @@
 # This email can be tested using the `.test` method:
 #   ArticleMailer.test(:notify_author_of_staleness, email: <author.email>)
 #
-class ArticleMailer < MandrillMailer::TemplateMailer
+class ArticleMailer < ActionMailer::Base
   include ActionView::Helpers::UrlHelper
   include ApplicationHelper
 
@@ -63,6 +63,18 @@ class ArticleMailer < MandrillMailer::TemplateMailer
 
   private
 
+  # Orientation is meant to be used with mandril and this is a simple adapter to
+  # ensure we keep the code above unchanged to avoid potential merge headaches
+  # when bringing in upstream changes
+  def mandrill_mail(mail_params)
+    recipients = mail_params[:to].is_a?(Hash) ? [mail_params[:to]] : Array(mail_params[:to])
+    mail_params[:to] = recipients.map { |to| %("#{to[:name]}" <#{to[:email]}>) }.join(', ')
+    mail_params[:from] = %("#{mail_params.delete(:from_name)}" <ops@doximity.com>)
+    mail_params[:template_name] = mail_params.delete(:template).underscore
+    @email_vars = mail_params.delete(:vars)
+    mail(mail_params)
+  end
+
   def change_summary_html(article)
     changes = format_changes_snippet(article)
     if changes.present?
@@ -97,17 +109,17 @@ class ArticleMailer < MandrillMailer::TemplateMailer
     end
   end
 
-  test_setup_for :notify_author_of_staleness do |mailer, options|
-    articles = [
-      MandrillMailer::Mock.new({
-        id: 1,
-        title: 'Test',
-        author: MandrillMailer::Mock.new({
-          email: options[:email]
-        })
-      })
-    ]
+  # test_setup_for :notify_author_of_staleness do |mailer, options|
+  #   articles = [
+  #     MandrillMailer::Mock.new({
+  #       id: 1,
+  #       title: 'Test',
+  #       author: MandrillMailer::Mock.new({
+  #         email: options[:email]
+  #       })
+  #     })
+  #   ]
 
-    mailer.notify_author_of_staleness(articles).deliver
-  end
+  #   mailer.notify_author_of_staleness(articles).deliver
+  # end
 end
