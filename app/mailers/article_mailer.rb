@@ -69,7 +69,7 @@ class ArticleMailer < ActionMailer::Base
   def mandrill_mail(mail_params)
     recipients = mail_params[:to].is_a?(Hash) ? [mail_params[:to]] : Array(mail_params[:to])
     mail_params[:to] = recipients.map { |to| %("#{to[:name]}" <#{to[:email]}>) }.join(', ')
-    mail_params[:from] = %("#{mail_params.delete(:from_name)}" <ops@doximity.com>)
+    mail_params[:from] = %("#{mail_params.delete(:from_name)}" <#{ENV.fetch('DEFAULT_FROM_EMAIL', 'orientation@codeschool.com')}>)
     mail_params[:template_name] = mail_params.delete(:template).underscore
     @email_vars = mail_params.delete(:vars)
     mail(mail_params)
