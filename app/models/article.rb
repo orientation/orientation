@@ -27,7 +27,7 @@ class Article < ActiveRecord::Base
   FRESHNESS_LIMIT = 7.days
   STALENESS_LIMIT = 6.months
 
-  FRESHNESS = "Created within the last #{distance_of_time_in_words(FRESHNESS_LIMIT)}."
+  FRESHNESS = "Created or updated within the last #{distance_of_time_in_words(FRESHNESS_LIMIT)}."
   STALENESS = "Updated over #{distance_of_time_in_words(STALENESS_LIMIT)} ago."
   ROTTENNESS = "Deemed in need of an update."
   POPULARITY = "Endorsed, subscribed, & visited."
