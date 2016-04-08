@@ -106,7 +106,6 @@ GEM
       activesupport (>= 3.0)
       request_store (~> 1.0)
     erubis (2.7.0)
-    excon (0.44.4)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -158,13 +157,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mandrill-api (1.0.53)
-      excon (>= 0.16.0, < 1.0)
-      json (>= 1.7.7, < 2.0)
-    mandrill_mailer (0.5.1)
-      actionpack
-      activesupport
-      mandrill-api (~> 1.0.9)
     method_source (0.8.2)
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
@@ -369,7 +361,6 @@ DEPENDENCIES
   haml-rails
   htmldiff
   launchy
-  mandrill_mailer
   newrelic_rpm
   omniauth
   omniauth-google-oauth2
