@@ -16,7 +16,7 @@ Current master is to be updated only with upstream's (orientation/orientation) m
 
 ### Deploying to Heroku
 
-`git push heroku master:psuedo-master --force`
+`git push heroku pseudo-master:master --force`
 
 
 ## What is Orientation?
