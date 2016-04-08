@@ -24,7 +24,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
 
   def send_updates_for(article, user)
     mandrill_mail template: 'article-subscription-update',
-                  subject: "#{article.title} was just updated by #{article.editor}",
+                  subject: "#{article.title} was updated by #{article.editor}",
                   from_name: 'Orientation',
                   to: { email: user.email, name: user.name },
                   vars: {
