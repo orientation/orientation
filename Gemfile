@@ -42,7 +42,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.2.0'
+  gem 'rspec-rails', '~> 3.4.2'
   gem 'spring-commands-rspec'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker'
