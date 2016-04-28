@@ -84,6 +84,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
-  require "mandrill_mailer/rspec_helpers"
+  require "mandrill_mailer/rspec_helper"
   config.include MandrillMailer::RSpecHelper
 end

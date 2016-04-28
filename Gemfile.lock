@@ -96,7 +96,7 @@ GEM
       activesupport (>= 3.0)
       request_store (~> 1.0)
     erubis (2.7.0)
-    excon (0.45.4)
+    excon (0.49.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -367,9 +367,6 @@ DEPENDENCIES
   uglifier
   unicorn
   web-console (~> 2.0)
-
-RUBY VERSION
-   ruby 2.3.0p0
 
 BUNDLED WITH
    1.12.0.rc
