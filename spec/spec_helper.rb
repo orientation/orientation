@@ -83,4 +83,7 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  require "mandrill_mailer/rspec_helper"
+  config.include MandrillMailer::RSpecHelper
 end

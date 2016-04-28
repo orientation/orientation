@@ -96,7 +96,7 @@ GEM
       activesupport (>= 3.0)
       request_store (~> 1.0)
     erubis (2.7.0)
-    excon (0.44.4)
+    excon (0.49.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -148,7 +148,7 @@ GEM
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mandrill_mailer (0.5.1)
+    mandrill_mailer (1.1.0)
       actionpack
       activesupport
       mandrill-api (~> 1.0.9)
@@ -341,7 +341,7 @@ DEPENDENCIES
   friendly_id
   haml-rails
   launchy
-  mandrill_mailer
+  mandrill_mailer (~> 1.1.0)
   omniauth
   omniauth-google-oauth2
   pg
@@ -367,9 +367,6 @@ DEPENDENCIES
   uglifier
   unicorn
   web-console (~> 2.0)
-
-RUBY VERSION
-   ruby 2.3.0p0
 
 BUNDLED WITH
    1.12.0.rc
