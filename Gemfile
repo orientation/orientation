@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.2.3'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.0'
 
-gem 'rails', '4.2.4'
+gem 'rails', '~> 4.2.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -17,9 +17,9 @@ gem 'autoprefixer-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'haml-rails'
-gem 'simple_form', '~> 3.1.0'
+gem 'simple_form'
 gem 'pygments.rb'
-gem 'redcarpet', '~> 3.3.2'
+gem 'redcarpet', '~> 3.3.4'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'draper'
@@ -30,7 +30,6 @@ gem 'skylight'
 gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
-gem 'gemoji'
 gem 'dotenv-rails'
 
 group :development do
@@ -63,7 +62,7 @@ group :test do
   gem 'climate_control'
 end
 
-group :production do
+group :production, :staging do
   gem 'rails_12factor'
   gem 'rack-timeout'
   gem 'unicorn'
