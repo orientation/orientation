@@ -1,7 +1,21 @@
 class Article < ActiveRecord::Base
   include Dateable
+  include PgSearch
+
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
+
+  pg_search_scope :search_stuff,
+    against: {
+      title: 'A',
+      content: 'B'
+    },
+    using: {
+      tsearch: { dictionary: "english" },
+      trigram: { threshold:  0.2, negation: true }
+    }
+
+    # ranked_by: ":trigram"
 
   friendly_id :title
 
@@ -63,7 +77,7 @@ class Article < ActiveRecord::Base
     scope ||= current
 
     if query.present?
-      scope.advanced_search(title: query)
+      scope.search_stuff(query)
     else
       scope
     end

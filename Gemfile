@@ -24,7 +24,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'draper'
 gem 'textacular'
-gem 'pg_search'
+gem 'pg_search', github: 'Casecommons/pg_search', ref: "ff1af346322ca54808b3f53081149b8cac55bb76"
 gem 'mandrill_mailer'
 gem 'responders','~> 2.0'
 gem 'skylight'

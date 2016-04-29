@@ -35,11 +35,6 @@ RSpec.describe Article do
       expect(result.first).to eq(@article1)
     end
 
-    it "doesn't match with with improper boolean AND operators" do
-      result = Article.text_search "tough & pumpernickel"
-      expect(result.first).to_not eq(@article1)
-    end
-
     it "does match with with improper boolean AND operators" do
       result = Article.text_search "tough & pumpernickel"
       expect(result.first).to_not eq(@article1)
