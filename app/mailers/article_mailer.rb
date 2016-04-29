@@ -62,6 +62,12 @@ class ArticleMailer < MandrillMailer::TemplateMailer
 
   private
 
+  def format_contributors
+    contributors.map do |contributor|
+      { name: contributor.name, email: contributor.email }
+    end
+  end
+
   def format_email_content(articles)
     articles.map do |article|
       content_tag(:li, link_to(article.title, article_url(article)))
