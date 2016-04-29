@@ -130,9 +130,12 @@ class Article < ActiveRecord::Base
     end
   end
 
-  def contributors
-    User.where(id: [self.author_id, self.editor_id]).uniq.select(:name, :email).map do |user|
-      { name: user.name, email: user.email }
+  # excluding can be a user instance that needs to be excluded from the list
+  # of contributors, for instance to avoid notifying someone about something
+  # they did on an article they're a contributor to.
+  def contributors(excluding: nil)
+    [author, editor].uniq.reject do |user|
+      user == excluding
     end
   end
 
