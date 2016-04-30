@@ -88,6 +88,24 @@
     _settings.$textarea.on 'blur', ( event ) ->
       _exitFullscreen()
 
+    _settings.$textarea.uploadOnPaste (results) ->
+      {filename, dataURL} = results
+
+      formData = new FormData
+      formData.append("image_data", results.file, "testouille.jpeg")
+
+      successHandler = (event, XMLHttpRequest, ajaxOptions) ->
+        image = "[](#{ajaxOptions.responseJSON.file_path.path})"
+        $("#article_content").append(image)
+
+      $.ajax
+        url: "/images"
+        data: formData
+        processData: false
+        contentType: false
+        type: "POST"
+        success: successHandler
+
   # -------------------------------------
   #   Public Methods
   # -------------------------------------
