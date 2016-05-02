@@ -31,24 +31,38 @@
 
       $this.on 'drop', (event) ->
         event.preventDefault()
+
+        for file, index in event.originalEvent.dataTransfer.files
+          if file.type.match(options.matchType)
+            reader = new FileReader()
+
+            reader.onload = (event) ->
+              options.callback.call element,
+                dataURL: event.target.result
+                event: event
+                file: file
+                name: file.name
+
+            reader.readAsDataURL(file)
+
         $(this).css('background','yellow')
 
       $this.bind 'paste', (event) ->
         found = false
         clipboardData = event.originalEvent.clipboardData
 
-        Array::forEach.call clipboardData.types, (type, i) ->
+        for type, index in clipboardData.types
           return if found
 
-          if type.match(options.matchType) or clipboardData.items[i].type.match(options.matchType)
-            file = clipboardData.items[i].getAsFile()
+          if type.match(options.matchType) or clipboardData.items[index].type.match(options.matchType)
+            file = clipboardData.items[index].getAsFile()
 
             reader = new FileReader()
 
-            reader.onload = (evt) ->
+            reader.onload = (event) ->
               options.callback.call element,
-                dataURL: evt.target.result
-                event: evt
+                dataURL: event.target.result
+                event: event
                 file: file
                 name: file.name
 
