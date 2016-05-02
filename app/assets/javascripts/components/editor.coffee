@@ -95,8 +95,11 @@
       formData.append("image_data", results.file, results.name)
 
       successHandler = (event, XMLHttpRequest, ajaxOptions) ->
-        image = "[](#{ajaxOptions.responseJSON.file_path.path})"
-        $("#article_content").append(image)
+        imagePath = ajaxOptions.responseJSON.file_path.path.split("/public/")[1]
+        markdownImageTag = "![](/#{imagePath})"
+        # the path is absolute, we only care about the portion inside of public/
+        currentValue = $("#article_content").val();
+        $("#article_content").val(currentValue + "\r" + markdownImageTag)
 
       $.ajax
         url: "/images"
