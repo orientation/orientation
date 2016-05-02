@@ -92,7 +92,7 @@
       {filename, dataURL} = results
 
       formData = new FormData
-      formData.append("image_data", results.file, "testouille.jpeg")
+      formData.append("image_data", results.file, results.name)
 
       successHandler = (event, XMLHttpRequest, ajaxOptions) ->
         image = "[](#{ajaxOptions.responseJSON.file_path.path})"
