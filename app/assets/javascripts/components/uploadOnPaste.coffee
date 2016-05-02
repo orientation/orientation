@@ -24,12 +24,14 @@
 
       $this.on 'dragenter', (event) ->
         event.preventDefault()
-        $(this).css('background','green')
+        storedCss = $(this).css('border')
+        $(this).css('border','1px solid greenyellow')
 
       $this.on 'dragleave', (event) ->
-        $(this).css('background','red')
+        $(this).css('border','')
 
       $this.on 'drop', (event) ->
+        $(this).css('border','')
         event.preventDefault()
 
         for file, index in event.originalEvent.dataTransfer.files
@@ -44,8 +46,6 @@
                 name: file.name
 
             reader.readAsDataURL(file)
-
-        $(this).css('background','yellow')
 
       $this.bind 'paste', (event) ->
         found = false
