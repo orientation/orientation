@@ -19,6 +19,20 @@
       element = this
       $this = $(this)
 
+      $this.on 'dragover', (event) ->
+        event.preventDefault()
+
+      $this.on 'dragenter', (event) ->
+        event.preventDefault()
+        $(this).css('background','green')
+
+      $this.on 'dragleave', (event) ->
+        $(this).css('background','red')
+
+      $this.on 'drop', (event) ->
+        event.preventDefault()
+        $(this).css('background','yellow')
+
       $this.bind 'paste', (event) ->
         found = false
         clipboardData = event.originalEvent.clipboardData
