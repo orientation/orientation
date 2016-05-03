@@ -96,10 +96,12 @@
 
       successHandler = (event, XMLHttpRequest, ajaxOptions) ->
         imagePath = ajaxOptions.responseJSON.file_path.path.split("/public/")[1]
+        s3ImagePath = ajaxOptions.responseJSON.public_url
         markdownImageTag = "![](/#{imagePath})"
+        markdownImageTag = "![](#{s3ImagePath})"
         # the path is absolute, we only care about the portion inside of public/
         currentValue = $("#article_content").val();
-        $("#article_content").val(currentValue + "\r" + markdownImageTag)
+        $("#article_content").val(currentValue + "\r" + markdownImageTag + "\r" + markdownImageTagS3)
 
       $.ajax
         url: "/images"

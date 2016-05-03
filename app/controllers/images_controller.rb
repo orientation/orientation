@@ -10,7 +10,20 @@ class ImagesController < ApplicationController
       file.write(image_data.read)
     end
 
-    render json: { file_path: new_file_path }
+    # the above read means that the file needs to be rewinded before the next
+    # read otherwise we'll accidentally read an empty string
+    image_data.rewind
+
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket("orientationtest")
+    object = bucket.object(new_file_name)
+    object.put(
+      acl: "public-read",
+      body: image_data.read,
+      content_type: image_data.content_type
+    )
+
+    render json: { file_path: new_file_path, public_url: object.public_url }
   end
 
   private
