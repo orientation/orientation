@@ -31,6 +31,7 @@ gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
 gem 'dotenv-rails'
+gem 'aws-sdk', '~> 2'
 
 group :development do
   gem 'better_errors'
