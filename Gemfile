@@ -29,7 +29,6 @@ gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'textacular'
 gem 'mandrill_mailer'
 gem 'responders','~> 2.0'
-gem 'skylight'
 gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
@@ -75,4 +74,5 @@ group :production do
   gem 'rails_12factor'
   gem 'rack-timeout'
   gem 'unicorn'
+  gem 'skylight'
 end
