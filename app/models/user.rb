@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   belongs_to :article
   has_many :articles, foreign_key: "author_id"
   has_many :subscriptions, class_name: "ArticleSubscription"

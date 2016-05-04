@@ -1,4 +1,4 @@
-class Article < ActiveRecord::Base
+class Article < ApplicationRecord
   include Dateable
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
