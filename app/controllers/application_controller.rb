@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   private
 
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless redirect_loop?
   end
   helper_method :authenticate_user!
-  
+
   def redirect_loop?
     login_redirect? || oauth_callback?
   end
