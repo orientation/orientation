@@ -42,6 +42,7 @@ group :development do
   gem 'bullet'
   gem 'quiet_assets'
   gem 'fontcustom'
+  gem 'web-console'
 end
 
 group :development, :test do
@@ -58,7 +59,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-remote'
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console'
   gem 'spring'
 end
 
