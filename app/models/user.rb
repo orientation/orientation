@@ -11,7 +11,7 @@ class User < ApplicationRecord
     :private_email
 
   validates :email, presence: true
-  validate :whitelisted_email, if: -> { self.class.email_whitelist? }
+  validate :whitelisted_email, if: -> { self.class.email_whitelist_enabled? }
 
   def self.author
     joins(:articles).group('users.id').having('count(articles.id) > 0')
@@ -81,7 +81,7 @@ class User < ApplicationRecord
   end
 
   private
-  def self.email_whitelist?
+  def self.email_whitelist_enabled?
     !!ENV['ORIENTATION_EMAIL_WHITELIST']
   end
 
