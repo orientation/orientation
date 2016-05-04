@@ -21,13 +21,13 @@ gem 'delayed_job_active_record'
 gem 'haml-rails'
 gem 'simple_form', '~> 3.2.0'
 gem 'pygments.rb'
-gem 'redcarpet', '~> 3.3.2'
+gem 'redcarpet', '~> 3.3.4'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'textacular'
-gem 'mandrill_mailer'
+gem 'mandrill_mailer', '~> 1.1.0'
 gem 'responders','~> 2.0'
 gem 'bugsnag'
 gem 'slack-notifier'
@@ -70,7 +70,7 @@ group :test do
   gem 'climate_control'
 end
 
-group :production do
+group :production, :staging do
   gem 'rails_12factor'
   gem 'rack-timeout'
   gem 'unicorn'

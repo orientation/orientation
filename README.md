@@ -23,9 +23,9 @@ internal question someone might have about our organization:
 
 ![Orientation's Homepage][orientation-homepage]
 
-Here's [how Orientation works](doc/FEATURES.md), you can even 
-[try it out](http://orientation-demo.herokuapp.com) with your little 
-fingers. One restriction is that you'll need a Google Apps account 
+Here's [how Orientation works](doc/FEATURES.md), you can even
+[try it out](http://orientation-demo.herokuapp.com) with your little
+fingers. One restriction is that you'll need a Google Apps account
 in order to sign in.
 
 ### Authentication
@@ -40,7 +40,7 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 
 ### Software
 - Ruby 2.2.0
-- PostgreSQL 9.1 (with fuzzystrmatch and pg_trgm extensions)
+- PostgreSQL 9.3 (with JSON support, and fuzzystrmatch & pg_trgm extensions)
 - Python 2.7 (for Pygments)
 - Node.js (for Bower)
 - Bower
@@ -89,11 +89,11 @@ using you local (git-ignored) `.env` file as a canonical source.
 ### Multiple Buildpacks
 
 Multiple buildpack support used to be unofficial and relied on [a custom buildpack created
-by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer 
+by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer
 the case since Heroku has rolled out official support for multiple buildpacks.
 
-Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button, 
-which would take care of this for you) you will need to add two buildpacks since the app relies 
+Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button,
+which would take care of this for you) you will need to add two buildpacks since the app relies
 on NodeJS for Bower package installation.
 
 Note that for some reason you need to be the owner of the app on Heroku in order to be able to do this:
@@ -120,7 +120,7 @@ $ heroku buildpacks -a yourappname
 
 ### Transactional Emails with Mandrill
 
-If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names 
+If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names
 that match the ones listed in our [Mandrill documentation](doc/MANDRILL.md).
 
 ## Development
