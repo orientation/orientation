@@ -46,14 +46,6 @@ GIT
       sprockets-rails (>= 2.0.0)
 
 GIT
-  remote: git://github.com/textacular/textacular.git
-  revision: f39bf8c99074039f8844b0c8e39d457aa95f93f5
-  branch: master
-  specs:
-    textacular (4.0.0.alpha)
-      activerecord (>= 3.0, <= 5.0)
-
-GIT
   remote: https://github.com/rspec/rspec-core.git
   revision: 49b8a3f26f66ecf658f051afd536aaff1a5e74f7
   branch: master
@@ -363,6 +355,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    textacular (4.0.0)
+      activerecord (>= 3.0, <= 5.0)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -440,7 +434,7 @@ DEPENDENCIES
   slack-notifier
   spring
   spring-commands-rspec
-  textacular!
+  textacular
   uglifier
   unicorn
   web-console
