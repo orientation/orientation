@@ -236,8 +236,9 @@ GEM
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mandrill_mailer (1.1.0)
+    mandrill_mailer (1.4.0)
       actionpack
+      activejob
       activesupport
       mandrill-api (~> 1.0.9)
     method_source (0.8.2)
@@ -405,7 +406,7 @@ DEPENDENCIES
   friendly_id
   haml-rails
   launchy
-  mandrill_mailer (~> 1.1.0)
+  mandrill_mailer (~> 1.4.0)
   omniauth
   omniauth-google-oauth2
   pg
