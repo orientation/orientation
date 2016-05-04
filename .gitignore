@@ -19,7 +19,8 @@
 !/log/.keep
 /tmp
 
-/config/database.yml
+config/database.yml
+config/orientation.yml
 
 # ignore coveralls/simplecov
 coverage/

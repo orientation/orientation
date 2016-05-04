@@ -46,5 +46,7 @@ module Orientation
     end
 
     config.active_job.queue_adapter = :delayed_job
+
+    config.orientation = config_for :orientation
   end
 end

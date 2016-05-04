@@ -1,0 +1,18 @@
+development:
+  exception_reporting: false
+  mailers: false
+  oauth: false
+  performance_monitoring: false
+  upload: :localhost
+production:
+  exception_reporting: :bugsnag
+  mailers: :mandrill
+  oauth: :google
+  performance_monitoring: :skylight
+  upload: :s3
+test:
+  upload: false
+  mailers: false
+  exception_reporting: false
+  oauth: false
+  performance_monitoring: false
