@@ -4,7 +4,7 @@
 
 ### Docker & Docker-Compose
 
-See [these instructions](https://docs.docker.com/installation) to install the
+See [these instructions](https://docs.docker.com/engine/installation/) to install the
 Docker daemon for your platform.
 
 Docker Compose is not mandatory, though it provides you with an easy way to get
