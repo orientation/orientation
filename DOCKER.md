@@ -66,7 +66,7 @@ database:
   environment:
     POSTGRES_PASSWORD: "<The password of the postgres user>"
 app:
-  image: orientation
+  image: orientation/orientation
   ports:
     - "3000:3000"
   links:
