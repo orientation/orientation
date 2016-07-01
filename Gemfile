@@ -4,14 +4,14 @@ ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.0'
 
 gem 'rails', "5.0.0"
 # Use Puma as the app server
-gem 'puma'
+gem 'puma', '~> 3.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2.0'
+gem 'coffee-rails', '~> 4.2'
 
 gem 'pg'
 
@@ -33,7 +33,7 @@ gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id', github: "norman/friendly_id", branch: "master"
 gem 'dotenv-rails'
-gem 'redis'
+gem 'redis', '~> 3.0'
 
 group :development do
   gem 'better_errors'
@@ -42,19 +42,20 @@ group :development do
   gem 'bullet'
   gem 'fontcustom'
   gem 'web-console'
+  gem 'listen', '~> 3.0.5'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
 end
 
 group :development, :test do
   gem "rspec-rails"
-  gem 'spring-commands-rspec'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-remote'
   gem 'awesome_print'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'spring'
 end
 
 group :test do
