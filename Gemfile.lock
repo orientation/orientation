@@ -10,6 +10,15 @@ GIT
       request_store (~> 1.0)
 
 GIT
+  remote: git://github.com/kesha-antonov/simple_form.git
+  revision: a1561c930f3be279f3580c2510f2555f2e67a4f4
+  branch: rails-5-0
+  specs:
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
+
+GIT
   remote: git://github.com/norman/friendly_id.git
   revision: 8531cdce5737df541bc2dbf9c0fa3ee4824b6fc8
   branch: master
@@ -299,9 +308,6 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
     sexp_processor (4.7.0)
-    simple_form (3.2.1)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
     simplecov (0.11.2)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -391,7 +397,7 @@ DEPENDENCIES
   responders (~> 2.0)
   rspec-rails
   sass-rails (~> 5.0)
-  simple_form
+  simple_form!
   skylight
   slack-notifier
   spring
