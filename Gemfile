@@ -19,7 +19,7 @@ gem 'autoprefixer-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'haml-rails'
-gem 'simple_form', github: 'kesha-antonov/simple_form', branch: 'rails-5-0'
+gem 'simple_form', github: "olivierlacan/simple_form", branch: "rails-5-type-for-attribute"
 gem 'pygments.rb'
 gem 'redcarpet', '~> 3.3.4'
 gem 'omniauth'

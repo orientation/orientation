@@ -10,21 +10,21 @@ GIT
       request_store (~> 1.0)
 
 GIT
-  remote: git://github.com/kesha-antonov/simple_form.git
-  revision: a1561c930f3be279f3580c2510f2555f2e67a4f4
-  branch: rails-5-0
-  specs:
-    simple_form (3.2.1)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
-
-GIT
   remote: git://github.com/norman/friendly_id.git
   revision: 8531cdce5737df541bc2dbf9c0fa3ee4824b6fc8
   branch: master
   specs:
     friendly_id (5.2.0.beta.1)
       activerecord (>= 4.0.0)
+
+GIT
+  remote: git://github.com/olivierlacan/simple_form.git
+  revision: f63ea975d3f8fd8f222f086f11ae10a4222fc250
+  branch: rails-5-type-for-attribute
+  specs:
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
 
 GIT
   remote: git://github.com/rails/activemodel-serializers-xml.git
