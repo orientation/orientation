@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.1
--- Dumped by pg_dump version 9.5.1
+-- Dumped from database version 9.5.3
+-- Dumped by pg_dump version 9.5.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -354,6 +354,39 @@ ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 
 --
+-- Name: update_requests; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE update_requests (
+    id integer NOT NULL,
+    article_id integer,
+    reporter_id integer,
+    description text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: update_requests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE update_requests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: update_requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE update_requests_id_seq OWNED BY update_requests.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -487,6 +520,13 @@ ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclas
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY update_requests ALTER COLUMN id SET DEFAULT nextval('update_requests_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -559,6 +599,14 @@ ALTER TABLE ONLY friendly_id_slugs
 
 ALTER TABLE ONLY tags
     ADD CONSTRAINT tags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: update_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY update_requests
+    ADD CONSTRAINT update_requests_pkey PRIMARY KEY (id);
 
 
 --
@@ -752,4 +800,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160220002317');
 INSERT INTO schema_migrations (version) VALUES ('20160220002318');
 
 INSERT INTO schema_migrations (version) VALUES ('20160222234001');
+
+INSERT INTO schema_migrations (version) VALUES ('20160710170239');
 
