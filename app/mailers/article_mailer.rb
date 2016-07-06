@@ -35,7 +35,7 @@ class ArticleMailer < ActionMailer::Base
                   }
   end
 
-  def send_rotten_notification_for(article, contributors, reporter)
+  def send_rotten_notification_for(article, contributors, reporter, description)
     mandrill_mail template: 'article-rotten-update',
                   subject: "#{reporter.name} marked #{article.title} as rotten",
                   from_name: 'Orientation',
@@ -44,7 +44,8 @@ class ArticleMailer < ActionMailer::Base
                     'ARTICLE_TITLE' => article.title,
                     'URL' => article_url(article),
                     'REPORTER_NAME' => reporter.name,
-                    'REPORTER_URL' => author_url(reporter)
+                    'REPORTER_URL' => author_url(reporter),
+                    'DESCRIPTION' => description
                   }
   end
 
