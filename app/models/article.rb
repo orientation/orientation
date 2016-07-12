@@ -23,7 +23,6 @@ class Article < ActiveRecord::Base
   belongs_to :rot_reporter, class_name: "User"
 
   has_many :articles_tags, dependent: :destroy
-  has_many :update_requests, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
   has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
@@ -120,9 +119,9 @@ class Article < ActiveRecord::Base
     touch(:updated_at)
   end
 
-  def rot!(user_id, description)
+  def rot!(user_id)
     update(rotted_at: Time.current, rot_reporter_id: user_id)
-    SendArticleRottenJob.perform_later(id, user_id, description)
+    SendArticleRottenJob.perform_later(id, user_id)
   end
 
   def never_notified_author?
