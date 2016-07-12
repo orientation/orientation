@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   end
 
   resources :articles do
-    resources :update_requests
     collection do
       get :fresh
       get :stale
