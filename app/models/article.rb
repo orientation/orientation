@@ -3,13 +3,27 @@ class Article < ActiveRecord::Base
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
 
-  friendly_id :title
+  friendly_id :title, use: [:slugged, :history]
+
+  has_attachments :images, maximum: 20, accept: [:jpg, :png, :gif]
+
+  has_paper_trail on: [:update, :destroy],
+    only: [:title, :content], ignore: :change_last_communicated_at
+
+  def should_generate_new_friendly_id?
+    !has_friendly_id_slug? or title_changed?
+  end
+
+  def has_friendly_id_slug?
+    slugs.where(slug: friendly_id).exists?
+  end
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
   belongs_to :rot_reporter, class_name: "User"
 
   has_many :articles_tags, dependent: :destroy
+  has_many :update_requests, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
   has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
@@ -63,7 +77,7 @@ class Article < ActiveRecord::Base
     scope ||= current
 
     if query.present?
-      scope.advanced_search(title: query)
+      scope.basic_search({ title: query, content: query }, false)
     else
       scope
     end
@@ -106,9 +120,9 @@ class Article < ActiveRecord::Base
     touch(:updated_at)
   end
 
-  def rot!(user_id)
+  def rot!(user_id, description)
     update(rotted_at: Time.current, rot_reporter_id: user_id)
-    SendArticleRottenJob.perform_later(id, user_id)
+    SendArticleRottenJob.perform_later(id, user_id, description)
   end
 
   def never_notified_author?

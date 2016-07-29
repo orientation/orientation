@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.0'
 
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -22,15 +22,19 @@ gem 'pygments.rb'
 gem 'redcarpet', '~> 3.3.2'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'paper_trail'
+gem 'htmldiff'
 gem 'draper'
 gem 'textacular'
-gem 'mandrill_mailer'
 gem 'responders','~> 2.0'
 gem 'skylight'
 gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
 gem 'dotenv-rails'
+gem 'cloudinary'
+gem 'attachinary'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'better_errors'

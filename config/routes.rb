@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
+  mount Attachinary::Engine => "/attachinary"
+
   resources :tags
 
   resources :authors, only: [:index, :show, :new, :create, :update] do
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :articles do
+    resources :update_requests
     collection do
       get :fresh
       get :stale

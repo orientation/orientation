@@ -6,6 +6,8 @@ class Tag < ActiveRecord::Base
 
   validates :name, uniqueness: { case_sensitive: false }
 
+  scope :more_than_one_article, -> { where('articles_count > 1') }
+
   friendly_id :name
 
   def to_s

@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+  before_filter :set_paper_trail_whodunnit, only: [
+    :update,
+    :destroy
+  ]
   before_filter :find_article_by_params, only: [
     :show,
     :edit,
@@ -147,7 +151,7 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(
       :created_at, :updated_at, :title, :content, :tag_tokens,
-      :author_id, :editor_id, :archived_at, :guide)
+      :author_id, :editor_id, :archived_at, :guide, images: [])
   end
 
   def decorate_article
@@ -157,7 +161,7 @@ class ArticlesController < ApplicationController
   def fetch_articles(scope = nil)
     scope ||= Article.current
     query = Article.includes(:tags).text_search(params[:search], scope)
-    ArticleDecorator.decorate_collection(query)
+    ArticleDecorator.decorate_collection(query, context: { search_params: params[:search] })
   end
 
   def find_article_by_params

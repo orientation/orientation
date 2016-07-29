@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   respond_to :json, :html
 
   def index
-    @ordered_tags = Tag.by_article_count
+    @ordered_tags = Tag.more_than_one_article.by_article_count
     @tags = Tag.order(:name)
     respond_with do |format|
       format.json { render json: @tags.tokens(params[:q]) }
