@@ -99,12 +99,11 @@ class ArticleMailer < ActionMailer::Base
 
   def format_email_content(articles)
     articles.map do |article|
-      content_tag(:li, link_to(article.title,
+      link_to(article.title,
         Rails.application.routes.url_helpers.article_url(
           article, host: ENV.fetch("ORIENTATION_DOMAIN")
         )
       )
-    )
     end.join
   end
 
