@@ -20,7 +20,7 @@ class ArticleMailer < ActionMailer::Base
                   from_name: ENV['DEFAULT_FROM_NAME'] || 'Dox Wiki',
                   to: { email: author.email, name: author.name },
                   vars: {
-                    'CONTENT' => format_email_content(articles)
+                    'CONTENT' => format_email_content(articles).html_safe
                   }
   end
 
@@ -31,7 +31,7 @@ class ArticleMailer < ActionMailer::Base
                   from_name: ENV['DEFAULT_FROM_NAME'] || 'Dox Wiki',
                   to: { email: author.email, name: author.name },
                   vars: {
-                    'CONTENT' => format_email_content(articles)
+                    'CONTENT' => format_email_content(articles).html_safe
                   }
   end
 
