@@ -1,6 +1,6 @@
 # Mandril Templates
 
-By default Orientation uses Mandrill to send transactional emails so here are the basic templates you can use. 
+By default Orientation uses Mandrill to send transactional emails so here are the basic templates you can use.
 
 The names of the templates have to match otherwise an exception will be raised:
 
@@ -9,14 +9,11 @@ The names of the templates have to match otherwise an exception will be raised:
 slug: `article-endorsement-notification`
 
 ```html
-<p>Hey!</p>
+<p>Hey there,</p>
 
 <p><a href="*|ENDORSER_URL|*" target="_blank">*|ENDORSER_NAME|*</a> found <a href="*|URL|*" target="_blank">*|ARTICLE_TITLE|*</a> so useful they endorsed it.</p>
 
-<p>That must feel nice.</p>
-
-<p>Oh, and your hair looks amazing today,<br/>
-<strong>HAL.</strong></p>
+<p>Thanks for fighting information rot</p>
 ```
 
 ## Article Rotten Update
@@ -32,8 +29,7 @@ slug: `article-rotten-update`
 
 <p>Just so you know, anyone who subscribes to your article will be emailed once you update it, so I bet you'll get major brownie points for that.</p>
 
-<p>Thanks for fighting internal knowledge rot,<br/>
-<strong>HAL.</strong></p>
+<p>Thanks for fighting information rot</p>
 ```
 
 ## Article Subscription Update
@@ -47,8 +43,7 @@ slug: `article-subscription-update`
 
 <p>This article was just updated, so you probably want to <a href="*|URL|*" target="_blank">check it out</a>.</p>
 
-<p>Thanks for fighting internal knowledge rot,<br/>
-<strong>HAL.</strong></p>
+<p>Thanks for fighting information rot</p>
 ```
 
 ## Stale Article Alert
@@ -66,6 +61,21 @@ slug: `stale-article-alert`
 
 <p>Do you mind taking a look to see if they're still up-to-date? If everything looks good, you can hit the "Mark Fresh" link.</p>
 
-<p>Thanks for fighting internal knowledge rot,<br/>
-<strong>HAL.</strong></p>
+<p>Thanks for fighting information rot</p>
+```
+
+slug: `rotten-article-alert`
+
+```html
+<p>Howdy,</p>
+
+<p>The following articles you wrote have been marked as rotten by your peers:</p>
+
+<ul>
+  *|CONTENT|*
+</ul>
+
+<p>Do you mind taking a look to see if they're still up-to-date? If everything looks good, you can hit the "Mark Fresh" link.</p>
+
+<p>Thanks for fighting information rot</p>
 ```

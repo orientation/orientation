@@ -64,6 +64,14 @@ class User < ActiveRecord::Base
     StalenessNotificationJob.perform_later(article_ids) unless article_ids.empty?
   end
 
+  def notify_about_rotten_articles
+    return false unless self.active? # we don't want to send mailers to inactive authors
+
+    articles = self.articles.rotten
+    article_ids = articles.map(&:id)
+    RottenNotificationJob.perform_later(article_ids) unless article_ids.empty?
+  end
+
   def subscribed_to?(article)
     subscriptions.where(article_id: article.id, user_id: id).any?
   end

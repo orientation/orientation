@@ -9,13 +9,24 @@
 class ArticleMailer < MandrillMailer::TemplateMailer
   include ActionView::Helpers::UrlHelper
 
-  default from: 'orientation@codeschool.com'
+  default from: 'ops@doximity.com'
 
   def notify_author_of_staleness(articles)
     author = articles.last.author
     mandrill_mail template: 'stale-article-alert',
-                  subject: 'Some of your Orientation articles might be stale',
-                  from_name: 'Orientation',
+                  subject: 'Some of your Wiki articles might be stale',
+                  from_name: 'Dox Wiki',
+                  to: { email: author.email, name: author.name },
+                  vars: {
+                    'CONTENT' => format_email_content(articles)
+                  }
+  end
+
+  def notify_author_of_rotten(articles)
+    author = articles.last.author
+    mandrill_mail template: 'rotten-article-alert',
+                  subject: 'Some of your Wiki articles have been marked as rotten',
+                  from_name: 'Dox Wiki',
                   to: { email: author.email, name: author.name },
                   vars: {
                     'CONTENT' => format_email_content(articles)
@@ -25,7 +36,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def send_updates_for(article, user)
     mandrill_mail template: 'article-subscription-update',
                   subject: "#{article.title} was just updated",
-                  from_name: 'Orientation',
+                  from_name: 'Dox Wiki',
                   to: { email: user.email, name: user.name },
                   vars: {
                     'ARTICLE_TITLE' => article.title,
@@ -36,7 +47,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def send_rotten_notification_for(article, contributors, reporter)
     mandrill_mail template: 'article-rotten-update',
                   subject: "#{reporter.name} marked #{article.title} as rotten",
-                  from_name: 'Orientation',
+                  from_name: 'Dox Wiki',
                   to: contributors,
                   vars: {
                     'ARTICLE_TITLE' => article.title,
@@ -49,7 +60,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   def send_endorsement_notification_for(article, contributors, endorser)
     mandrill_mail template: 'article-endorsement-notification',
                   subject: "#{endorser.name} found #{article.title} useful!",
-                  from_name: 'Orientation',
+                  from_name: 'Dox Wiki',
                   to: contributors,
                   vars: {
                     'ENDORSER_NAME' => endorser.name,
@@ -63,7 +74,12 @@ class ArticleMailer < MandrillMailer::TemplateMailer
 
   def format_email_content(articles)
     articles.map do |article|
-      content_tag(:li, link_to(article.title, article_url(article)))
+      content_tag(:li, link_to(article.title,
+        Rails.application.routes.url_helpers.article_url(
+          article, host: ENV.fetch("ORIENTATION_DOMAIN")
+        )
+      )
+    )
     end.join
   end
 
