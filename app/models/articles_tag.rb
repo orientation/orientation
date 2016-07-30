@@ -1,4 +1,4 @@
-class ArticlesTag < ActiveRecord::Base
+class ArticlesTag < ApplicationRecord
   belongs_to :article, counter_cache: :tags_count
   belongs_to :tag, counter_cache: :articles_count
 
