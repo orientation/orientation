@@ -9,3 +9,11 @@
           - # TODO: Add Article fresh/stale/rotten signals
           %li.card.list-item.article
             = link_to article, article, class: 'article-title'
+
+    %ul.list.list--inline.list--inline--xs.mbm.mtm
+      %li.list-item
+        = link_to 'Edit', edit_tag_url( @tag ), class: 'btn btn--a',
+          data: { shortcut: 'e' }
+
+      %li.list-item
+        = link_to 'Delete', @tag, class: 'btn btn--b', data: { method: :delete, confirm: "Are you sure?" }
