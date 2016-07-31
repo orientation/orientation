@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git://github.com/olivierlacan/simple_form.git
-  revision: f63ea975d3f8fd8f222f086f11ae10a4222fc250
+  revision: 86ab4252ecad1956fa2ddeea2d62a1584dac10f6
   branch: rails-5-type-for-attribute
   specs:
     simple_form (3.2.1)
