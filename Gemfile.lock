@@ -86,7 +86,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (7.0.0)
-    autoprefixer-rails (6.3.6)
+    autoprefixer-rails (6.4.0.1)
       execjs
     awesome_print (1.7.0)
     better_errors (2.1.1)
@@ -136,7 +136,7 @@ GEM
       railties (>= 4.0, < 5.1)
     erubis (2.7.0)
     excon (0.50.1)
-    execjs (2.6.0)
+    execjs (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
