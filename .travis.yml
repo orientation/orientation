@@ -4,7 +4,7 @@ env:
     - ORIENTATION_EMAIL_WHITELIST=hanso.dk
 matrix:
   include:
-    - rvm: 2.3.0
+    - rvm: 2.3.1
     - rvm: ruby-2.4.0-preview1
       env: CUSTOM_RUBY_VERSION=2.4.0-preview1 ISOLATED=true
     - rvm: 2.2.4
