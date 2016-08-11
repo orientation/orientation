@@ -2,12 +2,16 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.5.1
+-- Dumped by pg_dump version 9.5.1
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -58,7 +62,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: article_endorsements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: article_endorsements; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE article_endorsements (
@@ -90,7 +94,7 @@ ALTER SEQUENCE article_endorsements_id_seq OWNED BY article_endorsements.id;
 
 
 --
--- Name: article_subscriptions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: article_subscriptions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE article_subscriptions (
@@ -122,7 +126,7 @@ ALTER SEQUENCE article_subscriptions_id_seq OWNED BY article_subscriptions.id;
 
 
 --
--- Name: articles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: articles; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE articles (
@@ -141,7 +145,8 @@ CREATE TABLE articles (
     guide boolean DEFAULT false,
     subscriptions_count integer DEFAULT 0,
     endorsements_count integer DEFAULT 0,
-    visits integer DEFAULT 0 NOT NULL
+    visits integer DEFAULT 0 NOT NULL,
+    deleted_at timestamp without time zone
 );
 
 
@@ -165,7 +170,7 @@ ALTER SEQUENCE articles_id_seq OWNED BY articles.id;
 
 
 --
--- Name: articles_tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: articles_tags; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE articles_tags (
@@ -175,7 +180,7 @@ CREATE TABLE articles_tags (
 
 
 --
--- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE delayed_jobs (
@@ -214,7 +219,7 @@ ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
 
 
 --
--- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE friendly_id_slugs (
@@ -247,7 +252,7 @@ ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE schema_migrations (
@@ -256,7 +261,7 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: tags; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE tags (
@@ -289,7 +294,7 @@ ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE users (
@@ -376,7 +381,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: article_endorsements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: article_endorsements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY article_endorsements
@@ -384,7 +389,7 @@ ALTER TABLE ONLY article_endorsements
 
 
 --
--- Name: article_subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: article_subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY article_subscriptions
@@ -392,7 +397,7 @@ ALTER TABLE ONLY article_subscriptions
 
 
 --
--- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: articles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY articles
@@ -400,7 +405,7 @@ ALTER TABLE ONLY articles
 
 
 --
--- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY delayed_jobs
@@ -408,7 +413,7 @@ ALTER TABLE ONLY delayed_jobs
 
 
 --
--- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY friendly_id_slugs
@@ -416,7 +421,7 @@ ALTER TABLE ONLY friendly_id_slugs
 
 
 --
--- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tags
@@ -424,7 +429,7 @@ ALTER TABLE ONLY tags
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -432,84 +437,91 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: articles_content; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: articles_content; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX articles_content ON articles USING gin (to_tsvector('english'::regconfig, content));
 
 
 --
--- Name: articles_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: articles_title; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX articles_title ON articles USING gin (to_tsvector('english'::regconfig, (title)::text));
 
 
 --
--- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
 
 
 --
--- Name: index_articles_on_archived_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_articles_on_archived_at; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_articles_on_archived_at ON articles USING btree (archived_at);
 
 
 --
--- Name: index_articles_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_articles_on_deleted_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_articles_on_deleted_at ON articles USING btree (deleted_at);
+
+
+--
+-- Name: index_articles_on_slug; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_articles_on_slug ON articles USING btree (slug);
 
 
 --
--- Name: index_articles_tags_on_article_id_and_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_articles_tags_on_article_id_and_tag_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_articles_tags_on_article_id_and_tag_id ON articles_tags USING btree (article_id, tag_id);
 
 
 --
--- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON friendly_id_slugs USING btree (slug, sluggable_type);
 
 
 --
--- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope ON friendly_id_slugs USING btree (slug, sluggable_type, scope);
 
 
 --
--- Name: index_friendly_id_slugs_on_sluggable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_friendly_id_slugs_on_sluggable_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_friendly_id_slugs_on_sluggable_id ON friendly_id_slugs USING btree (sluggable_id);
 
 
 --
--- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_friendly_id_slugs_on_sluggable_type ON friendly_id_slugs USING btree (sluggable_type);
 
 
 --
--- Name: index_tags_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_tags_on_slug; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_tags_on_slug ON tags USING btree (slug);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
@@ -519,7 +531,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20121012052227');
 
@@ -576,4 +588,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150328040918');
 INSERT INTO schema_migrations (version) VALUES ('20150328074815');
 
 INSERT INTO schema_migrations (version) VALUES ('20150416104151');
+
+INSERT INTO schema_migrations (version) VALUES ('20160811142857');
 

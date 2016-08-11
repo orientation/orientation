@@ -58,6 +58,6 @@ RSpec::Matchers.define :send_email_to do |expected_to|
 
   def mailer_to_data(mailer)
     # {email: 'user@email.com', name: 'larry'}
-    mailer.data['message']['to']
+    mailer.message['to']
   end
 end

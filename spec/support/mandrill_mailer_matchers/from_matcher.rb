@@ -38,10 +38,10 @@ RSpec::Matchers.define :be_from do |expected_options|
   end
 
   def mailer_from_email(mailer)
-    mailer.data['message']['from_email']
+    mailer.message['from_email']
   end
 
   def mailer_from_name(mailer)
-    mailer.data['message']['from_name']
+    mailer.message['from_name']
   end
 end

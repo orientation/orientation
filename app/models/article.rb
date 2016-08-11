@@ -1,6 +1,8 @@
 require "ostruct"
 
 class Article < ActiveRecord::Base
+  acts_as_paranoid
+
   include Dateable
   extend ActionView::Helpers::DateHelper
   extend FriendlyId

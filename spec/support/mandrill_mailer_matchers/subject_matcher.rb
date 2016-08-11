@@ -34,6 +34,6 @@ RSpec::Matchers.define :have_subject do |expected_subject|
   end
 
   def mailer_subject(mailer)
-    mailer.data['message']['subject']
+    mailer.message['subject']
   end
 end

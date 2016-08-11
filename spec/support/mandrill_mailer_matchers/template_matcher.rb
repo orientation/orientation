@@ -34,6 +34,6 @@ RSpec::Matchers.define :use_template do |expected_template|
   end
 
   def mailer_template(mailer)
-    mailer.data['template_name']
+    mailer.template_name
   end
 end

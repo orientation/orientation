@@ -45,6 +45,6 @@ RSpec::Matchers.define :include_merge_var_content do |expected_data|
   def merge_vars_from(mailer)
     # Merge vars are in format:
     # [{"name"=>"USER_EMAIL", "content"=>"zoila@homenick.name"},{"name"=>"USER_NAME", "content"=>"Bob"}]
-    mailer.data['message']['global_merge_vars']
+    mailer.message['global_merge_vars']
   end
 end
