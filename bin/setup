@@ -16,10 +16,14 @@ Dir.chdir APP_ROOT do
   system "npm install"
   system "bower install -f"
 
-  # puts "\n== Copying sample files =="
-  # unless File.exist?("config/database.yml")
-  #   system "cp config/database.yml.sample config/database.yml"
-  # end
+  puts "\n== Copying sample files =="
+  unless File.exist?("config/database.yml")
+    system "cp config/database.example.yml config/database.yml"
+  end
+
+  unless File.exist?("config/orientation.yml")
+    system "cp config/orientation.example.yml config/orientation.yml"
+  end
 
   puts "\n== Preparing database =="
   system "bin/rake db:setup"
