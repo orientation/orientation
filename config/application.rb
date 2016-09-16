@@ -47,6 +47,16 @@ module Orientation
 
     config.active_job.queue_adapter = :delayed_job
 
-    config.orientation = config_for :orientation
+    # We load environment-specific configuration values from 
+    # config/orientation.yml into Rails.configuration.orientation
+    #
+    # You can find example values in config/orientation.example.yml
+    #
+    # Once the application has booted you can assign values directly like this:
+    #   Rails.configuration.orientation["mailers"] = :mandrill
+    # And you can read those same values with:
+    #   Rails.configuration.orientation["mailers"]
+    #
+    config.orientation = config_for(:orientation)
   end
 end
