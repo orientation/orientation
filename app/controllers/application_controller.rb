@@ -16,13 +16,14 @@ class ApplicationController < ActionController::Base
     @current_user ||= begin
       user = nil
 
-      # In the development environment, your current_user will be the
-      # first User in the database or a dummy one created below.
-      if Rails.env.development? || Rails.env.test?
+      if Rails.configuration.orientation["oauth"]
+        user = User.find(session[:user_id]) if session[:user_id].present?
+      else
+        # In environments where oauth is disabled (development, test), the
+        # current_user will be the first User in the database or a dummy one
+        # created below.
         user = User.first_or_create(email: "alvar@hanso.dk", name: "Alvar Hanso")
         session[:user_id] = user.id
-      else
-        user = User.find(session[:user_id]) if session[:user_id].present?
       end
 
       # Draper decorators still instantiate a decorator when passed nil,
