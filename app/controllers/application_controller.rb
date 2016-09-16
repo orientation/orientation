@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :warn_about_email_whitelist
 
   private
 
@@ -56,5 +56,11 @@ class ApplicationController < ActionController::Base
 
   def oauth_callback?
     request.path == oauth_callback_path("google_oauth2")
+  end
+
+  def warn_about_email_whitelist
+    if Rails.env.production? && !User.email_whitelist_enabled?
+      flash[:error] = "WARNING: email whitelisting is currently disabled, set ENV['ORIENTATION_EMAIL_WHITELIST'] to enable it."
+    end
   end
 end

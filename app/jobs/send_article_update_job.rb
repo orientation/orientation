@@ -1,4 +1,4 @@
-class SendArticleUpdateJob < ActiveJob::Base
+class SendArticleUpdateJob < ApplicationJob
   queue_as :default
 
   def perform(article_id, user_id)
