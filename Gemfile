@@ -26,7 +26,6 @@ gem 'draper'
 gem 'textacular'
 gem 'mandrill_mailer', '~> 1.1.0'
 gem 'responders','~> 2.0'
-gem 'skylight'
 gem 'bugsnag', require: false
 gem 'slack-notifier'
 gem 'friendly_id'
@@ -66,4 +65,5 @@ group :production, :staging do
   gem 'rails_12factor'
   gem 'rack-timeout'
   gem 'unicorn'
+  gem 'skylight'
 end
