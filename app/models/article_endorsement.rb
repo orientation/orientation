@@ -1,4 +1,4 @@
-class ArticleEndorsement < ActiveRecord::Base
+class ArticleEndorsement < ApplicationRecord
   include Dateable
 
   belongs_to :article, counter_cache: :endorsements_count

@@ -19,7 +19,7 @@ RSpec.describe User do
       expect { User.find_or_create_from_omniauth(@new_user) }.to change{ User.count }.by(1)
     end
 
-    context "when email_whitelist? returns false" do
+    context "when email_whitelist_enabled? returns false" do
       it "doesn't denies unauthorized user" do
         with_modified_env(ORIENTATION_EMAIL_WHITELIST: nil) do
           expect(User.find_or_create_from_omniauth(@other_user).valid?).to be_truthy
@@ -27,7 +27,7 @@ RSpec.describe User do
       end
     end
 
-    context "when email_whitelist? returns true" do
+    context "when email_whitelist_enabled? returns true" do
       it "denies access to a user whose email address isn't included in the whitelist" do
         with_modified_env(ORIENTATION_EMAIL_WHITELIST: "codeschool.com:pluralsight.com") do
           expect(User.find_or_create_from_omniauth(@other_user).valid?).to be_falsey

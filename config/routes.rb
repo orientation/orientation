@@ -40,4 +40,7 @@ Rails.application.routes.draw do
   resources :images, only: [:create]
 
   root "guides#index"
+
+  # Serve websocket cable requests in-process
+  # mount ActionCable.server => '/cable'
 end
