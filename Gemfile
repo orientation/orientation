@@ -29,7 +29,7 @@ gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'textacular', github: "textacular/textacular", branch: "master"
 gem 'mandrill_mailer'
 gem 'responders','~> 2.0'
-gem 'bugsnag'
+gem 'bugsnag', require: false
 gem 'slack-notifier'
 gem 'friendly_id', github: "norman/friendly_id", branch: "master"
 gem 'dotenv-rails'
