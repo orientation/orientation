@@ -6,11 +6,14 @@ class ImagesController < ApplicationController
     new_file_name = generate_file_name(image_data)
     
     if Rails.configuration.orientation["upload"] == :localhost
-      new_file_path = Rails.root.join('public', 'uploads', new_file_name)
+      file = Rails.root.join('public', 'uploads', new_file_name)
 
-      File.open(new_file_path, 'wb') do |file|
+      File.open(file, 'wb') do |file|
         file.write(image_data.read)
       end
+
+      new_file_path = file.to_path.split("/public/").last
+
 
     elsif Rails.configuration.orientation["upload"] == :s3
       s3 = Aws::S3::Resource.new
