@@ -4,26 +4,30 @@ class ImagesController < ApplicationController
   def create
     image_data = params[:image_data]
     new_file_name = generate_file_name(image_data)
-    new_file_path = Rails.root.join('public', 'uploads', new_file_name)
+    
+    if Rails.configuration.orientation["upload"] == :localhost
+      new_file_path = Rails.root.join('public', 'uploads', new_file_name)
 
-    File.open(new_file_path, 'wb') do |file|
-      file.write(image_data.read)
+      File.open(new_file_path, 'wb') do |file|
+        file.write(image_data.read)
+      end
+
+    elsif Rails.configuration.orientation["upload"] == :s3
+      s3 = Aws::S3::Resource.new
+      bucket = s3.bucket("orientationtest")
+      object = bucket.object(new_file_name)
+      object.put(
+        acl: "public-read",
+        body: image_data.read,
+        content_type: image_data.content_type
+      )
+
+      new_file_path = object.public_url
+    else
+      raise NotImplementedError("upload not configured in config/orientation.yml")
     end
 
-    # the above read means that the file needs to be rewinded before the next
-    # read otherwise we'll accidentally read an empty string
-    image_data.rewind
-
-    s3 = Aws::S3::Resource.new
-    bucket = s3.bucket("orientationtest")
-    object = bucket.object(new_file_name)
-    object.put(
-      acl: "public-read",
-      body: image_data.read,
-      content_type: image_data.content_type
-    )
-
-    render json: { file_path: new_file_path, public_url: object.public_url }
+    render json: { file_url: new_file_path }
   end
 
   private
