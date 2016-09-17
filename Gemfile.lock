@@ -88,14 +88,13 @@ GEM
     arel (7.0.0)
     autoprefixer-rails (6.4.0.1)
       execjs
+    awesome_print (1.7.0)
     aws-sdk (2.2.13)
       aws-sdk-resources (= 2.2.13)
     aws-sdk-core (2.2.13)
       jmespath (~> 1.0)
     aws-sdk-resources (2.2.13)
       aws-sdk-core (= 2.2.13)
-    better_errors (0.9.0)
-    awesome_print (1.7.0)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -366,11 +365,8 @@ PLATFORMS
 DEPENDENCIES
   activemodel-serializers-xml!
   autoprefixer-rails
-<<<<<<< HEAD
-  aws-sdk (~> 2)
-=======
   awesome_print
->>>>>>> master
+  aws-sdk (~> 2)
   better_errors
   binding_of_caller
   bugsnag
@@ -423,12 +419,5 @@ DEPENDENCIES
 RUBY VERSION
    ruby 2.3.0p0
 
-RUBY VERSION
-   ruby 2.3.0p0
-
 BUNDLED WITH
-<<<<<<< HEAD
-   1.12.0
-=======
    1.12.5
->>>>>>> master
