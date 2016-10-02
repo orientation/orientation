@@ -1,4 +1,4 @@
-class Article < ActiveRecord::Base
+class Article < ApplicationRecord
   include Dateable
   include PgSearch
 
@@ -25,9 +25,9 @@ class Article < ActiveRecord::Base
 
   has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
-  has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
+  has_many :subscriptions, class_name: "ArticleSubscription", dependent: :destroy
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
-  has_many :endorsements, class_name: "ArticleEndorsement", counter_cache: true, dependent: :destroy
+  has_many :endorsements, class_name: "ArticleEndorsement", dependent: :destroy
   has_many :endorsers, through: :endorsements, class_name: "User", source: :user
 
   attr_reader :tag_tokens
@@ -145,7 +145,7 @@ class Article < ActiveRecord::Base
   end
 
   def contributors
-    User.where(id: [self.author_id, self.editor_id]).uniq.select(:name, :email).map do |user|
+    User.where(id: [self.author_id, self.editor_id]).distinct.select(:name, :email).map do |user|
       { name: user.name, email: user.email }
     end
   end

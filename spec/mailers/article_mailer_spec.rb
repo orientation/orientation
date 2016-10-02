@@ -36,7 +36,7 @@ RSpec.describe ArticleMailer do
 
     it { is_expected.to send_email_to(email: user.email) }
     it { is_expected.to use_template('article-subscription-update') }
-    it { is_expected.to have_subject("#{article.title} was just updated by #{article.editor}") }
+    it { is_expected.to have_subject("#{article.title} was updated by #{article.editor}") }
     it { is_expected.to be_from(email: 'orientation@codeschool.com') }
   end
 
