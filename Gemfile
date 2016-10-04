@@ -24,7 +24,7 @@ gem 'pygments.rb'
 gem 'redcarpet', '~> 3.3.4'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'pg_search', github: 'Casecommons/pg_search', ref: "ff1af346322ca54808b3f53081149b8cac55bb76"
+gem 'pg_search', github: 'Casecommons/pg_search'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'textacular', github: "textacular/textacular", branch: "master"
