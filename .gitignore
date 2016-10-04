@@ -23,7 +23,6 @@
 .byebug_history
 
 config/database.yml
-config/orientation.yml
 
 # ignore coveralls/simplecov
 coverage/
