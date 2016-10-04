@@ -11,7 +11,7 @@ class Article < ApplicationRecord
       content: 'B'
     },
     using: {
-      tsearch: { dictionary: "english" },
+      tsearch: { dictionary: "english", prefix: true },
       trigram: { threshold:  0.3 }
     }
 
