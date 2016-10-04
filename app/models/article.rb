@@ -12,7 +12,7 @@ class Article < ApplicationRecord
     },
     using: {
       tsearch: { dictionary: "english" },
-      trigram: { threshold:  0.2 }
+      trigram: { threshold:  0.3 }
     }
 
     # ranked_by: ":trigram"
