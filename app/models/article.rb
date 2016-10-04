@@ -77,7 +77,7 @@ class Article < ApplicationRecord
     scope ||= current
 
     if query.present?
-      scope.search(query)
+      scope.search(query).with_pg_search_highlight
     else
       scope
     end
