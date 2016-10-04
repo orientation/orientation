@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/Casecommons/pg_search.git
+  revision: 19ebda28fcfe41fd809b5d7e41e36076a46f27ad
+  specs:
+    pg_search (1.0.6)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      arel
+
+GIT
   remote: git://github.com/audionerd/draper.git
   revision: e816e0e5876b76c648c0928f1c3f2aa2c7a3d1f2
   branch: rails5
@@ -35,14 +44,6 @@ GIT
       activerecord (> 5.x)
       activesupport (> 5.x)
       builder (~> 3.1)
-
-GIT
-  remote: git://github.com/textacular/textacular.git
-  revision: 8e20531836a462efe2bf6972603cb4cc2b261290
-  branch: master
-  specs:
-    textacular (4.0.0)
-      activerecord (>= 3.0, <= 5.0)
 
 GEM
   remote: https://rubygems.org/
@@ -85,7 +86,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    arel (7.0.0)
+    arel (7.1.2)
     autoprefixer-rails (6.4.0.1)
       execjs
     awesome_print (1.7.0)
@@ -193,7 +194,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -383,6 +384,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   pg
+  pg_search!
   powder
   pry-byebug
   pry-rails
@@ -403,7 +405,6 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
-  textacular!
   uglifier
   unicorn
   web-console

@@ -1,7 +1,21 @@
 class Article < ApplicationRecord
   include Dateable
+  include PgSearch
+
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
+
+  pg_search_scope :search,
+    against: {
+      title: 'A',
+      content: 'B'
+    },
+    using: {
+      tsearch: { dictionary: "english" },
+      trigram: { threshold:  0.2 }
+    }
+
+    # ranked_by: ":trigram"
 
   friendly_id :title
 
@@ -63,7 +77,7 @@ class Article < ApplicationRecord
     scope ||= current
 
     if query.present?
-      scope.advanced_search(title: query)
+      scope.search(query).with_pg_search_highlight
     else
       scope
     end
