@@ -60,6 +60,7 @@ class Article < ApplicationRecord
   scope :popular, -> { order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc) }
   scope :rotten,  -> { where.not(rotted_at: nil) }
   scope :stale,   -> { where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago) }
+  scope :alphabetical, -> { order(title: :asc) }
 
   def self.count_visit(article_instance)
     self.increment_counter(:visits, article_instance.id)
