@@ -17,6 +17,11 @@ can know **why** an article came back in the search results.
 
 ![Animation showing search keywords being displayed in article match results](https://d3vv6lp55qjaqc.cloudfront.net/items/1w1H1d431a2b0617032A/Screen%20Recording%202016-10-04%20at%2010.36%20PM.gif?X-CloudApp-Visitor-Id=2861&v=534bb77a)
 
+### Hiding archived or rotted guide articles from the home page
+
+Previously, even when a guide article was archived or marked as rotten, it would 
+still show up on the homepage. Now we'll hide those guides.
+
 ## October 4th, 2015
 ### Email privacy
 
