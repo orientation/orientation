@@ -5,14 +5,14 @@ class Article < ApplicationRecord
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
 
-  pg_search_scope :search_stuff,
+  pg_search_scope :search,
     against: {
       title: 'A',
       content: 'B'
     },
     using: {
       tsearch: { dictionary: "english" },
-      trigram: { threshold:  0.2, negation: true }
+      trigram: { threshold:  0.2 }
     }
 
     # ranked_by: ":trigram"
@@ -77,7 +77,7 @@ class Article < ApplicationRecord
     scope ||= current
 
     if query.present?
-      scope.search_stuff(query)
+      scope.search(query)
     else
       scope
     end
