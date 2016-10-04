@@ -45,14 +45,6 @@ GIT
       activesupport (> 5.x)
       builder (~> 3.1)
 
-GIT
-  remote: git://github.com/textacular/textacular.git
-  revision: 8e20531836a462efe2bf6972603cb4cc2b261290
-  branch: master
-  specs:
-    textacular (4.0.0)
-      activerecord (>= 3.0, <= 5.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -413,7 +405,6 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
-  textacular!
   uglifier
   unicorn
   web-console

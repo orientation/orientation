@@ -27,7 +27,6 @@ gem 'omniauth-google-oauth2'
 gem 'pg_search', github: 'Casecommons/pg_search'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
-gem 'textacular', github: "textacular/textacular", branch: "master"
 gem 'mandrill_mailer'
 gem 'responders','~> 2.0'
 gem 'bugsnag', require: false
