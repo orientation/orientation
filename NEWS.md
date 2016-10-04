@@ -2,6 +2,21 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## October 4th, 2016
+### Improved search and keyword match display
+
+I can't believe it's been a whole year since the last major new feature, I've 
+certainly been working on some cool stuff, but this has been perhaps the longest 
+standing issue with Orientation: searching things easily.
+
+I've replaced the search library we were using with one that allows us to be a 
+lot more specific with regards to the weighing of results. Article titles are 
+now weighed higher in search than article content. We now also display exactly 
+what the full-text search engine matched on when you type keywords so you 
+can know **why** an article came back in the search results.
+
+![Animation showing search keywords being displayed in article match results](https://d3vv6lp55qjaqc.cloudfront.net/items/1w1H1d431a2b0617032A/Screen%20Recording%202016-10-04%20at%2010.36%20PM.gif?X-CloudApp-Visitor-Id=2861&v=534bb77a)
+
 ## October 4th, 2015
 ### Email privacy
 
