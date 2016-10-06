@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Force HTTPS for GitHub under bundler 1.x, which is the default for bundler 2.x
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
+
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.1'
 
 gem 'rails', "5.0.0"
