@@ -24,7 +24,7 @@
     },
     "GOOGLE_KEY": {
       "required": true
-    },
+    }
   },
   "buildpacks" : [
     {
