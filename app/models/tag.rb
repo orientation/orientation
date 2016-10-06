@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
   extend FriendlyId
 
   has_many :articles_tags, dependent: :destroy

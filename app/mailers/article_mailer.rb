@@ -37,13 +37,14 @@ class ArticleMailer < ActionMailer::Base
 
   def send_updates_for(article, user)
     mandrill_mail template: 'article-subscription-update',
-                  subject: "#{article.title} was just updated",
-                  from_name: ENV['DEFAULT_FROM_NAME'] || 'Dox Wiki',
+                  subject: "#{article.title} was updated by #{article.editor}",
+                  from_name: ENV['DEFAULT_FROM_NAME'] || 'Orientation',
                   to: { email: user.email, name: user.name },
                   vars: {
                     'ARTICLE_TITLE' => article.title,
                     'URL' => article_url(article),
-                    'CHANGE_SUMMARY_HTML' => change_summary_html(article)
+                    'CHANGE_SUMMARY_HTML' => change_summary_html(article),
+                    'EDITOR' => article.editor
                   }
   end
 

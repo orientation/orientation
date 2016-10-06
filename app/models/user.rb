@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   belongs_to :article
   has_many :articles, foreign_key: "author_id"
   has_many :subscriptions, class_name: "ArticleSubscription"
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     :private_email
 
   validates :email, presence: true
-  validate :whitelisted_email, if: -> { self.class.email_whitelist? }
+  validate :whitelisted_email, if: -> { self.class.email_whitelist_enabled? }
 
   def self.author
     joins(:articles).group('users.id').having('count(articles.id) > 0')
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   end
 
   private
-  def self.email_whitelist?
+  def self.email_whitelist_enabled?
     !!ENV['ORIENTATION_EMAIL_WHITELIST']
   end
 
@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
   end
 
   def whitelisted_email
-    if email_whitelist.none? { |email| self.email.include?(email) }
+    if email_whitelist.none? { |rule| email.include?(rule) }
       errors.add(:email, "doesn't match the email domain whitelist: #{email_whitelist}")
     end
   end

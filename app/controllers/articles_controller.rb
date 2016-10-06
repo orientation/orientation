@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
     :update,
     :destroy
   ]
-  before_filter :decorate_article, only: [
+  before_action :decorate_article, only: [
     :show,
     :edit,
     :toggle_archived,

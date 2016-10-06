@@ -1,4 +1,4 @@
-class StalenessNotificationJob < ActiveJob::Base
+class StalenessNotificationJob < ApplicationJob
   queue_as :default
 
   def perform(article_ids)

@@ -1,4 +1,4 @@
-class SendArticleRottenJob < ActiveJob::Base
+class SendArticleRottenJob < ApplicationJob
   queue_as :default
 
   def perform(article_id, reporter_id, description)
