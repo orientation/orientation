@@ -32,7 +32,7 @@
                     = link_to current_user.link, class: 'dropdown-item-link' do
                       %span.tss My Profile
                   %li.dropdown-item
-                    = link_to logout_path, class: 'dropdown-item-link' do
+                    = link_to sign_out_path, class: 'dropdown-item-link' do
                       %span.tss Log Out
 
         .split-cell.dn.db--s
@@ -51,8 +51,8 @@
                     data: { shortcut: 'p' } do
                     %span.tss My Profile
                 %li.dropdown-item
-                  = link_to logout_path, class: 'dropdown-item-link' do
+                  = link_to sign_out_path, class: 'dropdown-item-link' do
                     %span.tss Log Out
 
           - else
-            = link_to 'Log In', login_path
+            = link_to 'Log In', sign_in_path
