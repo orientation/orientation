@@ -37,21 +37,7 @@ Rails.application.configure do
   config.mandrill_mailer.default_url_options =
   config.action_mailer.default_url_options =
   config.action_controller.default_url_options =
-  { :host => 'www.example.com' }
-
-  ActionMailer::Base.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587,
-    :user_name => ENV.fetch("MANDRILL_USERNAME"),
-    :password  => ENV.fetch("MANDRILL_API_KEY"),
-    :domain    => ENV.fetch("MANDRILL_DOMAIN")
-  }
-
-  config.after_initialize do
-    MandrillMailer.configure do |config|
-      config.api_key = "this-is-not-a-real-api-key"
-    end
-  end
+  { host: 'www.example.com' }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
