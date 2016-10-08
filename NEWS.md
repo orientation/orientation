@@ -2,6 +2,28 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+
+## October 8th, 2016
+### Free SSL support with Let's Encrypt and Heroku SNI
+
+I can't believe it took me so long to finally get this done. Unless you have 
+your own paid SSL certificate set up, it's been quite difficult in the past to 
+protect your Orientation installation with SSL. Now it should be much easier 
+thanks to the most excellent letsencrypt-rails-heroku gem.
+
+I've used this gem on two different projects so far and it's been a breeze to 
+use compared to manually using Let's Encrypt's recommended CertBot command line 
+interface. 
+
+I've added some documentation to [`.env.example`][2] on which variables are
+needed but you can read [their excellent documentation][1] to protect your
+Orientation.
+
+One caveat for now, since it's tricky for me to enable Rails' `force_ssl`
+without causing issues to people who don't have SSL set up, it's likely that
+I'll add a new configuration variable to optionally enable `force_ssl` very
+soon.
+
 ## October 4th, 2016
 ### Improved search and keyword match display
 
@@ -198,3 +220,6 @@ This is an invisible feature for now (aside from the Popular Articles page which
 ![screenshot](https://s3.amazonaws.com/f.cl.ly/items/1V1R3b2z2A330f430k3c/Screen%20Shot%202015-03-28%20at%203.17.30%20PM.png)
 
 On the article index page or even on article "state" pages (Fresh, Rotten, etc.) it was hard to know how many articles were being shown compared to each other "state". Now, the article count for the current scope is dynamically displayed in the search field.
+
+[1]: https://github.com/pixielabs/letsencrypt-rails-heroku/#configuring
+[2]: https://github.com/orientation/orientation/blob/d6dca410dbba61332130be85fd237818ad0ca10e/.env.example#L25-L61
