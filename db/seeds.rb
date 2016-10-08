@@ -6,31 +6,57 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-alvar = User.find_or_initialize_by(name: "Alvar Hanso").tap do |user|
-  user.email = "alvar@hanso.dk"
+orientation = User.find_or_initialize_by(name: "Orientation").tap do |user|
+  user.email = "about@orientation.io"
   user.image = ActionController::Base.helpers.asset_path("default_avatar.jpg")
-  user.shtick = "I stare at stuff inside buildings"
+  user.shtick = "I can orient you in Orientation"
   user.save
 end
 
-tag = Tag.find_or_create_by(name: "video")
+tag = Tag.find_or_create_by(name: "meta")
 
-Article.find_or_create_by(title: "Welcome to the Island!").tap do |article|
-  article.content = "Isn't it nice here?"
-  article.author = alvar
+Article.find_or_create_by(title: "About").tap do |article|
+  article.content = <<~MARKDOWN
+    # What is Orientation?
+
+    It's a place to share knowledge you depend on and help people who rely on it 
+    the most stay connected with it.
+
+    # How does it work? 
+      
+    You write articles inside Orientation. You keep those article short and 
+    focus on a single topic. Once you're done, you can share an article with 
+    anyone and they can subscribe to it. Whenever it changes, they'll know 
+    about it. 
+
+    # How is it better?
+
+    First, simplicity. 
+
+    You can create an article in plain text. If you want to add markup like 
+    emphasis, links, and images, you can use Markdown and we'll help you if 
+    you're not familiar with it.
+
+    Second, freshness. 
+
+    There are many ways to wrote documentation. The tricky part comes later,
+    when you need to find the documentation and keep it up-to-date. Orientation
+    decays articles that have not been updated. They first become stale, 
+    prompting their authors and editors to update them. Then they become rotten, 
+    signaling that their information is likely inaccurate and needs updating.
+
+    Third, connectedness.
+
+    When you need to look up documentation for something it's often because you 
+    either can't remember it or aren't familiar with the domain. This means you 
+    will not just depend on the information once, but regularly. Most 
+    documentation systems are somehow based on the assumption that information 
+    doesn't evolve. By subscribing to an article in Orientation, you will be 
+    notified when anyone updates it. You're connected to knowledge you depend on.
+
+  MARKDOWN
+  article.author = orientation
   article.tags = [tag]
+  article.guide = true
   article.save
-end
-
-["The Hydra", "The Swan", "The Orchid"].each do |station|
-  Article.find_or_initialize_by(title: station).tap do |article|
-    article.content = <<~MARKDOWN
-      This is an example guide. It's just an article with links to other articles!
-
-      - [[Welcome to the Island]]
-    MARKDOWN
-    article.author = alvar
-    article.guide = true
-    article.save
-  end
 end
