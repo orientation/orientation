@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  namespace :auth do
-    get ":provider/callback", to: "sessions#create", as: :oauth_callback
-    get :failure, to: redirect("/")
-  end
- 
+
+  get 'auth/:provider/callback', to: 'sessions#create', as: :oauth_callback
+  get 'auth/failure', to: redirect('/')
   get :sign_in, to: "sessions#new", as: :sign_in
   get :sign_out, to: "sessions#destroy", as: :sign_out
 
