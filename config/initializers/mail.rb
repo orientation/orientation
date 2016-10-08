@@ -1,4 +1,10 @@
 if !Rails.env.test?
+  def mandrill_configured?
+    ENV["MANDRILL_USERNAME"].present? && 
+    ENV["MANDRILL_API_KEY"].present? &&
+    ENV["MANDRILL_DOMAIN"].present?
+  end
+
   if mandrill_configured?
     require 'yaml'
 
@@ -17,10 +23,4 @@ if !Rails.env.test?
   else
     Rails.logger.info { "Mandrill environment variables not set. Transactional emails will not be sent."}
   end
-end
-
-def mandrill_configured?
-  ENV["MANDRILL_USERNAME"].present? && 
-  ENV["MANDRILL_API_KEY"].present? &&
-  ENV["MANDRILL_DOMAIN"].present?
 end
