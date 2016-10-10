@@ -112,15 +112,15 @@ RSpec.describe User do
 
     context 'with endorsements' do
       let(:article_for_endorsement) { create(:article) }
-      let(:article_endorsemet) { create(:article_endorsement, user: user, article: article_for_endorsement) }
+      let(:article_endorsement) { create(:article_endorsement, user: user, article: article_for_endorsement) }
 
       it 'removes endorsements without removing articles' do
-        expect(article_endorsemet).to be_truthy
+        expect(article_endorsement).to be_truthy
 
         expect(user.destroy).to be_truthy
 
         expect(article_for_endorsement).to be_truthy
-        expect { article_endorsemet.reload }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { article_endorsement.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
