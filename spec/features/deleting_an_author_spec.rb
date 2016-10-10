@@ -18,7 +18,6 @@ RSpec.describe 'deleting an author' do
 
     expect do
       click_link_or_button 'Delete Author'
-      expect(current_path).to eq(author_path(logged_in_user.id))
-    end.not_to change { User.where(id: author.id).count }
+    end.to raise_error(Capybara::ElementNotFound)
   end
 end
