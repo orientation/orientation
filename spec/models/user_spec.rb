@@ -88,4 +88,54 @@ RSpec.describe User do
       expect(subscribed_to?).to be_truthy
     end
   end
+
+  context "#destroy" do
+    let(:user) { create(:user) }
+
+    it 'refuses user is an author for any articles' do
+      create(:article, author: user)
+
+      expect { user.destroy }.to raise_error(ActiveRecord::DeleteRestrictionError)
+    end
+
+    it 'refuses user is an editor for any articles' do
+      create(:article, editor: user)
+
+      expect { user.destroy }.to raise_error(ActiveRecord::DeleteRestrictionError)
+    end
+
+    it 'refuses user is an rot reporter for any articles' do
+      create(:article, rot_reporter: user)
+
+      expect { user.destroy }.to raise_error(ActiveRecord::DeleteRestrictionError)
+    end
+
+    context 'with endorsements' do
+      let(:article_for_endorsement) { create(:article) }
+      let(:article_endorsemet) { create(:article_endorsement, user: user, article: article_for_endorsement) }
+
+      it 'removes endorsements without removing articles' do
+        expect(article_endorsemet).to be_truthy
+
+        expect(user.destroy).to be_truthy
+
+        expect(article_for_endorsement).to be_truthy
+        expect { article_endorsemet.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context 'with subscriptions' do
+      let(:article_for_subscription) { create(:article) }
+      let(:article_subscription) { create(:article_subscription, user: user, article: article_for_subscription) }
+
+      it 'removes subscriptions without removing articles' do
+        expect(article_subscription).to be_truthy
+
+        expect(user.destroy).to be_truthy
+
+        expect(article_for_subscription).to be_truthy
+        expect { article_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end
