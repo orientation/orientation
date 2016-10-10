@@ -38,6 +38,8 @@
 
         .tac.mbm
           = link_to 'Toggle Status', author_toggle_status_path( @author ), method: :put
+        .tac.mbm
+          = link_to 'Delete Author', author_path( @author ), method: :delete
 
       .g-b.g-b--m--2of3
 

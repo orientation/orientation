@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :tags
 
-  resources :authors, only: [:index, :show, :new, :create, :update] do
+  resources :authors, only: [:index, :show, :new, :create, :update, :destroy] do
     put :toggle_status, to: "authors#toggle_status", as: "toggle_status"
     put :toggle_email_privacy
   end

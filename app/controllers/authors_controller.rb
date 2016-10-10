@@ -57,6 +57,19 @@ class AuthorsController < ApplicationController
     redirect_to author_path(@author)
   end
 
+  def destroy
+    @author = User.find(params[:id])
+
+    if current_user != @author
+      @author.destroy!
+      flash[:notice] = "You deleted #{@author.name}."
+      redirect_to authors_path
+    else
+      flash[:notice] = "You cannot delete yourself."
+      redirect_to author_path(@author)
+    end
+  end
+
   private
 
   def author_params
