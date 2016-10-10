@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.1'
 
+# Force HTTPS for GitHub under bundler 1.x, which is the default for bundler 2.x
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
+
 gem 'rails', "5.0.0"
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -34,7 +37,7 @@ gem 'slack-notifier'
 gem 'friendly_id', github: "norman/friendly_id", branch: "master"
 gem 'dotenv-rails'
 gem 'redis', '~> 3.0'
-# platform-api fork is necessary to allow letsencrypt-rails-heroku to 
+# platform-api fork is necessary to allow letsencrypt-rails-heroku to
 # make Heroku API requests to upload the Let's Encrypt SSL certificates
 gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
 gem 'letsencrypt-rails-heroku', group: 'production'
