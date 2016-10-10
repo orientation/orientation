@@ -89,6 +89,10 @@ class User < ApplicationRecord
     self.name || self.email
   end
 
+  def replace_and_destroy!(other_user)
+    replace_with_user!(other_user) && destroy!
+  end
+
   private
   def self.email_whitelist_enabled?
     !!ENV['ORIENTATION_EMAIL_WHITELIST']
@@ -102,5 +106,18 @@ class User < ApplicationRecord
     if email_whitelist.none? { |rule| email.include?(rule) }
       errors.add(:email, "doesn't match the email domain whitelist: #{email_whitelist}")
     end
+  end
+
+  def replace_with_user!(replacement)
+    articles.each    { |article| article.update! author: replacement }
+    articles.reload
+
+    edits.each       { |edit| edit.update! editor: replacement }
+    edits.reload
+
+    rot_reports.each { |rot_report| rot_report.update! rot_reporter: replacement }
+    rot_reports.reload
+
+    self
   end
 end

@@ -61,7 +61,7 @@ class AuthorsController < ApplicationController
     @author = User.find(params[:id])
 
     if current_user != @author
-      @author.destroy!
+      @author.replace_and_destroy!(current_user)
       flash[:notice] = "You deleted #{@author.name}."
       redirect_to authors_path
     else

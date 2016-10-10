@@ -138,4 +138,22 @@ RSpec.describe User do
       end
     end
   end
+
+  context "#replace_and_destroy!" do
+    let(:user) { create(:user) }
+    let(:replacement) { create(:user) }
+    let(:article) { create(:article, author: user) }
+    let(:edit) { create(:article, editor: user) }
+    let(:rot_report) { create(:article, rot_reporter: user) }
+
+    it 'replaces with another user and destroys' do
+      expect do
+        expect do
+          expect do
+            expect(user.replace_and_destroy!(replacement)).to eq user
+          end.to change { article.reload.author }.from(user).to(replacement)
+        end.to change { edit.reload.editor }.from(user).to(replacement)
+      end.to change { rot_report.reload.rot_reporter }.from(user).to(replacement)
+    end
+  end
 end
