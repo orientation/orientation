@@ -109,10 +109,10 @@ class User < ApplicationRecord
   end
 
   def replace_with_user!(replacement)
-    articles.each    { |article| article.update! author: replacement }
+    articles.each { |article| article.update! author: replacement }
     articles.reload
 
-    edits.each       { |edit| edit.update! editor: replacement }
+    edits.each { |edit| edit.update! editor: replacement }
     edits.reload
 
     rot_reports.each { |rot_report| rot_report.update! rot_reporter: replacement }
