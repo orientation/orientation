@@ -1,19 +1,13 @@
 language: ruby
-env:
-  global:
-    - ORIENTATION_EMAIL_WHITELIST=hanso.dk
 matrix:
   include:
     - rvm: 2.3.1
-    - rvm: ruby-2.4.0-preview1
-      env: CUSTOM_RUBY_VERSION=2.4.0 ISOLATED=true
     - rvm: 2.2.4
       env: CUSTOM_RUBY_VERSION=2.2.4 ISOLATED=true
 
   fast_finish: true
   allow_failures:
     - rvm: 2.2.4
-    - rvm: ruby-2.4.0-preview1
 
 sudo: false
 bundler_args: --deployment --without development
@@ -25,7 +19,6 @@ cache:
 before_script:
   - ruby --version
   - cp config/database.ci.yml config/database.yml
-  - cp config/orientation.example.yml config/orientation.yml
   - cp .env.example .env
   - psql -c 'create database orientation_test;' -U postgres
   - npm install -g bower

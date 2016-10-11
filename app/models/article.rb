@@ -1,7 +1,21 @@
 class Article < ApplicationRecord
   include Dateable
+  include PgSearch
+
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
+
+  pg_search_scope :search,
+    against: {
+      title: 'A',
+      content: 'B'
+    },
+    using: {
+      tsearch: { dictionary: "english", prefix: true },
+      trigram: { threshold:  0.3 }
+    }
+
+    # ranked_by: ":trigram"
 
   friendly_id :title
 
@@ -46,6 +60,7 @@ class Article < ApplicationRecord
   scope :popular, -> { order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc) }
   scope :rotten,  -> { where.not(rotted_at: nil) }
   scope :stale,   -> { where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago) }
+  scope :alphabetical, -> { order(title: :asc) }
 
   def self.count_visit(article_instance)
     self.increment_counter(:visits, article_instance.id)
@@ -63,7 +78,7 @@ class Article < ApplicationRecord
     scope ||= current
 
     if query.present?
-      scope.advanced_search(title: query)
+      scope.search(query).with_pg_search_highlight
     else
       scope
     end

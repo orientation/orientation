@@ -22,7 +22,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def link
-    author_path(object)
+    author_path(object.id)
   end
 
   def link_tag

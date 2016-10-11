@@ -10,6 +10,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     # hd means hosted domain and this option allows limiting to a particular
     # Google Apps hosted domain. More information at:
     #   https://developers.google.com/accounts/docs/OpenIDConnect#hd-param
-    hd: ENV["ORIENTATION_EMAIL_WHITELIST"]
+    hd: ENV["ORIENTATION_EMAIL_WHITELIST"] && ENV["ORIENTATION_EMAIL_WHITELIST"].split(":") 
   }
 end

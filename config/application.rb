@@ -43,9 +43,9 @@ module Orientation
     # You can find example values in config/orientation.example.yml
     #
     # Once the application has booted you can assign values directly like this:
-    #   Rails.configuration.orientation["mailers"] = :mandrill
+    #   Rails.configuration.orientation["transactional_mailer"] = :mandrill
     # And you can read those same values with:
-    #   Rails.configuration.orientation["mailers"]
+    #   Rails.configuration.orientation["transactional_mailer"]
     #
     config.orientation = config_for(:orientation)
   end

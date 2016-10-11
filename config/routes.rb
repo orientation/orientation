@@ -2,13 +2,13 @@ Rails.application.routes.draw do
 
   get 'auth/:provider/callback', to: 'sessions#create', as: :oauth_callback
   get 'auth/failure', to: redirect('/')
-  get 'login', to: 'sessions#new', as: :login
-  get 'logout', to: 'sessions#destroy', as: :logout
+  get :sign_in, to: "sessions#new", as: :sign_in
+  get :sign_out, to: "sessions#destroy", as: :sign_out
 
   resources :tags
 
   resources :authors, only: [:index, :show, :new, :create, :update] do
-    put :toggle_status, to: "authors#toggle_status", as: "toggle_status"
+    put :toggle_status, to: "authors#toggle_status", as: :toggle_status
     put :toggle_email_privacy
   end
 

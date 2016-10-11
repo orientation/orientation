@@ -1,6 +1,8 @@
 %li.card.list-item.article.has-signal{ class: ('has-article-footer' if article.tags.any? )}
   = article.signal
   = link_to article.title, article, class: 'article-title'
+  - if defined? highlight_search_keywords
+    %span.search-highlight= article.pg_search_highlight.html_safe
   - if article.tags.any?
     .article-footer
       %ul.list.list--inline.list--inline--xs
