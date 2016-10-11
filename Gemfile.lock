@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/Casecommons/pg_search.git
+  remote: https://github.com/Casecommons/pg_search
   revision: 19ebda28fcfe41fd809b5d7e41e36076a46f27ad
   specs:
     pg_search (1.0.6)
@@ -8,7 +8,7 @@ GIT
       arel
 
 GIT
-  remote: https://github.com/audionerd/draper.git
+  remote: https://github.com/audionerd/draper
   revision: e816e0e5876b76c648c0928f1c3f2aa2c7a3d1f2
   branch: rails5
   specs:
@@ -19,7 +19,7 @@ GIT
       request_store (~> 1.0)
 
 GIT
-  remote: https://github.com/jalada/platform-api.git
+  remote: https://github.com/jalada/platform-api
   revision: 45ddb3c1a7e2c7f85d979c0791db18e99affb237
   branch: master
   specs:
@@ -27,7 +27,7 @@ GIT
       heroics (~> 0.0.17)
 
 GIT
-  remote: https://github.com/norman/friendly_id.git
+  remote: https://github.com/norman/friendly_id
   revision: aff0564584e84ffa505e6e278b65ca3c4ee5d698
   branch: master
   specs:
@@ -35,7 +35,7 @@ GIT
       activerecord (>= 4.0.0)
 
 GIT
-  remote: https://github.com/olivierlacan/simple_form.git
+  remote: https://github.com/olivierlacan/simple_form
   revision: 86ab4252ecad1956fa2ddeea2d62a1584dac10f6
   branch: rails-5-type-for-attribute
   specs:
@@ -44,7 +44,7 @@ GIT
       activemodel (> 4, < 5.1)
 
 GIT
-  remote: https://github.com/rails/activemodel-serializers-xml.git
+  remote: https://github.com/rails/activemodel-serializers-xml
   revision: 570ee7ed33d60e44ca1f3ccbec3d1fbf61d52cbf
   specs:
     activemodel-serializers-xml (1.0.1)

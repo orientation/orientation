@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.1'
 
 # Force HTTPS for GitHub under bundler 1.x, which is the default for bundler 2.x
-git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 gem 'rails', "5.0.0"
 # Use Puma as the app server
