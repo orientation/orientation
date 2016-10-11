@@ -67,7 +67,7 @@ class AuthorsController < ApplicationController
       flash[:notice] = "You cannot delete yourself."
       redirect_to author_path(@author)
     else
-      replacement_author = User.find params[:replacement_author_id]
+      replacement_author = User.find(params[:replacement_author_id])
       @author.replace_and_destroy!(replacement_author)
       flash[:notice] = "You deleted #{@author.name} and re-assigned articles to #{replacement_author.name}."
       redirect_to authors_path
