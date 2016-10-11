@@ -19,7 +19,7 @@ RSpec.describe ArticleMailer do
     it { articles.each { |article| is_expected.to include_merge_var_content(article.slug) } }
     it { is_expected.to include_merge_var_content(articles.second.slug) }
     it { is_expected.to include_merge_var_content(articles.third.slug) }
-    it { is_expected.to be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to be_from(email: 'notifications@orientation.io') }
   end
 
   context ".send_updates_for(article, user, editor)" do
@@ -37,7 +37,7 @@ RSpec.describe ArticleMailer do
     it { is_expected.to send_email_to(email: user.email) }
     it { is_expected.to use_template('article-subscription-update') }
     it { is_expected.to have_subject("#{article.title} was updated by #{article.editor}") }
-    it { is_expected.to be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to be_from(email: 'notifications@orientation.io') }
   end
 
   context ".send_rotten_notification_for(article, contributors)" do
@@ -56,7 +56,7 @@ RSpec.describe ArticleMailer do
     it { is_expected.to send_email_to(email: contributors.first[:email]) }
     it { is_expected.to use_template('article-rotten-update') }
     it { is_expected.to have_subject("#{reporter.name} marked #{article.title} as rotten") }
-    it { is_expected.to be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to be_from(email: 'notifications@orientation.io') }
   end
 
   context ".send_endorsement_notification_for(article, author, endorser)" do
@@ -72,7 +72,7 @@ RSpec.describe ArticleMailer do
     it { is_expected.to send_email_to(email: contributors.first[:email]) }
     it { is_expected.to use_template('article-endorsement-notification') }
     it { is_expected.to have_subject("#{endorser.name} found #{article.title} useful!") }
-    it { is_expected.to be_from(email: 'orientation@codeschool.com') }
+    it { is_expected.to be_from(email: 'notifications@orientation.io') }
   end
 
 end

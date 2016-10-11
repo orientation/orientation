@@ -9,7 +9,7 @@
 class ArticleMailer < MandrillMailer::TemplateMailer
   include ActionView::Helpers::UrlHelper
 
-  default from: ENV['DEFAULT_FROM_EMAIL'] || 'orientation@codeschool.com'
+  default from: ENV['DEFAULT_FROM_EMAIL'] || 'notifications@orientation.io'
 
   def notify_author_of_staleness(articles)
     author = articles.last.author
