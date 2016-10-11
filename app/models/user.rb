@@ -1,11 +1,12 @@
 class User < ApplicationRecord
   belongs_to :article
-  has_many :articles, foreign_key: "author_id"
-  has_many :subscriptions, class_name: "ArticleSubscription"
+  has_many :articles, foreign_key: "author_id", dependent: :restrict_with_exception
+  has_many :subscriptions, class_name: "ArticleSubscription", dependent: :destroy
   has_many :subscribed_articles, through: :subscriptions, source: :article
-  has_many :endorsements, class_name: "ArticleEndorsement"
+  has_many :endorsements, class_name: "ArticleEndorsement", dependent: :destroy
   has_many :endorsed_articles, through: :endorsements, source: :article
-  has_many :edits, class_name: "Article", foreign_key: "editor_id"
+  has_many :edits, class_name: "Article", foreign_key: "editor_id", dependent: :restrict_with_exception
+  has_many :rot_reports, class_name: "Article", foreign_key: "rot_reporter_id", dependent: :restrict_with_exception
 
   store_accessor :preferences,
     :private_email
@@ -56,6 +57,10 @@ class User < ApplicationRecord
     end
   end
 
+  def administrator?
+    ENV['ADMINISTRATORS'].split(',').include? id.to_s
+  end
+
   def notify_about_stale_articles
     return false unless self.active? # we don't want to send mailers to inactive authors
 
@@ -88,6 +93,13 @@ class User < ApplicationRecord
     self.name || self.email
   end
 
+  def replace_and_destroy!(other_user)
+    transaction do
+      replace_with_user!(other_user)
+      destroy!
+    end
+  end
+
   private
   def self.email_whitelist_enabled?
     !!ENV['ORIENTATION_EMAIL_WHITELIST']
@@ -101,5 +113,18 @@ class User < ApplicationRecord
     if email_whitelist.none? { |rule| email.include?(rule) }
       errors.add(:email, "doesn't match the email domain whitelist: #{email_whitelist}")
     end
+  end
+
+  def replace_with_user!(replacement)
+    articles.each { |article| article.update! author: replacement }
+    articles.reload
+
+    edits.each { |edit| edit.update! editor: replacement }
+    edits.reload
+
+    rot_reports.each { |rot_report| rot_report.update! rot_reporter: replacement }
+    rot_reports.reload
+
+    self
   end
 end
