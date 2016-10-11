@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
   extend FriendlyId
 
   has_many :articles_tags, dependent: :destroy
@@ -18,10 +18,13 @@ class Tag < ActiveRecord::Base
 
   def self.tokens(query)
     tags = where(%Q["tags"."name" ILIKE ?], "%#{query}%")
+    new_tag = {id: "<<<#{query}>>>", name: "New: \"#{query}\""}
     if tags.empty?
-      [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
+      [new_tag]
     else
-      tags.collect{ |t| Hash["id" => t.id, "name" => t.name] }
+      results = tags.collect{ |t| Hash["id" => t.id, "name" => t.name] }
+      results.unshift(new_tag) if tags.select{|t| t.name.downcase == query.downcase}.empty?
+      results
     end
   end
 

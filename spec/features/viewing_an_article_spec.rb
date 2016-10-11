@@ -9,12 +9,10 @@ RSpec.describe "Viewing an article" do
     expect { article_visit }.to change { article.reload.visits }.by(1)
   end
 
-  context "visitor visits an article" do
+  context "when visiting an article" do
     let(:article) { create(:article) }
 
-    before do
-      visit article_path(article)
-    end
+    before { visit article_path(article) }
 
     it "shows the article" do
       expect(page).to have_content(article.title)
@@ -22,7 +20,7 @@ RSpec.describe "Viewing an article" do
     end
   end
 
-  context "visitor visits old slug" do
+  context "when visiting an article with an old slug" do
     let(:article) { create(:article, title: "Old Title") }
     let(:old_url) { article_path(article) }
 
@@ -41,11 +39,10 @@ RSpec.describe "Viewing an article" do
     end
   end
 
-  context "visitor visits article url that does not exist" do
+  context "when visiting an article url that doesn't exist" do
     let(:title) { "Foo" }
-    before do
-      visit article_path(title)
-    end
+
+    before { visit article_path(title) }
 
     it "redirects to the new article page with the title" do
       expect(page).to have_content("Since this article doesn't exist, it would be super nice if you wrote it. :-)")

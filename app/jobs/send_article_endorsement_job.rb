@@ -1,4 +1,4 @@
-class SendArticleEndorsementJob < ActiveJob::Base
+class SendArticleEndorsementJob < ApplicationJob
   queue_as :default
 
   def perform(endorsement_id)

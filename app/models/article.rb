@@ -1,7 +1,21 @@
-class Article < ActiveRecord::Base
+class Article < ApplicationRecord
   include Dateable
+  include PgSearch
+
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
+
+  pg_search_scope :search,
+    against: {
+      title: 'A',
+      content: 'B'
+    },
+    using: {
+      tsearch: { dictionary: "english", prefix: true },
+      trigram: { threshold:  0.3 }
+    }
+
+    # ranked_by: ":trigram"
 
   friendly_id :title
 
@@ -11,9 +25,9 @@ class Article < ActiveRecord::Base
 
   has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
-  has_many :subscriptions, class_name: "ArticleSubscription", counter_cache: true, dependent: :destroy
+  has_many :subscriptions, class_name: "ArticleSubscription", dependent: :destroy
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
-  has_many :endorsements, class_name: "ArticleEndorsement", counter_cache: true, dependent: :destroy
+  has_many :endorsements, class_name: "ArticleEndorsement", dependent: :destroy
   has_many :endorsers, through: :endorsements, class_name: "User", source: :user
 
   attr_reader :tag_tokens
@@ -46,6 +60,7 @@ class Article < ActiveRecord::Base
   scope :popular, -> { order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc) }
   scope :rotten,  -> { where.not(rotted_at: nil) }
   scope :stale,   -> { where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago) }
+  scope :alphabetical, -> { order(title: :asc) }
 
   def self.count_visit(article_instance)
     self.increment_counter(:visits, article_instance.id)
@@ -63,7 +78,7 @@ class Article < ActiveRecord::Base
     scope ||= current
 
     if query.present?
-      scope.advanced_search(title: query)
+      scope.search(query).with_pg_search_highlight
     else
       scope
     end
@@ -134,7 +149,7 @@ class Article < ActiveRecord::Base
   # of contributors, for instance to avoid notifying someone about something
   # they did on an article they're a contributor to.
   def contributors(excluding: nil)
-    [author, editor].uniq.reject do |user|
+    [author, editor].distinct.reject do |user|
       user == excluding
     end
   end

@@ -16,11 +16,15 @@
     "ORIENTATION_LOGO": "/assets/default_logo.svg",
     "ORIENTATION_FAVICON": "/assets/default_favicon.png",
     "ORIENTATION_DOMAIN": "REDACTED",
-    "GOOGLE_SECRET": "REDACTED",
-    "GOOGLE_KEY": "REDACTED",
     "MANDRILL_USERNAME": "REDACTED",
     "MANDRILL_API_KEY": "REDACTED",
-    "MANDRILL_DOMAIN": "heroku.com"
+    "MANDRILL_DOMAIN": "heroku.com",
+    "GOOGLE_SECRET": {
+      "required": true
+    },
+    "GOOGLE_KEY": {
+      "required": true
+    }
   },
   "buildpacks" : [
     {

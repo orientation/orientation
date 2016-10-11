@@ -1,4 +1,4 @@
-class ArticleSubscription < ActiveRecord::Base
+class ArticleSubscription < ApplicationRecord
   include Dateable
 
   belongs_to :article, counter_cache: :subscriptions_count

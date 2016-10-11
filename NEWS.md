@@ -2,6 +2,56 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## October 11th, 2016
+### Allow tag creation on partial match
+
+Great contribution from @thewheat that now allows you to add a new tag that 
+starts with the same initial letter as an existing tag. This used to be 
+extremely frustrating.
+
+![Screenshot demonstrating the ability to add an "ab" tag even if an "abc" tag exists][3]
+
+## October 8th, 2016
+### Free SSL support with Let's Encrypt and Heroku SNI
+
+I can't believe it took me so long to finally get this done. Unless you have 
+your own paid SSL certificate set up, it's been quite difficult in the past to 
+protect your Orientation installation with SSL. Now it should be much easier 
+thanks to the most excellent letsencrypt-rails-heroku gem.
+
+I've used this gem on two different projects so far and it's been a breeze to 
+use compared to manually using Let's Encrypt's recommended CertBot command line 
+interface. 
+
+I've added some documentation to [`.env.example`][2] on which variables are
+needed but you can read [their excellent documentation][1] to protect your
+Orientation.
+
+One caveat for now, since it's tricky for me to enable Rails' `force_ssl`
+without causing issues to people who don't have SSL set up, it's likely that
+I'll add a new configuration variable to optionally enable `force_ssl` very
+soon.
+
+## October 4th, 2016
+### Improved search and keyword match display
+
+I can't believe it's been a whole year since the last major new feature, I've 
+certainly been working on some cool stuff, but this has been perhaps the longest 
+standing issue with Orientation: searching things easily.
+
+I've replaced the search library we were using with one that allows us to be a 
+lot more specific with regards to the weighing of results. Article titles are 
+now weighed higher in search than article content. We now also display exactly 
+what the full-text search engine matched on when you type keywords so you 
+can know **why** an article came back in the search results.
+
+![Animation showing search keywords being displayed in article match results](https://d3vv6lp55qjaqc.cloudfront.net/items/1w1H1d431a2b0617032A/Screen%20Recording%202016-10-04%20at%2010.36%20PM.gif?X-CloudApp-Visitor-Id=2861&v=534bb77a)
+
+### Hiding archived or rotted guide articles from the home page
+
+Previously, even when a guide article was archived or marked as rotten, it would 
+still show up on the homepage. Now we'll hide those guides.
+
 ## October 4th, 2015
 ### Email privacy
 
@@ -178,3 +228,7 @@ This is an invisible feature for now (aside from the Popular Articles page which
 ![screenshot](https://s3.amazonaws.com/f.cl.ly/items/1V1R3b2z2A330f430k3c/Screen%20Shot%202015-03-28%20at%203.17.30%20PM.png)
 
 On the article index page or even on article "state" pages (Fresh, Rotten, etc.) it was hard to know how many articles were being shown compared to each other "state". Now, the article count for the current scope is dynamically displayed in the search field.
+
+[1]: https://github.com/pixielabs/letsencrypt-rails-heroku/#configuring
+[2]: https://github.com/orientation/orientation/blob/d6dca410dbba61332130be85fd237818ad0ca10e/.env.example#L25-L61
+[3]: https://d3vv6lp55qjaqc.cloudfront.net/items/2l3c3j1O1U0M2G3N2B0Y/Screen%20Shot%202016-10-11%20at%205.55.20%20PM.png
