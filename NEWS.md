@@ -2,6 +2,14 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## October 11th, 2016
+### Allow tag creation on partial match
+
+Great contribution from @thewheat that now allows you to add a new tag that 
+starts with the same initial letter as an existing tag. This used to be 
+extremely frustrating.
+
+![Screenshot demonstrating the ability to add an "ab" tag even if an "abc" tag exists][3]
 
 ## October 8th, 2016
 ### Free SSL support with Let's Encrypt and Heroku SNI
@@ -223,3 +231,4 @@ On the article index page or even on article "state" pages (Fresh, Rotten, etc.)
 
 [1]: https://github.com/pixielabs/letsencrypt-rails-heroku/#configuring
 [2]: https://github.com/orientation/orientation/blob/d6dca410dbba61332130be85fd237818ad0ca10e/.env.example#L25-L61
+[3]: https://d3vv6lp55qjaqc.cloudfront.net/items/2l3c3j1O1U0M2G3N2B0Y/Screen%20Shot%202016-10-11%20at%205.55.20%20PM.png
