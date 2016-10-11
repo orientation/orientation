@@ -34,7 +34,7 @@ RSpec.describe 'deleting an author' do
         expect do
           expect do
             expect do
-              select logged_in_user.name, from: 'replacement_author_id'
+              select logged_in_user.name, from: 'replacement_author_id', wait: 3
               click_link_or_button 'Delete Author'
               expect(current_path).to eq(authors_path)
             end.to change { article.reload.author }.from(author).to(logged_in_user)
