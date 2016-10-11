@@ -20,7 +20,7 @@
 
         .split-cell.dn.db--s
 
-          - if current_user
+          - if current_user.present?
             = link_to 'New Article', new_article_url, class: 'btn btn--a form-btn mrs',
               data: { shortcut: 'n' }
 
