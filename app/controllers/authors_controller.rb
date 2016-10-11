@@ -60,13 +60,17 @@ class AuthorsController < ApplicationController
   def destroy
     @author = User.find(params[:id])
 
-    if current_user != @author
-      @author.replace_and_destroy!(current_user)
-      flash[:notice] = "You deleted #{@author.name}."
-      redirect_to authors_path
-    else
+    if !current_user.administrator?
+      flash[:notice] = "You are not an administrator."
+      redirect_to author_path(@author)
+    elsif current_user == @author
       flash[:notice] = "You cannot delete yourself."
       redirect_to author_path(@author)
+    else
+      replacement_author = current_user
+      @author.replace_and_destroy!(replacement_author)
+      flash[:notice] = "You deleted #{@author.name} and re-assigned articles to #{replacement_author.name}."
+      redirect_to authors_path
     end
   end
 

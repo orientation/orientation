@@ -39,7 +39,7 @@
         .tac.mbm
           = link_to 'Toggle Status', author_toggle_status_path( @author ), method: :put
 
-        - unless @author == current_user
+        - if current_user.administrator? && @author != current_user
           .tac.mbm
             = link_to 'Delete Author', author_path( @author ), method: :delete, data: { confirm: 'Articles created, edited or marked as rot by this author will be re-assigned to you. Do you wish to continue?' }
 

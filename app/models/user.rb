@@ -57,6 +57,10 @@ class User < ApplicationRecord
     end
   end
 
+  def administrator?
+    ENV['ADMINISTRATORS'].split(':').include? id.to_s
+  end
+
   def notify_about_stale_articles
     return false unless self.active? # we don't want to send mailers to inactive authors
 
