@@ -58,7 +58,7 @@ class User < ApplicationRecord
   end
 
   def administrator?
-    ENV['ADMINISTRATORS'].split(':').include? id.to_s
+    ENV['ADMINISTRATORS'].split(',').include? id.to_s
   end
 
   def notify_about_stale_articles
