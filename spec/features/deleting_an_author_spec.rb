@@ -14,7 +14,7 @@ RSpec.describe 'deleting an author' do
   end
 
   it "does not delete itself" do
-    with_modified_env(ADMINISTRATORS: "42:#{logged_in_user.id}:10101") do
+    with_modified_env(ADMINISTRATORS: "42,#{logged_in_user.id},10101") do
       visit author_path(logged_in_user.id)
 
       expect { click_link_or_button 'Delete Author' }
@@ -28,7 +28,7 @@ RSpec.describe 'deleting an author' do
     let(:rot_report) { create(:article, rot_reporter: author) }
 
     it "re-assigns the author to be logged in user" do
-      with_modified_env(ADMINISTRATORS: "42:#{logged_in_user.id}:10101") do
+      with_modified_env(ADMINISTRATORS: "42,#{logged_in_user.id},10101") do
         visit author_path(author.id)
 
         expect do

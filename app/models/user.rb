@@ -94,7 +94,10 @@ class User < ApplicationRecord
   end
 
   def replace_and_destroy!(other_user)
-    replace_with_user!(other_user) && destroy!
+    transaction do
+      replace_with_user!(other_user)
+      destroy!
+    end
   end
 
   private
