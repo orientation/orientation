@@ -13,7 +13,7 @@ RSpec.describe 'deleting an author' do
     end
   end
 
-  it "should redirect to authors index" do
+  it "redirects to authors index" do
     with_modified_env(ADMINISTRATORS: "42:#{logged_in_user.id}:10101") do
       visit author_path(author.id)
 
@@ -24,7 +24,7 @@ RSpec.describe 'deleting an author' do
     end
   end
 
-  it "should not delete itself" do
+  it "does not delete itself" do
     with_modified_env(ADMINISTRATORS: "42:#{logged_in_user.id}:10101") do
       visit author_path(logged_in_user.id)
 
@@ -38,7 +38,7 @@ RSpec.describe 'deleting an author' do
     let(:edit) { create(:article, editor: author) }
     let(:rot_report) { create(:article, rot_reporter: author) }
 
-    it "should re-assign the author to be logged in user" do
+    it "re-assigns the author to be logged in user" do
       with_modified_env(ADMINISTRATORS: "42:#{logged_in_user.id}:10101") do
         visit author_path(author.id)
 
