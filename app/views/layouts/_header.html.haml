@@ -17,23 +17,6 @@
             %li.list-item.dn.di--s
               = link_to authors_url, class: 'header-btn', data: { shortcut: 4 } do
                 %span.tss Authors
-            %li.list-item.dn--s
-              .dropdown.dropdown--e.dropdown--f.js-dropdown.dib
-                = link_to '#', class: 'header-btn js-dropdown-btn' do
-                  %span.tss More
-                %ul.dropdown-menu.js-dropdown-menu
-                  %li.dropdown-item
-                    = link_to authors_url, class: 'dropdown-item-link' do
-                      %span.tss Authors
-                  %li.dropdown-item
-                    = link_to new_article_url, class: 'dropdown-item-link' do
-                      %span.tss New Article
-                  %li.dropdown-item
-                    = link_to current_user.link, class: 'dropdown-item-link' do
-                      %span.tss My Profile
-                  %li.dropdown-item
-                    = link_to sign_out_path, class: 'dropdown-item-link' do
-                      %span.tss Log Out
 
         .split-cell.dn.db--s
 
