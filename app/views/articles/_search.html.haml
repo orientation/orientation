@@ -10,7 +10,8 @@
         = search_field_tag :search, params[:search],
           class: 'form-input js-search-input',
           placeholder: "Search #{ @articles.count } articles by title",
-          data: { shortcut: 's' }
+          data: { shortcut: 's' },
+          autofocus: true
 
     .split-cell.mls.prs
       = render partial: 'articles/filter_link', locals: { name: 'fresh', definition: Article::FRESHNESS }

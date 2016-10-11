@@ -35,22 +35,17 @@ RSpec.describe Article do
       expect(result.first).to eq(@article1)
     end
 
-    it "doesn't match with with improper boolean AND operators" do
+    it "does match with improper boolean AND operators" do
       result = Article.text_search "tough & pumpernickel"
-      expect(result.first).to_not eq(@article1)
+      expect(result.first).to eq(@article1)
     end
 
-    it "does match with with improper boolean AND operators" do
-      result = Article.text_search "tough & pumpernickel"
-      expect(result.first).to_not eq(@article1)
-    end
-
-    it "does do partial content matching" do
+    it "does partial content matching" do
       result = Article.text_search "yum"
       expect(result).to include(@article1)
     end
 
-    it "does do full content matching" do
+    it "does full content matching" do
       result = Article.text_search @article1.content
       expect(result).to include(@article1)
     end

@@ -25,21 +25,21 @@ Documentation is hard. People forget to write it, and they are asked the
 same question over and over again. When they finally do write it down,
 people can't find it or it gets out of date before it can be useful.
 
-The goal of Orientation was to make a single point of entry for any
-internal question someone might have about our organization:
+The goal of Orientation is to make a single point of entry for any
+internal question someone may have about the organization:
 
 > How can I help with bugs, maintenance and other issues?
 
 > Do we give student discounts?
 
-> How can I help on support?
+> How can I help with support?
 
 ![Orientation's Homepage][orientation-homepage]
 
-Here's [how Orientation works](doc/FEATURES.md), you can even 
-[try it out](http://orientation-demo.herokuapp.com) with your little 
-fingers. One restriction is that you'll need a Google Apps account 
-in order to sign in.
+Check out the [Purpose of Orientation, and Current and Future Features](doc/FEATURES.md).
+
+[Try the Demo](http://orientation-demo.herokuapp.com)
+You'll need a Google Apps account to sign in.*
 
 ### Authentication
 
@@ -53,7 +53,7 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 
 ### Software
 - Ruby 2.2.0
-- PostgreSQL 9.1 (with fuzzystrmatch and pg_trgm extensions)
+- PostgreSQL 9.3 (with JSON support, and fuzzystrmatch & pg_trgm extensions)
 - Python 2.7 (for Pygments)
 - Node.js (for Bower)
 - Bower
@@ -77,18 +77,25 @@ the Heroku button:
 ### Docker
 See [Docker installation instructions](DOCKER.md).
 
-### Manual Setup
-Almost one step: `rake orientation:install`
+## Local Setup
 
-Make sure to check the [installation task](lib/tasks/orientation.rake) if
-anything strange happens during installation.
+1. Run `git clone git@github.com:orientation/orientation.git` in Terminal.
+2. `cd` into the cloned directory.
+3. Run `rake orientation:install` in Terminal. This will install gem dependencies.
+4. Check the output in Terminal. You should see a line that says `Use the following value for the SECRET_KEY_BASE key:` with a long random string afterward. Copy the string and find the paste it in the `.env` file as the `SECRET_KEY_BASE`, around `line 20`.
+5. In the `.env` file, set the `DATABASE_USERNAME` and `DATABASE_PASSWORD`.
+6. Run `rake db:create db:setup` in Terminal.
+7. Run `rails s` to start the server.
+8. Visit at `localhost:3000`.
 
-Once you're done, pay close attention to the `.env` file that will appear at the
-root. It's copied from [`.env.example`](.env.example) and contains all the
-environment variables needed to configure Orientation.
+*Make sure to check the [installation task](lib/tasks/orientation.rake) if
+anything strange happens during installation.*
 
-OAuth is disabled in development and you will be signed in as whichever
-user is returned from `User.first`.
+*Once you're done, pay close attention to the `.env` file that will appear at the root. It's copied from [`.env.example`](.env.example) and contains all the
+environment variables needed to configure Orientation.*
+
+*OAuth is disabled in development and you will be signed in as whichever
+user is returned from `User.first`.*
 
 ## Deployment
 
@@ -101,13 +108,9 @@ using you local (git-ignored) `.env` file as a canonical source.
 
 ### Multiple Buildpacks
 
-Multiple buildpack support used to be unofficial and relied on [a custom buildpack created
-by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer
-the case since Heroku has rolled out official support for multiple buildpacks.
+Multiple buildpack support used to be unofficial and relied on [a custom buildpack created by David Dollar](https://github.com/ddollar/heroku-buildpack-multi.git). This is no longer the case since Heroku has rolled out official support for multiple buildpacks.
 
-Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button,
-which would take care of this for you) you will need to add two buildpacks since the app relies
-on NodeJS for Bower package installation.
+Therefore, if you decide to deploy Orientation on Heroku manually (without using the Heroku button, which would take care of this for you) you will need to add two buildpacks since the app relies on NodeJS for Bower package installation.
 
 Note that for some reason you need to be the owner of the app on Heroku in order to be able to do this:
 
@@ -133,16 +136,14 @@ $ heroku buildpacks -a yourappname
 
 ### Transactional Emails with Mandrill
 
-If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names
-that match the ones listed in our [Mandrill documentation](doc/MANDRILL.md).
+If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names that match the ones listed in our [Mandrill documentation](doc/MANDRILL.md).
 
 ## Development
 
 ### Styling
 
 Orientation uses a Sass-based CSS architecture called [MVCSS](http://mvcss.io/).
-It was extracted from [Envy](http://madewithenvy.com) and [Code School](http//codeschool.com)
-work by both front-end teams.
+It was extracted from [Envy](http://madewithenvy.com) and [Code School](http//codeschool.com) work by both front-end teams.
 
 It's not nearly as complex as a framework. The basic gist is that we try to
 keep things as modular and dynamic as possible. Magic values are not welcome.
@@ -159,16 +160,16 @@ this out](doc/OAUTH.md).
 
 [ci]: https://travis-ci.org/orientation/orientation
 [ci-image]: https://travis-ci.org/orientation/orientation.svg?branch=master
-[gemnasium]: https://gemnasium.com/olivierlacan/orientation
-[gemnasium-image]: https://gemnasium.com/olivierlacan/orientation.svg
-[codeclimate]: https://codeclimate.com/github/olivierlacan/orientation
-[codeclimate-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/gpa.svg
-[codeclimate-coverage-image]: https://codeclimate.com/github/olivierlacan/orientation/badges/coverage.svg
+[gemnasium]: https://gemnasium.com/orientation/orientation
+[gemnasium-image]: https://gemnasium.com/orientation/orientation.svg
+[codeclimate]: https://codeclimate.com/github/orientation/orientation
+[codeclimate-image]: https://codeclimate.com/github/orientation/orientation/badges/gpa.svg
+[codeclimate-coverage-image]: https://codeclimate.com/github/orientation/orientation/badges/coverage.svg
 [heroku]: https://heroku.com/deploy
 [heroku-image]: https://www.herokucdn.com/deploy/button.svg
-[ruby-version-image]: https://img.shields.io/badge/ruby-2.2.3-brightgreen.svg
+[ruby-version-image]: https://img.shields.io/badge/ruby-2.3.1-brightgreen.svg
 
-[orientation-logo]: https://github.com/olivierlacan/orientation/blob/master/public/orientation_logo.png
+[orientation-logo]: https://github.com/orientation/orientation/blob/master/public/orientation_logo.png
 [orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png
 
 ## Contributions

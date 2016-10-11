@@ -41,15 +41,21 @@ RSpec.xdescribe ArticleMailer do
     it { is_expected.to be_from(email: 'ops@doximity.com') }
   end
 
-  context ".send_updates_for(article, user)" do
+  context ".send_updates_for(article, user, editor)" do
     let(:article) { create(:article, title: 'title', content: 'foo bar bjork baz') }
+    let(:other_user) { create(:user) }
     let(:mailer) { described_class.send_updates_for(article, user) }
+
+    before do
+      article.editor = other_user
+      article.reload
+    end
 
     subject { mailer }
 
     it { is_expected.to send_email_to(email: user.email) }
     it { is_expected.to use_template('article-subscription-update') }
-    it { is_expected.to have_subject("#{article.title} was just updated") }
+    it { is_expected.to have_subject("#{article.title} was updated by #{article.editor}") }
     it { is_expected.to be_from(email: 'ops@doximity.com') }
     it { is_expected.to have_merge_data('ARTICLE_TITLE' => article.title) }
     it { is_expected.to have_merge_data('URL' => article_url(article)) }

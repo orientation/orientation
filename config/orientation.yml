@@ -1,0 +1,18 @@
+development: &defaults
+  exception_reporter: false
+  logo: false
+  oauth_provider: false
+  performance_monitoring: false
+  transactional_mailer: false
+  upload_destination: :localhost
+
+production:
+  exception_reporter: <%= ENV["ORIENTATION_EXCEPTION_REPORTER"] %>
+  transactional_mailer: <%= ENV["ORIENTATION_MAILER"] %>
+  logo: <%= ENV["ORIENTATION_LOGO"] %>
+  oauth_provider: <%= ENV["ORIENTATION_OAUTH"] %>
+  performance_monitoring: <%= ENV["ORIENTATION_PERFORMANCE_MONITORING"] %>
+  upload_destination: <%= ENV["ORIENTATION_UPLOAD_DESTINATION"] %>
+
+test:
+  <<: *defaults

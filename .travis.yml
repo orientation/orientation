@@ -1,16 +1,19 @@
 language: ruby
+env:
+  global:
+    - ORIENTATION_EMAIL_WHITELIST=hanso.dk
 matrix:
   include:
-    - rvm: 2.3.0
+    - rvm: 2.3.1
+    - rvm: ruby-2.4.0-preview1
+      env: CUSTOM_RUBY_VERSION=2.4.0 ISOLATED=true
     - rvm: 2.2.4
       env: CUSTOM_RUBY_VERSION=2.2.4 ISOLATED=true
-    - rvm: 2.1.8
-      env: CUSTOM_RUBY_VERSION=2.1.8 ISOLATED=true
 
   fast_finish: true
   allow_failures:
-    - 2.2.4
-    - 2.1.8
+    - rvm: 2.2.4
+    - rvm: ruby-2.4.0-preview1
 
 sudo: false
 bundler_args: --deployment --without development
@@ -34,6 +37,12 @@ branches:
     - master
 notifications:
   email: false
+  slack:
+    on_success: change
+    on_failure: always
+    on_start: never
+    rooms:
+      secure: YBUcQpusC8+1Zoc4l1vcm3eH7IzvFcTayGfjHtLH0Ed9JtSVkwtDqJwQVn6mxS+syCJoYxO18RfHnHNYq32bs/YKPZN+HX/IFOB4lIxXSIACe9gZ497ASCs9eza8NhILZkRpUmEwBlsJVPRYMhyIglU+SO0I6hVBN4d2534FBu8=
 addons:
   postgresql: "9.3"
   code_climate:

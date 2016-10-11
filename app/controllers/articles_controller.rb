@@ -1,15 +1,15 @@
 class ArticlesController < ApplicationController
-  before_filter :set_paper_trail_whodunnit, only: [
+  before_action :set_paper_trail_whodunnit, only: [
     :update,
     :destroy
   ]
-  before_filter :find_article_by_params, only: [
+  before_action :find_article_by_params, only: [
     :show,
     :edit,
     :update,
     :destroy
   ]
-  before_filter :decorate_article, only: [
+  before_action :decorate_article, only: [
     :show,
     :edit,
     :toggle_archived,
