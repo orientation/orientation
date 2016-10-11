@@ -41,7 +41,11 @@
 
         - if current_user.administrator? && @author != current_user
           .tac.mbm
-            = link_to 'Delete Author', author_path( @author ), method: :delete, data: { confirm: 'Articles created, edited or marked as rot by this author will be re-assigned to you. Do you wish to continue?' }
+            .form.form--inline.mbm
+              = form_tag author_path( @author ), method: :delete, class: 'form' do
+                = label_tag 'replacement_author_id', 'Re-assign to new author & delete'
+                = select_tag 'replacement_author_id', options_from_collection_for_select( User.order(:name).all, 'id', 'name', current_user.id.to_s ), class: 'form-input'
+                = submit_tag 'Delete', class: '', data: { disable_with: 'Deleting...', confirm: "Articles created, edited or marked as rot by #{@author.name} will be re-assigned to the selected replacement author. Continue?" }
 
       .g-b.g-b--m--2of3
 
