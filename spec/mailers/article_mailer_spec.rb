@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe ArticleMailer do
-  let(:user) { create(:user, email: 'aimee@hanso.dk') }
+  let(:user) { create(:user, email: 'aimee@orientation.io') }
 
   context ".notify_author_of_staleness" do
     let(:articles) do
@@ -15,7 +15,7 @@ RSpec.describe ArticleMailer do
     it { is_expected.to send_email_to(email: user.email) }
     it { is_expected.to use_template('stale-article-alert') }
     it { is_expected.to have_subject('Some of your Orientation articles might be stale') }
-    # If the slug for all artuckes are in the email, it's a safe bet the full URLs are as well.
+    # If the slug for all articles are in the email, it's a safe bet the full URLs are as well.
     it { articles.each { |article| is_expected.to include_merge_var_content(article.slug) } }
     it { is_expected.to include_merge_var_content(articles.second.slug) }
     it { is_expected.to include_merge_var_content(articles.third.slug) }
