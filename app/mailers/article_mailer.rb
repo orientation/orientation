@@ -51,7 +51,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
     mandrill_mail template: 'article-endorsement-notification',
                   subject: "#{endorser.name} found #{article.title} useful!",
                   from_name: ENV['DEFAULT_FROM_NAME'] || 'Orientation',
-                  to: contributors,
+                  to: format_contributors(contributors),
                   vars: {
                     'ENDORSER_NAME' => endorser.name,
                     'ENDORSER_URL' => author_url(endorser),
@@ -62,7 +62,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
 
   private
 
-  def format_contributors
+  def format_contributors(contributors)
     contributors.map do |contributor|
       { name: contributor.name, email: contributor.email }
     end
