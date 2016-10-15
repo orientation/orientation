@@ -4,7 +4,7 @@ class Tag < ApplicationRecord
   has_many :articles_tags, dependent: :destroy
   has_many :articles, through: :articles_tags, counter_cache: :articles_count
 
-  validates :name, uniqueness: { case_sensitive: false }
+  validates :name, uniqueness: { case_sensitive: false }, presence: true
 
   friendly_id :name
 

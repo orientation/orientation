@@ -1,7 +1,6 @@
 %section.row
   .cell.cell--s.well.well--l
 
-    %h1.mbm New Tag
-
     .form
-      = render 'form'
+      = render partial: 'form', locals: { label_text: 'Create a New Tag'  }
+

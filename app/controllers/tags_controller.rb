@@ -20,7 +20,13 @@ class TagsController < ApplicationController
   end
 
   def create
-    respond_with @tag = Tag.create(tag_params)
+    @tag = Tag.new(tag_params)
+    if @tag.save
+      flash[:notice] = "Tag was successfully created."
+    else
+      flash[:error] = error_message(@tag)
+    end
+    respond_with @tag
   end
 
   def destroy
@@ -39,8 +45,10 @@ class TagsController < ApplicationController
   private
 
   def error_message(tag)
-    if tag.errors.messages.key?(:name)
-      "#{tag.name} #{tag.errors.messages[:name].first}."
+    if tag.errors.messages.key?(:friendly_id)
+      "#{tag.name} is a reserved word."
+    elsif tag.errors.messages.key?(:name)
+      "#{tag.name.presence || :name.to_s.titleize} #{tag.errors.messages[:name].first}."
     else
       "Tag could not be #{params[:action]}d."
     end

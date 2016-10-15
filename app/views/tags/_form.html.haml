@@ -1,9 +1,8 @@
+%p.label.mbxs= label_text
 = simple_form_for @tag do | f |
 
   %fieldset.form-field.mbl
 
-    = f.label :name do
-      %span.form-label.label Tag Name
-      = f.input_field :name, class: 'form-input'
+    = f.input_field :name, class: 'form-input', placeholder: 'Enter a Tag Name'
 
   = f.button :submit, class: 'btn btn--a btn--l'
