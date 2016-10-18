@@ -17,9 +17,6 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
   && npm install -g npm@"$NPM_VERSION" \
   && npm cache clear
 
-## Bower
-RUN npm install -g bower
-
 ## Gems caching
 # The addition of Gemfiles allows the bundle install step to be evicted from the
 # build cache when a change is detected.
@@ -30,7 +27,7 @@ RUN bundle install --gemfile=/tmp/Gemfile
 ADD . /orientation
 WORKDIR /orientation
 
-RUN bower install --allow-root
+RUN npm install --allow-root
 
 ADD ./config/database.docker.yml /orientation/config/database.yml
 
