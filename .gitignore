@@ -32,8 +32,5 @@ coverage/
 /public/uploads/
 .DS_Store
 
-# Bower components
-/bower_components
-
 # Node modules
 /node_modules
