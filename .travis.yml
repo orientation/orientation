@@ -14,7 +14,6 @@ bundler_args: --deployment --without development
 cache:
   - bundler
   - directories:
-    - bower_components
     - node_modules
 before_script:
   - ruby --version
