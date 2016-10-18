@@ -90,7 +90,7 @@ RSpec.describe Article do
         @content_match = create(:article, content: "We have a number of security best practices, some of which don't make a lot of sense.")
       end
 
-      subject(:search) { Article.text_search("security best practices" }
+      subject(:search) { Article.text_search("security best practices") }
 
       it "prioritizes the article title" do
         expect(search.first).to eq(@title_match)
