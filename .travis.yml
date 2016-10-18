@@ -9,7 +9,7 @@ matrix:
   allow_failures:
     - rvm: 2.2.4
 
-sudo: true
+sudo: false
 bundler_args: --deployment --without development
 cache:
   - bundler
