@@ -3,6 +3,22 @@ Interesting new features added to this project will be documented here reverse c
 This is [not a change log](CHANGELOG.md).
 
 ## October 11th, 2016
+### Easier update flow with bin/update
+
+Now if you run `bin/update` on your local fork of Orientation, it will 
+add or use an `upstream` remote to rebase the latest changes on the 
+`orientation/orientation` repo. I tend to treat `master` as a 
+production-ready so please don't be horrified.
+
+### Bye Bower, hello yarn
+
+Deterministic resolution of transitive dependencies, faster installation 
+of front-end packages. What's not to like? For now I've only included 
+[yarn][yarn] as an npm module but soon we'll forgo npm entirely since yarn can 
+be installed as a standalone.
+
+[yarn]: https://yarnpkg.com/blog/2016/10/11/introducing-yarn
+
 ### Allow tag creation on partial match
 
 Great contribution from @thewheat that now allows you to add a new tag that 
