@@ -51,7 +51,7 @@ class ArticleDecorator < ApplicationDecorator
 
   def rot_reporter
     if object.rot_reporter
-      link_to AuthorDecorator.new(object.rot_reporter), author_url(object.author)
+      link_to AuthorDecorator.new(object.rot_reporter), author_url(object.rot_reporter)
     end
   end
 

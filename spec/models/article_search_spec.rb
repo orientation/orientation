@@ -83,5 +83,21 @@ RSpec.describe Article do
         expect(Article.text_search("email securing")).to include(@securing)
       end
     end
+
+    context "when matching on the same string in title and content" do
+      before do
+        @title_match = create(:article, title: "Security Best Practices")
+        @content_match = create(:article, content: "We have a number of security best practices, some of which don't make a lot of sense.")
+
+        skip "not working right yet"
+      end
+
+      subject(:search) { Article.text_search("security best practices") }
+
+      it "prioritizes the article title" do
+        expect(search.first).to eq(@title_match)
+        expect(search.last).to eq(@content_match)
+      end
+    end
   end
 end

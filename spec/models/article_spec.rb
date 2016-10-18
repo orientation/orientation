@@ -474,4 +474,27 @@ RSpec.describe Article do
       end
     end
   end
+
+  describe "#contributors" do
+    let(:article) { create(:article) }
+    let(:editor) { create(:user) }
+
+    before do
+      article.editor = editor
+    end
+
+    subject(:contributors) { article.contributors }
+
+    it "returns a list of contributors including the author and last editor" do
+      expect(contributors).to include(article.author, editor)
+    end
+
+    context "with an excluding argument" do
+      subject(:contributors) { article.contributors(excluding: editor) }
+
+      it "excludes the editor from the list of contributors" do
+        expect(contributors).not_to include(editor)
+      end
+    end
+  end
 end
