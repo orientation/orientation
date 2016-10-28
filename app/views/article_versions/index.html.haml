@@ -1,0 +1,29 @@
+- page_title @article.title + " | Versions"
+
+%section.row
+  %article.cell.well.well--l
+    %header.mbl
+      %h1.tsl.ts--s--xl.ts--m--xxl
+        Versions -
+        = @article.title
+
+    .g
+      .g-b.g-b--m--2of3
+        %table.bdr
+          %thead
+            %tr
+              %th Created
+              %th By
+              %th Functions
+          - @versions.each do |version|
+            %tr.pal.bdr
+              %td.plm
+                = version.created_at.to_s(:long)
+              %td.pam
+                - if version.whodunnit
+                  = User.find(version.whodunnit)
+
+              %td.tar.pam
+                = link_to "Preview", article_version_path(@article, version),  target: '_blank', class: 'btn btn--b'
+                = link_to "Restore", article_version_path(@article, version), method: :patch, data: { confirm: "Are you sure?" }, class: 'btn btn--b'
+
