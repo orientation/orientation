@@ -53,6 +53,9 @@
 
           %li.list-item
             = link_to 'Delete', @article, class: 'btn btn--b', data: { method: :delete, confirm: "Are you sure?" }
+          %li.list-item
+            = link_to 'Versions', article_versions_path(@article), class: 'btn btn--b'
+
 
       %aside.g-b.g-b--m--1of3
 
