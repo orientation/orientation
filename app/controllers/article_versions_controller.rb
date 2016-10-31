@@ -3,7 +3,7 @@ class ArticleVersionsController < ApplicationController
   before_action :set_paper_trail_whodunnit
 
   def index
-    @versions = @article.versions.unscoped.order('created_at desc')
+    @versions = @article.versions.unscope(:order).order('created_at desc')
   end
 
   def show
@@ -11,7 +11,9 @@ class ArticleVersionsController < ApplicationController
     @article = ArticleDecorator.decorate(@version.reify)
     message = "Viewing version #{@version.id} #{@version.event}d " \
      "#{@version.created_at.to_s(:long_ordinal)}"
-    message += " by #{User.find(@version.whodunnit)}" if @version.whodunnit
+    if @version.whodunnit && user = User.find(@version.whodunnit)
+      message += " by #{user}"
+    end
     flash.now[:error] = message
     render template: 'articles/show'
   end

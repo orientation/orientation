@@ -20,8 +20,8 @@
               %td.plm
                 = version.created_at.to_s(:long)
               %td.pam
-                - if version.whodunnit
-                  = User.find(version.whodunnit)
+                - if version.whodunnit && user = User.find_by(id: version.whodunnit)
+                  = user
 
               %td.tar.pam
                 = link_to "Preview", article_version_path(@article, version),  target: '_blank', class: 'btn btn--b'

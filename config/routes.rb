@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :update_requests
-    resources :article_versions, only: [:index, :show, :update]
+    resources :article_versions, as: 'versions', only: [:index, :show, :update]
     collection do
       get :fresh
       get :stale
