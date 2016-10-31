@@ -9,6 +9,7 @@
     %title= content_for(:page_title) || @page_title || 'Orientation'
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false
+    = stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track' => false
     = favicon_link_tag ENV['ORIENTATION_FAVICON']
     = csrf_meta_tags
     = action_cable_meta_tag

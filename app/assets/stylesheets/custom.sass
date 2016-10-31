@@ -1,0 +1,315 @@
+// Doximity Overrides
+
+// variables
+
+@import 'https://fonts.googleapis.com/css?family=Oxygen:300,400,700|Titillium+Web:300,400,600'
+
+$titillium:              'Titillium Web', Helvetica, sans-serif
+$oxygen:                 'Oxygen', Helvetica, sans-serif
+$default-font-weight:    normal
+
+$a-color:                #41BF56
+$a-color-hover:          #359B46
+$btn-color:              #5AD427
+$btn-color-hover:        #A4E786
+
+$desktop-larger:         1820px
+$desktop-large:          1680px
+$desktop:                1440px
+$laptop:                 1280px
+$laptop-tablet:          1260px
+$tablet:                 1080px
+$tablet-portrait:        960px
+$phablet:                860px
+$phablet-handheld:       780px
+$handheld:               667px
+$handheld-portrait:      480px
+
+$highlight-filter:       invert(1) brightness(1.1) hue-rotate(-47deg) contrast(0.7)
+
+$svg-arrow-updown: 'data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><polyline points="114.3,212.8 388,212.8 251.1,0 114.3,212.8"/><polyline points="388,297.9 114.3,297.9 251.1,510.7 388,297.9"/></svg>'
+
+
+// base
+
+html
+  font-family: $oxygen
+  font-weight: $default-font-weight
+  font-size: 1.05em
+
+body
+  background: #FFF
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6
+  color: #000
+  font-family: $titillium
+  font-weight: normal
+
+a
+  color: $a-color
+  &:hover
+    color: $a-color-hover
+*
+  &:focus, &:active
+    outline: 0
+
+.row
+  padding: 0 1.3em
+
+.label
+  font-weight: $default-font-weight
+
+.bulletin
+  background: #FFF3C9
+  color: #555
+  font-weight: $default-font-weight
+
+.tfh
+  font-family: $titillium
+  color: #000
+
+// buttons, links
+
+.btn, .switch
+  border-radius: 0
+.btn, a
+  font-weight: normal
+.btn--a
+  background: $btn-color
+  &:hover, &:focus
+    background: $btn-color-hover
+
+// forms
+
+input, select, textarea
+  &:hover, &:focus, &:active
+    border-color: $a-color
+select
+  background: #FFF
+  background-image: url($svg-arrow-updown)
+  background-size: 1em
+  background-repeat: no-repeat
+  background-position: 99% 50%
+  border-radius: 1px
+  border-color: #DDD
+  padding: 0.6em 0.5em
+  display: block
+  width: 100%
+  -webkit-appearance: none
+.form-input
+  border-radius: 0
+  border-color: #DDD
+  font-weight: $default-font-weight
+  &:hover, &:focus
+    border-color: $a-color
+.form-input--clear
+  border-bottom: 2px solid #FFF
+.form--inline .form-input
+  max-height: 4em
+.token-input-list
+  border-radius: 1px
+  padding: 0.5em
+.token-input-token
+  color: #666
+  border-radius: 1px
+  font-size: 0.9em
+  font-weight: 300
+  text-transform: capitalize
+.token-input-dropdown
+  background: #EEE
+  margin-top: 0
+  border: 0
+  border-radius: 0
+  padding: 0 0.5em
+.article_images
+  border: 1px solid #DDD
+  padding: 0.8em 0.5em
+
+// header
+
+.header
+  font-family: $titillium
+  height: 65px
+  // box-shadow: 0 0 0.2em rgba(0,0,0,0.2)
+  border-bottom: 1px solid #eee
+  [data-shortcut="1"]
+    img
+      width: 1.6em
+      height: 1.6em
+  .icn--caretDown
+    font-size: 0.6em
+
+.header-btn
+  color: #333
+  height: 65px
+  line-height: 65px
+  padding: 0 1em
+  text-transform: uppercase
+  font-size: 1em
+  &:hover
+    color: #666
+
+// custom components
+
+.dropdown-menu
+  border: 1px solid #EEE
+  border-radius: 0
+  box-shadow: none
+.dropdown-item
+  &:hover
+    background: #FAFAFA
+.dropdown-item, .dropdown-item:not(:first-child)
+  border-top: 1px solid #EFEFEF
+
+.card
+  box-shadow: none
+  border-radius: 0
+
+.guide
+  background-image: none
+  text-shadow: none
+.guide-title
+  color: #666
+  font-size: 1.2em
+.card--highlight
+  background: #FFF
+
+.row--pattern
+  background-image: none
+.row--highlight
+  background: #333
+
+.byline
+  background: #FFF
+  border-top: 1px solid #EEE
+  border-bottom: 1px solid #EEE
+  color: #333
+  .label--invert
+    color: #333
+  .label--link--invert
+    color: #333
+    letter-spacing: normal
+.byline-main
+  background: #FFF
+
+// articles index
+
+.article.card
+  margin-bottom: 1px
+  border-bottom: 1px solid #EFEFEF
+.article-title
+  color: #111
+  &:hover
+    color: $a-color
+.article-footer
+  border-top: 0
+  padding-top: 0
+  padding-bottom: 0.6em
+.signal
+  width: 0.1em
+  background: #FFF
+.signal--stale
+  background: #FFE171
+.signal--rotten
+  background: #F38055
+
+// articles show
+
+.highlight, .markdown code
+  background: #EEE
+  border-radius: 2px
+.highlight
+  padding: 0.8em 1em
+  font-size: 0.9em
+  -webkit-filter: $highlight-filter
+  filter: $highlight-filter
+.markdown
+  color: #555
+  font-size: 0.97em
+  line-height: 1.6
+  h1, h2, h3, h4, h5, h6
+    font-family: $titillium
+    color: #000
+    margin: 1em 0
+  code
+    font-weight: normal
+    font-size: 0.75em
+  p
+    margin-bottom: 1em
+  ol, ul
+    li
+      margin-bottom: 0.4em
+.articles-show
+  .g-b--m--2of3
+    .btn
+      font-size: 0.95em
+  aside
+    a
+      font-weight: 300
+      font-size: 0.9em
+    .list-item
+      line-height: 1.2
+
+// articles edit/new
+.articles-edit, .articles-new
+  form
+    .btn
+      display: block
+      width: 100%
+  .card
+    border: 1px solid #EEE
+  .card--b
+    background: #FAFAFA
+  .card-section
+    border-top: 1px solid #E8E8E8
+
+// authors
+
+.js-search-results
+  .g-b--m--1of3
+    width: 25%
+.bucket
+  img
+    width: 2.5em
+    height: 2.5em
+.bucket-content
+  color: #999
+  font-size: 0.9em
+
+// authors show
+.authors-show
+  .card--b
+    background: #F2F2F2
+    img
+      width: 6em
+      height: 6em
+    .card-section--row
+      background: transparent
+      border: 0
+
+@media screen and (max-width: $phablet)
+
+  // .cell .btn
+  //   border-top: 1px solid #EEE
+
+  .js-search-results
+    .g-b--m--1of3
+      width: 100%
+
+@media screen and (max-width: 768px)
+
+  main
+    .split, .split-cell
+      display: block
+      width: 100%
+    .bdrl
+      border-left: 0
+    .mls
+      margin-left: 0
+    .pls
+      padding-left: 0
+
+  .card-section
+    .split, .split-cell
+      display: flex
+      width: auto
