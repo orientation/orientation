@@ -11,7 +11,9 @@ class ArticleVersionsController < ApplicationController
     @article = ArticleDecorator.decorate(@version.reify)
     message = "Viewing version #{@version.id} #{@version.event}d " \
      "#{@version.created_at.to_s(:long_ordinal)}"
-    message += " by #{User.find(@version.whodunnit)}" if @version.whodunnit
+    if @version.whodunnit && user = User.find(@version.whodunnit)
+      message += " by #{user}"
+    end
     flash.now[:error] = message
     render template: 'articles/show'
   end
