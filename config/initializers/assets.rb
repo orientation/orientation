@@ -10,4 +10,4 @@ Rails.application.config.assets.paths << Rails.root.join('bower_components')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( vendor.js )
+Rails.application.config.assets.precompile += %w( custom.css vendor.js )
