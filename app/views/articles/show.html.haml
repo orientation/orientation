@@ -53,9 +53,6 @@
 
           %li.list-item
             = link_to 'Delete', @article, class: 'btn btn--b', data: { method: :delete, confirm: "Are you sure?" }
-          %li.list-item
-            = link_to 'Versions', article_versions_path(@article), class: 'btn btn--b'
-
 
       %aside.g-b.g-b--m--1of3
 
@@ -81,7 +78,7 @@
               = link_to toggle_subscription_label, toggle_subscription_article_url( @article ), class: 'tsxs', method: :put
           - if @article.subscriptions.count > 0
             %ul.list.list--object
-              = render partial: 'articles/subscription', collection: @article.subscriptions.decorate unless @article.subscriptions.blank?
+              = render partial: 'subscription', collection: @article.subscriptions.decorate unless @article.subscriptions.blank?
           - else
             %p.mbf.tcs.tsi.tss Subscribe to receive updates about this article.
 
