@@ -3,7 +3,7 @@ class ArticleVersionsController < ApplicationController
   before_action :set_paper_trail_whodunnit
 
   def index
-    @versions = @article.versions.unscope(:order).order('created_at desc')
+    @versions = @article.versions.unscoped.order('created_at desc')
   end
 
   def show
