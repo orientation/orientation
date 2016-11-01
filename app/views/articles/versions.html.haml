@@ -13,7 +13,7 @@
           - @versions.each do |version|
             %li
               = version.created_at.to_s(:long)
-              - if version.whodunnit
+              - if version.whodunnit && user = User.find_by(id: version.whodunnit)
                 by
-                = User.find(version.whodunnit)
+                = user
 

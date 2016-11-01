@@ -138,7 +138,19 @@ class ArticlesController < ApplicationController
     @subscriptions = decorate_article.subscriptions.decorate
   end
 
+  def search
+    if search_title_only?
+      @articles = fetch_articles_by_title
+    else
+      @articles = fetch_articles(Article.current)
+    end
+  end
+
   private
+
+  def search_title_only?
+    params.key?(:search_title_only) && params[:search_title_only] == '1'
+  end
 
   def error_message(article)
     if article.errors.messages.key?(:friendly_id)
@@ -156,6 +168,12 @@ class ArticlesController < ApplicationController
 
   def decorate_article
     @article = ArticleDecorator.new(find_article_by_params)
+  end
+
+  def fetch_articles_by_title
+    scope = Article.current
+    collection = scope.where('lower(title) like ?', "%#{params[:search].downcase}%")
+    ArticleDecorator.decorate_collection(collection)
   end
 
   def fetch_articles(scope = nil)
