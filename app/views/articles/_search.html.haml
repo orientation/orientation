@@ -6,10 +6,10 @@
 .js-search
   .split.mbm
     .split-cell.form.form--inline.mbf
-      = form_tag form_path, method: :get, remote: true, class: 'js-search-form' do
+      = form_tag search_articles_path, method: :get, class: 'js-search-form' do
         = search_field_tag :search, params[:search],
           class: 'form-input js-search-input',
-          placeholder: "Search #{ @articles.count } articles by title",
+          placeholder: "Search #{ @articles.try(:count) || 0 } articles by title",
           data: { shortcut: 's' },
           autofocus: true
 
@@ -23,7 +23,10 @@
       = render partial: 'articles/filter_link', locals: { name: 'archived', definition: Article::ARCHIVAL }
 
   %ul.list.list--xs.js-search-results{ class: ( 'hide-results dn' if hideResults) }
+  - if @articles
     = render @articles
+  - else
+    %li No results.
 
   - if alternateContent
     .js-search-alternate
