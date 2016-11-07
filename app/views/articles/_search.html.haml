@@ -24,7 +24,7 @@
 
 %ul.list.list--xs.js-search-results{ class: ( 'hide-results dn' if hideResults) }
   - if @articles && !@articles.empty?
-    = render @articles
+    = render partial: 'articles/article', collection: @articles, locals: { highlight_search_keywords: search_body? }
   - else
     %li No results.
 

@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include ArticlesHelper
+
   before_action :set_paper_trail_whodunnit, only: [
     :update,
     :destroy
@@ -148,9 +150,6 @@ class ArticlesController < ApplicationController
 
   private
 
-  def search_title_only?
-    params.key?(:search_title_only) && params[:search_title_only] == '1'
-  end
 
   def error_message(article)
     if article.errors.messages.key?(:friendly_id)
