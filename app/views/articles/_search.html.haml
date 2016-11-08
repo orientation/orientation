@@ -1,30 +1,33 @@
 - alternateContent ||= false
 - hideResults      ||= false
 
-- form_path = request.path == ('/') ? articles_path : request.path
+.split.mbm
+  .split-cell.form.form--inline.mbf
+    = form_tag search_articles_path, method: :get, class: 'js-search-form' do
+      = search_field_tag :search, params[:search],
+        class: 'form-input',
+        placeholder: "Search #{ @articles.try(:count) || 0 } articles",
+        data: { shortcut: 's' },
+        autofocus: true
+      %label
+        = check_box_tag :search_title_only, 1, params[:search_title_only] == '1'
+        Search title only?
 
-.js-search
-  .split.mbm
-    .split-cell.form.form--inline.mbf
-      = form_tag form_path, method: :get, remote: true, class: 'js-search-form' do
-        = search_field_tag :search, params[:search],
-          class: 'form-input js-search-input',
-          placeholder: "Search #{ @articles.count } articles by title",
-          data: { shortcut: 's' },
-          autofocus: true
+  .split-cell.mls.prs
+    = render partial: 'articles/filter_link', locals: { name: 'fresh', definition: Article::FRESHNESS }
+    = render partial: 'articles/filter_link', locals: { name: 'stale', definition: Article::STALENESS }
+    = render partial: 'articles/filter_link', locals: { name: 'rotten', definition: Article::ROTTENNESS }
 
-    .split-cell.mls.prs
-      = render partial: 'articles/filter_link', locals: { name: 'fresh', definition: Article::FRESHNESS }
-      = render partial: 'articles/filter_link', locals: { name: 'stale', definition: Article::STALENESS }
-      = render partial: 'articles/filter_link', locals: { name: 'rotten', definition: Article::ROTTENNESS }
+  .split-cell.pls.bdrl
+    = render partial: 'articles/filter_link', locals: { name: 'popular', definition: Article::POPULARITY }
+    = render partial: 'articles/filter_link', locals: { name: 'archived', definition: Article::ARCHIVAL }
 
-    .split-cell.pls.bdrl
-      = render partial: 'articles/filter_link', locals: { name: 'popular', definition: Article::POPULARITY }
-      = render partial: 'articles/filter_link', locals: { name: 'archived', definition: Article::ARCHIVAL }
+%ul.list.list--xs.js-search-results{ class: ( 'hide-results dn' if hideResults) }
+  - if @articles && !@articles.empty?
+    = render partial: 'articles/article', collection: @articles, locals: { highlight_search_keywords: search_body? }
+  - else
+    %li No results.
 
-  %ul.list.list--xs.js-search-results{ class: ( 'hide-results dn' if hideResults) }
-    = render @articles
-
-  - if alternateContent
-    .js-search-alternate
-      = yield
+- if alternateContent
+  .js-search-alternate
+    = yield

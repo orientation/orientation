@@ -1,0 +1,19 @@
+- page_title @article.title + " | Versions"
+
+%section.row
+  %article.cell.well.well--l
+    %header.mbl
+      %h1.tsl.ts--s--xl.ts--m--xxl
+        Versions -
+        = @article.title
+
+    .g
+      .g-b.g-b--m--2of3
+        %ul.list
+          - @versions.each do |version|
+            %li
+              = version.created_at.to_s(:long)
+              - if version.whodunnit && user = User.find_by(id: version.whodunnit)
+                by
+                = user
+
