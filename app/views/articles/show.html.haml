@@ -97,6 +97,6 @@
               = link_to toggle_endorsement_label, toggle_endorsement_article_url( @article ), class: 'tsxs', method: :put
           - if @article.endorsements.count > 0
             %ul.list.list--object
-              = render partial: 'endorsement', collection: @article.endorsements.decorate unless @article.endorsements.blank?
+              = render partial: 'articles/endorsement', collection: @article.endorsements.decorate unless @article.endorsements.blank?
           - else
             %p.mbf.tcs.tsi.tss Endorse this article if you find it helpful.
