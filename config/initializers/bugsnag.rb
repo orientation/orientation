@@ -1,4 +1,4 @@
-if Rails.configuration.orientation["exception_reporter"] == :bugsnag
+if Rails.configuration.orientation["exception_reporter"] == "bugsnag"
   require "bugsnag"
 
   Bugsnag.configure do |config|
