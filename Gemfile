@@ -33,7 +33,6 @@ gem 'pg_search', github: 'Casecommons/pg_search'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 gem 'responders','~> 2.0'
-gem 'bugsnag', require: false
 gem 'slack-notifier'
 gem 'friendly_id', github: "norman/friendly_id", branch: "master"
 gem 'dotenv-rails'
@@ -78,4 +77,8 @@ group :production, :staging do
   gem 'rack-timeout'
   gem 'unicorn'
   gem 'skylight'
+end
+
+group :production do
+  gem 'bugsnag'
 end
