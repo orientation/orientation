@@ -3,9 +3,20 @@
 
     %h1.mbs= @tag
 
-    - if @tag.articles.any?
+    - if @current_articles.any?
       %ul.list.list--xs
-        - @tag.articles.each do |article|
-          - # TODO: Add Article fresh/stale/rotten signals
+        - @current_articles.each do |article|
+          %li.card.list-item.article.has-signal
+            = article.signal
+            = link_to article, article, class: 'article-title'
+
+    - if @archived_articles.any?
+      - if @current_articles.any?
+        %h3.mtm Archived Articles
+      - else
+        %h3 Archived Articles
+
+      %ul.list.list--xs
+        - @archived_articles.each do |article|
           %li.card.list-item.article
             = link_to article, article, class: 'article-title'
