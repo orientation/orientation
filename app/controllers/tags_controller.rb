@@ -19,6 +19,8 @@ class TagsController < ApplicationController
 
   def show
     @tag = find_tag_by_params
+    @current_articles = @tag.articles.merge(Article.current).decorate
+    @archived_articles = @tag.articles.merge(Article.archived)
   end
 
   def edit
