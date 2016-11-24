@@ -2,6 +2,12 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## November 23rd, 2016
+### Split archived articles from tag listing
+
+To avoid giving equal weight to archived articles in tag lists, we now separate 
+the derelict articles from their fresher peers.
+
 ## October 11th, 2016
 ### Easier update flow with bin/update
 
