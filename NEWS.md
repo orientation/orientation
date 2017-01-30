@@ -2,6 +2,15 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## January 30th, 2017
+### OpenSearch tab-completion
+
+You can now use tab-completion (in Chrome) to access Orientation search more quickly.
+
+![OpenSearch Demo][opensearch]
+
+[opensearch]: https://d3vv6lp55qjaqc.cloudfront.net/items/021h0g1G2P3a303n2F0V/Screen%20Shot%202017-01-30%20at%2010.42.38%20PM.png?X-CloudApp-Visitor-Id=2c4fc223ef5411365cac8f00e6dde8d1&v=6d233945
+
 ## November 23rd, 2016
 ### Split archived articles from tag listing
 
