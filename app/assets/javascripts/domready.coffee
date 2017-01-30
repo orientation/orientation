@@ -13,6 +13,7 @@ jQuery ($) ->
   Orientation.dropdown()
   Orientation.headingLink()
   Orientation.shortcut()
+  Orientation.uploader()
 
   Orientation.search
     hiddenClass : 'dn'

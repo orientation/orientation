@@ -36,6 +36,7 @@ gem 'bugsnag', require: false
 gem 'slack-notifier'
 gem 'friendly_id', github: "norman/friendly_id", branch: "master"
 gem 'dotenv-rails'
+gem 'aws-sdk', '~> 2'
 gem 'redis', '~> 3.0'
 # platform-api fork is necessary to allow letsencrypt-rails-heroku to
 # make Heroku API requests to upload the Let's Encrypt SSL certificates
