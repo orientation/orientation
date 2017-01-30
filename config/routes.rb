@@ -39,6 +39,11 @@ Rails.application.routes.draw do
   resources :subscriptions, only: :index
   resources :endorsements, only: :index
 
+  get 'opensearchdescription.xml' => 'open_search/descriptions#show',
+    format: false,
+    defaults: { format: :osd_xml },
+    as: :open_search_description
+
   # this has to be the last route because we're catching slugs at the root path
   resources :articles, path: "", only: :show
 
