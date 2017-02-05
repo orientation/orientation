@@ -36,6 +36,7 @@ class Article < ApplicationRecord
   has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
   has_many :endorsements, class_name: "ArticleEndorsement", dependent: :destroy
   has_many :endorsers, through: :endorsements, class_name: "User", source: :user
+  has_many :views
 
   attr_reader :tag_tokens
 
