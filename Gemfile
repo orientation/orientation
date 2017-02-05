@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.3.1'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '2.4.0'
 
 # Force HTTPS for GitHub under bundler 1.x, which is the default for bundler 2.x
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem 'rails', "5.0.0"
+gem 'rails', "~> 5.0.1"
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', github: "rails/sass-rails", branch: "master"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
@@ -29,7 +29,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pg_search', github: 'Casecommons/pg_search'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
-gem 'draper', github: 'audionerd/draper', branch: 'rails5'
+gem 'draper', '3.0.0.pre1'
 gem 'mandrill_mailer'
 gem 'responders','~> 2.0'
 gem 'bugsnag', require: false
