@@ -6,5 +6,7 @@ class CreateArticleViews < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    add_index :article_views, [:article_id, :user_id], unique: true
   end
 end
