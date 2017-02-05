@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20170205101633) do
   end
 
   create_table "article_views", force: :cascade do |t|
-    t.integer  "article_id"
-    t.integer  "user_id"
+    t.integer  "article_id", null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_article_views_on_article_id", using: :btree
