@@ -19,13 +19,13 @@ chdir APP_ROOT do
   end
 
   puts "== Running git rebase upstream/master to update Orientation =="
-  system! 'git fetch upstream'
-  system! 'git rebase upstream/master'
+  system 'git fetch upstream'
+  system 'git rebase upstream/master'
 
   puts '== Installing dependencies =='
-  system! 'gem install bundler --conservative'
+  system 'gem install bundler --conservative'
   system 'bundle check' or system! 'bundle install'
-  system! 'npm install'
+  system 'npm install'
 
   puts "\n== Updating database =="
   system! 'bin/rails db:migrate'
