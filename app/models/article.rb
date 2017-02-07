@@ -205,6 +205,21 @@ class Article < ApplicationRecord
     return true if subscription.destroy
   end
 
+  # @user - the user to create an article vide for
+  # Returns the article view if successfully created
+  # Raises otherwise
+  def view(user: )
+    existing_view = views.find_by(user: user)
+
+    if existing_view.present?
+      existing_view.increment_count
+
+      existing_view.save!
+    else 
+      new_view = views.create!(user: user)
+    end
+  end
+
   private
 
   def created?

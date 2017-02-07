@@ -6,4 +6,8 @@ class Article::View < ActiveRecord::Base
 
   validates :article, presence: true
   validates :user, presence: true
+
+  def increment_count
+    increment(:count)
+  end
 end
