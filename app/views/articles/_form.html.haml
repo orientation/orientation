@@ -14,10 +14,10 @@
 
           .form-overlay.js-editor-overlay
             = link_to '#', class: 'form-field-toggle form-field-toggle--open js-editor-open' do
-              = render partial: 'shared/icon', locals: { icon: 'fullscreen', title: 'Open Editor' }
+              = render partial: 'shared/icon', locals: { icon: 'arrows-alt', title: 'Open Editor' }
 
             = link_to '#', class: 'form-field-toggle form-field-toggle--close js-editor-close' do
-              = render partial: 'shared/icon', locals: { icon: 'unfullscreen', title: 'Close Editor' }
+              = render partial: 'shared/icon', locals: { icon: 'times', title: 'Close Editor' }
 
             = f.input_field :content, rows: 12, class: 'form-input form-textarea js-editor-textarea'
 

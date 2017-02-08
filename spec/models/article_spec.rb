@@ -497,4 +497,25 @@ RSpec.describe Article do
       end
     end
   end
+
+  describe "#view(user:)" do
+    let(:article) { create(:article) }
+    let(:user) { create(:user) }
+
+    subject(:view) { article.view(user: user) }
+
+    it "increases the number of views for the article" do
+      expect { view }.to change { article.reload.views.count }.from(0).to(1)
+    end
+
+    context "when the user has already viewed the article" do
+      let(:article_view) { article.views.find_by(user: user) }
+
+      before { article.view(user: user) }
+
+      it "increments the count column on the existing view" do
+        expect { view }.to change { article_view.reload.count }.from(1).to(2)
+      end
+    end
+  end
 end

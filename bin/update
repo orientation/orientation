@@ -13,18 +13,19 @@ end
 chdir APP_ROOT do
   # This script is a way to update your development environment automatically.
   # Add necessary update steps to this file.
-
-  puts "== Adding Orientation upstream git remote =="
-  system 'git remote add upstream https://github.com/orientation/orientation.git'
+  if %x[ git remote -v | grep github.com/orientation/orientation ].empty?
+    puts "== Adding Orientation upstream git remote =="
+    system 'git remote add upstream https://github.com/orientation/orientation.git'
+  end
 
   puts "== Running git rebase upstream/master to update Orientation =="
-  system! 'git fetch upstream'
-  system! 'git rebase upstream/master'
+  system 'git fetch upstream'
+  system 'git rebase upstream/master'
 
   puts '== Installing dependencies =='
-  system! 'gem install bundler --conservative'
+  system 'gem install bundler --conservative'
   system 'bundle check' or system! 'bundle install'
-  system! 'npm install'
+  system 'npm install'
 
   puts "\n== Updating database =="
   system! 'bin/rails db:migrate'

@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
 
   def show
     respond_with_article_or_redirect_or_new
-    @article.count_visit if @article.present?
+    record_article_metrics
   end
 
   def new
@@ -187,6 +187,13 @@ class ArticlesController < ApplicationController
       return redirect_to @article, status: :moved_permanently
     else
       return respond_with @article
+    end
+  end
+
+  def record_article_metrics
+    if @article.present?
+      @article.count_visit
+      @article.view(user: current_user)
     end
   end
 end

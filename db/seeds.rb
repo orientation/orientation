@@ -60,3 +60,8 @@ Article.find_or_create_by(title: "About").tap do |article|
   article.guide = true
   article.save
 end
+
+5.times { FactoryGirl.create(:article, :fresh) }
+5.times { FactoryGirl.create(:article, :stale) }
+5.times { FactoryGirl.create(:article, :rotten) }
+5.times { FactoryGirl.create(:article, :archived) }
