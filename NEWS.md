@@ -2,6 +2,27 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## February 8th, 2017
+### Article Viewership Metrics
+
+As a testament to slow iterative progress, the `articles.visits` column that 
+was introduced in March 2015 is now used to display a simple anonymous count of 
+how many times an article was viewed or visited.
+
+But since I wanted to establish a more meaningful connection between readers 
+and articles, we now have a user-specific `Article::View` concept that is 
+stored in a separate database table with a relationship between a single article
+and user. This means we can now also display a precise count of unique readers 
+for a given article.
+
+![Screenshot of Article Readership Metrics][metrics]
+
+[metrics]: https://d3vv6lp55qjaqc.cloudfront.net/items/3b0X321n2a3439172K3k/Screen%20Shot%202017-02-08%20at%202.49.59%20PM.png
+
+Down the line it should also enable us to display when a given user first read 
+a specific article, when they last read it (most recently), and how many times 
+they viewed the article.
+
 ## January 30th, 2017
 ### OpenSearch tab-completion
 
@@ -9,7 +30,7 @@ You can now use tab-completion (in Chrome) to access Orientation search more qui
 
 ![OpenSearch Demo][opensearch]
 
-[opensearch]: https://d3vv6lp55qjaqc.cloudfront.net/items/021h0g1G2P3a303n2F0V/Screen%20Shot%202017-01-30%20at%2010.42.38%20PM.png?X-CloudApp-Visitor-Id=2c4fc223ef5411365cac8f00e6dde8d1&v=6d233945
+[opensearch]: https://d3vv6lp55qjaqc.cloudfront.net/items/021h0g1G2P3a303n2F0V/Screen%20Shot%202017-01-30%20at%2010.42.38%20PM.png
 
 ## November 23rd, 2016
 ### Split archived articles from tag listing
