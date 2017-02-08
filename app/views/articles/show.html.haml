@@ -93,3 +93,13 @@
               = render partial: 'endorsement', collection: @article.endorsements.decorate
           - else
             %p.mbf.tcs.tsi.tss Endorse this article if you find it helpful.
+
+        .mbl
+          .split.bdrb.mbs.pbxs
+            .split-cell
+              %h2.label Metrics
+          .mbf.tcs.tsi.tss
+            = render partial: 'shared/icon', locals: { icon: 'user', padded: true }
+            = pluralize(@article.views.count, "reader")
+            = render partial: 'shared/icon', locals: { icon: 'eye', padded: true, klass: 'pls' }
+            = pluralize(@article.visits, "view")
