@@ -164,6 +164,8 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     fontcustom (1.0.0)
       json
       listen
@@ -391,6 +393,7 @@ DEPENDENCIES
   draper (= 3.0.0.pre1)
   factory_girl_rails (~> 4.5.0)
   faker
+  font-awesome-sass
   fontcustom
   friendly_id!
   haml-rails

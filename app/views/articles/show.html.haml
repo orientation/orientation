@@ -25,9 +25,9 @@
       .byline
         .byline-main
           .byline-author
-            = render partial: 'shared/icon', locals: { icon: 'avatar', padded: true }
+            = render partial: 'shared/icon', locals: { icon: 'user', padded: true }
             = link_to @article.author, @article.author.link, class: 'label label--link label--link--invert'
-          = render partial: 'shared/icon', locals: { icon: 'clock', padded: true }
+          = render partial: 'shared/icon', locals: { icon: 'clock-o', padded: true }
           %span.label.label--invert= @article.created_at_tag
         .byline-secondary
           - if @article.editor
@@ -55,7 +55,6 @@
             = link_to 'Delete', @article, class: 'btn btn--b', data: { method: :delete, confirm: "Are you sure?" }
 
       %aside.g-b.g-b--m--1of3
-
         .switch.mbl
           = link_to 'Fresh', mark_fresh_article_url( @article ), method: :put,
             class: "btn switch-btn switch-btn--success #{ 'is-active' if @article.fresh? }"
