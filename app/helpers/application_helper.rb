@@ -24,7 +24,7 @@ module ApplicationHelper
 
   # Convert a time into an ordinalized (June 3rd, 2016) date
   def ordinalized_date(time)
-    time.strftime("%B #{time.day.ordinalize}, %Y")
+    time.to_date.to_s(:long_ordinal)
   end
 
   ##
