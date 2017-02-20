@@ -2,6 +2,18 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## February 20th, 2017
+### Ordinalized Dates
+
+While it's still possible to see the full date and time when article was first
+created and later updated, the date is now displayed in a long ordinal format.
+
+So instead of: `February 17, 2017 16:46`, it now displays: `February 17th, 2017`.
+
+Time is rarely critical but it's still possible to see the exact time an article 
+was created at or edited at by hovering on the date. This will display the 
+UTC timestamp: `2017-02-17 16:46:38 UTC`.
+
 ## February 8th, 2017
 ### Article Viewership Metrics
 
