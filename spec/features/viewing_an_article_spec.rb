@@ -34,6 +34,24 @@ RSpec.describe "Viewing an article" do
         expect(page).to have_content("marked this article as outdated")
       end
     end
+
+    context "with a heading" do
+      let(:article) { create(:article, content: "## Heading") } 
+
+      it "displays a table of contents" do
+        expect(page).to have_content("Table of Contents")
+      end
+
+      context "when clicking on the table of content link" do
+        before do
+          click_link "Heading"
+        end
+
+        it "adds the heading slug to the URL fragment" do
+          expect(current_path).to include("heading")
+        end
+      end
+    end
   end
 
   context "when visiting an article with an old slug" do
