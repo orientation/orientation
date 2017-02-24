@@ -6,13 +6,16 @@ development: &defaults
   transactional_mailer: false
   upload_destination: :localhost
 
-production:
+production: &production
   exception_reporter: <%= ENV["ORIENTATION_EXCEPTION_REPORTER"] %>
   transactional_mailer: <%= ENV["ORIENTATION_MAILER"] %>
   logo: <%= ENV["ORIENTATION_LOGO"] %>
   oauth_provider: <%= ENV["ORIENTATION_OAUTH"] %>
   performance_monitoring: <%= ENV["ORIENTATION_PERFORMANCE_MONITORING"] %>
   upload_destination: <%= ENV["ORIENTATION_UPLOAD_DESTINATION"] %>
+
+staging: 
+  <<: *production
 
 test:
   <<: *defaults
