@@ -17,7 +17,7 @@
 - Subscribe to articles to receive email updates
 - Syntax highlight code snippets in multiple languages
 - Let Orientation auto-flag old articles (> 6 months) as "stale"
-- Manually flag out-of-date articles as "rotten" to notify all contributors (author & editor)
+- Manually flag out-of-date articles as "outdated" to notify all contributors (author & editor)
 - Manually flag articles as "fresh" to signal that they are now up-to-date
 - Endorse useful or well-written articles (notifies contributors for good feels)
 - Tag articles for broader categorization and to improve search
@@ -102,10 +102,10 @@ old quickly and people were tired of receiving tons of emails to nag them into
 either updating their articles or verifying that they were still fresh. So this
 is a work in progress.
 
-![Fresh or Rotten?][fresh-rotten]
+![Fresh or Outdated?][fresh-outdated]
 
 It's possible for anyone to mark an article as `Fresh` to confirm that it is.
-It's also possible for anyone to mark an article as `Rotten`. That action *will*
+It's also possible for anyone to mark an article as `Outdated`. That action *will*
 notify the contributors of the article (original author and last editor).
 
 ## Authors
@@ -165,6 +165,6 @@ information fresh and well-disseminated.
 [guide-example]: https://cloud.githubusercontent.com/assets/65950/6780336/7942d6a6-d164-11e4-9ce5-38af74c67a3c.png
 [subscription]: https://cloud.githubusercontent.com/assets/65950/6788416/8e90c2d6-d199-11e4-98f7-4f6779ffc461.png
 [endorsement]: https://cloud.githubusercontent.com/assets/65950/6788434/ac043776-d199-11e4-9f6a-8e158cc46ac9.png
-[fresh-rotten]: https://cloud.githubusercontent.com/assets/65950/6807673/203e337e-d250-11e4-948f-a7fc20c61f7b.png
+[fresh-outdated]: https://cloud.githubusercontent.com/assets/65950/6807673/203e337e-d250-11e4-948f-a7fc20c61f7b.png
 [table-of-contents]: https://cloud.githubusercontent.com/assets/65950/6807782/e9544b36-d250-11e4-9d50-f26d77225795.png
 [anchor-links]: https://cloud.githubusercontent.com/assets/65950/6807862/615949ba-d251-11e4-9eba-3ccdfe8f3897.png

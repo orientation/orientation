@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     collection do
       get :fresh
       get :stale
-      get :rotten
+      get :outdated
       get :archived
       get :popular
     end

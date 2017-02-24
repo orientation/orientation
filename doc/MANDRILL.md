@@ -19,14 +19,14 @@ slug: `article-endorsement-notification`
 <strong>HAL.</strong></p>
 ```
 
-## Article Rotten Update
+## Article Outdated Update
 
-slug: `article-rotten-update`
+slug: `article-outdated-update`
 
 ```html
 <p>Howdy,</p>
 
-<p><a href="*|REPORTER_URL|*" target="_blank">*|REPORTER_NAME|*</a> has marked <a href="*|URL|*" target="_blank">*|ARTICLE_TITLE|*</a> as rotten.</p>
+<p><a href="*|REPORTER_URL|*" target="_blank">*|REPORTER_NAME|*</a> has marked <a href="*|URL|*" target="_blank">*|ARTICLE_TITLE|*</a> as outdated.</p>
 
 <p>This kind of a mean way for them to say they noticed it was out of date and would really appreciate it if you could <a href="*|URL|*" target="_blank">take a moment to update it</a>.</p>
 

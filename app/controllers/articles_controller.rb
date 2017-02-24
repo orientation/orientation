@@ -56,9 +56,9 @@ class ArticlesController < ApplicationController
     render :index
   end
 
-  def rotten
-    @articles = fetch_articles(Article.current.rotten)
-    @page_title = "Rotten Articles"
+  def outdated
+    @articles = fetch_articles(Article.current.outdated)
+    @page_title = "Outdated Articles"
     render :index
   end
 
@@ -89,7 +89,7 @@ class ArticlesController < ApplicationController
 
   def report_rot
     @article.rot!(current_user.id)
-    flash[:notice] = "Successfully reported this article as rotten."
+    flash[:notice] = "Successfully reported this article as outdated."
     respond_with_article_or_redirect
   end
 

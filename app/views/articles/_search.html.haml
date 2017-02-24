@@ -16,7 +16,7 @@
     .split-cell.mls.prs
       = render partial: 'articles/filter_link', locals: { name: 'fresh', definition: Article::FRESHNESS }
       = render partial: 'articles/filter_link', locals: { name: 'stale', definition: Article::STALENESS }
-      = render partial: 'articles/filter_link', locals: { name: 'rotten', definition: Article::ROTTENNESS }
+      = render partial: 'articles/filter_link', locals: { name: 'outdated', definition: Article::OUTDATEDNESS }
 
     .split-cell.pls.bdrl
       = render partial: 'articles/filter_link', locals: { name: 'popular', definition: Article::POPULARITY }

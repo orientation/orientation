@@ -2,6 +2,23 @@
 Interesting new features added to this project will be documented here reverse chronologically.
 This is [not a change log](CHANGELOG.md).
 
+## February 23rd, 2017
+### Rotten becomes Outdated
+Although I've rewritten the history of this document to avoid confusion, what 
+was previously referred to as "rotten" articles is now "outdated". Please 
+see commit 9f609603f7f9b9df7e34a8205ae6e67e3c62e1a4 for a detailed explanation 
+of the reasoning behind this change which does introduce two migrations with 
+column name changes, so I recommend placing Orientation in maintenance mode 
+while you run these migrations to avoid database issues during the upgrade.
+
+### Clearer Article State Toggles
+
+The "Fresh" and "Rotten" buttons on the article page have been renamed to 
+"Mark Fresh" and "Mark Rotten" with useful tooltips to clarify their purpose 
+further for people not familiar with Orientation.
+
+You have to admit that self-documenting action buttons make a lot of sense, no?
+
 ## February 20th, 2017
 ### Ordinalized Dates
 
@@ -113,7 +130,7 @@ can know **why** an article came back in the search results.
 
 ### Hiding archived or rotted guide articles from the home page
 
-Previously, even when a guide article was archived or marked as rotten, it would 
+Previously, even when a guide article was archived or marked as outdated, it would 
 still show up on the homepage. Now we'll hide those guides.
 
 ## October 4th, 2015
@@ -126,15 +143,15 @@ There's also a `rake make_all_emails_private` which can run this command for all
 ## September 22nd, 2015
 ### Rot reporter logging and more human emails
 
-![Rotten Banner displaying the name of the rot reporter and the date at which it was marked as rotten](https://s3.amazonaws.com/f.cl.ly/items/103F280238162B1N3r0H/Screen%20Shot%202015-09-22%20at%206.59.51%20PM.png)
+![Outdated Banner displaying the name of the rot reporter and the date at which it was marked as outdated](https://s3.amazonaws.com/f.cl.ly/items/103F280238162B1N3r0H/Screen%20Shot%202015-09-22%20at%206.59.51%20PM.png)
 
-Whenever someone reported an article as rotten, there used to be no way to know who that person was. Now rot reporter is logged and when the contributors to the article are notified, they are told who reported the rot. Here's why:
+Whenever someone reported an article as outdated, there used to be no way to know who that person was. Now rot reporter is logged and when the contributors to the article are notified, they are told who reported the rot. Here's why:
 
-- it makes things more human, it's not just a game of whack-a-mole to find articles and mark them as rotten
+- it makes things more human, it's not just a game of whack-a-mole to find articles and mark them as outdated
 - it allows for conversations to happen between the reporter and the article contributors
 - if notifications are turned off it allows a reader or contributor of the article to reach out to the rot reporter in order to refresh the article
 
-This update requires a manual update to your Mandrill templates for [`Article Endorsement Notification`](https://github.com/orientation/orientation/blob/master/doc/MANDRILL.md#article-rotten-update) and `Article Rotten Update`](https://github.com/orientation/orientation/blob/master/doc/MANDRILL.md#article-rotten-update)
+This update requires a manual update to your Mandrill templates for [`Article Endorsement Notification`](https://github.com/orientation/orientation/blob/master/doc/MANDRILL.md#article-outdated-update) and `Article Outdated Update`](https://github.com/orientation/orientation/blob/master/doc/MANDRILL.md#article-outdated-update)
 
 ## September 21st, 2015
 ### Contribution guidelines and code of conduct
@@ -264,7 +281,7 @@ In a mad dash of excitement, I've added Slack notifications (via a webhook confi
 ### Article state pages
 ![screenshot](https://cloud.githubusercontent.com/assets/65950/6880178/c12d0ad6-d524-11e4-8c5b-91a2d1121e0f.png)
 
-Each article state now has its own "state" page to easily find Fresh, Stale, or Rotten articles.
+Each article state now has its own "state" page to easily find Fresh, Stale, or Outdated articles.
 
 There's also two additional "states": Archived and Popular. Archived articles are excluded from search so it's good to be able to find them somewhere if they need to be referenced (or deleted). Popular articles are ordered by endorsements first, subscriptions, and a brand new visits counter third.
 
@@ -283,7 +300,7 @@ Speaking of caring, endorsements are a way for people to appreciate the document
 I realize as I'm typing this that I may need to paginate this for active teams otherwise those two new pages are going to get slow fast. Oh well.
 
 ### Stale articles
-Previously stale articles included rotten articles as well. I've decided to segregate these two scopes/states from now on because articles in these two categories require very different levels of attention from readers and editors.
+Previously stale articles included outdated articles as well. I've decided to segregate these two scopes/states from now on because articles in these two categories require very different levels of attention from readers and editors.
 
 ### Article visits
 This is an invisible feature for now (aside from the Popular Articles page which will be impacted by it) but I've just added a simple visits counter on articles. It's automatically incremented any time the show page for an article is loaded. I might consider making more user-specific stats in the future to help you find articles you've consulted a lot but this is a good first step.
@@ -291,7 +308,7 @@ This is an invisible feature for now (aside from the Popular Articles page which
 ### Article count in search field
 ![screenshot](https://s3.amazonaws.com/f.cl.ly/items/1V1R3b2z2A330f430k3c/Screen%20Shot%202015-03-28%20at%203.17.30%20PM.png)
 
-On the article index page or even on article "state" pages (Fresh, Rotten, etc.) it was hard to know how many articles were being shown compared to each other "state". Now, the article count for the current scope is dynamically displayed in the search field.
+On the article index page or even on article "state" pages (Fresh, Outdated, etc.) it was hard to know how many articles were being shown compared to each other "state". Now, the article count for the current scope is dynamically displayed in the search field.
 
 [1]: https://github.com/pixielabs/letsencrypt-rails-heroku/#configuring
 [2]: https://github.com/orientation/orientation/blob/d6dca410dbba61332130be85fd237818ad0ca10e/.env.example#L25-L61
