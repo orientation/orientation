@@ -49,9 +49,13 @@ class ArticleDecorator < ApplicationDecorator
     content_tag(:span, "outdated", class: "state outdated") if object.outdated?
   end
 
-  def outdatedness_reporter
+  def outdatedness_reporter(viewing_user = nil)
     if object.outdatedness_reporter
-      link_to AuthorDecorator.new(object.outdatedness_reporter), author_url(object.outdatedness_reporter)
+      if viewing_user == object.outdatedness_reporter
+        link_to "You", author_url(object.outdatedness_reporter)
+      else
+        link_to AuthorDecorator.new(object.outdatedness_reporter), author_url(object.outdatedness_reporter)
+      end
     end
   end
 
