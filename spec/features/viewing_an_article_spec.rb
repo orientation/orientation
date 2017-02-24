@@ -18,6 +18,22 @@ RSpec.describe "Viewing an article" do
       expect(page).to have_content(article.title)
       expect(current_path).to eq(article_path(article))
     end
+
+    context "that is stale" do
+      let(:article) { create(:article, :stale) }
+
+      it "displays an outdated banner" do
+        expect(page).to have_content("This article has gone stale")
+      end
+    end
+
+    context "that is outdated" do
+      let(:article) { create(:article, :outdated) }
+
+      it "displays an outdated banner" do
+        expect(page).to have_content("marked this article as outdated")
+      end
+    end
   end
 
   context "when visiting an article with an old slug" do
