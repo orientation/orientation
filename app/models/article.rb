@@ -132,7 +132,7 @@ class Article < ApplicationRecord
     touch(:updated_at)
   end
 
-  def rot!(user_id)
+  def outdated!(user_id)
     update(outdated_at: Time.current, outdatedness_reporter_id: user_id)
     SendArticleOutdatedJob.perform_later(id, user_id)
   end

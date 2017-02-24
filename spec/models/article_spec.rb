@@ -341,16 +341,16 @@ RSpec.describe Article do
     end
   end
 
-  describe "#rot!(user_id)" do
+  describe "#outdated!(user_id)" do
     let(:reporter) { create(:user) }
 
-    subject(:rot!) { article.rot!(reporter.id) }
+    subject(:outdated!) { article.outdated!(reporter.id) }
 
     context 'with a fresh article' do
       let(:article) { create(:article, :fresh) }
 
       it "makes it outdated" do
-        expect { rot! }.to change { article.reload.outdated? }
+        expect { outdated! }.to change { article.reload.outdated? }
       end
     end
 
@@ -358,7 +358,7 @@ RSpec.describe Article do
       let(:article) { create(:article, :stale) }
 
       it "makes it outdated" do
-        expect { rot! }.to change { article.reload.outdated? }
+        expect { outdated! }.to change { article.reload.outdated? }
       end
     end
 
@@ -366,7 +366,7 @@ RSpec.describe Article do
       let(:article) { create(:article, :outdated) }
 
       it "keeps it outdated" do
-        expect { rot! }.not_to change { article.outdated? }
+        expect { outdated! }.not_to change { article.outdated? }
       end
     end
   end

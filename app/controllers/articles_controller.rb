@@ -88,7 +88,7 @@ class ArticlesController < ApplicationController
   end
 
   def report_outdated
-    @article.rot!(current_user.id)
+    @article.outdated!(current_user.id)
     flash[:notice] = "Successfully reported this article as outdated."
     respond_with_article_or_redirect
   end
