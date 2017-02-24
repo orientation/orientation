@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     :toggle_archived,
     :toggle_subscription,
     :toggle_endorsement,
-    :report_rot,
+    :report_outdated,
     :mark_fresh
   ]
   respond_to :html, :json
@@ -87,7 +87,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def report_rot
+  def report_outdated
     @article.rot!(current_user.id)
     flash[:notice] = "Successfully reported this article as outdated."
     respond_with_article_or_redirect

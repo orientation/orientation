@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     member do
       put :toggle_subscription
       put :toggle_endorsement
-      put :report_rot
+      put :report_outdated
       put :mark_fresh
       put :toggle_archived
       get :subscriptions

@@ -1,0 +1,9 @@
+.switch.mbl
+  = link_to 'Mark Fresh', mark_fresh_article_url( @article ), method: :put,
+    class: "btn switch-btn switch-btn--success #{ 'is-active' if @article.fresh? }",
+    data: { toggle: 'tooltip', placement: 'top' },
+    title: Article::FRESH
+  = link_to 'Mark Outdated', report_outdated_article_url( @article ), method: :put,
+    class: "btn switch-btn switch-btn--error #{ 'is-active' if @article.outdated? }",
+    data: { toggle: 'tooltip', placement: 'top' },
+    title: Article::OUTDATED

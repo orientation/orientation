@@ -1,0 +1,10 @@
+%ul.list.list--inline.list--inline--xs.mbm
+  %li.list-item
+    = link_to 'Edit', edit_article_url( @article ), class: 'btn btn--a',
+      data: { shortcut: 'e' }
+  %li.list-item
+    - toggle_archived_label = !@article.archived? ? 'Archive' : 'Unarchive'
+    = link_to toggle_archived_label, toggle_archived_article_url( @article ), class: 'btn btn--b', data: { method: :put, confirm: "Are you sure?" }
+
+  %li.list-item
+    = link_to 'Delete', @article, class: 'btn btn--b', data: { method: :delete, confirm: "Are you sure?" }

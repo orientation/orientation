@@ -8,6 +8,8 @@ class Article < ApplicationRecord
   FRESHNESS_LIMIT = 7.days
   STALENESS_LIMIT = 6.months
 
+  FRESH = "This article is accurate."
+  OUTDATED = "This article needs major updates."
   FRESHNESS = "Updated in the last #{distance_of_time_in_words(FRESHNESS_LIMIT)}."
   STALENESS = "Updated over #{distance_of_time_in_words(STALENESS_LIMIT)} ago."
   OUTDATEDNESS = "Deemed in need of an update."
