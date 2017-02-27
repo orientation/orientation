@@ -6,50 +6,89 @@ ruby ENV['CUSTOM_RUBY_VERSION'] || '2.4.0'
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 gem 'rails', "~> 5.0.1"
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: "rails/sass-rails", branch: "master"
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 
+# Use Haml as a replacement for ERB view templates
+gem 'haml-rails'
+
+# Icon fonts
+gem 'font-awesome-sass'
+
+# PostgreSQL
 gem 'pg'
 
+# Autoprefixer
 gem 'autoprefixer-rails'
+
+# Job queueing with DelayedJob
 gem 'delayed_job'
 gem 'delayed_job_active_record'
-gem 'haml-rails'
+
+# Form builder
 gem 'simple_form', github: "olivierlacan/simple_form", branch: "rails-5-type-for-attribute"
+
+# Server-side syntax highlighting
 gem 'pygments.rb'
+
+# Markdown parsing and rendering
 gem 'redcarpet', '~> 3.3.4'
+
+# OAuth integration
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
+# Full-text search with PostgreSQL
 gem 'pg_search', github: 'Casecommons/pg_search'
+
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+
+# Decorators
 gem 'draper', '3.0.0.pre1'
-gem 'mandrill_mailer'
+
+# Default responses from controllers
 gem 'responders','~> 2.0'
-gem 'bugsnag', require: false
-gem 'slack-notifier'
+
+# Friendly URL slugs for models
 gem 'friendly_id', github: "norman/friendly_id", branch: "master"
+
+# Environment variables from .env files
 gem 'dotenv-rails'
+
+# ActionCable dependency
 gem 'redis', '~> 3.0'
+
 # platform-api fork is necessary to allow letsencrypt-rails-heroku to
 # make Heroku API requests to upload the Let's Encrypt SSL certificates
 gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
 gem 'letsencrypt-rails-heroku', group: 'production'
-gem 'font-awesome-sass'
+
+# === Third-party Integrations === #
+
+# Exception reporter (see orientation.yml)
+gem 'bugsnag'
+
+# Article activity Slack notifications
+gem 'slack-notifier'
+
+# Transactional emails (see orientation.yml)
+gem 'mandrill_mailer'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'powder'
   gem 'bullet'
-  gem 'fontcustom'
-  gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -70,13 +109,21 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
-  gem 'codeclimate-test-reporter', require: nil
   gem 'climate_control'
+
+  # === Third-party integrations === #
+
+  # Code Climate test coverage reporting
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :production, :staging do
   gem 'rails_12factor'
   gem 'rack-timeout'
   gem 'unicorn'
+
+  # == Third-party Integrations == #
+
+  # Performance monitoring
   gem 'skylight'
 end
