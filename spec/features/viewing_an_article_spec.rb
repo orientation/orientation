@@ -41,16 +41,6 @@ RSpec.describe "Viewing an article" do
       it "displays a table of contents" do
         expect(page).to have_content("Table of Contents")
       end
-
-      context "when clicking on the table of content link" do
-        before do
-          click_link "Heading"
-        end
-
-        it "adds the heading slug to the URL fragment" do
-          expect(current_path).to include("heading")
-        end
-      end
     end
   end
 
