@@ -60,11 +60,11 @@ RSpec.describe Speakerphone do
         end
       end
 
-      context 'a rotten article' do
-        let(:state) { :rotten }
-        let(:article) { build(:article, rotted_at: Time.zone.now) }
-        it "notifies slack that it is rotten" do
-          expect(speakerphone).to receive(:ping_audience).with(title: 'Article rotten', color: 'danger')
+      context 'an outdated article' do
+        let(:state) { :outdated }
+        let(:article) { build(:article, outdated_at: Time.zone.now) }
+        it "notifies slack that it is outdated" do
+          expect(speakerphone).to receive(:ping_audience).with(title: 'Article outdated', color: 'danger')
           speakerphone.shout
         end
       end

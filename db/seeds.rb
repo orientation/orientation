@@ -39,20 +39,24 @@ Article.find_or_create_by(title: "About").tap do |article|
 
     Second, freshness. 
 
-    There are many ways to wrote documentation. The tricky part comes later,
+    There are many ways to write documentation. The tricky part comes later:
     when you need to find the documentation and keep it up-to-date. Orientation
-    decays articles that have not been updated. They first become stale, 
-    prompting their authors and editors to update them. Then they become rotten, 
-    signaling that their information is likely inaccurate and needs updating.
+    automatically decays articles that have not been updated for a while. They
+    first become stale, which notifies their authors and editors so they can
+    know to update them. Then they eventually become outdated, signaling that
+    their information is likely inaccurate and needs updating. At any time, 
+    an Orientation reader can mark an article as outdated, speeding up this 
+    process.
 
     Third, connectedness.
 
-    When you need to look up documentation for something it's often because you 
-    either can't remember it or aren't familiar with the domain. This means you 
-    will not just depend on the information once, but regularly. Most 
-    documentation systems are somehow based on the assumption that information 
-    doesn't evolve. By subscribing to an article in Orientation, you will be 
-    notified when anyone updates it. You're connected to knowledge you depend on.
+    When you need to look up documentation for something it's often because you
+    either can't remember it or aren't familiar with the domain. This means you
+    will not just depend on the information once, but regularly. Most
+    documentation systems are somehow based on the assumption that information
+    doesn't evolve. By subscribing to an article in Orientation, you will be
+    notified when anyone updates it. You're connected to knowledge you depend
+    on.
 
   MARKDOWN
   article.author = orientation
@@ -63,5 +67,5 @@ end
 
 5.times { FactoryGirl.create(:article, :fresh) }
 5.times { FactoryGirl.create(:article, :stale) }
-5.times { FactoryGirl.create(:article, :rotten) }
+5.times { FactoryGirl.create(:article, :outdated) }
 5.times { FactoryGirl.create(:article, :archived) }

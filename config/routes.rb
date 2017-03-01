@@ -16,14 +16,14 @@ Rails.application.routes.draw do
     collection do
       get :fresh
       get :stale
-      get :rotten
+      get :outdated
       get :archived
       get :popular
     end
     member do
       put :toggle_subscription
       put :toggle_endorsement
-      put :report_rot
+      put :report_outdated
       put :mark_fresh
       put :toggle_archived
       get :subscriptions

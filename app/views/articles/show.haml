@@ -1,0 +1,30 @@
+- page_title @article.title
+
+= render "state"
+= render "guide_header"
+
+%section.row
+  %article.cell.well.well--l
+    %header.mbl
+      - unless @article.guide?
+        = render 'tags/tags', tags: @article.tags
+
+        %h1.tsl.ts--s--xl.ts--m--xxl= @article.title
+
+      = render "byline"
+
+    .g
+      .g-b.g-b--m--2of3
+        .markdown.bdrb.mbm.js-tableBank
+          = find_and_preserve do
+            = markdown( @article.content || 'No content' )
+
+        = render "actions"
+
+      %aside.g-b.g-b--m--1of3
+        = render "state_toggles"
+        = render "table_of_contents"
+
+        .mbl= render "subscriptions"
+        .mbl= render "endorsements"
+        .mbl= render "metrics"

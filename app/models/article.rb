@@ -8,9 +8,11 @@ class Article < ApplicationRecord
   FRESHNESS_LIMIT = 7.days
   STALENESS_LIMIT = 6.months
 
+  FRESH = "This article is accurate."
+  OUTDATED = "This article needs major updates."
   FRESHNESS = "Updated in the last #{distance_of_time_in_words(FRESHNESS_LIMIT)}."
   STALENESS = "Updated over #{distance_of_time_in_words(STALENESS_LIMIT)} ago."
-  ROTTENNESS = "Deemed in need of an update."
+  OUTDATEDNESS = "Deemed in need of an update."
   POPULARITY = "Endorsed, subscribed, & visited."
   ARCHIVAL = "Outdated & ignored in searches."
 
@@ -28,7 +30,7 @@ class Article < ApplicationRecord
 
   belongs_to :author, class_name: "User"
   belongs_to :editor, class_name: "User"
-  belongs_to :rot_reporter, class_name: "User"
+  belongs_to :outdatedness_reporter, class_name: "User"
 
   has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
@@ -49,17 +51,17 @@ class Article < ApplicationRecord
   scope :archived, -> { where.not(archived_at: nil) }
   scope :current, -> do
     where(archived_at: nil)
-      .order(rotted_at: :desc, updated_at: :desc, created_at: :desc)
+      .order(outdated_at: :desc, updated_at: :desc, created_at: :desc)
   end
   scope :fresh, -> do
     where(%Q["articles"."updated_at" >= ?], FRESHNESS_LIMIT.ago)
-      .where(archived_at: nil, rotted_at: nil)
+      .where(archived_at: nil, outdated_at: nil)
   end
   scope :guide,   -> { where(guide: true) }
   scope :popular, -> do 
     order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc)
   end
-  scope :rotten,  -> { where.not(rotted_at: nil) }
+  scope :outdated,  -> { where.not(outdated_at: nil) }
   scope :stale,   -> do 
     where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago)
   end
@@ -110,7 +112,7 @@ class Article < ApplicationRecord
   end
 
   def fresh?
-    !archived? && !rotten? && updated_at >= FRESHNESS_LIMIT.ago
+    !archived? && !outdated? && updated_at >= FRESHNESS_LIMIT.ago
   end
 
   def never_notified_author?
@@ -121,18 +123,18 @@ class Article < ApplicationRecord
     updated_at < STALENESS_LIMIT.ago
   end
 
-  def rotten?
-    rotted_at.present?
+  def outdated?
+    outdated_at.present?
   end
 
   def refresh!
-    update_attribute(:rotted_at, nil)
+    update_attribute(:outdated_at, nil)
     touch(:updated_at)
   end
 
-  def rot!(user_id)
-    update(rotted_at: Time.current, rot_reporter_id: user_id)
-    SendArticleRottenJob.perform_later(id, user_id)
+  def outdated!(user_id)
+    update(outdated_at: Time.current, outdatedness_reporter_id: user_id)
+    SendArticleOutdatedJob.perform_later(id, user_id)
   end
 
   def recently_notified_author?
@@ -237,8 +239,8 @@ class Article < ApplicationRecord
       :created
     elsif archived_at?
       :archived
-    elsif rotted_at?
-      :rotten
+    elsif outdated_at?
+      :outdated
     else
       :updated
     end

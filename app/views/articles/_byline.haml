@@ -1,0 +1,13 @@
+.byline
+  .byline-main
+    .byline-author
+      = render partial: 'shared/icon', locals: { icon: 'user', padded: true }
+      = link_to @article.author, @article.author.link, class: 'label label--link label--link--invert'
+    = render partial: 'shared/icon', locals: { icon: 'clock-o', padded: true }
+    %span.label.label--invert= @article.created_at_tag
+  .byline-secondary
+    - if @article.editor
+      %span.dib.mrxs{ 'data-toggle' => 'tooltip', title: @article.editor.name }
+        %span.mrxs.tsi.tsxs #{@article.editor.image_link(30)}
+    %span.tsi.tsxs Last edited
+    %span.label.label--invert= @article.updated_at_tag

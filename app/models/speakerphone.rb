@@ -50,7 +50,7 @@ class Speakerphone
     notifications = {
       created:   { title: 'New article', color: 'good' },
       archived:  { title: 'Article archived', color: '#b1b3b4' },
-      rotten:    { title: 'Article rotten', color: 'danger' },
+      outdated:  { title: 'Article outdated', color: 'danger' },
       updated:   { title: 'Article updated', color: 'warning' },
       destroyed: { title: 'Article destroyed', color: 'danger' }
     }

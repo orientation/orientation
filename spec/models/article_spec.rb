@@ -200,12 +200,12 @@ RSpec.describe Article do
       it { should_not be_fresh }
     end
 
-    context 'when it is rotten' do
-      before { subject.rotted_at = Time.current }
+    context 'when it is outdated' do
+      before { subject.outdated_at = Time.current }
       it { should_not be_fresh }
     end
 
-    context 'when it is neither archived nor rotten' do
+    context 'when it is neither archived nor outdated' do
       context 'and when time since updated exceeds the FRESHNESS_LIMIT' do
         before { subject.updated_at = (described_class::FRESHNESS_LIMIT + 1.minute).ago }
         it { should_not be_fresh }
@@ -221,7 +221,7 @@ RSpec.describe Article do
   describe ".stale" do
     let!(:fresh_article) { create(:article, :fresh) }
     let!(:stale_article) { create(:article, :stale) }
-    let!(:rotten_article) { create(:article, :rotten) }
+    let!(:outdated_article) { create(:article, :outdated) }
 
     subject(:stale_articles) { Article.stale }
 
@@ -233,8 +233,8 @@ RSpec.describe Article do
       expect(stale_articles).not_to include(fresh_article)
     end
 
-    it "does not include rotten articles" do
-      expect(stale_articles).not_to include(rotten_article)
+    it "does not include outdated articles" do
+      expect(stale_articles).not_to include(outdated_article)
     end
   end
 
@@ -332,8 +332,8 @@ RSpec.describe Article do
       end
     end
 
-    context 'with a rotten article' do
-      let(:article) { create(:article, :rotten) }
+    context 'with a outdated article' do
+      let(:article) { create(:article, :outdated) }
 
       it "makes it fresh" do
         expect { refresh! }.to change { article.fresh? }
@@ -341,46 +341,46 @@ RSpec.describe Article do
     end
   end
 
-  describe "#rot!(user_id)" do
+  describe "#outdated!(user_id)" do
     let(:reporter) { create(:user) }
 
-    subject(:rot!) { article.rot!(reporter.id) }
+    subject(:outdated!) { article.outdated!(reporter.id) }
 
     context 'with a fresh article' do
       let(:article) { create(:article, :fresh) }
 
-      it "makes it rotten" do
-        expect { rot! }.to change { article.reload.rotten? }
+      it "makes it outdated" do
+        expect { outdated! }.to change { article.reload.outdated? }
       end
     end
 
     context 'with a stale article' do
       let(:article) { create(:article, :stale) }
 
-      it "makes it rotten" do
-        expect { rot! }.to change { article.reload.rotten? }
+      it "makes it outdated" do
+        expect { outdated! }.to change { article.reload.outdated? }
       end
     end
 
-    context 'with a rotten article' do
-      let(:article) { create(:article, :rotten) }
+    context 'with a outdated article' do
+      let(:article) { create(:article, :outdated) }
 
-      it "keeps it rotten" do
-        expect { rot! }.not_to change { article.rotten? }
+      it "keeps it outdated" do
+        expect { outdated! }.not_to change { article.outdated? }
       end
     end
   end
 
-  describe '#rotten?' do
+  describe '#outdated?' do
     subject { described_class.new }
 
-    context 'when rotted_at is not set' do
-      it { should_not be_rotten }
+    context 'when outdated_at is not set' do
+      it { should_not be_outdated }
     end
 
-    context 'when rotted_at is set' do
-      before { subject.rotted_at = Time.current }
-      it { should be_rotten }
+    context 'when outdated_at is set' do
+      before { subject.outdated_at = Time.current }
+      it { should be_outdated }
     end
   end
 

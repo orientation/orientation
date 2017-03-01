@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205222526) do
+ActiveRecord::Schema.define(version: 20170224025153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,13 +52,13 @@ ActiveRecord::Schema.define(version: 20170205222526) do
     t.integer  "editor_id"
     t.datetime "last_notified_author_at"
     t.datetime "archived_at"
-    t.datetime "rotted_at"
-    t.integer  "tags_count",              default: 0,     null: false
-    t.boolean  "guide",                   default: false
-    t.integer  "subscriptions_count",     default: 0
-    t.integer  "endorsements_count",      default: 0
-    t.integer  "visits",                  default: 0,     null: false
-    t.integer  "rot_reporter_id"
+    t.datetime "outdated_at"
+    t.integer  "tags_count",               default: 0,     null: false
+    t.boolean  "guide",                    default: false
+    t.integer  "subscriptions_count",      default: 0
+    t.integer  "endorsements_count",       default: 0
+    t.integer  "visits",                   default: 0,     null: false
+    t.integer  "outdatedness_reporter_id"
     t.index "to_tsvector('english'::regconfig, (title)::text)", name: "articles_title", using: :gin
     t.index "to_tsvector('english'::regconfig, content)", name: "articles_content", using: :gin
     t.index ["archived_at"], name: "index_articles_on_archived_at", using: :btree

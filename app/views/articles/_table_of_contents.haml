@@ -1,0 +1,6 @@
+- toc = table_of_contents( @article.content || '' )
+- unless toc.empty?
+  .mbl
+    .bdrb.pbxs.mbs
+      %h2.label Table of Contents
+    .js-toc= toc

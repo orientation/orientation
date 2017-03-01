@@ -1,4 +1,4 @@
-class SendArticleRottenJob < ApplicationJob
+class SendArticleOutdatedJob < ApplicationJob
   queue_as :default
 
   def perform(article_id, reporter_id)
@@ -6,6 +6,6 @@ class SendArticleRottenJob < ApplicationJob
     contributors = article.contributors
     reporter = User.find(reporter_id)
 
-    ArticleMailer.send_rotten_notification_for(article, contributors, reporter).deliver
+    ArticleMailer.send_outdated_notification_for(article, contributors, reporter).deliver
   end
 end

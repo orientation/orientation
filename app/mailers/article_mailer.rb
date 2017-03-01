@@ -34,9 +34,9 @@ class ArticleMailer < MandrillMailer::TemplateMailer
                   }
   end
 
-  def send_rotten_notification_for(article, contributors, reporter)
-    mandrill_mail template: 'article-rotten-update',
-                  subject: "#{reporter.name} marked #{article.title} as rotten",
+  def send_outdated_notification_for(article, contributors, reporter)
+    mandrill_mail template: 'article-outdated-update',
+                  subject: "#{reporter.name} marked #{article.title} as outdated",
                   from_name: ENV['DEFAULT_FROM_NAME'] || 'Orientation',
                   to: contributors,
                   vars: {

@@ -45,24 +45,28 @@ class ArticleDecorator < ApplicationDecorator
     content_tag(:span, "stale", class: "state stale") if object.stale?
   end
 
-  def rottenness
-    content_tag(:span, "rotten", class: "state rotten") if object.rotten?
+  def outdatedness
+    content_tag(:span, "outdated", class: "state outdated") if object.outdated?
   end
 
-  def rot_reporter
-    if object.rot_reporter
-      link_to AuthorDecorator.new(object.rot_reporter), author_url(object.rot_reporter)
+  def outdatedness_reporter(viewing_user = nil)
+    if object.outdatedness_reporter
+      if viewing_user == object.outdatedness_reporter
+        link_to "You", author_url(object.outdatedness_reporter)
+      else
+        link_to AuthorDecorator.new(object.outdatedness_reporter), author_url(object.outdatedness_reporter)
+      end
     end
   end
 
-  def rotted_at
-    object.rotted_at.to_date.to_s(:long_ordinal)
+  def outdated_at
+    object.outdated_at.to_date.to_s(:long_ordinal)
   end
 
   def signal
     state = 'fresh' if object.fresh?
     state = 'stale' if object.stale?
-    state = 'rotten' if object.rotten?
+    state = 'outdated' if object.outdated?
 
     screen_reader_text = content_tag(:span, state, class: 'srt')
 

@@ -1,0 +1,6 @@
+- if @article.archived?
+  %p.bulletin.bulletin--warning This article has been archived. Please don't trust the information displayed here.
+- if @article.outdated?
+  %p.bulletin.bulletin--warning #{@article.outdatedness_reporter(current_user)} marked this article as outdated on #{@article.outdated_at}. 
+- if @article.stale?
+  %p.bulletin.bulletin--notice.tct This article has gone stale. It hasn't been updated in a while so the information may be slightly out-of-date.
