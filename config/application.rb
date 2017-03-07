@@ -48,5 +48,7 @@ module Orientation
     #   Rails.configuration.orientation["transactional_mailer"]
     #
     config.orientation = config_for(:orientation)
+
+    config.autoload_paths << "#{Rails.root}/lib"
   end
 end
