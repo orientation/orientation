@@ -2,6 +2,7 @@ class GuidesController < ApplicationController
   def index
     @guides = ArticleDecorator.decorate_collection(guides)
     @articles = ArticleDecorator.decorate_collection(articles)
+
     redirect_to(articles_path) if @guides.empty?
   end
 
@@ -12,6 +13,6 @@ class GuidesController < ApplicationController
   end
 
   def articles
-    Article.current
+    Article.includes(:tags).current
   end
 end
