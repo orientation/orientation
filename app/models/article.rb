@@ -58,11 +58,11 @@ class Article < ApplicationRecord
       .where(archived_at: nil, outdated_at: nil)
   end
   scope :guide,   -> { where(guide: true) }
-  scope :popular, -> do 
+  scope :popular, -> do
     order(endorsements_count: :desc, subscriptions_count: :desc, visits: :desc)
   end
   scope :outdated,  -> { where.not(outdated_at: nil) }
-  scope :stale,   -> do 
+  scope :stale,   -> do
     where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago)
   end
   scope :alphabetical, -> { order(title: :asc) }
@@ -217,7 +217,7 @@ class Article < ApplicationRecord
       existing_view.increment_count
 
       existing_view.save!
-    else 
+    else
       new_view = views.create!(user: user)
     end
   end
