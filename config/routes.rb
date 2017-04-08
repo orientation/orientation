@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :guides, only: [:show, :index]
+  resources :guides, only: [:index]
   resources :subscriptions, only: :index
   resources :endorsements, only: :index
 
