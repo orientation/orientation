@@ -1,5 +1,5 @@
-- alternateContent ||= false
-- hideResults      ||= false
+- alternative_content ||= false
+- hide_results ||= false
 
 - form_path = request.path == ('/') ? articles_path : request.path
 
@@ -22,9 +22,9 @@
       = render partial: 'articles/filter_link', locals: { name: 'popular', definition: Article::POPULARITY }
       = render partial: 'articles/filter_link', locals: { name: 'archived', definition: Article::ARCHIVAL }
 
-  %ul.list.list--xs.js-search-results{ class: ( 'hide-results dn' if hideResults) }
+  %ul.list.list--xs.js-search-results{ class: ( 'hide-results dn' if hide_results) }
     = render @articles
 
-  - if alternateContent
+  - if alternative_content
     .js-search-alternate
       = yield
