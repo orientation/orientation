@@ -2,21 +2,35 @@
 Interesting new features added to this project will be documented here reverse
 chronologically. This is [not a change log](CHANGELOG.md).
 
+## April 10th, 2017
+
+### Resolved some annoying search issues
+
+While the auto-completed full-text search worked fine with search queries, any
+time the input field was emptied, a 500 error was triggered. This didn't cause
+any visible errors but prevented the list of all articles to being brought
+back. This is now solved.
+
+Additionally, an issue that previously didn't occur started causing the the
+index.js.erb view used to render search results with XHR requests to fail
+because it included the HTML layout used on normal views. Disabling the layout
+solved the issue.
+
 ## February 23rd, 2017
 
 ### Rotten becomes Outdated
 
-Although I've rewritten the history of this document to avoid confusion, what 
-was previously referred to as "rotten" articles is now "outdated". Please 
-see commit 9f609603f7f9b9df7e34a8205ae6e67e3c62e1a4 for a detailed explanation 
-of the reasoning behind this change which does introduce two migrations with 
-column name changes, so I recommend placing Orientation in maintenance mode 
+Although I've rewritten the history of this document to avoid confusion, what
+was previously referred to as "rotten" articles is now "outdated". Please
+see commit 9f609603f7f9b9df7e34a8205ae6e67e3c62e1a4 for a detailed explanation
+of the reasoning behind this change which does introduce two migrations with
+column name changes, so I recommend placing Orientation in maintenance mode
 while you run these migrations to avoid database issues during the upgrade.
 
 ### Clearer Article State Toggles
 
-The "Fresh" and "Rotten" buttons on the article page have been renamed to 
-"Mark Fresh" and "Mark Rotten" with useful tooltips to clarify their purpose 
+The "Fresh" and "Rotten" buttons on the article page have been renamed to
+"Mark Fresh" and "Mark Rotten" with useful tooltips to clarify their purpose
 further for people not familiar with Orientation.
 
 You have to admit that self-documenting action buttons make a lot of sense, no?
@@ -30,30 +44,30 @@ created and later updated, the date is now displayed in a long ordinal format.
 
 So instead of: `February 17, 2017 16:46`, it now displays: `February 17th, 2017`.
 
-Time is rarely critical but it's still possible to see the exact time an article 
-was created at or edited at by hovering on the date. This will display the 
+Time is rarely critical but it's still possible to see the exact time an article
+was created at or edited at by hovering on the date. This will display the
 UTC timestamp: `2017-02-17 16:46:38 UTC`.
 
 ## February 8th, 2017
 
 ### Article Viewership Metrics
 
-As a testament to slow iterative progress, the `articles.visits` column that 
-was introduced in March 2015 is now used to display a simple anonymous count of 
+As a testament to slow iterative progress, the `articles.visits` column that
+was introduced in March 2015 is now used to display a simple anonymous count of
 how many times an article was viewed or visited.
 
-But since I wanted to establish a more meaningful connection between readers 
-and articles, we now have a user-specific `Article::View` concept that is 
+But since I wanted to establish a more meaningful connection between readers
+and articles, we now have a user-specific `Article::View` concept that is
 stored in a separate database table with a relationship between a single article
-and user. This means we can now also display a precise count of unique readers 
+and user. This means we can now also display a precise count of unique readers
 for a given article.
 
 ![Screenshot of Article Readership Metrics][metrics]
 
 [metrics]: https://d3vv6lp55qjaqc.cloudfront.net/items/3b0X321n2a3439172K3k/Screen%20Shot%202017-02-08%20at%202.49.59%20PM.png
 
-Down the line it should also enable us to display when a given user first read 
-a specific article, when they last read it (most recently), and how many times 
+Down the line it should also enable us to display when a given user first read
+a specific article, when they last read it (most recently), and how many times
 they viewed the article.
 
 ## January 30th, 2017
@@ -71,31 +85,31 @@ quickly.
 
 ### Split archived articles from tag listing
 
-To avoid giving equal weight to archived articles in tag lists, we now separate 
+To avoid giving equal weight to archived articles in tag lists, we now separate
 the derelict articles from their fresher peers.
 
 ## October 11th, 2016
 
 ### Easier update flow with bin/update
 
-Now if you run `bin/update` on your local fork of Orientation, it will 
-add or use an `upstream` remote to rebase the latest changes on the 
-`orientation/orientation` repo. I tend to treat `master` as a 
+Now if you run `bin/update` on your local fork of Orientation, it will
+add or use an `upstream` remote to rebase the latest changes on the
+`orientation/orientation` repo. I tend to treat `master` as a
 production-ready so please don't be horrified.
 
 ### Bye Bower, hello yarn
 
-Deterministic resolution of transitive dependencies, faster installation 
-of front-end packages. What's not to like? For now I've only included 
-[yarn][yarn] as an npm module but soon we'll forgo npm entirely since yarn can 
+Deterministic resolution of transitive dependencies, faster installation
+of front-end packages. What's not to like? For now I've only included
+[yarn][yarn] as an npm module but soon we'll forgo npm entirely since yarn can
 be installed as a standalone.
 
 [yarn]: https://yarnpkg.com/blog/2016/10/11/introducing-yarn
 
 ### Allow tag creation on partial match
 
-Great contribution from @thewheat that now allows you to add a new tag that 
-starts with the same initial letter as an existing tag. This used to be 
+Great contribution from @thewheat that now allows you to add a new tag that
+starts with the same initial letter as an existing tag. This used to be
 extremely frustrating.
 
 ![Screenshot showing how to add an "ab" tag even if an "abc" tag exists][3]
@@ -103,14 +117,14 @@ extremely frustrating.
 ## October 8th, 2016
 ### Free SSL support with Let's Encrypt and Heroku SNI
 
-I can't believe it took me so long to finally get this done. Unless you have 
-your own paid SSL certificate set up, it's been quite difficult in the past to 
-protect your Orientation installation with SSL. Now it should be much easier 
+I can't believe it took me so long to finally get this done. Unless you have
+your own paid SSL certificate set up, it's been quite difficult in the past to
+protect your Orientation installation with SSL. Now it should be much easier
 thanks to the most excellent letsencrypt-rails-heroku gem.
 
-I've used this gem on two different projects so far and it's been a breeze to 
-use compared to manually using Let's Encrypt's recommended CertBot command line 
-interface. 
+I've used this gem on two different projects so far and it's been a breeze to
+use compared to manually using Let's Encrypt's recommended CertBot command line
+interface.
 
 I've added some documentation to [`.env.example`][2] on which variables are
 needed but you can read [their excellent documentation][1] to protect your
@@ -125,21 +139,21 @@ soon.
 
 ### Improved search and keyword match display
 
-I can't believe it's been a whole year since the last major new feature, I've 
-certainly been working on some cool stuff, but this has been perhaps the longest 
+I can't believe it's been a whole year since the last major new feature, I've
+certainly been working on some cool stuff, but this has been perhaps the longest
 standing issue with Orientation: searching things easily.
 
-I've replaced the search library we were using with one that allows us to be a 
-lot more specific with regards to the weighing of results. Article titles are 
-now weighed higher in search than article content. We now also display exactly 
-what the full-text search engine matched on when you type keywords so you 
+I've replaced the search library we were using with one that allows us to be a
+lot more specific with regards to the weighing of results. Article titles are
+now weighed higher in search than article content. We now also display exactly
+what the full-text search engine matched on when you type keywords so you
 can know **why** an article came back in the search results.
 
 ![Animation showing search keywords being displayed in article match results](https://d3vv6lp55qjaqc.cloudfront.net/items/1w1H1d431a2b0617032A/Screen%20Recording%202016-10-04%20at%2010.36%20PM.gif?X-CloudApp-Visitor-Id=2861&v=534bb77a)
 
 ### Hiding archived or outdated guide articles from the home page
 
-Previously, even when a guide article was archived or marked as outdated, it would 
+Previously, even when a guide article was archived or marked as outdated, it would
 still show up on the homepage. Now we'll hide those guides.
 
 ## October 4th, 2015
@@ -289,9 +303,9 @@ production quickly.
 
 ### No more trouble when using the Heroku button
 
-I took way to long to react on this but Michael Friis contributed 
-[a nifty patch](https://github.com/orientation/orientation/pull/155) to fix 
-recurring issues when the Heroku button because our app.json manifest was too 
+I took way to long to react on this but Michael Friis contributed
+[a nifty patch](https://github.com/orientation/orientation/pull/155) to fix
+recurring issues when the Heroku button because our app.json manifest was too
 tightly coupled to specific Heroku add-on plans.
 
 ## July 31st, 2015
