@@ -122,7 +122,6 @@ end
 group :production, :staging do
   gem 'rails_12factor'
   gem 'rack-timeout'
-  gem 'unicorn'
 
   # == Third-party Integrations == #
 
