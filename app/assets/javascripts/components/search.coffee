@@ -29,7 +29,8 @@
   , options
 
   timeout = null
-  delay   = ( callback, milliseconds ) ->
+
+  delay = ( callback, milliseconds ) ->
     setTimeout( callback, milliseconds )
 
   hideSearch = ->
@@ -37,6 +38,10 @@
 
   settings.$input.on 'input', ->
     clearTimeout( timeout ) if timeout
+
+    queryLength = settings.$input.val().length
+
+    return if queryLength > 0 && queryLength < 3
 
     timeout = delay =>
       $(@).closest( settings.$element ).find( settings.$form ).trigger( 'submit' )
