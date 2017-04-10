@@ -24,7 +24,7 @@
     $input      : $( '.js-search-input' )
     $results    : $( '.js-search-results' )
     hiddenClass : 'is-hidden'
-    inputDelay  : 200
+    inputDelay  : 400
     onSubmit    : null
   , options
 
