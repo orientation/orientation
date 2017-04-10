@@ -2,7 +2,7 @@
 
 ( function() {
   var fallback = "We didn't find an article whose title or content matches. Why not <%= escape_javascript(new_article_link) %></a>?";
-  var articleMarkup = '<%= escape_javascript( render( @articles, highlight_search_keywords: true ) ) %>';
+  var articleMarkup = "<%= escape_javascript( render( @articles ) ) %>";
 
   $( '.js-search-results' ).html( articleMarkup );
 
