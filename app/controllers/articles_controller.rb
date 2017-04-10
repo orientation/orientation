@@ -18,6 +18,8 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = fetch_articles
+
+    render :index, layout: false if request.xhr?
   end
 
   def show
