@@ -4,6 +4,20 @@ chronologically. This is [not a change log](CHANGELOG.md).
 
 ## April 10th, 2017
 
+### Switch web servers from Unicorn to Puma
+
+Since I observe some issues with memory allocation on Heroku deploys of
+Orientation I investigated to find that we had two web servers in the Gemfile:
+Puma and Unicorn. Unicorn was set up back when Heroku recommended it over
+Webrick years ago. Now they recommend and maintain Puma instead, so we're
+switching to it. This will allow us to have more control (AFAIK) over the
+initial memory usage on single Puma worker, and use Puma's preload_app feature
+with Copy on Write to avoid re-allocating memory for subsequently forked
+worker processes.
+
+I am not an ops genius, so please take this with a grain of salt and open a
+Pull Request if you think this makes no sense.
+
 ### Resolved some annoying search issues
 
 While the auto-completed full-text search worked fine with search queries, any
