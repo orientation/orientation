@@ -23,7 +23,7 @@ environment ENV['RACK_ENV'] || 'development'
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+workers Integer(ENV['WEB_CONCURRENCY'] || 3)
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
@@ -33,7 +33,6 @@ workers Integer(ENV['WEB_CONCURRENCY'] || 2)
 # block.
 #
 preload_app!
-
 
 # The code in the `on_worker_boot` will be called if you are using
 # clustered mode by specifying a number of `workers`. After each worker
