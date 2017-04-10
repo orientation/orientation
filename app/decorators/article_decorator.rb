@@ -64,9 +64,9 @@ class ArticleDecorator < ApplicationDecorator
   end
 
   def signal
-    state = 'fresh' if object.fresh?
-    state = 'stale' if object.stale?
-    state = 'outdated' if object.outdated?
+    state = :fresh if object.fresh?
+    state = :stale if object.stale?
+    state = :outdated if object.outdated?
 
     screen_reader_text = content_tag(:span, state, class: 'srt')
 
