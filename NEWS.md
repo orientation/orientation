@@ -16,6 +16,17 @@ index.js.erb view used to render search results with XHR requests to fail
 because it included the HTML layout used on normal views. Disabling the layout
 solved the issue.
 
+Finally a race condition in the live search feature was mitigated by ignoring
+search queries of less than 3 characters since Postgres full-text can't produce
+a meaningful result with fewer than 3 characters. Queries of 0 characters are
+still sent so that the list can be reset when users remove their search query.
+
+The search input delay was increased for 0.2 seconds to 0.4 seconds to reduce
+the possibility of race conditions (one search query coming back before one
+that was sent earlier, thus messing up the results). This will reduce the
+apparent responsiveness of the search but improve the user experience by
+avoiding the occasional glitch were all results would disappear.
+
 ## February 23rd, 2017
 
 ### Rotten becomes Outdated
