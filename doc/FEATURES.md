@@ -22,10 +22,11 @@
 - Endorse useful or well-written articles (notifies contributors for good feels)
 - Tag articles for broader categorization and to improve search
 - Article URL slug history to prevent 404s when titles change 
+- Full-text search with fuzzy matching search on title/content/tags 
 
 ### Planned
 
-- Improved search with full-text fuzzy search on title/content/tags and with weighing of endorsed and most visited articles
+- Improved full-text search with weighing of endorsed and most visited articles
 - [Article versioning](https://github.com/olivierlacan/orientation/pull/67)
 - Drag & Drop image uploading (think GitHub Issues) with sane third-party dependencies for asset storage
 - Easier setup process (make OAuth optional in production)
