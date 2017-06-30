@@ -60,7 +60,7 @@ gem 'draper', '3.0.0.pre1'
 gem 'responders','~> 2.0'
 
 # Friendly URL slugs for models
-gem 'friendly_id', github: "norman/friendly_id", branch: "master"
+gem 'friendly_id'
 
 # Environment variables from .env files
 gem 'dotenv-rails'

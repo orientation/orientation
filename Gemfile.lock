@@ -1,21 +1,4 @@
 GIT
-  remote: https://github.com/Casecommons/pg_search
-  revision: 19ebda28fcfe41fd809b5d7e41e36076a46f27ad
-  specs:
-    pg_search (1.0.6)
-      activerecord (>= 4.2)
-      activesupport (>= 4.2)
-      arel
-
-GIT
-  remote: https://github.com/norman/friendly_id
-  revision: aff0564584e84ffa505e6e278b65ca3c4ee5d698
-  branch: master
-  specs:
-    friendly_id (5.2.0.beta.1)
-      activerecord (>= 4.0.0)
-
-GIT
   remote: https://github.com/rails/sass-rails
   revision: dfbcc6a53653d8908007e26324a0f299f026ec4f
   branch: master
@@ -151,6 +134,8 @@ GEM
     ffi (1.9.10)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
+    friendly_id (5.2.1)
+      activerecord (>= 4.0.0)
     get_process_mem (0.2.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -194,9 +179,8 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_portile (0.6.2)
     minitest (5.10.2)
-    moneta (0.8.0)
-    mini_portile2 (2.1.0)
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -368,7 +352,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.5.0)
   faker
   font-awesome-sass
-  friendly_id!
+  friendly_id
   haml-rails
   launchy
   listen (~> 3.0.5)
@@ -401,7 +385,7 @@ DEPENDENCIES
   uglifier
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.4.1p111
 
 BUNDLED WITH
    1.15.1
