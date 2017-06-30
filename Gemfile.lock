@@ -112,10 +112,10 @@ GEM
     erubis (2.7.0)
     excon (0.57.0)
     execjs (2.7.0)
-    factory_girl (4.5.0)
+    factory_girl (4.8.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.5.0)
-      factory_girl (~> 4.5.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
     faker (1.6.3)
       i18n (~> 0.5)
@@ -348,13 +348,13 @@ DEPENDENCIES
   derailed_benchmarks
   dotenv-rails
   draper (~> 3.0.0)
-  factory_girl_rails (~> 4.5.0)
+  factory_girl_rails
   faker
   font-awesome-sass
   friendly_id
   haml-rails
   launchy
-  listen (~> 3.0.5)
+  listen
   mandrill_mailer
   omniauth
   omniauth-google-oauth2
@@ -379,7 +379,7 @@ DEPENDENCIES
   slack-notifier
   spring
   spring-commands-rspec
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen
   stackprof
   uglifier
 

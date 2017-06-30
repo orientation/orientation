@@ -84,9 +84,9 @@ group :development do
   gem 'binding_of_caller'
   gem 'powder'
   gem 'bullet'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
   gem 'derailed_benchmarks'
   gem 'stackprof'
 end
@@ -94,7 +94,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-byebug'
