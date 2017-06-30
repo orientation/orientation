@@ -36,7 +36,7 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 
 # Form builder
-gem 'simple_form', github: "olivierlacan/simple_form", branch: "rails-5-type-for-attribute"
+gem 'simple_form'
 
 # Server-side syntax highlighting
 gem 'pygments.rb'
@@ -49,9 +49,9 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
 # Full-text search with PostgreSQL
-gem 'pg_search', github: 'Casecommons/pg_search'
+gem 'pg_search'
 
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'activemodel-serializers-xml'
 
 # Decorators
 gem 'draper', '3.0.0.pre1'
