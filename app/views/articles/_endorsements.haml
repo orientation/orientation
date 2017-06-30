@@ -4,8 +4,8 @@
   .split-cell
     - toggle_endorsement_label = current_user.endorsing?( @article ) ? 'Unendorse' : 'Endorse'
     = link_to toggle_endorsement_label, toggle_endorsement_article_url( @article ), class: 'tsxs', method: :put
-- if @article.endorsements.count > 0
+- if @article.endorsers.active.count.nonzero?
   %ul.list.list--object
-    = render partial: 'endorsement', collection: @article.endorsements.decorate
+    = render partial: 'endorser', collection: @article.endorsers.active.decorate
 - else
   %p.mbf.tcs.tsi.tss Endorse this article if you find it helpful.

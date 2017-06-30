@@ -4,8 +4,8 @@
   .split-cell
     - toggle_subscription_label = current_user.subscribed_to?( @article ) ? 'Unsubscribe' : 'Subscribe'
     = link_to toggle_subscription_label, toggle_subscription_article_url( @article ), class: 'tsxs', method: :put
-- if @article.subscriptions.count > 0
+- if @article.subscribers.active.count.nonzero?
   %ul.list.list--object
-    = render partial: 'subscription', collection: @article.subscriptions.decorate
+    = render partial: 'subscriber', collection: @article.subscribers.active.decorate
 - else
   %p.mbf.tcs.tsi.tss Subscribe to receive updates about this article.
