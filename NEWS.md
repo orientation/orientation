@@ -2,6 +2,19 @@
 Interesting new features added to this project will be documented here reverse
 chronologically. This is [not a change log](CHANGELOG.md).
 
+## June 30th, 2017
+### Remove lets-encrypt-rails-heroku gem
+
+This gem is now deprecated since Heroku now offers free Let's Encrypt SSL
+with all of their paid dynos. A paid account was required to setup the SSL
+certificate with the previous method so it's technically much more simple now.
+
+Go to your Heroku app settings, update your DNS to point to their SSL endpoint
+and you're good to go.
+
+You can find instructions on how to set that up here:
+https://blog.heroku.com/ssl-is-now-included-on-all-paid-dynos
+
 ## April 10th, 2017
 
 ### Switch web servers from Unicorn to Puma

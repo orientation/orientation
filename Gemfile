@@ -68,11 +68,6 @@ gem 'dotenv-rails'
 # ActionCable dependency
 gem 'redis', '~> 3.0'
 
-# platform-api fork is necessary to allow letsencrypt-rails-heroku to
-# make Heroku API requests to upload the Let's Encrypt SSL certificates
-gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
-gem 'letsencrypt-rails-heroku', group: 'production'
-
 # === Third-party Integrations === #
 
 # Exception reporter (see orientation.yml)
