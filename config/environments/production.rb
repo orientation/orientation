@@ -89,8 +89,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # Using the letsencrypt-rails-heroku gem to automatically renew Let's Encrypt
-  # SSL certificate.
-  config.middleware.use Letsencrypt::Middleware
 end
