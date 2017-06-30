@@ -1,4 +1,4 @@
-class GenerateSlugsForExistingTags < ActiveRecord::Migration
+class GenerateSlugsForExistingTags < ActiveRecord::Migration[4.2]
   class MigrationTag < ActiveRecord::Base
     self.table_name = "tags"
 

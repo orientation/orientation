@@ -1,4 +1,4 @@
-class AddSubscriptionsCountToArticles < ActiveRecord::Migration
+class AddSubscriptionsCountToArticles < ActiveRecord::Migration[4.2]
   class MigrationArticleSubscription < ActiveRecord::Base
     self.table_name = "article_subscriptions"
     belongs_to :article, class_name: "MigrationArticle", foreign_key: "article_id"

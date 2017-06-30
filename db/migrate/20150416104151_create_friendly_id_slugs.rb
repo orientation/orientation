@@ -1,4 +1,4 @@
-class CreateFriendlyIdSlugs < ActiveRecord::Migration
+class CreateFriendlyIdSlugs < ActiveRecord::Migration[4.2]
   class MigrationArticle < ActiveRecord::Base
     self.table_name = :articles
   end

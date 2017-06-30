@@ -1,4 +1,4 @@
-class AddCounterCacheToTagsAndArticles < ActiveRecord::Migration
+class AddCounterCacheToTagsAndArticles < ActiveRecord::Migration[4.2]
   def change
     change_table :articles do |t|
       t.integer :tags_count, default: 0, null: false

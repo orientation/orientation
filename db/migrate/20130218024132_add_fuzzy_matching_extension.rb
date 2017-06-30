@@ -1,4 +1,4 @@
-class AddFuzzyMatchingExtension < ActiveRecord::Migration
+class AddFuzzyMatchingExtension < ActiveRecord::Migration[4.2]
   def up
     execute "create extension fuzzystrmatch"
     execute "create extension pg_trgm"

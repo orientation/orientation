@@ -1,4 +1,4 @@
-class AddEndorsementsCountToArticles < ActiveRecord::Migration
+class AddEndorsementsCountToArticles < ActiveRecord::Migration[4.2]
   class MigrationArticleEndorsement < ActiveRecord::Base
     self.table_name = "article_endorsements"
     belongs_to :article, class_name: "MigrationArticle", foreign_key: "article_id"
