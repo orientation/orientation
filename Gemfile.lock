@@ -110,7 +110,7 @@ GEM
       request_store (~> 1.0)
     erubi (1.6.1)
     erubis (2.7.0)
-    excon (0.50.1)
+    excon (0.57.0)
     execjs (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -160,7 +160,7 @@ GEM
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mandrill_mailer (1.4.0)
+    mandrill_mailer (1.6.0)
       actionpack
       activejob
       activesupport
