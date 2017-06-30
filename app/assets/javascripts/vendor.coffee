@@ -11,7 +11,6 @@
 
 #= require jquery
 #= require jquery-tokeninput/dist/js/jquery-tokeninput.min
-#= require jquery-ujs
 
 # -------------------------------------
 #   Bootstrap
