@@ -6,19 +6,13 @@ bootstrap@~3.3.2:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
 
-jquery, jquery@>=1.8.0:
+jquery:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
 jquery-tokeninput@~1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/jquery-tokeninput/-/jquery-tokeninput-1.6.0.tgz#a3d61a41fb5e6ca4095914019c92d3d43e61cc03"
-
-jquery-ujs@~1.0.3:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/jquery-ujs/-/jquery-ujs-1.0.4.tgz#b285f94b4de6c3fb14b0dbf6bead0982dc85a1e0"
-  dependencies:
-    jquery ">=1.8.0"
 
 moment@~2.15.0:
   version "2.15.1"

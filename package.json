@@ -6,7 +6,6 @@
     "bootstrap": "~3.3.2",
     "jquery": "^3.2.1",
     "jquery-tokeninput": "~1.6.0",
-    "jquery-ujs": "~1.0.3",
     "moment": "~2.15.0"
   }
 }
