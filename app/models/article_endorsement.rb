@@ -6,8 +6,8 @@ class ArticleEndorsement < ApplicationRecord
 
   after_create :send_endorsement
 
-  validates :article_id, uniqueness: {
-    scope: :user_id, message: "already exists for user"
+  validates :user_id, uniqueness: {
+    scope: :article_id, message: "has already endorsed this article"
   }
 
   def send_endorsement
