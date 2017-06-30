@@ -6,6 +6,10 @@ class ArticleEndorsement < ApplicationRecord
 
   after_create :send_endorsement
 
+  validates :article_id, uniqueness: {
+    scope: :user_id, message: "already exists for user"
+  }
+
   def send_endorsement
     SendArticleEndorsementJob.perform_later(id)
   end
