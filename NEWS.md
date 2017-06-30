@@ -3,6 +3,18 @@ Interesting new features added to this project will be documented here reverse
 chronologically. This is [not a change log](CHANGELOG.md).
 
 ## June 30th, 2017
+### Rails 5.1
+
+Orientation now runs Rails 5.1. You can find the release notes for this version
+of Rails here: http://edgeguides.rubyonrails.org/5_1_release_notes.html#transactional-tests-with-multiple-connections
+
+And the upgrade guide here: http://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-5-0-to-rails-5-1
+
+This should be a fairly smooth upgrade since I haven't opted to move to
+Webpack yet. Our JavaScript doesn't really warrant that and I'm not really
+excited about adding so many new dependencies without using a front-end
+framework.
+
 ### Remove lets-encrypt-rails-heroku gem
 
 This gem is now deprecated since Heroku now offers free Let's Encrypt SSL
