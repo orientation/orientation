@@ -29,8 +29,8 @@ class Article < ApplicationRecord
     }
 
   belongs_to :author, class_name: "User"
-  belongs_to :editor, class_name: "User"
-  belongs_to :outdatedness_reporter, class_name: "User"
+  belongs_to :editor, class_name: "User", required: false
+  belongs_to :outdatedness_reporter, class_name: "User", required: false
 
   has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
