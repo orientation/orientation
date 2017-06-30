@@ -4,6 +4,10 @@ class ArticleSubscription < ApplicationRecord
   belongs_to :article, counter_cache: :subscriptions_count
   belongs_to :user
 
+  validates :user_id, uniqueness: {
+    scope: :article_id, message: "is already subscribed"
+  }
+
   def send_update
     clear_existing_queued_update_jobs if update_queued?
     SendArticleUpdateJob.set(wait: 5.minutes).perform_later(article.id, user.id)
