@@ -5,7 +5,7 @@ ruby ENV['CUSTOM_RUBY_VERSION'] || '2.4.1'
 # Force HTTPS for GitHub under bundler 1.x, which is the default for bundler 2.x
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem 'rails', "~> 5.0.1"
+gem 'rails', "~> 5.1.2"
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

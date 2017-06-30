@@ -16,7 +16,7 @@ chdir APP_ROOT do
 
   puts '== Installing dependencies =='
   system! 'gem install bundler --conservative'
-  system('bundle check') or system!('bundle install')
+  system('bundle check') || system!('bundle install')
 
   puts "\n== Copying environment files =="
   unless File.exist?(".env")
@@ -31,11 +31,9 @@ chdir APP_ROOT do
   unless File.exist?("config/orientation.yml")
     system "cp config/orientation.example.yml config/orientation.yml"
   end
+  # Install JavaScript dependencies if using Yarn
+  # system('bin/yarn')
 
-  puts "\n== Installing npm & yarn (JS) dependencies =="
-  system "nvm install"
-  # npm will install yarn and run yarn install in the post install sequence
-  system "npm install"
 
   puts "\n== Preparing database =="
   system! 'bin/rails db:setup'
