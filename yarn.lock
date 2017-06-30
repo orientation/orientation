@@ -14,9 +14,9 @@ jquery-tokeninput@~1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/jquery-tokeninput/-/jquery-tokeninput-1.6.0.tgz#a3d61a41fb5e6ca4095914019c92d3d43e61cc03"
 
-moment@~2.15.0:
-  version "2.15.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.15.1.tgz#e979c2a29e22888e60f396f2220a6118f85cd94c"
+moment@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 momentjs@^2.0.0:
   version "2.0.0"
