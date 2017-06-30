@@ -14,20 +14,17 @@ class User < ApplicationRecord
   validates :email, presence: true
   validate :whitelisted_email, if: -> { self.class.email_whitelist_enabled? }
 
-  def self.author
+  scope :active, -> { where(active: true) }
+  scope :author, lambda {
     joins(:articles).group('users.id').having('count(articles.id) > 0')
-  end
+  }
 
-  def self.prolific
+  scope :prolific, lambda {
     joins(articles: :author).
       select('users.*, count(articles.id) as articles_count').
       group(:id).
       order('articles_count DESC')
-  end
-
-  def self.active
-    where(active: true)
-  end
+  }
 
   def self.find_or_create_from_omniauth(auth)
     find_and_update_from_omniauth(auth) or create_from_omniauth(auth)

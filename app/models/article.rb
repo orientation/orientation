@@ -35,9 +35,9 @@ class Article < ApplicationRecord
   has_many :articles_tags, dependent: :destroy
   has_many :tags, through: :articles_tags, counter_cache: :tags_count
   has_many :subscriptions, class_name: "ArticleSubscription", dependent: :destroy
-  has_many :subscribers, through: :subscriptions, class_name: "User", source: :user
+  has_many :subscribers, -> { active }, through: :subscriptions, class_name: "User", source: :user
   has_many :endorsements, class_name: "ArticleEndorsement", dependent: :destroy
-  has_many :endorsers, through: :endorsements, class_name: "User", source: :user
+  has_many :endorsers, -> { active }, through: :endorsements, class_name: "User", source: :user
   has_many :views
 
   attr_reader :tag_tokens

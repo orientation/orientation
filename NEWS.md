@@ -3,6 +3,17 @@ Interesting new features added to this project will be documented here reverse
 chronologically. This is [not a change log](CHANGELOG.md).
 
 ## June 30th, 2017
+### Hide inactive users from article endorsers and subscribers by default
+
+People leave, and when they do it's always odd to see a broken Google avatar
+of them endorsing an article.
+
+This shouldn't affect the endorsement and subscription counts. So an article
+can still benefit from old endorsements and subscriptions to increase its
+perceived value. Although this may not make sense in the long term, since
+by definition inactive users aren't there to see if they should still be
+endorsing an article.
+
 ### Rails 5.1
 
 Orientation now runs Rails 5.1. You can find the release notes for this version
