@@ -4,8 +4,12 @@
 # TEAM
 
     Olivier Lacan -- @olivierlacan
+
+# ALUMNI
+
     Drew Barontini -- @drewbarontini
     John D. Jameson -- @johndjameson
+    Aimee Booth -- @ae_booth
 
 # THANKS
 
