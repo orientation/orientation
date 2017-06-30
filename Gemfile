@@ -11,7 +11,7 @@ gem 'rails', "~> 5.0.1"
 gem 'puma', '~> 3.0'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', github: "rails/sass-rails", branch: "master"
+gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'

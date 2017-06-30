@@ -1,14 +1,3 @@
-GIT
-  remote: https://github.com/rails/sass-rails
-  revision: dfbcc6a53653d8908007e26324a0f299f026ec4f
-  branch: master
-  specs:
-    sass-rails (6.0.0.beta1)
-      railties (>= 4.0.0, < 5.1)
-      sass (~> 3.4)
-      sprockets (~> 4.x)
-      sprockets-rails (< 4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -179,14 +168,14 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_portile (0.6.2)
+    mini_portile2 (2.1.0)
     minitest (5.10.2)
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nio4r (1.2.1)
-    nokogiri (1.6.6.4)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0, < 1.5.2)
@@ -286,7 +275,13 @@ GEM
     rspec-support (3.5.0)
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
-    sass (3.4.23)
+    sass (3.4.24)
+    sass-rails (5.0.6)
+      railties (>= 4.0.0, < 6)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (>= 1.1, < 3)
     sexp_processor (4.7.0)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
@@ -306,7 +301,7 @@ GEM
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
       spring (~> 1.2)
-    sprockets (4.0.0.beta4)
+    sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.0)
@@ -374,7 +369,7 @@ DEPENDENCIES
   redis (~> 3.0)
   responders (~> 2.0)
   rspec-rails
-  sass-rails!
+  sass-rails
   simple_form
   skylight
   slack-notifier
