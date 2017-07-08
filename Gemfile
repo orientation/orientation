@@ -31,9 +31,8 @@ gem 'pg'
 # Autoprefixer
 gem 'autoprefixer-rails'
 
-# Job queueing with DelayedJob
-gem 'delayed_job'
-gem 'delayed_job_active_record'
+# Job queueing with Sidekiq (requires Redis)
+gem 'sidekiq'
 
 # Form builder
 gem 'simple_form'
