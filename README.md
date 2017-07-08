@@ -39,6 +39,10 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 ## Requirements
 
 ### Software
+
+Some of these system dependencies can be installed on a macOS development
+machine with the `bin/system` command using [Homebrew](https://brew.sh/).
+
 - Ruby 2.2.0
 - PostgreSQL 9.3 (with JSON support, and fuzzystrmatch & pg_trgm extensions)
 - Python 2.7 (for Pygments)
