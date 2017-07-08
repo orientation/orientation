@@ -10,7 +10,8 @@
   "addons": [
     "scheduler",
     "heroku-postgresql",
-    "logentries"
+    "logentries",
+    "heroku-redis:hobby-dev"
   ],
   "env": {
     "ORIENTATION_LOGO": "/assets/default_logo.svg",
