@@ -1,3 +1,4 @@
+#= require rails-ujs
 #= require orientation
 #= require_tree ./components
 #= require domready
