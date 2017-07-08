@@ -9,7 +9,7 @@
   ],
   "addons": [
     "scheduler",
-    "heroku-postgresql",
+    "heroku-postgresql:hobby-dev",
     "logentries"
   ],
   "env": {
