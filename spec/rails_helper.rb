@@ -15,6 +15,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+# See https://github.com/renz45/mandrill_mailer#offline-testing
+require 'mandrill_mailer/offline'
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -66,6 +69,8 @@ RSpec.configure do |config|
   end
 
   config.around(:each) do |example|
+    MandrillMailer.deliveries.clear
+
     DatabaseCleaner.cleaning do
       example.run
     end
