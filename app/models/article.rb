@@ -150,7 +150,7 @@ class Article < ApplicationRecord
   # of contributors, for instance to avoid notifying someone about something
   # they did on an article they're a contributor to.
   def contributors(excluding: nil)
-    [author, editor].uniq.reject do |user|
+    [author, editor].uniq.compact.reject do |user|
       user == excluding
     end
   end
