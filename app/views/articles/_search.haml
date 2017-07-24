@@ -24,6 +24,8 @@
 
   %ul.list.list--xs.js-search-results{ class: ( 'hide-results dn' if hide_results) }
     = render @articles unless hide_results
+    - if @articles.empty?
+      %p There are no #{action_name} articles.
 
   - if alternative_content
     .js-search-alternate
