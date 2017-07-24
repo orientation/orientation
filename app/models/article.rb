@@ -139,6 +139,7 @@ class Article < ApplicationRecord
 
   def recently_notified_author?
     return false if never_notified_author?
+
     self.last_notified_author_at > 1.week.ago.beginning_of_day
   end
 
