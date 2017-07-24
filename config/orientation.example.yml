@@ -10,7 +10,6 @@ development: &defaults
     stale: true
     outdated: true
     archived: true
-    endorsed: true
 
 production: &production
   exception_reporter: <%= ENV["ORIENTATION_EXCEPTION_REPORTER"] %>
