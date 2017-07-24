@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ArticleOutdatedWorker, type: :worker do
-  before do
-    Sidekiq::Testing.inline!
-  end
-
   it "sends an ArticleMailer" do
     article = create(:article)
     reporter = create(:user)

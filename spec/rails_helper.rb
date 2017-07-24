@@ -87,6 +87,14 @@ RSpec.configure do |config|
     end
   end
 
+  config.around(:each, type: :worker) do |example|
+    Sidekiq::Testing.inline!
+
+    example.run
+
+    Sidekiq::Testing.fake!
+  end
+
   # make it unnecessary to prefix factories with FactoryGirl
   # instead call create, build, or build_stubbed directly
   config.include FactoryGirl::Syntax::Methods

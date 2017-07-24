@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ArticleEndorsementWorker, type: :worker do
-  before do
-    Sidekiq::Testing.inline!
-  end
-
   it "sends an ArticleMailer" do
     endorsement = create(:article_endorsement)
     article = endorsement.article
