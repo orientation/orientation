@@ -81,3 +81,5 @@ RSpec.configure do |config|
   # instead call create, build, or build_stubbed directly
   config.include FactoryGirl::Syntax::Methods
 end
+
+Capybara.asset_host = 'http://orientation.dev'
