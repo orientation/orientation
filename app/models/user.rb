@@ -56,10 +56,12 @@ class User < ApplicationRecord
   def notify_about_stale_articles
     return false if inactive?
 
-    articles = articles.stale.select(&:ready_to_send_staleness_notification_for?)
-    article_ids = articles.map(&:id)
+    stale_articles_ids = articles.stale.
+      select(&:ready_to_send_staleness_notification_for?).map(&:id)
 
-    ArticleStaleWorker.perform_async(article_ids) if article_ids.any?
+    if stale_articles_ids.any?
+      ArticleStaleWorker.perform_async(stale_articles_ids)
+    end
   end
 
   def inactive?

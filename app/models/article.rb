@@ -140,11 +140,11 @@ class Article < ApplicationRecord
   def recently_notified_author?
     return false if never_notified_author?
 
-    self.last_notified_author_at > 1.week.ago.beginning_of_day
+    last_notified_author_at > 1.week.ago.beginning_of_day
   end
 
   def ready_to_send_staleness_notification_for?
-    self.never_notified_author? or !self.recently_notified_author?
+    never_notified_author? or !recently_notified_author?
   end
 
   # excluding can be a user instance that needs to be excluded from the list
