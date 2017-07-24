@@ -6,6 +6,8 @@ class SendArticleOutdatedJob < ApplicationJob
     contributors = article.contributors
     reporter = User.find(reporter_id)
 
-    ArticleMailer.send_outdated_notification_for(article, contributors, reporter).deliver
+    ArticleMailer.send_outdated_notification_for(
+      article, contributors, reporter
+    ).deliver
   end
 end
