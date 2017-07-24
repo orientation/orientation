@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe Article do
   describe ".text_search" do
     before(:all) do
-      100.times { create :article }
+      10.times { create :article }
       @article1 = create(:article, title: "Pumpernickel Stew is not so great", content: "Yum")
       @article2 = create(:article, title: "There is no cheese but French cheese", content: "Truth")
     end
