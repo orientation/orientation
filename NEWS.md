@@ -2,6 +2,32 @@
 Interesting new features added to this project will be documented here reverse
 chronologically. This is [not a change log](CHANGELOG.md).
 
+## July 25th, 2017
+### Properly weigh search results
+
+There was a bug in Orientation ever since March 29th, 2015 when I had the
+brilliant idea of allow existing scopes to `Article.text_search` so that it
+could search on a sub-set of records like Fresh articles.
+
+The problem is that Orientation almost always default to showing "current"
+articles (which are not archived) and this `Article.current` scope does some
+extra work... like ordering articles by their `outdated_at`, `updated_at`, or
+`created_at` timestamps.
+
+And this is usually fine. Unless we're talking about an array of articles that
+were sorted by the full-text search Postgres engine. In that case, you really
+don't care what the order of the existing scope was — only the subset is
+useful.
+
+This was the hard lesson in this bug fix. Search scopes were a useful feature
+that inadvertently caused a regression which took a full two years to resolve.
+I apologize for not heeding the failing test that arose when I made this
+change. For once, the false negative was truly a negative.
+
+The silver lining is that now your Orientation searches will be weighed properly
+with matches on the `title` of the article prioritized slighting over matches
+on the `content` of the article (which tend to be noisier matches).
+
 ## June 30th, 2017
 ### Hide inactive users from article endorsers and subscribers by default
 
