@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
       # In the development environment, your current_user will be the
       # first User in the database or a dummy one created below.
-      if Rails.env.development? || Rails.env.test?
+      if Rails.env.development? || Rails.env.test? || demo_app?
         user = User.first_or_create!(name: "Orientation", email: "about@orientation.io")
         session[:user_id] = user.id
       else
@@ -62,5 +62,10 @@ class ApplicationController < ActionController::Base
     if Rails.env.production? && !User.email_whitelist_enabled?
       flash[:error] = "WARNING: email whitelisting is currently disabled, set ENV['ORIENTATION_EMAIL_WHITELIST'] to enable it."
     end
+  end
+
+  def demo_app?
+    ENV["HEROKU_APP_NAME"].include?("demo") ||
+    ENV["HEROKU_APP_NAME"].include?("try")
   end
 end
