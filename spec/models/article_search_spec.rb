@@ -88,8 +88,6 @@ RSpec.describe Article do
       before do
         @title_match = create(:article, title: "Security Best Practices")
         @content_match = create(:article, content: "We have a number of security best practices, some of which don't make a lot of sense.")
-
-        skip "not working right yet"
       end
 
       subject(:search) { Article.text_search("security best practices") }
