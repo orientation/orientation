@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe 'Viewing the category' do
+  before do
+    Article.delete_all
+  end
+
   context "for fresh articles" do
     before { visit fresh_articles_path }
 
