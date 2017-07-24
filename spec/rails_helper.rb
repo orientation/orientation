@@ -14,6 +14,8 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'sidekiq/testing'
+require 'sidekiq_unique_jobs/testing'
 
 # See https://github.com/renz45/mandrill_mailer#offline-testing
 require 'mandrill_mailer/offline'
@@ -73,6 +75,15 @@ RSpec.configure do |config|
 
     DatabaseCleaner.cleaning do
       example.run
+    end
+  end
+
+  # Disable sidekiq-unique-jobs
+  config.before(:each, type: :worker) do
+    Sidekiq.configure_client do |config|
+      config.client_middleware do |chain|
+        chain.remove SidekiqUniqueJobs::Client::Middleware
+      end
     end
   end
 

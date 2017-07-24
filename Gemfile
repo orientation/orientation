@@ -34,6 +34,9 @@ gem 'autoprefixer-rails'
 # Job queueing with Sidekiq (requires Redis)
 gem 'sidekiq'
 
+# Job uniqueness & locking
+gem 'sidekiq-unique-jobs'
+
 # Form builder
 gem 'simple_form'
 

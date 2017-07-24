@@ -1,5 +1,5 @@
-class SendArticleOutdatedJob < ApplicationJob
-  queue_as :default
+class ArticleOutdatedWorker
+  include Sidekiq::Worker
 
   def perform(article_id, reporter_id)
     article = Article.includes(:editor, :author).find(article_id)

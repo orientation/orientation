@@ -1,5 +1,6 @@
-class SendArticleUpdateJob < ApplicationJob
-  queue_as :default
+class ArticleUpdatedWorker
+  include Sidekiq::Worker
+  sidekiq_options unique: :until_executed
 
   def perform(article_id, user_id)
     article = Article.find(article_id)
