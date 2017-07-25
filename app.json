@@ -36,5 +36,8 @@
     {
       "url": "https://github.com/heroku/heroku-buildpack-ruby"
     }
-  ]
+  ],
+  "scripts": {
+    "postdeploy": "bin/rails db:seed"
+  }
 }
