@@ -16,8 +16,8 @@
   "env": {
     "HEROKU_APP_NAME": { "required": true },
     "HEROKU_PARENT_APP_NAME": { "required": true },
-    "ORIENTATION_LOGO": "/assets/default_logo.svg",
-    "ORIENTATION_FAVICON": "/assets/default_favicon.png",
+    "ORIENTATION_LOGO": "default_logo.svg",
+    "ORIENTATION_FAVICON": "default_favicon.png",
     "ORIENTATION_DOMAIN": "REDACTED",
     "MANDRILL_USERNAME": "REDACTED",
     "MANDRILL_API_KEY": "REDACTED",
