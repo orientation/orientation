@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :article do
     author factory: :user
-    title { Faker::Lorem.sentence }
+    title { Faker::Lorem.sentence(3, false, 3) }
     slug { title.parameterize }
     content { Faker::Hacker.say_something_smart }
 

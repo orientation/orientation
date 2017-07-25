@@ -14,7 +14,7 @@
 @Orientation.accordion = ( options ) ->
   settings = $.extend
     $element : $( '.js-accordion' )
-    $button  : $( '.js-accordion-btn' )
+    $button  : $( '.js-accordion-button' )
     $content : $( '.js-accordion-content' )
   , options
 

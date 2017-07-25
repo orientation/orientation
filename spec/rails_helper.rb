@@ -19,6 +19,7 @@ require 'sidekiq_unique_jobs/testing'
 
 # See https://github.com/renz45/mandrill_mailer#offline-testing
 require 'mandrill_mailer/offline'
+require 'capybara-screenshot/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -99,3 +100,5 @@ RSpec.configure do |config|
   # instead call create, build, or build_stubbed directly
   config.include FactoryGirl::Syntax::Methods
 end
+
+Capybara.asset_host = 'http://orientation.dev'

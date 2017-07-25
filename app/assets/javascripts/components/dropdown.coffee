@@ -14,7 +14,7 @@
 @Orientation.dropdown = ( options ) ->
   settings = $.extend
     elementClass : 'js-dropdown'
-    buttonClass  : 'js-dropdown-btn'
+    buttonClass  : 'js-dropdown-button'
     activeClass  : 'is-active'
   , options
 

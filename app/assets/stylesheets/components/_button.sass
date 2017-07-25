@@ -7,23 +7,23 @@
 //   Template (Haml)
 // -------------------------------------
 //
-// .btn[a|b s|l]
+// .button[a|b s|l]
 //
 // *************************************
 
-.btn
-  border-radius: $btn-borderRadius
+.button
+  border-radius: $button-borderRadius
   border: 0
   cursor: pointer
   display: inline-block
-  font-size: $btn-fontSize
+  font-size: $button-fontSize
   font-weight: bold
-  line-height: $btn-lineHeight
-  padding: 0 $btn-space
+  line-height: $button-lineHeight
+  padding: 0 $button-space
   text-align: center
   text-decoration: none
   text-transform: uppercase
-  transition: $b-transition
+  transition: background $b-transition
 
 // -------------------------------------
 //   Modifiers
@@ -31,24 +31,24 @@
 
 // ----- Hierarchy ----- //
 
-.btn--a
-  background: $btn--a-background
-  color: $btn--a-color
+.button--a
+  background: $button--a-background
+  color: $button--a-color
 
   +state
-    background: lighten($btn--a-background, 10%)
-    color: $btn--a-color
+    background: lighten($button--a-background, 10%)
+    color: $button--a-color
 
-.btn--b
-  background: $btn--b-background
-  color: $btn--b-color
+.button--b
+  background: $button--b-background
+  color: $button--b-color
 
   +state
-    background: lighten($btn--b-background, 5%)
-    color: $btn--b-color
+    background: lighten($button--b-background, 5%)
+    color: $button--b-color
 
 // ----- Sizes ----- //
 
-.btn--l
-  font-size: $btn--l-fontSize
-  padding: 0 $btn-space-l
+.button--l
+  font-size: $button--l-fontSize
+  padding: 0 $button-space-l
