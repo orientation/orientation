@@ -8,7 +8,7 @@
 // -------------------------------------
 //
 // .switch
-//   %a.switch-btn[error|success](active)
+//   %a.switch-button[error|success](active)
 //
 // *************************************
 
@@ -23,27 +23,27 @@
 
 // ----- Button ----- //
 
-.switch-btn
+.switch-button
   border-radius: 0
   flex-grow: 1
 
   +state('is-active')
-    color: $switch-btn--state-color
+    color: $switch-button--state-color
 
 // Error
 
-.switch-btn--error
-  background: $switch-btn--error-background
-  color: $switch-btn--error-color
+.switch-button--error
+  background: $switch-button--error-background
+  color: $switch-button--error-color
 
   +state('is-active')
-    background: $switch-btn--error--state-background
+    background: $switch-button--error--state-background
 
 // Success
 
-.switch-btn--success
-  background: $switch-btn--success-background
-  color: $switch-btn--success-color
+.switch-button--success
+  background: $switch-button--success-background
+  color: $switch-button--success-color
 
   +state('is-active')
-    background: $switch-btn--success--state-background
+    background: $switch-button--success--state-background

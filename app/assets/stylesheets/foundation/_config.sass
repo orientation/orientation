@@ -46,7 +46,7 @@ $york: #72c297
 
 // Red
 
-$coral: #f38055
+$ocre: #fc5c4a
 
 // Yellow
 
@@ -57,7 +57,7 @@ $gold: #ffca0a
 $c-background-invert: $white
 $c-background: darken($white, 4%)
 $c-border: darken($c-background-invert, 15%)
-$c-error: $coral
+$c-error: $ocre
 $c-highlight: $fountain
 $c-subdue: lighten($chicago, 30%)
 $c-success: $york
@@ -69,10 +69,10 @@ $c-text: $baltic
 
 // Button
 
-$btn--a-background: $c-highlight
-$btn--a-color: $c-text-invert
-$btn--b-background: $c-subdue
-$btn--b-color: $c-text-invert
+$button--a-background: $c-highlight
+$button--a-color: $c-text-invert
+$button--b-background: $c-subdue
+$button--b-color: $c-text-invert
 
 // Card
 
@@ -98,14 +98,14 @@ $article-link-not-found-color: $c-error
 
 // Bulletin
 
-$bulletin-warning-background: $coral
+$bulletin-warning-background: $ocre
 $bulletin-notice-background: $gold
 
 // Header
 
 $header-background: $c-background-invert
-$header-btn-background: transparent
-$header-btn--state-background: $c-background
+$header-button-background: transparent
+$header-button--state-background: $c-background
 
 // Label
 
@@ -117,22 +117,23 @@ $label--link--invert--state-color: darken($label--link--invert-color, 10%)
 
 // Signal
 
-$signal-background: darken($c-background-invert, 10%)
+$signal-background: $white
 $signal--fresh-background: $york
-$signal--outdated-background: $coral
+$signal--outdated-background: $ocre
 $signal--stale-background: $gold
+$signal--popular-background: $baltic
 
 // Switch
 
-$switch-btn--state-color: $c-text-invert
+$switch-button--state-color: $c-text-invert
 
-$switch-btn--error-background: lighten($c-error, 25%)
-$switch-btn--error-color: lighten($c-error, 10%)
-$switch-btn--error--state-background: $c-error
+$switch-button--error-background: lighten($c-error, 25%)
+$switch-button--error-color: lighten($c-error, 10%)
+$switch-button--error--state-background: $c-error
 
-$switch-btn--success-background: lighten($c-success, 25%)
-$switch-btn--success-color: lighten($c-success, 10%)
-$switch-btn--success--state-background: $c-success
+$switch-button--success-background: lighten($c-success, 25%)
+$switch-button--success-color: lighten($c-success, 10%)
+$switch-button--success--state-background: $c-success
 
 // ----- Vendor ----- //
 
@@ -201,15 +202,15 @@ $b-transition: 0.15s ease-in-out
 
 // ----- Button ----- //
 
-$btn-borderRadius: $b-borderRadius
+$button-borderRadius: $b-borderRadius
 
-$btn-fontSize: $b-fontSize-xs
-$btn--l-fontSize: 100%
-$btn-lineHeight: 3
+$button-fontSize: $b-fontSize-xs
+$button--l-fontSize: 100%
+$button-lineHeight: 3
 
-$btn-space: $b-space
-$btn-space-s: $btn-space * 0.5
-$btn-space-l: $btn-space * 2
+$button-space: $b-space
+$button-space-s: $button-space * 0.5
+$button-space-l: $button-space * 2
 
 // ----- Card ----- //
 
@@ -269,7 +270,7 @@ $collection-columns: 3
 $header-gutter: $b-space-s
 $header--s--gutter: $b-space
 $header-height: 70px
-$header-btn-padding: $b-space-s
+$header-button-padding: $b-space-s
 
 // ----- Label ----- //
 
