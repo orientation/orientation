@@ -81,6 +81,9 @@ gem 'slack-notifier'
 # Transactional emails (see orientation.yml)
 gem 'mandrill_mailer'
 
+gem 'factory_girl_rails'
+gem 'faker'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -96,8 +99,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  gem 'factory_girl_rails'
-  gem 'faker'
+
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-remote'
