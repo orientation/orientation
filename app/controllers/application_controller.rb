@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
   end
 
   def warn_about_email_whitelist
-    if Rails.env.production? && !User.email_whitelist_enabled?
+    if Rails.env.production? && !demo_app? && !User.email_whitelist_enabled?
       flash[:error] = "WARNING: email whitelisting is currently disabled, set ENV['ORIENTATION_EMAIL_WHITELIST'] to enable it."
     end
   end
