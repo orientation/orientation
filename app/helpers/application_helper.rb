@@ -39,7 +39,7 @@ module ApplicationHelper
   end
 
   def current_action?(name, css)
-    action_name == name ? css : ''
+    action_name == name ? "#{css}" : "#{css.gsub("signal--", "signal--inactive--")}"
   end
 
   private

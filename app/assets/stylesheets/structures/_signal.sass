@@ -14,7 +14,7 @@
 // *************************************
 
 .signal
-  background: $signal-background
+  background-color: $white
   bottom: 0
   left: 0
   position: absolute
@@ -38,11 +38,55 @@
 
 .signal--fresh
   background: $signal--fresh-background
+  color: $white
+
+  &:hover
+    color: $white
+
+.signal--inactive--fresh:hover
+  background: lighten($signal--fresh-background, 10%)
+  color: $white
 
 .signal--outdated
   background: $signal--outdated-background
   color: $black
 
+  &:hover
+    color: $black
+
+.signal--inactive--outdated:hover
+  background: lighten($signal--outdated-background, 10%)
+  color: $black
+
 .signal--stale
   background: $signal--stale-background
   color: $black
+
+  &:hover
+    color: $black
+
+.signal--inactive--stale:hover
+  background: lighten($signal--stale-background, 10%)
+  color: $black
+
+.signal--popular
+  background: $signal--popular-background
+  color: $white
+
+  &:hover
+    color: $white
+
+.signal--inactive--popular:hover
+  background: lighten($signal--popular-background, 10%)
+  color: $white
+
+.signal--archived
+  background: $signal--archived-background
+  color: $white
+
+  &:hover
+    color: $white
+
+.signal--inactive--archived:hover
+  background: lighten($signal--archived-background, 10%)
+  color: $white
