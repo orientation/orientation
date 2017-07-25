@@ -65,7 +65,6 @@ class ApplicationController < ActionController::Base
   end
 
   def demo_app?
-    ENV["HEROKU_APP_NAME"].include?("demo") ||
-    ENV["HEROKU_APP_NAME"].include?("try")
+    ENV["HEROKU_APP_NAME"]&.include?("demo")
   end
 end
