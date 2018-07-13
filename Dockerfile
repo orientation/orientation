@@ -1,4 +1,5 @@
-FROM ruby:2.2.2
+FROM ruby:2.4.1
+
 MAINTAINER Olivier Lacan <hi@olivierlacan.com>
 
 RUN apt-get update && apt-get upgrade -y
