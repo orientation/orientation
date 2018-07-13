@@ -3,7 +3,6 @@
 [![Build Status][ci-image]][ci]
 [![Test Coverage][codeclimate-coverage-image]][codeclimate]
 [![Code Climate][codeclimate-image]][codeclimate]
-[![Dependency Status][gemnasium-image]][gemnasium]
 ![Ruby Version][ruby-version-image]
 
 ## What is Orientation?
