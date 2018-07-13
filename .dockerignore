@@ -1,3 +1,1 @@
-tmp/cache/**/*
-tmp/pids/**/*
-tmp/sockets/**/*
+*/puma-dev-*
