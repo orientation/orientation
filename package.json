@@ -1,7 +1,4 @@
 {
-  "engines": {
-    "node": "6.7.x"
-  },
   "dependencies": {
     "bootstrap": "~3.3.2",
     "jquery": "^3.2.1",
