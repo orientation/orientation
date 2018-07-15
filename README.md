@@ -124,6 +124,11 @@ $ heroku buildpacks -a yourappname
 - Then go to `Credentials` and `Create a new Client ID`. You'll need the app's production URL to complete this step so if you're using the Heroku button, do that first. You can use your production URL for the `JavaScript Origins` setting, but make sure to use `http://yourdomain.com/auth/google_oauth2/callback` for in the `Redirect URIs` setting. It's a good idea to also add the same URL but with the HTTPS protocol to ensure that if you ever force SSL, Google will still accept the redirect.
 - Don't forget to go update the `OAUTH_PROVIDER_KEY` and `OAUTH_PROVIDER_SECRET` environment variables with the credentials Google gave you when you created your Client ID, otherwise the redirection process will fail.
 
+### Other OAuth providers
+
+- Get the key and secret from the OAuth provider of your choice by setting up a new OAuth application with appropriate *redirect URI* and *logout redirect URI*
+- Don't forget to go update the OAUTH_PROVIDER_KEY and OAUTH_PROVIDER_SECRET environment variables with the credentials Google gave you when you created your Client ID, otherwise the redirection process will fail.
+
 ### Transactional Emails with Mandrill
 
 If you enable transactional email notifications with Mandrill, you'll need to create Mandrill templates with names that match the ones listed in our [Mandrill documentation](doc/MANDRILL.md).
