@@ -1,4 +1,5 @@
-FROM ruby:2.2.2
+FROM ruby:2.4.1
+
 MAINTAINER Olivier Lacan <hi@olivierlacan.com>
 
 RUN apt-get update && apt-get upgrade -y
@@ -20,16 +21,16 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
 ## Gems caching
 # The addition of Gemfiles allows the bundle install step to be evicted from the
 # build cache when a change is detected.
-ADD ./Gemfile /tmp/Gemfile
-ADD ./Gemfile.lock /tmp/Gemfile.lock
+COPY ./Gemfile /tmp/Gemfile
+COPY ./Gemfile.lock /tmp/Gemfile.lock
 RUN bundle install --gemfile=/tmp/Gemfile
 
-ADD . /orientation
+COPY . /orientation
 WORKDIR /orientation
 
 RUN npm install --allow-root
 
-ADD ./config/database.docker.yml /orientation/config/database.yml
+COPY ./config/database.docker.yml /orientation/config/database.yml
 
 ENV RAILS_ENV=production
 

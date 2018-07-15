@@ -23,7 +23,7 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
   config.assets.css_compressor = :sass
 
-  config.assets.compile = true
+  config.assets.compile = false
   # Do not fallback to assets pipeline if a precompiled asset is missed.
 
   # Generate digests for assets URLs.
@@ -63,8 +63,8 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
 
-  config.mandrill_mailer.default_url_options = 
-    config.action_mailer.default_url_options = 
+  config.mandrill_mailer.default_url_options =
+    config.action_mailer.default_url_options =
       { host: 'orientation-staging.herokuapp.com' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
