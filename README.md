@@ -124,7 +124,14 @@ $ heroku buildpacks -a yourappname
 ### Other OAuth providers
 
 - Get the key and secret from the OAuth provider of your choice by setting up a new OAuth application with appropriate *redirect URI* and *logout redirect URI*
-- Don't forget to go update the OAUTH_PROVIDER_KEY and OAUTH_PROVIDER_SECRET environment variables with the credentials Google gave you when you created your Client ID, otherwise the redirection process will fail.
+- Don't forget to go update the `OAUTH_PROVIDER_NAME`, `OAUTH_PROVIDER_KEY`, 
+`OAUTH_PROVIDER_SECRET`, and `OAUTH_PROVIDER_URL` environment variables
+with the credentials the provider gave you when you created your Client ID,
+otherwise the redirection process will fail.
+- `OAUTH_PROVIDER_NAME` comes from the list of `omniauth` strategies. See the
+[list of strategies](https://github.com/omniauth/omniauth/wiki/List-of-Strategies)
+
+Tip: Exclude the `omniauth_` and `omniauth-` prefixes from `OAUTH_PROVIDER_NAME`.
 
 ### Transactional Emails with Mandrill
 
