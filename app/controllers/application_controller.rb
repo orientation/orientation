@@ -55,12 +55,16 @@ class ApplicationController < ActionController::Base
   end
 
   def oauth_callback?
-    request.path == oauth_callback_path(ENV['OAUTH_PROVIDER_NAME'])
+    request.path == oauth_callback_path(orientation_config['oauth_provider_name'])
   end
 
   def warn_about_email_whitelist
     if Rails.env.production? && !User.email_whitelist_enabled?
       flash[:error] = "WARNING: email whitelisting is currently disabled, set ENV['ORIENTATION_EMAIL_WHITELIST'] to enable it."
     end
+  end
+
+  def orientation_config
+    Rails.configuration.orientation
   end
 end

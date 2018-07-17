@@ -1,7 +1,10 @@
 development: &defaults
   exception_reporter: false
   logo: false
-  oauth_provider: false
+  oauth_provider_name: false
+  oauth_provider_url: false
+  oauth_provider_key: false
+  oauth_provider_secret: false
   performance_monitoring: false
   transactional_mailer: false
   upload_destination: :localhost
@@ -10,11 +13,14 @@ production: &production
   exception_reporter: <%= ENV["ORIENTATION_EXCEPTION_REPORTER"] %>
   transactional_mailer: <%= ENV["ORIENTATION_MAILER"] %>
   logo: <%= ENV["ORIENTATION_LOGO"] %>
-  oauth_provider: <%= ENV["ORIENTATION_OAUTH"] %>
+  oauth_provider_name: <%= ENV["OAUTH_PROVIDER_NAME"] %>
+  oauth_provider_url: <%= ENV["OAUTH_PROVIDER_URL"] %>
+  oauth_provider_key: <%= ENV["OAUTH_PROVIDER_KEY"] %>
+  oauth_provider_secret: <%= ENV["OAUTH_PROVIDER_SECRET"] %>
   performance_monitoring: <%= ENV["ORIENTATION_PERFORMANCE_MONITORING"] %>
   upload_destination: <%= ENV["ORIENTATION_UPLOAD_DESTINATION"] %>
 
-staging: 
+staging:
   <<: *production
 
 test:

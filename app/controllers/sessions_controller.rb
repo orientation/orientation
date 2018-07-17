@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
     origin = { origin: session.delete(:return_to) }.to_query
-    redirect_to("/auth/#{ENV['OAUTH_PROVIDER_NAME']}?#{origin}")
+    redirect_to("/auth/#{orientation_config['oauth_provider_name']}?#{origin}")
   end
 
   def create
