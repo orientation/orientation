@@ -9,8 +9,12 @@ class UserDecorator < ApplicationDecorator
     mail_to email, "Get in touch with #{first_name}"
   end
 
+  def name
+    object.try :name || "Anonymous"
+  end
+
   def first_name
-    source.name.split(" ").first if source.name.present?
+    name.split(" ").first
   end
 
   def image
@@ -27,10 +31,6 @@ class UserDecorator < ApplicationDecorator
 
   def link_tag
     link_to name, author_path(object)
-  end
-
-  def name
-    object.try :name || "Anonymous"
   end
 
   def status
