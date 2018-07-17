@@ -19,19 +19,28 @@
     "MANDRILL_USERNAME": "REDACTED",
     "MANDRILL_API_KEY": "REDACTED",
     "MANDRILL_DOMAIN": "heroku.com",
-    "OAUTH_PROVIDER_NAME": {
+    "GOOGLE_KEY": {
       "value": "REDACTED",
+      "description": "Legacy value for Google OAuth. New applications should use OAUTH_PROVIDER_KEY"
+    },
+    "GOOGLE_SECRET": {
+      "value": "REDACTED",
+      "description": "Legacy value for Google OAuth. New applications should use OAUTH_PROVIDER_SECRET"
+    },
+    "OAUTH_PROVIDER_NAME": {
+      "value": "google_oauth2",
+      "description": "OAuth 2 provider name for omniauth. See README",
       "required": true
     },
     "OAUTH_PROVIDER_URL": {
       "value": "REDACTED",
       "required": true
     },
-    "OAUTH_PROVIDER_SECRET": {
+    "OAUTH_PROVIDER_KEY": {
       "value": "REDACTED",
       "required": true
     },
-    "OAUTH_PROVIDER_KEY": {
+    "OAUTH_PROVIDER_SECRET": {
       "value": "REDACTED",
       "required": true
     }
