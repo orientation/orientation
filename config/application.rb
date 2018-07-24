@@ -33,7 +33,7 @@ module Orientation
       g.helper_specs false
     end
 
-    config.active_job.queue_adapter = :delayed_job
+    config.active_job.queue_adapter = :sidekiq
 
     # We load environment-specific configuration values from
     # config/orientation.yml into Rails.configuration.orientation

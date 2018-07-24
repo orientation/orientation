@@ -4,14 +4,14 @@
 # article - a stale article (an article that has not been updated for several months)
 #
 # This email can be tested using the `.test` method:
-#   ArticleMailer.test(:notify_author_of_staleness, email: <author.email>)
+#   ArticleMailer.test(:send_staleness_notification_for, email: <author.email>)
 #
 class ArticleMailer < MandrillMailer::TemplateMailer
   include ActionView::Helpers::UrlHelper
 
   default from: ENV['DEFAULT_FROM_EMAIL'] || 'notifications@orientation.io'
 
-  def notify_author_of_staleness(articles)
+  def send_staleness_notification_for(articles)
     author = articles.last.author
     mandrill_mail template: 'stale-article-alert',
                   subject: 'Some of your Orientation articles might be stale',
@@ -75,7 +75,7 @@ class ArticleMailer < MandrillMailer::TemplateMailer
   end
 
 
-  test_setup_for :notify_author_of_staleness do |mailer, options|
+  test_setup_for :send_staleness_notification_for do |mailer, options|
     articles = [
       MandrillMailer::Mock.new({
         id: 1,
@@ -86,6 +86,6 @@ class ArticleMailer < MandrillMailer::TemplateMailer
       })
     ]
 
-    mailer.notify_author_of_staleness(articles).deliver
+    mailer.send_staleness_notification_for(articles).deliver
   end
 end

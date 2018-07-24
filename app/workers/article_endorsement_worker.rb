@@ -1,5 +1,5 @@
-class SendArticleEndorsementJob < ApplicationJob
-  queue_as :default
+class ArticleEndorsementWorker
+  include Sidekiq::Worker
 
   def perform(endorsement_id)
     endorsement  = ArticleEndorsement.includes(

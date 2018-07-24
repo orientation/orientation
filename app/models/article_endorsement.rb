@@ -11,6 +11,10 @@ class ArticleEndorsement < ApplicationRecord
   }
 
   def send_endorsement
-    SendArticleEndorsementJob.perform_later(id)
+    ArticleEndorsementWorker.perform_async(id)
+  end
+
+  def endorser
+    user
   end
 end

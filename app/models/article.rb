@@ -134,16 +134,17 @@ class Article < ApplicationRecord
 
   def outdated!(user_id)
     update(outdated_at: Time.current, outdatedness_reporter_id: user_id)
-    SendArticleOutdatedJob.perform_later(id, user_id)
+    ArticleOutdatedWorker.perform_async(id, user_id)
   end
 
   def recently_notified_author?
     return false if never_notified_author?
-    self.last_notified_author_at > 1.week.ago.beginning_of_day
+
+    last_notified_author_at > 1.week.ago.beginning_of_day
   end
 
-  def ready_to_notify_author_of_staleness?
-    self.never_notified_author? or !self.recently_notified_author?
+  def ready_to_send_staleness_notification_for?
+    never_notified_author? or !recently_notified_author?
   end
 
   # excluding can be a user instance that needs to be excluded from the list

@@ -3,12 +3,12 @@ require "rails_helper"
 RSpec.describe ArticleMailer do
   let(:user) { create(:user, email: 'aimee@orientation.io') }
 
-  context ".notify_author_of_staleness" do
+  context ".send_staleness_notification_for" do
     let(:articles) do
       3.times { create(:article, :stale, author: user) }
       user.articles
     end
-    let(:mailer) { described_class.notify_author_of_staleness(articles) }
+    let(:mailer) { described_class.send_staleness_notification_for(articles) }
 
     subject { mailer }
 

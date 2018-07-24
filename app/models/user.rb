@@ -54,11 +54,18 @@ class User < ApplicationRecord
   end
 
   def notify_about_stale_articles
-    return false unless self.active? # we don't want to send mailers to inactive authors
+    return false if inactive?
 
-    articles = self.articles.stale.select(&:ready_to_notify_author_of_staleness?)
-    article_ids = articles.map(&:id)
-    StalenessNotificationJob.perform_later(article_ids) unless article_ids.empty?
+    stale_articles_ids = articles.stale.
+      select(&:ready_to_send_staleness_notification_for?).map(&:id)
+
+    if stale_articles_ids.any?
+      ArticleStaleWorker.perform_async(stale_articles_ids)
+    end
+  end
+
+  def inactive?
+    !active?
   end
 
   def subscribed_to?(article)
