@@ -18,8 +18,6 @@ module Orientation
     config.load_defaults 5.1
 
     # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
 
     # prefer indented sass syntax
     config.sass.preferred_syntax = :sass
@@ -38,7 +36,7 @@ module Orientation
     # We load environment-specific configuration values from
     # config/orientation.yml into Rails.configuration.orientation
     #
-    # You can find example values in config/orientation.example.yml
+    # You can find example values in config/orientation.sample.yml
     #
     # Once the application has booted you can assign values directly like this:
     #   Rails.configuration.orientation["transactional_mailer"] = :mandrill
@@ -46,5 +44,8 @@ module Orientation
     #   Rails.configuration.orientation["transactional_mailer"]
     #
     config.orientation = config_for(:orientation)
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
   end
 end

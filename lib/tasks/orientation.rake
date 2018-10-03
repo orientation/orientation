@@ -6,7 +6,7 @@ namespace :orientation do
     puts "Installing Orientation..."
     system 'bundle install'
     cp '.env.example', '.env'
-    cp 'config/database.example.yml', 'config/database.yml'
+    cp 'config/database.sample.yml', 'config/database.yml'
     puts "You should now configure .env with your local database settings..."
     puts "Use the following value for the `SECRET_KEY_BASE` key:"
     puts SecureRandom.hex(64)
