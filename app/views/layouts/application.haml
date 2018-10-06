@@ -11,6 +11,7 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false
     = favicon_link_tag ENV['ORIENTATION_FAVICON']
     = csrf_meta_tags
+    = csp_meta_tag
     = action_cable_meta_tag
     = open_search_description_link_tag
 
