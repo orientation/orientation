@@ -51,7 +51,7 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.1.4)
       execjs
-    awesome_print (1.7.0)
+    awesome_print (1.8.0)
     benchmark-ips (2.7.2)
     better_errors (2.5.0)
       coderay (>= 1.0.0)
