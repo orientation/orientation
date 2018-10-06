@@ -45,7 +45,7 @@ machine with the `bin/system` command using [Homebrew](https://brew.sh/).
 - Ruby 2.2.0
 - PostgreSQL 9.3 (with JSON support, and fuzzystrmatch & pg_trgm extensions)
 - Python 2.7 (for Pygments)
-- Node.js (for yarn)
+- Node.js 8.12.0 (for yarn)
 - yarn
 
 Both Node and Python are available on Heroku if you decide to deploy there,
