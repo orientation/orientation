@@ -4,6 +4,8 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
   web:
     build: .
     command: bundle exec puma -C config/puma.rb
