@@ -7,6 +7,7 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 require "action_cable/engine"
+require "active_storage/engine"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -44,6 +45,7 @@ module Orientation
     #   Rails.configuration.orientation["transactional_mailer"]
     #
     config.orientation = config_for(:orientation)
+
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
