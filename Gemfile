@@ -45,7 +45,7 @@ gem 'simple_form'
 gem 'pygments.rb'
 
 # Markdown parsing and rendering
-gem 'redcarpet', '~> 3.3.4'
+gem 'redcarpet', '~> 3.4.0'
 
 # OAuth integration
 gem 'omniauth'
