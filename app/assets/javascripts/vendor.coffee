@@ -9,14 +9,16 @@
 #   jQuery
 # -------------------------------------
 
-#= require jquery
+#= require jquery/dist/jquery.min
 #= require jquery-tokeninput/dist/js/jquery-tokeninput.min
 
 # -------------------------------------
 #   Bootstrap
 # -------------------------------------
 
-#= require bootstrap/js/tooltip
+#= require bootstrap/js/dist/util
+#= require popper.js/dist/umd/popper.min
+#= require bootstrap/js/dist/tooltip
 
 # -------------------------------------
 #   Moment.js
