@@ -13,16 +13,16 @@ namespace :orientation do
     puts "Make sure you also set the `DATABASE_USERNAME` and `DATABASE_PASSWORD` keys"
     puts "Once you're done, run `rake db:create db:setup`."
 
-    npm_installed = system 'which npm'
+    yarn_installed = system 'which yarn'
 
-    if npm_installed
-      system "npm install"
+    if yarn_installed
+      system "yarn install"
     else
-      puts "You don't seem to have npm installed."
-      puts "You can install npm by installing Node.js: https://nodejs.org/"
+      puts "You don't seem to have yarn installed."
+      puts "You can install yarn by installing Node.js: https://nodejs.org/"
       puts "I'm sorry if this is a bit tedious."
-      puts "Once you have npm installed, all you'll have to do is run:"
-      puts "npm install"
+      puts "Once you have yarn installed, all you'll have to do is run:"
+      puts "yarn install"
     end
   end
 
