@@ -32,7 +32,7 @@ before_script:
   - yarn install
   - bundle exec rake db:migrate
 script:
-  - bundle exec rspec spec/
+  - bin/rspec spec/
 branches:
   only:
     - master
