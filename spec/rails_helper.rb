@@ -1,14 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 
-# Coverage testing disabled by default except on Travis, if you want to
-# run a test coverage analysis, simply run specs with:
-#   COVERAGE=true rspec spec/
-#
-if ENV["COVERAGE"] || ENV["TRAVIS"]
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
-end
-
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
@@ -96,9 +87,9 @@ RSpec.configure do |config|
     Sidekiq::Testing.fake!
   end
 
-  # make it unnecessary to prefix factories with FactoryGirl
+  # make it unnecessary to prefix factories with FactoryBot
   # instead call create, build, or build_stubbed directly
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 end
 
 Capybara.asset_host = 'http://orientation.dev'

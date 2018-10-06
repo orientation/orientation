@@ -1,11 +1,9 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.4.4'
 
-# Force HTTPS for GitHub under bundler 1.x, which is the default for bundler 2.x
-git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
-
-gem 'rails', "~> 5.1.2"
+gem 'rails', "~> 5.2.0"
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -15,6 +13,9 @@ gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
+
+# See https://github.com/rails/execjs#readme for more supported runtimes
+# gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -44,7 +45,7 @@ gem 'simple_form'
 gem 'pygments.rb'
 
 # Markdown parsing and rendering
-gem 'redcarpet', '~> 3.3.4'
+gem 'redcarpet', '~> 3.4.0'
 
 # OAuth integration
 gem 'omniauth'
@@ -81,14 +82,18 @@ gem 'slack-notifier'
 # Transactional emails (see orientation.yml)
 gem 'mandrill_mailer'
 
-gem 'factory_girl_rails'
+gem 'factory_bot_rails'
 gem 'faker'
+
+# Use ActiveStorage variant
+# gem 'mini_magick', '~> 4.8'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'powder'
-  gem 'bullet'
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen'
