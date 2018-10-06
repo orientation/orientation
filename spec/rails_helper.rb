@@ -96,9 +96,9 @@ RSpec.configure do |config|
     Sidekiq::Testing.fake!
   end
 
-  # make it unnecessary to prefix factories with FactoryGirl
+  # make it unnecessary to prefix factories with FactoryBot
   # instead call create, build, or build_stubbed directly
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 end
 
 Capybara.asset_host = 'http://orientation.dev'

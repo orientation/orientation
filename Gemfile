@@ -82,7 +82,7 @@ gem 'slack-notifier'
 # Transactional emails (see orientation.yml)
 gem 'mandrill_mailer'
 
-gem 'factory_girl_rails'
+gem 'factory_bot_rails'
 gem 'faker'
 
 # Use ActiveStorage variant

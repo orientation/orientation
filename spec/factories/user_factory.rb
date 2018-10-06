@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user, class: User do
     provider { Faker::Company.name.parameterize.underscore }
     uid { "#{Faker::Number.digit}" }

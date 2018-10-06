@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :article do
     author factory: :user
     title { Faker::Lorem.sentence(3, false, 3) }
@@ -6,25 +6,25 @@ FactoryGirl.define do
     content { Faker::Hacker.say_something_smart }
 
     trait :stale do
-      created_at 7.months.ago
-      updated_at 7.months.ago
+      created_at { 7.months.ago }
+      updated_at { 7.months.ago }
     end
 
     trait :fresh do
-      created_at 7.months.ago
-      updated_at 6.days.ago
+      created_at { 7.months.ago }
+      updated_at { 6.days.ago }
     end
 
     trait :archived do
-      archived_at 1.day.ago
+      archived_at { 1.day.ago }
     end
 
     trait :outdated do
-      outdated_at Time.now
+      outdated_at { Time.now }
     end
 
     trait :guide do
-      guide true
+      guide { true }
     end
 
     trait :popular do
