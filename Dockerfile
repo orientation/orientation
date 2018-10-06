@@ -1,4 +1,4 @@
-FROM ruby:2.4.4-alpine
+FROM ruby:2.5.1-alpine
 
 MAINTAINER Olivier Lacan <hi@olivierlacan.com>
 
