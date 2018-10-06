@@ -94,7 +94,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'bullet'
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen'
