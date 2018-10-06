@@ -1,4 +1,4 @@
-class HtmlWithPygments < Redcarpet::Render::HTML
+class HtmlWithPygments < Redcarpet::Render::Safe
   def header(title, level)
     permalink = title.parameterize.downcase
     %(
