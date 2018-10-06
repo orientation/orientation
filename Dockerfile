@@ -5,7 +5,7 @@ MAINTAINER Olivier Lacan <hi@olivierlacan.com>
 RUN apk add --update \
   tzdata \
   build-base \
-  libpq \
+  postgresql-dev \
   yarn
 
 COPY . /orientation
