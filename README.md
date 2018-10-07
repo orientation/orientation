@@ -42,7 +42,7 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 Some of these system dependencies can be installed on a macOS development
 machine with the `bin/system` command using [Homebrew](https://brew.sh/).
 
-- Ruby 2.2.0
+- Ruby 2.5.1
 - PostgreSQL 9.3 (with JSON support, and fuzzystrmatch & pg_trgm extensions)
 - Python 2.7 (for Pygments)
 - Node.js 8.12.0 (for yarn)
@@ -71,7 +71,8 @@ See [Docker installation instructions](DOCKER.md).
 
 1. Run `git clone git@github.com:orientation/orientation.git` in Terminal.
 2. `cd` into the cloned directory.
-3. Run `rake orientation:install` in Terminal. This will install gem dependencies.
+3. Run `bin/setup` in Terminal. This will install project dependencies.
+  - Run `USE_OSX_SERVICES=true bin/setup` if you don't plan on using Docker to run system dependencies
 4. Check the output in Terminal. You should see a line that says `Use the following value for the SECRET_KEY_BASE key:` with a long random string afterward. Copy the string and find the paste it in the `.env` file as the `SECRET_KEY_BASE`, around `line 20`.
 5. In the `.env` file, set the `DATABASE_USERNAME` and `DATABASE_PASSWORD`.
 6. Run `rake db:create db:setup` in Terminal.
