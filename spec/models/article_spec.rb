@@ -1,6 +1,29 @@
 require "rails_helper"
 
 RSpec.describe Article do
+  describe ".destroy" do
+    let!(:article) do
+      create(:article,
+        :with_tag,
+        :with_endorsement,
+        :with_subscription,
+        :with_view
+      )
+    end
+
+    it "destroys all relevant associations" do
+
+      expect { article.reload.destroy }.to change {
+        [
+          ArticlesTag.count,
+          Article::View.count,
+          ArticleSubscription.count,
+          ArticleEndorsement.count
+        ].all?(&:zero?)
+      }
+    end
+  end
+
   describe "#after_destroy" do
     let(:article) { create(:article) }
     let(:speakerphone) { double(:speakerphone, shout: 'foo') }

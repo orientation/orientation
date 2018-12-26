@@ -32,5 +32,21 @@ FactoryBot.define do
         article.count_visit
       end
     end
+
+    trait :with_tag do
+      after(:create) { |a| create(:articles_tag, article: a) }
+    end
+
+    trait :with_endorsement do
+      after(:create) { |a| create(:article_endorsement, article: a) }
+    end
+
+    trait :with_subscription do
+      after(:create) { |a| create(:article_subscription, article: a) }
+    end
+
+    trait :with_view do
+      after(:create) { |a| create(:article_view, article: a) }
+    end
   end
 end
