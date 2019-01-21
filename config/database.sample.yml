@@ -1,10 +1,19 @@
 development: &defaults
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV.fetch('DATABASE_NAME') %>
+  database: <%= ENV.fetch('DATABASE_NAME') { 'orientation_development' } %>
   username: <%= ENV.fetch('DATABASE_USERNAME') %>
   password: <%= ENV.fetch('DATABASE_PASSWORD') %>
+  host: <%= ENV['DATABASE_HOST'] || localhost %>
 
 test:
   <<: *defaults
   database: orientation_test
+
+staging:
+  <<: *defaults
+  database: orientation_staging
+
+production:
+  <<: *defaults
+  database: orientation_development
