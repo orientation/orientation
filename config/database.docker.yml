@@ -1,10 +1,15 @@
-production: &defaults
+default: &default
   adapter: postgresql
   encoding: unicode
-  host: <%= ENV['ORIENTATION_DATABASE_1_PORT_5432_TCP_ADDR'] %>
-  port: <%= ENV['ORIENTATION_DATABASE_1_PORT_5432_TCP_PORT'] %>
+  host: db
   database: orientation
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
+
 development:
-  <<: *defaults
+  <<: *default
+  database: orientation_development
+
+test:
+  <<: *default
+  database: orientation_test
