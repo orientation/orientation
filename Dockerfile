@@ -22,6 +22,8 @@ RUN yarn install
 
 COPY ./config/database.docker.yml /orientation/config/database.yml
 
+CMD [ "bin", "rails", "db:setup" ]
+
 ENV RAILS_ENV=production
 
 EXPOSE 3000
