@@ -12,7 +12,6 @@ RSpec.describe Article do
     end
 
     it "destroys all relevant associations" do
-
       expect { article.reload.destroy }.to change {
         [
           ArticlesTag.count,
