@@ -1,7 +1,6 @@
 # ![Orientation][orientation-logo]
 
 [![Build Status][ci-image]][ci]
-[![Test Coverage][codeclimate-coverage-image]][codeclimate]
 [![Code Climate][codeclimate-image]][codeclimate]
 ![Ruby Version][ruby-version-image]
 
@@ -155,7 +154,6 @@ this out](doc/OAUTH.md).
 [gemnasium-image]: https://gemnasium.com/orientation/orientation.svg
 [codeclimate]: https://codeclimate.com/github/orientation/orientation
 [codeclimate-image]: https://codeclimate.com/github/orientation/orientation/badges/gpa.svg
-[codeclimate-coverage-image]: https://codeclimate.com/github/orientation/orientation/badges/coverage.svg
 [heroku]: https://heroku.com/deploy
 [heroku-image]: https://www.herokucdn.com/deploy/button.svg
 [ruby-version-image]: https://img.shields.io/badge/ruby-2.6.0-brightgreen.svg
