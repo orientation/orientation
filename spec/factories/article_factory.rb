@@ -21,6 +21,7 @@ FactoryBot.define do
 
     trait :outdated do
       outdated_at { Time.now }
+      outdatedness_reporter { create(:user) }
     end
 
     trait :guide do
