@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
+  host: <%= ENV['DATABASE_HOST'] %>
   database: orientation
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
@@ -13,3 +13,7 @@ development:
 test:
   <<: *default
   database: orientation_test
+
+production:
+  <<: *default
+  database: orientation_production
