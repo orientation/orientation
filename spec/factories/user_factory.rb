@@ -4,6 +4,6 @@ FactoryBot.define do
     uid { "#{Faker::Number.digit}" }
     name { Faker::Name.name }
     sequence(:email) { |n| "example-email#{n}@orientation.io" }
-    avatar { "http://i.pravatar.cc/160?u=#{email}" }
+    image { "http://i.pravatar.cc/160?u=#{email}" }
   end
 end
