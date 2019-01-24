@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-orientation = User.find_or_initialize_by(name: "Orientation").tap do |user|
-  user.email = "about@orientation.io"
-  user.image = ActionController::Base.helpers.asset_path("default_avatar.jpg")
+orientation = User.find_or_initialize_by(name: "Olivier Lacan").tap do |user|
+  user.email = "olivier@orientation.io"
+  user.image = "https://en.gravatar.com/userimage/4041830/f96aa6256f6953179d7921d981516f2b?size=160"
   user.shtick = "I can orient you in Orientation"
   user.save
 end
