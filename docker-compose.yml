@@ -1,9 +1,9 @@
 version: '3.7'
 services:
-  db:
+  postgres:
     image: postgres
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
   web:
     build: .
     command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails server -p 3000 -b '0.0.0.0'"
@@ -12,4 +12,10 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - postgres
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_USERNAME=postgres
+      - RAILS_ENV=production
+volumes:
+  postgres:
