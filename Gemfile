@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '2.6.0'
 
-gem 'rails', "~> 5.2.0"
+gem 'rails', "~> 5.2.2"
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
