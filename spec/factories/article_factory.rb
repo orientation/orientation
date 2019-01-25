@@ -6,7 +6,7 @@ FactoryBot.define do
     content { Faker::Markdown.sandwich }
 
     transient do
-      count 0
+      count { 0 }
     end
 
     trait :stale do

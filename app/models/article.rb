@@ -28,8 +28,8 @@ class Article < ApplicationRecord
       trigram: { threshold:  0.3 }
     }
 
-  belongs_to :author, class_name: "User"
-  belongs_to :editor, class_name: "User", required: false
+  belongs_to :author, class_name: "User", counter_cache: :article_count
+  belongs_to :editor, class_name: "User", required: false, counter_cache: :edit_count
   belongs_to :outdatedness_reporter, class_name: "User", required: false
 
   has_many :articles_tags, dependent: :destroy

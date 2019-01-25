@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_02_24_025153) do
+ActiveRecord::Schema.define(version: 2019_01_25_014803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 2017_02_24_025153) do
     t.boolean "active", default: true
     t.text "shtick"
     t.json "preferences"
+    t.integer "article_count", default: 0, null: false
+    t.integer "edit_count", default: 0, null: false
   end
 
 end
