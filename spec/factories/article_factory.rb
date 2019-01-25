@@ -40,7 +40,7 @@ FactoryBot.define do
 
     trait :with_tag do
       after(:create) do |article, evaluator|
-        if evaluator.count.present?
+        if evaluator.count.nonzero?
           create_list(:articles_tag, evaluator.count, article: article)
         else
           create(:articles_tag, article: article)
@@ -50,7 +50,7 @@ FactoryBot.define do
 
     trait :with_endorsement do
       after(:create) do |article, evaluator|
-        if evaluator.count.present?
+        if evaluator.count.nonzero?
           create_list(:article_endorsement, evaluator.count, article: article)
         else
           create(:article_endorsement, article: article)
@@ -60,7 +60,7 @@ FactoryBot.define do
 
     trait :with_subscription do
       after(:create) do |article, evaluator|
-        if evaluator.count.present?
+        if evaluator.count.nonzero?
           create_list(:article_subscription, evaluator.count, article: article)
         else
           create(:article_subscription, article: article)
@@ -70,7 +70,7 @@ FactoryBot.define do
 
     trait :with_view do
       after(:create) do |article, evaluator|
-        if evaluator.count.present?
+        if evaluator.count.nonzero?
           create_list(:article_view, evaluator.count, article: article)
         else
           create(:article_view, article: article)
