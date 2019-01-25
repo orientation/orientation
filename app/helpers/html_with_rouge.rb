@@ -1,4 +1,10 @@
-class HtmlWithPygments < Redcarpet::Render::HTML
+require 'redcarpet'
+require 'rouge'
+require 'rouge/plugins/redcarpet'
+
+class HtmlWithRouge < Redcarpet::Render::HTML
+  include Rouge::Plugins::Redcarpet
+
   def header(title, level)
     permalink = title.parameterize.downcase
     %(
@@ -10,11 +16,9 @@ class HtmlWithPygments < Redcarpet::Render::HTML
   end
 
   def block_code(code, language)
-    safe_language = Pygments::Lexer.find_by_alias(language) ? language : nil
-
     sha = Digest::SHA1.hexdigest(code)
-    Rails.cache.fetch ["code", safe_language, sha].join('-') do
-      Pygments.highlight(code, lexer: safe_language)
+    Rails.cache.fetch ["code", language, sha].join("-") do
+      super
     end
   end
 
