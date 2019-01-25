@@ -63,9 +63,15 @@ Article.find_or_create_by(title: "About").tap do |article|
   article.tags = [tag]
   article.guide = true
   article.save
+  article.subscribers << FactoryBot.create_list(:user, 10)
+  article.endorsers << [orientation, FactoryBot.create_list(:user, 20)]
+
+  FactoryBot.create_list(:article_subscription, 20, article: article)
+  FactoryBot.create_list(:article_endorsement, 10, article: article)
+  FactoryBot.create_list(:article_view, 100, article: article)
 end
 
-5.times { FactoryBot.create(:article, :fresh) }
-5.times { FactoryBot.create(:article, :stale) }
-5.times { FactoryBot.create(:article, :outdated) }
+5.times { FactoryBot.create(:article, :fresh, :with_subscription, :with_endorsement, :with_view, :with_tag, count: 5) }
+5.times { FactoryBot.create(:article, :stale, :with_subscription, :with_endorsement, :with_view, :with_tag, count: 5) }
+5.times { FactoryBot.create(:article, :outdated, :with_subscription, :with_endorsement, :with_view, :with_tag, count: 5) }
 5.times { FactoryBot.create(:article, :archived) }
