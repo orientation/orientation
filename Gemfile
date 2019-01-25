@@ -42,7 +42,7 @@ gem 'sidekiq-unique-jobs'
 gem 'simple_form'
 
 # Server-side syntax highlighting
-gem 'pygments.rb'
+gem 'rouge'
 
 # Markdown parsing and rendering
 gem 'redcarpet', '~> 3.4.0'

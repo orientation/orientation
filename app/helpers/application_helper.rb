@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    renderer = HtmlWithPygments.new(hard_wrap: true, escape_html: true)
+    renderer = HtmlWithRouge.new(hard_wrap: true, escape_html: true)
     Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
   end
 
