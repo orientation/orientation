@@ -222,7 +222,7 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
-    rack-protection (2.0.4)
+    rack-protection (2.0.5)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -307,7 +307,7 @@ GEM
       connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    sidekiq-unique-jobs (6.0.6)
+    sidekiq-unique-jobs (6.0.8)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 4.0, < 6.0)
       thor (~> 0)
