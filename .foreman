@@ -1,0 +1,3 @@
+# This disable the release process anywhere else but Heroku
+# when using Foreman, for example inside Docker.
+formation: release=0,web=1,worker=1
