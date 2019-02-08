@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "bootstrap": "~4.1.2",
-    "popper.js": "^1.14.3",
+    "popper.js": "^1.14.7",
     "jquery": "^3.2.1",
     "jquery-tokeninput": "~1.6.0",
     "moment": "^2.18.1",
