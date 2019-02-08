@@ -75,8 +75,7 @@ GEM
     capybara-screenshot (1.0.22)
       capybara (>= 1.0, < 4)
       launchy
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
+    climate_control (0.2.0)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
     coderay (1.1.2)
