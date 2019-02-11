@@ -76,7 +76,7 @@ GEM
       capybara (>= 1.0, < 4)
       launchy
     climate_control (0.2.0)
-    codeclimate-test-reporter (1.0.8)
+    codeclimate-test-reporter (1.0.9)
       simplecov (<= 0.13)
     coderay (1.1.2)
     coffee-rails (4.2.2)
