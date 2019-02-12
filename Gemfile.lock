@@ -127,7 +127,7 @@ GEM
     ffi (1.9.25)
     font-awesome-sass (5.3.1)
       sassc (>= 1.11)
-    friendly_id (5.2.4)
+    friendly_id (5.2.5)
       activerecord (>= 4.0.0)
     get_process_mem (0.2.2)
     globalid (0.4.2)
