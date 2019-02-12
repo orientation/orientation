@@ -60,7 +60,7 @@ gem 'activemodel-serializers-xml'
 gem 'draper', '~> 3.0.0'
 
 # Default responses from controllers
-gem 'responders','~> 2.0'
+gem 'responders','~> 2.4'
 
 # Friendly URL slugs for models
 gem 'friendly_id'
