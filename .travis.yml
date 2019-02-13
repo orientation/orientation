@@ -1,7 +1,7 @@
 language: ruby
 matrix:
   include:
-    - rvm: 2.6.0
+    - rvm: 2.6.1
     - rvm: 2.5.3
       env: CUSTOM_RUBY_VERSION=2.5.3 ISOLATED=true
     - rvm: 2.4.5
