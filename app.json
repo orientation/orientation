@@ -28,7 +28,7 @@
     "GOOGLE_KEY": {
       "required": true
     },
-    "RACK_TIMEOUT_SERVICE_TIMEOUT": 20
+    "RACK_TIMEOUT_SERVICE_TIMEOUT": "20"
   },
   "buildpacks" : [
     {
