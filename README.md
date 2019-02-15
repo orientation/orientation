@@ -41,7 +41,7 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 Some of these system dependencies can be installed on a macOS development
 machine with the `bin/system` command using [Homebrew](https://brew.sh/).
 
-- Ruby 2.3 to 2.6
+- Ruby 2.4 to 2.6
 - PostgreSQL 9.3+ (with JSON support, and fuzzystrmatch & pg_trgm extensions)
 - Node.js 8.12.0 (for yarn)
 - yarn
@@ -155,7 +155,7 @@ this out](doc/OAUTH.md).
 [codeclimate-image]: https://codeclimate.com/github/orientation/orientation/badges/gpa.svg
 [heroku]: https://heroku.com/deploy
 [heroku-image]: https://www.herokucdn.com/deploy/button.svg
-[ruby-version-image]: https://img.shields.io/badge/ruby-2.3%20%E2%80%94%3E%202.6-brightgreen.svg
+[ruby-version-image]: https://img.shields.io/badge/ruby-2.4%20%E2%80%94%3E%202.6-brightgreen.svg
 
 [orientation-logo]: https://github.com/orientation/orientation/blob/master/public/orientation_logo.png
 [orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png
