@@ -69,7 +69,7 @@ gem 'friendly_id'
 gem 'dotenv-rails'
 
 # ActionCable dependency
-gem 'redis', '~> 3.0'
+gem 'redis', '~> 4.1'
 
 # === Third-party Integrations === #
 
