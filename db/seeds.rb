@@ -7,10 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 orientation = User.find_or_initialize_by(name: "Olivier Lacan").tap do |user|
+  @already_seeded = true if user.persisted?
   user.email = "olivier@orientation.io"
   user.image = "https://en.gravatar.com/userimage/4041830/f96aa6256f6953179d7921d981516f2b?size=160"
   user.shtick = "I can orient you in Orientation"
   user.save
+end
+
+if @already_seeded
+  puts "The database was already seeded, run bin/rake db:schema:load to wipe before you seed again."
+  return
 end
 
 tag = Tag.find_or_create_by(name: "meta")
@@ -64,7 +70,7 @@ Article.find_or_create_by(title: "About").tap do |article|
   article.guide = true
   article.save
   article.subscribers << FactoryBot.create_list(:user, 10)
-  article.endorsers << [orientation, FactoryBot.create_list(:user, 20)]
+  article.endorsers << [FactoryBot.create_list(:user, 20)]
 
   FactoryBot.create_list(:article_subscription, 20, article: article)
   FactoryBot.create_list(:article_endorsement, 10, article: article)
