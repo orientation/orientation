@@ -127,4 +127,15 @@ RSpec.describe User do
       expect(subscribed_to?).to be_truthy
     end
   end
+
+  context "#all_contributions_count" do
+    let(:user) { create(:user) }
+    let(:article) { create(:article, author: user, editor: user) }
+
+    subject(:all_contributions_count) { user.all_contributions_count }
+
+    it 'returns the sum of all contributions by this user' do
+      expect { article }.to change { user.reload.all_contributions_count }.from(0).to(2)
+    end
+  end
 end

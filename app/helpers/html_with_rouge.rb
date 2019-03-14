@@ -1,4 +1,25 @@
-class HtmlWithPygments < Redcarpet::Render::HTML
+require 'redcarpet'
+require 'rouge'
+require 'rouge/plugins/redcarpet'
+
+class HtmlWithRouge < Redcarpet::Render::HTML
+  def self.markdown_options
+    {
+      autolink: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      disable_indented_code_blocks: true,
+      lax_spacing: true,
+      lax_html_blocks: true,
+      strikethrough: true,
+      superscript: true,
+      tables: true,
+      with_toc_data: true
+    }
+  end
+
+  include Rouge::Plugins::Redcarpet
+
   def header(title, level)
     permalink = title.parameterize.downcase
     %(
@@ -10,11 +31,9 @@ class HtmlWithPygments < Redcarpet::Render::HTML
   end
 
   def block_code(code, language)
-    safe_language = Pygments::Lexer.find_by_alias(language) ? language : nil
-
     sha = Digest::SHA1.hexdigest(code)
-    Rails.cache.fetch ["code", safe_language, sha].join('-') do
-      Pygments.highlight(code, lexer: safe_language)
+    Rails.cache.fetch ["code", language, sha].join("-") do
+      super
     end
   end
 
@@ -49,7 +68,13 @@ class HtmlWithPygments < Redcarpet::Render::HTML
     if full_document.match(pattern)
       full_document.gsub!(pattern) do |match|
         text = match.delete("[[]]")
-        "[#{text}](#{article_link(text.parameterize)})"
+
+        if text.include?("|")
+          title, reference = text.split("|")
+          "[#{title}](#{article_link(reference.parameterize)})"
+        else
+          "[#{text}](#{article_link(text.parameterize)})"
+        end
       end
     else
       full_document

@@ -5,4 +5,4 @@
     .bucket-content
       = link_to author.name, author_path(author)
       %p.mbf.tss= author.shtick
-      %p.mbf.tss= "#{author.articles.count + author.edits.count} contributions"
+      %p.mbf.tss= "#{author.all_contributions_count} contributions"

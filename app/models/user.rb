@@ -53,6 +53,10 @@ class User < ApplicationRecord
     end
   end
 
+  def all_contributions_count
+    article_count + edit_count
+  end
+
   def notify_about_stale_articles
     return false if inactive?
 

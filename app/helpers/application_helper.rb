@@ -4,13 +4,19 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    renderer = HtmlWithPygments.new(hard_wrap: true, escape_html: true)
-    Redcarpet::Markdown.new(renderer, markdown_options.merge(footnotes: true)).render(text).html_safe
+    renderer = HtmlWithRouge.new(hard_wrap: true, escape_html: true)
+    Redcarpet::Markdown.new(
+      renderer,
+      HtmlWithRouge.markdown_options.merge(footnotes: true)
+    ).render(text).html_safe
   end
 
   def table_of_contents(text)
     renderer = Redcarpet::Render::HTML_TOC.new(nesting_level: 4)
-    Redcarpet::Markdown.new(renderer, markdown_options).render(text).html_safe
+    Redcarpet::Markdown.new(
+      renderer,
+      HtmlWithRouge.markdown_options
+    ).render(text).html_safe
   end
 
   ##
@@ -40,22 +46,5 @@ module ApplicationHelper
 
   def current_action?(name, css)
     action_name == name ? "#{css}" : "#{css.gsub("signal--", "signal--inactive--")}"
-  end
-
-  private
-
-  def markdown_options
-    {
-      autolink: true,
-      no_intra_emphasis: true,
-      fenced_code_blocks: true,
-      disable_indented_code_blocks: true,
-      lax_spacing: true,
-      lax_html_blocks: true,
-      strikethrough: true,
-      superscript: true,
-      tables: true,
-      with_toc_data: true
-    }
   end
 end

@@ -61,6 +61,8 @@ class ApplicationController < ActionController::Base
   end
 
   def demo_app?
-    ENV["HEROKU_APP_NAME"]&.include?("demo")
+    return false if ENV["ORIENTATION_FORCE_AUTH_IN_DEMO"]
+
+    ENV["HEROKU_APP_NAME"] == "orientation-demo"
   end
 end

@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224025153) do
+ActiveRecord::Schema.define(version: 2019_01_25_014803) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
+  enable_extension "plpgsql"
 
   create_table "article_endorsements", id: :serial, force: :cascade do |t|
     t.integer "user_id"
@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(version: 20170224025153) do
   end
 
   create_table "articles", id: :serial, force: :cascade do |t|
-    t.string "title", limit: 255
+    t.string "title"
     t.text "content"
     t.integer "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "slug", limit: 255
+    t.string "slug"
     t.integer "editor_id"
     t.datetime "last_notified_author_at"
     t.datetime "archived_at"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20170224025153) do
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string "locked_by", limit: 255
-    t.string "queue", limit: 255
+    t.string "locked_by"
+    t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
@@ -99,26 +99,28 @@ ActiveRecord::Schema.define(version: 20170224025153) do
   end
 
   create_table "tags", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "slug", limit: 255
+    t.string "slug"
     t.integer "articles_count", default: 0, null: false
     t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
-    t.string "provider", limit: 255
-    t.string "uid", limit: 255
-    t.string "name", limit: 255
-    t.string "email", limit: 255
+    t.string "provider"
+    t.string "uid"
+    t.string "name"
+    t.string "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "image", limit: 255
-    t.string "avatar", limit: 255
+    t.string "image"
+    t.string "avatar"
     t.boolean "active", default: true
     t.text "shtick"
     t.json "preferences"
+    t.integer "article_count", default: 0, null: false
+    t.integer "edit_count", default: 0, null: false
   end
 
 end

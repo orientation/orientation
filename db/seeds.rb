@@ -6,11 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-orientation = User.find_or_initialize_by(name: "Orientation").tap do |user|
-  user.email = "about@orientation.io"
-  user.image = ActionController::Base.helpers.asset_path("default_avatar.jpg")
+orientation = User.find_or_initialize_by(name: "Olivier Lacan").tap do |user|
+  @already_seeded = true if user.persisted?
+  user.email = "olivier@orientation.io"
+  user.image = "https://en.gravatar.com/userimage/4041830/f96aa6256f6953179d7921d981516f2b?size=160"
   user.shtick = "I can orient you in Orientation"
   user.save
+end
+
+if @already_seeded
+  puts "The database was already seeded, run bin/rake db:schema:load to wipe before you seed again."
+  return
 end
 
 tag = Tag.find_or_create_by(name: "meta")
@@ -63,9 +69,15 @@ Article.find_or_create_by(title: "About").tap do |article|
   article.tags = [tag]
   article.guide = true
   article.save
+  article.subscribers << FactoryBot.create_list(:user, 10)
+  article.endorsers << [FactoryBot.create_list(:user, 20)]
+
+  FactoryBot.create_list(:article_subscription, 20, article: article)
+  FactoryBot.create_list(:article_endorsement, 10, article: article)
+  FactoryBot.create_list(:article_view, 100, article: article)
 end
 
-5.times { FactoryBot.create(:article, :fresh) }
-5.times { FactoryBot.create(:article, :stale) }
-5.times { FactoryBot.create(:article, :outdated) }
+5.times { FactoryBot.create(:article, :fresh, :with_subscription, :with_endorsement, :with_view, :with_tag, count: 5) }
+5.times { FactoryBot.create(:article, :stale, :with_subscription, :with_endorsement, :with_view, :with_tag, count: 5) }
+5.times { FactoryBot.create(:article, :outdated, :with_subscription, :with_endorsement, :with_view, :with_tag, count: 5) }
 5.times { FactoryBot.create(:article, :archived) }

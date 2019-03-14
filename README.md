@@ -1,7 +1,6 @@
 # ![Orientation][orientation-logo]
 
 [![Build Status][ci-image]][ci]
-[![Test Coverage][codeclimate-coverage-image]][codeclimate]
 [![Code Climate][codeclimate-image]][codeclimate]
 ![Ruby Version][ruby-version-image]
 
@@ -42,14 +41,13 @@ accounts, so this is what I used. I want to enable custom OAuth providers soon.
 Some of these system dependencies can be installed on a macOS development
 machine with the `bin/system` command using [Homebrew](https://brew.sh/).
 
-- Ruby 2.5.1
-- PostgreSQL 9.3 (with JSON support, and fuzzystrmatch & pg_trgm extensions)
-- Python 2.7 (for Pygments)
+- Ruby 2.4 to 2.6
+- PostgreSQL 9.3+ (with JSON support, and fuzzystrmatch & pg_trgm extensions)
 - Node.js 8.12.0 (for yarn)
 - yarn
 
-Both Node and Python are available on Heroku if you decide to deploy there,
-which means there should not be any issues when deploying or running Orientation
+Node is available on Heroku if you decide to deploy there, which means
+there should not be any issues when deploying or running Orientation
 there.
 
 ### Services
@@ -155,10 +153,9 @@ this out](doc/OAUTH.md).
 [gemnasium-image]: https://gemnasium.com/orientation/orientation.svg
 [codeclimate]: https://codeclimate.com/github/orientation/orientation
 [codeclimate-image]: https://codeclimate.com/github/orientation/orientation/badges/gpa.svg
-[codeclimate-coverage-image]: https://codeclimate.com/github/orientation/orientation/badges/coverage.svg
 [heroku]: https://heroku.com/deploy
 [heroku-image]: https://www.herokucdn.com/deploy/button.svg
-[ruby-version-image]: https://img.shields.io/badge/ruby-2.5.1-brightgreen.svg
+[ruby-version-image]: https://img.shields.io/badge/ruby-2.4%20%E2%80%94%3E%202.6-brightgreen.svg
 
 [orientation-logo]: https://github.com/orientation/orientation/blob/master/public/orientation_logo.png
 [orientation-homepage]: https://cloud.githubusercontent.com/assets/65950/6814712/66cb4684-d281-11e4-800c-329726411b7e.png

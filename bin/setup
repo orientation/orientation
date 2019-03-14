@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'fileutils'
+require 'securerandom'
 include FileUtils
 
 # path to your application root.
