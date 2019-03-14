@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.6.0'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '2.6.2'
 
-gem 'rails', "~> 5.2.0"
+gem 'rails', "~> 5.2.2"
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -42,7 +42,7 @@ gem 'sidekiq-unique-jobs'
 gem 'simple_form'
 
 # Server-side syntax highlighting
-gem 'pygments.rb'
+gem 'rouge'
 
 # Markdown parsing and rendering
 gem 'redcarpet', '~> 3.4.0'
@@ -60,7 +60,7 @@ gem 'activemodel-serializers-xml'
 gem 'draper', '~> 3.0.0'
 
 # Default responses from controllers
-gem 'responders','~> 2.0'
+gem 'responders','~> 2.4'
 
 # Friendly URL slugs for models
 gem 'friendly_id'
@@ -69,7 +69,7 @@ gem 'friendly_id'
 gem 'dotenv-rails'
 
 # ActionCable dependency
-gem 'redis', '~> 3.0'
+gem 'redis', '~> 4.1'
 
 # === Third-party Integrations === #
 
