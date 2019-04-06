@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.6.1'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '2.6.2'
 
 gem 'rails', "~> 5.2.2"
 
