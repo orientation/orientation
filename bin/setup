@@ -36,7 +36,7 @@ chdir APP_ROOT do
   end
 
   unless File.exist?("config/orientation.yml")
-    system "cp config/orientation.sample.yml config/orientation.yml"
+    system "cp config/orientation.yml.sample config/orientation.yml"
   end
 
   puts "\n== Generating secret key =="
