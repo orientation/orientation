@@ -106,12 +106,12 @@ GEM
     dotenv-rails (2.7.2)
       dotenv (= 2.7.2)
       railties (>= 3.2, < 6.1)
-    draper (3.0.1)
-      actionpack (~> 5.0)
-      activemodel (~> 5.0)
-      activemodel-serializers-xml (~> 1.0)
-      activesupport (~> 5.0)
-      request_store (~> 1.0)
+    draper (3.1.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
     erubi (1.8.0)
     erubis (2.7.0)
     excon (0.62.0)
@@ -374,7 +374,7 @@ DEPENDENCIES
   database_cleaner
   derailed_benchmarks
   dotenv-rails
-  draper (~> 3.0.0)
+  draper (~> 3.1.0)
   factory_bot_rails
   faker
   font-awesome-sass
