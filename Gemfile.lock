@@ -219,7 +219,8 @@ GEM
       pry (~> 0.9)
       slop (~> 3.0)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (4.0.1)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-protection (2.0.5)
       rack
@@ -390,7 +391,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   pry-remote
-  puma (~> 3.0)
+  puma (~> 4.0)
   rack-timeout
   rails (~> 5.2.3)
   rails_12factor
