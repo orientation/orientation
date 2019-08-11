@@ -18,7 +18,7 @@ gem 'uglifier'
 # gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0'
 
 # Use Haml as a replacement for ERB view templates
 gem 'haml-rails'
