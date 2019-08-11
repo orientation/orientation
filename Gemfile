@@ -6,7 +6,7 @@ ruby ENV['CUSTOM_RUBY_VERSION'] || '2.6.2'
 gem 'rails', "~> 5.2.3"
 
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
