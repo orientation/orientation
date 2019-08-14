@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   include Dateable
-  include PgSearch
+  include PgSearch::Model
 
   extend ActionView::Helpers::DateHelper
   extend FriendlyId
