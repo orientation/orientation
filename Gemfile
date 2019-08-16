@@ -50,6 +50,7 @@ gem 'redcarpet', '~> 3.4.0'
 # OAuth integration
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 # Full-text search with PostgreSQL
 gem 'pg_search'

@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    origin = { origin: session.delete(:return_to) }.to_query
-    redirect_to("/auth/google_oauth2?#{origin}")
+    @origin = { origin: session.delete(:return_to) }.to_query
   end
 
   def create
