@@ -261,7 +261,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    redcarpet (3.4.0)
+    redcarpet (3.5.0)
     redis (4.1.2)
     regexp_parser (1.6.0)
     request_store (1.4.1)
@@ -395,7 +395,7 @@ DEPENDENCIES
   rack-timeout
   rails (~> 5.2.3)
   rails_12factor
-  redcarpet (~> 3.4.0)
+  redcarpet (~> 3.5.0)
   redis (~> 4.1)
   responders (~> 3.0)
   rouge

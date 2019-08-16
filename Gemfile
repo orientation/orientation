@@ -45,7 +45,7 @@ gem 'simple_form'
 gem 'rouge'
 
 # Markdown parsing and rendering
-gem 'redcarpet', '~> 3.4.0'
+gem 'redcarpet', '~> 3.5.0'
 
 # OAuth integration
 gem 'omniauth'
