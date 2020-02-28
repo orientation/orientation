@@ -185,7 +185,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    nio4r (2.3.1)
+    nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     oauth2 (1.4.1)
@@ -220,7 +220,7 @@ GEM
       pry (~> 0.9)
       slop (~> 3.0)
     public_suffix (3.1.1)
-    puma (4.1.0)
+    puma (4.3.2)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-protection (2.0.5)
@@ -391,7 +391,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   pry-remote
-  puma (~> 4.1)
+  puma (~> 4.3)
   rack-timeout
   rails (~> 5.2.3)
   rails_12factor
