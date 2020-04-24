@@ -32,7 +32,13 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    if Rails.env.staging?
+      flash[:error] = "Article creation has been disabled"
+      redirect_to new_article_path and return
+    end
+
     @article = Article.new(article_params)
+
     if @article.save
       @article.subscribe(@article.author)
       flash[:notice] = "Article was successfully created."

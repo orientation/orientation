@@ -10,7 +10,6 @@
   "addons": [
     "scheduler",
     "heroku-postgresql:hobby-dev",
-    "logentries",
     "heroku-redis:hobby-dev"
   ],
   "env": {
