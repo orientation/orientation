@@ -35,14 +35,14 @@
         .split-cell
           = render partial: 'shared/icon', locals: { icon: 'caret-down', middle: true, klass: 'tcs tsxs' }
       .js-accordion-content
-        %textarea.form-input.form-textarea.form-textarea--pre.mbs.js-selectText{ readonly: true, rows: 3 }
-          \- This is the first item in an unordered list
-          \- This is the second item in an unordered list
-          \- This is the third item in an unordered list
-        %textarea.form-input.form-textarea.form-textarea--pre.mbf.js-selectText{ readonly: true, rows: 3 }
-          \1. This is the first item in an ordered list
-          \2. This is the second item in an ordered list
-          \3. This is the third item in an ordered list
+        %textarea.form-input.form-textarea.mbs.js-selectText{ readonly: true, rows: 3 }
+          \- first unordered list item
+          \- second unordered list item
+          \- third unordered list item
+        %textarea.form-input.form-textarea.mbf.js-selectText{ readonly: true, rows: 3 }
+          \1. first ordered list item
+          \2. second ordered list item
+          \3. third ordered list item
 
 .card-section.pbs.pts
   .form.mbf
@@ -54,9 +54,14 @@
           = render partial: 'shared/icon', locals: { icon: 'caret-down', middle: true, klass: 'tcs tsxs' }
       .js-accordion-content
         %input.form-input.mbs.js-selectText{ type: 'text', readonly: true, value: '`This is inline code`' }
-        %textarea.form-input.form-textarea.form-textarea--pre.js-selectText{ readonly: true, rows: 3 }
-          \```
-          This is a code block
+        %textarea.form-input.form-textarea.js-selectText{ readonly: true, rows: 5 }
+          \```ruby
+          \# This is a code block which
+          \# can be syntax highlighted
+          \# if you specify the language.
+          user = User.new
+          user.save
+          \# => User
           \```
 
 .card-section.pbs.pts
