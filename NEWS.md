@@ -2,6 +2,25 @@
 Interesting new features added to this project will be documented here reverse
 chronologically. This is [not a change log](CHANGELOG.md).
 
+## April 24th, 2020
+
+### SSL by default (potential breaking change)
+
+Long time no news. I simply forgot to update this file, I apologize. There have
+been significant updates to Orientation since summer 2017 but I've failed to
+document the interesting ones here.
+
+I've enabled `config.force_ssl` in both `config/environments/staging.rb` (used for
+[https://try.orientation.io]) and `config/environments/production.rb` which
+will have a direct impact on production deploys of Orientation if aren't hosted
+with SSL/HTTPS. This is a potential breaking change and you should avoid
+fetching and rebasing Orientation's master branch beyond April 23rd, 2020 if
+you're not ready for this change.
+
+Generally you should take steps to systematically host Orientation behind SSL
+since Orientation may be used to host and post sensitive information about your
+organizations and therefore should not rely on unencrypted traffic in any way.
+
 ## July 25th, 2017
 ### Properly weigh search results
 
@@ -217,10 +236,16 @@ I've added some documentation to [`.env.example`][2] on which variables are
 needed but you can read [their excellent documentation][1] to protect your
 Orientation.
 
-One caveat for now, since it's tricky for me to enable Rails' `force_ssl`
+~~One caveat for now, since it's tricky for me to enable Rails' `force_ssl`
 without causing issues to people who don't have SSL set up, it's likely that
 I'll add a new configuration variable to optionally enable `force_ssl` very
-soon.
+soon.~~
+**April 24th, 2020 update**: This has now been superseeded since I no
+longer believe it secure to serve Orientation without SSL enabled.
+Thanks to broad Let's Encrypt support on hosts like Heroku it's now much easier
+to host Orientation (even [on a subdomain][subdomain-ssl]) with SSL enforced.
+
+[subdomain-ssl]: https://devcenter.heroku.com/articles/custom-domains#configuring-dns-for-subdomains
 
 ## October 4th, 2016
 
