@@ -11,8 +11,10 @@ matrix:
   allow_failures:
     - rvm: 2.5.3
     - rvm: 2.4.5
-
 sudo: false
+services:
+  - redis-server
+  - postgresql
 bundler_args: --deployment --without development
 cache:
   - bundler
