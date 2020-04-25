@@ -61,7 +61,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
-    bugsnag (6.11.1)
+    bugsnag (6.13.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
     byebug (11.0.0)
