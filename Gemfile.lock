@@ -152,7 +152,7 @@ GEM
       ruby_parser (~> 3.5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    json (2.1.0)
+    json (2.3.0)
     jwt (2.2.1)
     launchy (2.4.3)
       addressable (~> 2.3)
