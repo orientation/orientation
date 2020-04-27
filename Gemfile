@@ -57,7 +57,7 @@ gem 'pg_search'
 gem 'activemodel-serializers-xml'
 
 # Decorators
-gem 'draper', '~> 3.1.0'
+gem 'draper', '~> 4.0.1'
 
 # Default responses from controllers
 gem 'responders','~> 3.0'

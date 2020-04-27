@@ -106,7 +106,7 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    draper (3.1.0)
+    draper (4.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
       activemodel-serializers-xml (>= 1.0)
@@ -264,7 +264,7 @@ GEM
     redcarpet (3.5.0)
     redis (4.1.2)
     regexp_parser (1.7.0)
-    request_store (1.4.1)
+    request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -372,7 +372,7 @@ DEPENDENCIES
   database_cleaner
   derailed_benchmarks
   dotenv-rails
-  draper (~> 3.1.0)
+  draper (~> 4.0.1)
   factory_bot_rails
   faker
   font-awesome-sass
