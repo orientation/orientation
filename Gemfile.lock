@@ -90,7 +90,7 @@ GEM
     concurrent-ruby (1.1.6)
     connection_pool (2.2.2)
     crass (1.0.6)
-    database_cleaner (1.7.0)
+    database_cleaner (1.8.4)
     debug_inspector (0.0.3)
     derailed_benchmarks (1.3.6)
       benchmark-ips (~> 2)
