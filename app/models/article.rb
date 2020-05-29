@@ -66,6 +66,19 @@ class Article < ApplicationRecord
     where(%Q["articles"."updated_at" < ?], STALENESS_LIMIT.ago)
   end
   scope :alphabetical, -> { order(title: :asc) }
+  scope :with_many_reference_links, -> {
+    a = Article.find_by_sql <<~SQL
+      SELECT
+        articles.*,
+        SUM(array_length(string_to_array(content, '[['), 1) - 1) as link_count
+      FROM articles
+      GROUP BY id, title, content
+      ORDER BY (array_length(string_to_array(content, '[['), 1) - 1) DESC
+    ;
+    SQL
+
+    a.where("link_count > 3")
+  }
 
   def self.count_visit(article_instance)
     self.increment_counter(:visits, article_instance.id)
