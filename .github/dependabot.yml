@@ -1,0 +1,40 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: sidekiq-unique-jobs
+    versions:
+    - 7.0.1
+    - 7.0.2
+    - 7.0.4
+    - 7.0.5
+    - 7.0.7
+    - 7.0.8
+  - dependency-name: nokogiri
+    versions:
+    - 1.11.1
+    - 1.11.2
+  - dependency-name: skylight
+    versions:
+    - 4.3.2
+    - 5.0.0
+  - dependency-name: rails
+    versions:
+    - 6.0.3.4
+    - 6.0.3.5
+  - dependency-name: derailed_benchmarks
+    versions:
+    - 2.0.0
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: jquery
+    versions:
+    - 3.5.1
