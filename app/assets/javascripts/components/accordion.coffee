@@ -18,10 +18,8 @@
     $content : $( '.js-accordion-content' )
   , options
 
-  settings.$content.hide()
-
   settings.$button.on 'click', ( event ) ->
-    $(@).closest( settings.$element ).find( settings.$content ).slideToggle()
+    $(@).closest( settings.$element ).find( settings.$content ).slideToggle(100)
 
 # -------------------------------------
 #   Usage
