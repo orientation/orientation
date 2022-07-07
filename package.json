@@ -4,7 +4,7 @@
     "popper.js": "^1.16.1",
     "jquery": "^3.5.0",
     "jquery-tokeninput": "~1.6.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "momentjs": "^2.0.0"
   }
 }
